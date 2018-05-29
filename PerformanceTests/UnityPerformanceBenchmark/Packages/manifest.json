@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "com.unity.test-framework.performance": "0.1.21-preview",
+    "com.unity.xr.oculus.android": "1.24.1",
+    "com.unity.xr.oculus.standalone": "1.24.1"
+  },
+  "testables": [
+    "com.unity.test-framework.performance"
+  ],
+  "registry": "https://staging-packages.unity.com"
+}

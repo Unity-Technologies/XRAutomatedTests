@@ -1,0 +1,5 @@
+Tests/XRPlaymodeTests/OpenVR
+Tests/XRPlaymodeTests/Oculus
+Tests/XRPlaymodeTests/Cardboard
+Tests/XRPlaymodeTests/Daydream
+Tests/XRPlaymodeTests/ARCore

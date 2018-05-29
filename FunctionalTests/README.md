@@ -1,0 +1,1 @@
+Eventually migrate each functional playmode test project here, moving sdk/platform logic into the prebuildsetup file utilizing the command line parser.

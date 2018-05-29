@@ -1,0 +1,14 @@
+{
+    "name": "Tests",
+    "references": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+  "includePlatforms": [
+    "Editor",
+    "WindowsStandalone64",
+    "WindowsStandalone32"
+  ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

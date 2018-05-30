@@ -34,7 +34,6 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 #if UNITY_EDITOR
         // Get and parse args for player settings
         var args = Environment.GetCommandLineArgs();
-        var clos = new CommandLineOptionSet(args);
         var optionSet = DefineOptionSet();
         var unprocessedArgs = optionSet.Parse(args);
 

@@ -24,6 +24,9 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private bool graphicsJobs;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+    private string appleDeveloperTeamID;
+    private string iOSProvisioningProfileID;
+
     private string testRunPath
     {
         get { return Path.Combine(Application.streamingAssetsPath, "PerformanceTestRunInfo.json"); }
@@ -53,6 +56,14 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
             PlayerSettings.Android.minSdkVersion = minimumAndroidSdkVersion;
             PlayerSettings.Android.targetSdkVersion = targetAndroidSdkVersion;
+        }
+
+        // If iOS, setup iOS player settings
+        if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
+        {
+            PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamID;
+            PlayerSettings.iOS.iOSManualProvisioningProfileID = iOSProvisioningProfileID;
+            PlayerSettings.iOS.iOSManualProvisioningProfileType = ProvisioningProfileType.Development;
         }
 
         PlayerSettings.virtualRealitySupported = enabledXrTargets.Count > 0;
@@ -160,7 +171,16 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             {
                 "targetandroidsdkversion=", "Target Android SDK Version to use.",
                 trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
+            },
+            {
+                "appleDeveloperTeamID=", "Apple Developer Team ID",
+                appleTeamId => appleDeveloperTeamID = appleTeamId
+            },
+            {
+                "iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
+                id => iOSProvisioningProfileID = id
             }
+
         };
     }
 

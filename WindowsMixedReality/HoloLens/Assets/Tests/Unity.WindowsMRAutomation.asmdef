@@ -1,9 +1,16 @@
 {
     "name": "Unity.WindowsMRAutomation",
-    "references": [],
+    "references": [
+        "Unity.XR.WindowsMR"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

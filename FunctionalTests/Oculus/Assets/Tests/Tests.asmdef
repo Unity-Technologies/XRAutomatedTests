@@ -1,0 +1,15 @@
+{
+    "name": "Tests",
+    "references": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "WindowsStandalone64",
+        "WindowsStandalone32"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

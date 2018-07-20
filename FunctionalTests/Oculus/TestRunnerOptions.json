@@ -1,0 +1,3 @@
+{
+	"allowedPlatforms": ["Android", "Editor", "StandaloneWindows", "StandaloneWindows64"]
+}

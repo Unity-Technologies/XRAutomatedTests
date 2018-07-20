@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "36b2d6ff1ac2531e1813ccd2f1fc7723093d7100"
+    "signature": "9093e4c0c07d91abb570d8b37c2c0e14620d404a"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "PerformanceTestReporter/1.0.0": {
         "dependencies": {
+          "Microsoft.Packaging.Tools.Trimming": "1.1.0-preview1-26619-01",
           "Mono.Options": "5.3.0.1",
           "Newtonsoft.Json": "11.0.2"
         },
@@ -15,6 +16,7 @@
           "PerformanceTestReporter.dll": {}
         }
       },
+      "Microsoft.Packaging.Tools.Trimming/1.1.0-preview1-26619-01": {},
       "Mono.Options/5.3.0.1": {
         "runtime": {
           "lib/netstandard1.3/Mono.Options.dll": {}
@@ -32,6 +34,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Microsoft.Packaging.Tools.Trimming/1.1.0-preview1-26619-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nrrp0UB/urshyztx/9+jbCtg5wmry10jFPqujzmcXAhQv58Rt6BdGCNUvqe33gHRUVXNYnIX8Qjy4DKIRCdMgQ==",
+      "path": "microsoft.packaging.tools.trimming/1.1.0-preview1-26619-01",
+      "hashPath": "microsoft.packaging.tools.trimming.1.1.0-preview1-26619-01.nupkg.sha512"
     },
     "Mono.Options/5.3.0.1": {
       "type": "package",

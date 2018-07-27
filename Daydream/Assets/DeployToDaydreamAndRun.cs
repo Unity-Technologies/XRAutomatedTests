@@ -5,12 +5,9 @@ using UnityEngine.TestTools;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 
-[UnityPlatform(include = new[] { RuntimePlatform.Android })]
 public class DaydreamSmokeTest : EnableVRPrebuildStep
 {
     [UnityTest]
-    [Explicit] // Added to ensure this is only run against devices that support Daydream
-               // Requires that --testFilter=DaydreamSmokeTest parameter is used to run.
     public IEnumerator CanDeployAndRunDaydreamAppOnAndroid()
     {
         yield return new MonoBehaviourTest<DaydreamMonoBehaviourTest>();

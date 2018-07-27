@@ -5,7 +5,6 @@ using UnityEngine.TestTools;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 
-[UnityPlatform(include = new[] { RuntimePlatform.WindowsEditor, RuntimePlatform.WindowsPlayer })]
 public class OculusSmokeTest
 {
     [UnityTest]

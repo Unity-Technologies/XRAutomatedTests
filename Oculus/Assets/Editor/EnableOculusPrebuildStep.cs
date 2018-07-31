@@ -39,7 +39,7 @@ public class EnableOculusPrebuildStep : IPrebuildSetup
 
     private void CopyOculusSignatureFilesToProject()
     {
-        var files = Directory.GetFiles(@"..\..\OculusSignatureFiles");
+        var files = Directory.GetFiles(@"..\OculusSignatureFiles");
 
         foreach (var file in files)
         {

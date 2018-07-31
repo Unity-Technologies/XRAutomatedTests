@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using NDesk.Options;
 using Unity.PerformanceTesting;
 using UnityEngine;
@@ -16,7 +15,6 @@ using PlayerSettings = UnityEditor.PlayerSettings;
 public class RenderPerformancePrebuildStep : IPrebuildSetup
 {
 #if UNITY_EDITOR
-    private BuildTarget buildTarget;
     private List<string> enabledXrTargets = new List<string>();
     private GraphicsDeviceType playerGraphicsApi;
     private StereoRenderingPath stereoRenderingPath = StereoRenderingPath.SinglePass;
@@ -24,6 +22,9 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private bool graphicsJobs;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+    private string appleDeveloperTeamId;
+    private string iOsProvisioningProfileId;
+
     private string testRunPath
     {
         get { return Path.Combine(Application.streamingAssetsPath, "PerformanceTestRunInfo.json"); }
@@ -53,6 +54,14 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
             PlayerSettings.Android.minSdkVersion = minimumAndroidSdkVersion;
             PlayerSettings.Android.targetSdkVersion = targetAndroidSdkVersion;
+        }
+
+        // If iOS, setup iOS player settings
+        if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
+        {
+            PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamId;
+            PlayerSettings.iOS.iOSManualProvisioningProfileID = iOsProvisioningProfileId;
+            PlayerSettings.iOS.iOSManualProvisioningProfileType = ProvisioningProfileType.Development;
         }
 
         PlayerSettings.virtualRealitySupported = enabledXrTargets.Count > 0;
@@ -160,7 +169,16 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             {
                 "targetandroidsdkversion=", "Target Android SDK Version to use.",
                 trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
+            },
+            {
+                "appleDeveloperTeamID=", "Apple Developer Team ID",
+                appleTeamId => appleDeveloperTeamId = appleTeamId
+            },
+            {
+                "iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
+                id => iOsProvisioningProfileId = id
             }
+
         };
     }
 

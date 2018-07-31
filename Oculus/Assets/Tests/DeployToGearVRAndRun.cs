@@ -6,7 +6,6 @@ using UnityEngine.TestTools;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 
-[UnityPlatform(include = new[] { RuntimePlatform.Android })]
 public class GearVRSmokeTest
 {
     [UnityTest]

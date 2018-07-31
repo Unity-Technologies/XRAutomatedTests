@@ -4,11 +4,11 @@
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-  "includePlatforms": [
-    "Editor",
-    "WindowsStandalone64",
-    "WindowsStandalone32"
-  ],
+    "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

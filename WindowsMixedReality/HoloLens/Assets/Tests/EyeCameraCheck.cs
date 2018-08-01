@@ -90,7 +90,7 @@ internal class EyeCameraCheck : HoloLensTestBase
     public void EyePositionCheck()
     {
         Vector3 LeftEye = InputTracking.GetLocalPosition(XRNode.LeftEye);
-        Vector3 RightEye = InputTracking.GetLocalPosition(XRNode.LeftEye);
+        Vector3 RightEye = InputTracking.GetLocalPosition(XRNode.RightEye);
 
         Vector3 LeftEyeInverse = m_Camera.transform.InverseTransformVector(LeftEye);
         Vector3 RightEyeInverse = m_Camera.transform.InverseTransformVector(RightEye);

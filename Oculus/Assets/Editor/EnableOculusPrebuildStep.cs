@@ -18,13 +18,15 @@ public class EnableOculusPrebuildStep : IPrebuildSetup
         {
             UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                 buildTargetGroup,
-                new[] {"Oculus"});
+                new[] { "Oculus" });
         }
         else if (buildTargetGroup == BuildTargetGroup.Android)
         {
             EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
             PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel19;
-            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal; // Currently Oculus SDK doesn't provide a targetSDKVersion, which causes a permission request on startup
+            EditorUserBuildSettings.androidBuildSystem =
+                AndroidBuildSystem
+                    .Internal; // Currently Oculus SDK doesn't provide a targetSDKVersion, which causes a permission request on startup
             CopyOculusSignatureFilesToProject();
             UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                 buildTargetGroup,
@@ -32,7 +34,8 @@ public class EnableOculusPrebuildStep : IPrebuildSetup
         }
         else
         {
-            throw new NotImplementedException(EditorUserBuildSettings.selectedBuildTargetGroup + "Platform not implemented for prebuild steps.");
+            throw new NotImplementedException(EditorUserBuildSettings.selectedBuildTargetGroup +
+                                              "Platform not implemented for prebuild steps.");
         }
 #endif
     }

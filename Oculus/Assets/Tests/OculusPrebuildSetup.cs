@@ -7,7 +7,6 @@ using UnityEditor;
 using UnityEngine.TestTools;
 using UnityEngine;
 using UnityEngine.XR.WSA;
-using UnityEditorInternal.VR;
 using Object = UnityEngine.Object;
 
 public class OculusPrebuildSetup

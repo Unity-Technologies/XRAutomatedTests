@@ -2,7 +2,6 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using Boo.Lang.Environments;
 using UnityEngine.XR;
 
 internal class GraphicsCheck : HoloLensTestBase

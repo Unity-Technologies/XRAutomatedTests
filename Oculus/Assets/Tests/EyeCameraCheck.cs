@@ -38,6 +38,7 @@ namespace Tests
             Assert.IsTrue(m_AngleCheck, "Eyes are not parallel with the head");
         }
 
+		[Ignore("Disable for Jenkins CI for now as no HMD movement")]
         [UnityTest]
         public IEnumerator EyePositionCheckWithHead()
         {

@@ -1,7 +1,8 @@
+using UnityEngine;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
 
 public enum TestStageConfig
 {
@@ -20,7 +21,7 @@ public enum TestCubesConfig
     TestMassCube
 }
 
-public class TestSetupHelpers : OculusPrebuildSetup
+internal class TestSetupHelpers : HoloLensTestBase
 {
     private int m_CubeCount = 0;
 
@@ -153,7 +154,7 @@ public class TestSetupHelpers : OculusPrebuildSetup
         }
     }
 
-    public void CleanUpCameraLights()
+    public void CleanUpCamerLights()
     {
         Object.Destroy(GameObject.Find("Camera"));
         Object.Destroy(GameObject.Find("Light"));
@@ -169,31 +170,34 @@ public class TestSetupHelpers : OculusPrebuildSetup
     {
         PlayerSettings.stereoRenderingPath = StereoRenderingPath.Instancing;
     }
+#endif
 
     public void TestStageSetup(TestStageConfig TestConfiguration)
     {
         switch (TestConfiguration)
         {
             case TestStageConfig.BaseStageSetup:
-                CameraLightSetup();
-                break;
+                    CameraLightSetup();
+                    break;
 
             case TestStageConfig.CleanStage:
-                CleanUpCameraLights();
-                CleanUpTestCubes();
-                InsureInstancingRendering();
+                    CleanUpCamerLights();
+                    CleanUpTestCubes();
+#if UNITY_EDITOR
+                    InsureInstancingRendering();
+#endif
                 break;
-
+#if UNITY_EDITOR
             case TestStageConfig.Instancing:
-                InsureInstancingRendering();
-                break;
+                    InsureInstancingRendering();
+                    break;
 
-            case TestStageConfig.MultiPass:
-                InsureMultiPassRendering();
-                break;
+                case TestStageConfig.MultiPass:
+                    InsureMultiPassRendering();
+                    break;
+#endif
         }
     }
-#endif
 
     public void TestCubeSetup(TestCubesConfig TestConfiguration)
     {

@@ -14,7 +14,7 @@ internal class HoloLensTestBase
     public static GameObject m_Light;
     public static GameObject m_Cube;
 
-    public TestSetupSimulationHelpers m_TestSetupHelpers;
+    public TestSetupHelpers m_TestSetupHelpers;
 
     public SimulatedHead head { get { return HolographicAutomation.simulatedHead; } }
     public SimulatedBody body { get { return HolographicAutomation.simulatedBody; } }
@@ -27,7 +27,7 @@ internal class HoloLensTestBase
         HolographicAutomation.Reset();
 
         m_Cube = new GameObject("Cube");
-        m_TestSetupHelpers = new TestSetupSimulationHelpers();
+        m_TestSetupHelpers = new TestSetupHelpers();
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }

@@ -19,7 +19,7 @@ public enum TestCubesConfig
     TestMassCube
 }
 
-internal class TestSetupSimulationHelpers : HoloLensTestBase
+public class TestSetupHelpers : OculusPrebuildSetup
 {
     private int m_CubeCount = 0;
 

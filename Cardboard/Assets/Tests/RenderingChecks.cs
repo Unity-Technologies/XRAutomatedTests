@@ -84,7 +84,7 @@ namespace Tests
             }
 
             currentState = currentState + 1;
-            if ((int)currentState >= System.Enum.GetValues(typeof(States)).Length)
+            if ((int)currentState >= 4)//System.Enum.GetValues(typeof(States)).Length)
             {
                 Debug.Log("Current State : " + currentState);
                 stopTest = true;

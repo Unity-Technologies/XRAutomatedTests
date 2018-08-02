@@ -50,7 +50,7 @@ namespace Tests
         [Test]
         public void DeviceCheck()
         {
-            Assert.AreEqual("Oculus", XRSettings.loadedDeviceName, "Wrong XR Device reported");
+            Assert.AreEqual("cardboard", XRSettings.loadedDeviceName, "Wrong XR Device reported");
         }
 
         [Test]

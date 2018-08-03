@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Tests
 {
-    public class RenderingChecks : CardboardSetup
+    public class RenderingChecks : DayDreamTestBase
     {
         enum States
         {
@@ -32,8 +32,6 @@ namespace Tests
             colorScreen = GameObject.CreatePrimitive(PrimitiveType.Quad);
             colorScreen.transform.position = new Vector3(0f, 0f, 1f);
             colorScreen.GetComponent<Renderer>().material = testMat;
-
-            Debug.Log("Setup Has Finished!");
         }
 
         [TearDown]
@@ -47,11 +45,9 @@ namespace Tests
         {
             while (!stopTest)
             {
-                Debug.Log("Starting Test!");
                 DoTest();
                 yield return new WaitForSeconds(2.0f);
             }
-            Debug.Log("Finished Test!");
         }
 
         void DoTest()
@@ -86,7 +82,6 @@ namespace Tests
             currentState = currentState + 1;
             if ((int)currentState >= System.Enum.GetValues(typeof(States)).Length)
             {
-                Debug.Log("Current State : " + currentState);
                 stopTest = true;
 
                 if (allTestsPassed)
@@ -129,7 +124,7 @@ namespace Tests
             return false;
         }
 
-        void OnRenderImage(RenderTexture src, RenderTexture dst)   
+        void OnRenderImage(RenderTexture src, RenderTexture dst)
         {
             if (doVerification)
             {

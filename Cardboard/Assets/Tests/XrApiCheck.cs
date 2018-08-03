@@ -17,7 +17,7 @@ namespace Tests
             }
             else
             {
-                Assert.IsFalse(Application.isMobilePlatform, "Non Mobile SDK returned as a mobile platform");
+                Assert.IsFalse(Application.isMobilePlatform, "Standalone XR returned as a mobile platform");
             }
         }
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using NDesk.Options;
 using Unity.PerformanceTesting;
 using UnityEngine;
@@ -16,7 +15,6 @@ using PlayerSettings = UnityEditor.PlayerSettings;
 public class RenderPerformancePrebuildStep : IPrebuildSetup
 {
 #if UNITY_EDITOR
-    private BuildTarget buildTarget;
     private List<string> enabledXrTargets = new List<string>();
     private GraphicsDeviceType playerGraphicsApi;
     private StereoRenderingPath stereoRenderingPath = StereoRenderingPath.SinglePass;
@@ -24,8 +22,8 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private bool graphicsJobs;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    private string appleDeveloperTeamID;
-    private string iOSProvisioningProfileID;
+    private string appleDeveloperTeamId;
+    private string iOsProvisioningProfileId;
 
     private string testRunPath
     {
@@ -61,8 +59,8 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         // If iOS, setup iOS player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
         {
-            PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamID;
-            PlayerSettings.iOS.iOSManualProvisioningProfileID = iOSProvisioningProfileID;
+            PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamId;
+            PlayerSettings.iOS.iOSManualProvisioningProfileID = iOsProvisioningProfileId;
             PlayerSettings.iOS.iOSManualProvisioningProfileType = ProvisioningProfileType.Development;
         }
 
@@ -174,11 +172,11 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             },
             {
                 "appleDeveloperTeamID=", "Apple Developer Team ID",
-                appleTeamId => appleDeveloperTeamID = appleTeamId
+                appleTeamId => appleDeveloperTeamId = appleTeamId
             },
             {
                 "iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
-                id => iOSProvisioningProfileID = id
+                id => iOsProvisioningProfileId = id
             }
 
         };

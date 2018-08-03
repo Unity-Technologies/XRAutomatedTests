@@ -1,6 +1,8 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum TestStageConfig
 {
@@ -19,7 +21,7 @@ public enum TestCubesConfig
     TestMassCube
 }
 
-internal class TestSetupSimulationHelpers : HoloLensTestBase
+internal class TestSetupHelpers : HoloLensTestBase
 {
     private int m_CubeCount = 0;
 
@@ -152,12 +154,13 @@ internal class TestSetupSimulationHelpers : HoloLensTestBase
         }
     }
 
-    public void CleanUpCameraLights()
+    public void CleanUpCamerLights()
     {
         Object.Destroy(GameObject.Find("Camera"));
         Object.Destroy(GameObject.Find("Light"));
     }
 
+#if UNITY_EDITOR
     public void InsureMultiPassRendering()
     {
         PlayerSettings.stereoRenderingPath = StereoRenderingPath.MultiPass;
@@ -167,28 +170,32 @@ internal class TestSetupSimulationHelpers : HoloLensTestBase
     {
         PlayerSettings.stereoRenderingPath = StereoRenderingPath.Instancing;
     }
+#endif
 
     public void TestStageSetup(TestStageConfig TestConfiguration)
     {
         switch (TestConfiguration)
         {
             case TestStageConfig.BaseStageSetup:
-                CameraLightSetup();
-                break;
+                    CameraLightSetup();
+                    break;
 
             case TestStageConfig.CleanStage:
-                CleanUpCameraLights();
-                CleanUpTestCubes();
-                InsureInstancingRendering();
+                    CleanUpCamerLights();
+                    CleanUpTestCubes();
+#if UNITY_EDITOR
+                    InsureInstancingRendering();
+#endif
                 break;
-
+#if UNITY_EDITOR
             case TestStageConfig.Instancing:
-                InsureInstancingRendering();
-                break;
+                    InsureInstancingRendering();
+                    break;
 
-            case TestStageConfig.MultiPass:
-                InsureMultiPassRendering();
-                break;
+                case TestStageConfig.MultiPass:
+                    InsureMultiPassRendering();
+                    break;
+#endif
         }
     }
 

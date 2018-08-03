@@ -11,13 +11,13 @@ namespace Tests
         [Test]
         public void MobilePlatformCheck()
         {
-            if (Application.platform == RuntimePlatform.Android)
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             {
-                Assert.IsTrue(Application.isMobilePlatform, "Gear VR returned as a non mobile platform ");
+                Assert.IsTrue(Application.isMobilePlatform, "Mobile XR returned as a non mobile platform ");
             }
             else
             {
-                Assert.IsFalse(Application.isMobilePlatform, "Oculus Rift returned as a mobile platform");
+                Assert.IsFalse(Application.isMobilePlatform, "Standalone XR returned as a mobile platform");
             }
         }
 

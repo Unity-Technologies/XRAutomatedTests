@@ -88,7 +88,7 @@ public class CameraCheck : OculusPrebuildSetup
         var refreshRate = XRDevice.refreshRate;
         if (Application.platform == RuntimePlatform.Android)
         {
-            Assert.GreaterOrEqual(refreshRate, 90, "Refresh rate returned to lower than expected");
+            Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
@@ -146,32 +146,40 @@ public class CameraCheck : OculusPrebuildSetup
     {
         yield return null;
 
-        try
+		if (Application.platform == RuntimePlatform.Android)
         {
-            m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
-
-            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
-
-            m_DidSaveScreenCapture = true;
+            Debug.Log("Skip screen shot test for Android.");
+			Assert.IsTrue(true);
         }
-        catch (Exception e)
-        {
-            Debug.Log("Failed to get capture! : " + e);
-            m_DidSaveScreenCapture = false;
-            Assert.Fail("Failed to get capture! : " + e);
-        }
+		else
+		{
+			try
+			{
+				m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
 
-        if (m_DidSaveScreenCapture)
-        {
-            yield return new WaitForSeconds(5);
+				ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
-            Texture2D tex = new Texture2D(2, 2);
-            var texData = File.ReadAllBytes(m_FileName);
-            Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
+				m_DidSaveScreenCapture = true;
+			}
+			catch (Exception e)
+			{
+				Debug.Log("Failed to get capture! : " + e);
+				m_DidSaveScreenCapture = false;
+				Assert.Fail("Failed to get capture! : " + e);
+			}
 
-            tex.LoadImage(texData);
+			if (m_DidSaveScreenCapture)
+			{
+				yield return new WaitForSeconds(5);
 
-            Assert.IsNotNull(tex, "Texture Data is empty");
-        }
+				Texture2D tex = new Texture2D(2, 2);
+				var texData = File.ReadAllBytes(m_FileName);
+				Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
+
+				tex.LoadImage(texData);
+
+				Assert.IsNotNull(tex, "Texture Data is empty");
+			}
+		}
     }
 }

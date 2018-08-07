@@ -47,6 +47,7 @@ public class CameraCheck : DayDreamTestBase
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
+    [Ignore("Failure from test not setting up properly")]
     [UnityTest]
     public IEnumerator GazeCheck()
     {

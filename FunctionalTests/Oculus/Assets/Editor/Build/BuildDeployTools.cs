@@ -22,22 +22,26 @@ namespace HoloToolkit.Unity
 
         public static bool CanBuild()
         {
-            if (PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.IL2CPP && IsIl2CppAvailable())
+            if (PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.IL2CPP &&
+                IsIl2CppAvailable())
             {
                 return true;
             }
 
-            return PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.WinRTDotNET && IsDotNetAvailable();
+            return PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.WinRTDotNET &&
+                   IsDotNetAvailable();
         }
 
         public static bool IsDotNetAvailable()
         {
-            return Directory.Exists(EditorApplication.applicationContentsPath + "\\PlaybackEngines\\MetroSupport\\Managed\\UAP");
+            return Directory.Exists(EditorApplication.applicationContentsPath +
+                                    "\\PlaybackEngines\\MetroSupport\\Managed\\UAP");
         }
 
         public static bool IsIl2CppAvailable()
         {
-            return Directory.Exists(EditorApplication.applicationContentsPath + "\\PlaybackEngines\\MetroSupport\\Managed\\il2cpp");
+            return Directory.Exists(EditorApplication.applicationContentsPath +
+                                    "\\PlaybackEngines\\MetroSupport\\Managed\\il2cpp");
         }
 
         /// <summary>
@@ -95,7 +99,8 @@ namespace HoloToolkit.Unity
                     {
                         if (showDialog)
                         {
-                            if (!EditorUtility.DisplayDialog(PlayerSettings.productName, "Build Complete", "OK", "Build AppX"))
+                            if (!EditorUtility.DisplayDialog(PlayerSettings.productName, "Build Complete", "OK",
+                                "Build AppX"))
                             {
                                 BuildAppxFromSLN(
                                     PlayerSettings.productName,
@@ -122,6 +127,7 @@ namespace HoloToolkit.Unity
 
         public static string CalcMSBuildPath(string msBuildVersion)
         {
+#if UNITY_WINDOWS
             if (msBuildVersion.Equals("14.0"))
             {
                 using (RegistryKey key =
@@ -135,12 +141,14 @@ namespace HoloToolkit.Unity
                     }
                 }
             }
+    #endif
 
             // If we got this far then we don't have VS 2015 installed and need to use msBuild 15
             msBuildVersion = "15.0";
 
             // For MSBuild 15+ we should to use vswhere to give us the correct instance
-            string output = @"/C vswhere -version " + msBuildVersion + " -products * -requires Microsoft.Component.MSBuild -property installationPath";
+            string output = @"/C vswhere -version " + msBuildVersion +
+                            " -products * -requires Microsoft.Component.MSBuild -property installationPath";
 
             // get the right program files path based on whether the PC is x86 or x64
             string programFiles = @"C:\Program Files (x86)\Microsoft Visual Studio\Installer";
@@ -164,15 +172,15 @@ namespace HoloToolkit.Unity
                 vswhereP.WaitForExit();
             }
 
-            string[] paths = output.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] paths = output.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 
             if (paths.Length > 0)
             {
                 // if there are multiple 2017 installs,
                 // prefer enterprise, then pro, then community
                 string bestPath = paths.OrderBy(p => p.ToLower().Contains("enterprise"))
-                                        .ThenBy(p => p.ToLower().Contains("professional"))
-                                        .ThenBy(p => p.ToLower().Contains("community")).First();
+                    .ThenBy(p => p.ToLower().Contains("professional"))
+                    .ThenBy(p => p.ToLower().Contains("community")).First();
 
                 return bestPath + @"\MSBuild\" + msBuildVersion + @"\Bin\MSBuild.exe";
             }
@@ -206,7 +214,9 @@ namespace HoloToolkit.Unity
             return File.Exists(storePath + "\\project.lock.json");
         }
 
-        public static bool BuildAppxFromSLN(string productName, string msBuildVersion, bool forceRebuildAppx, string buildConfig, string buildPlatform, string buildDirectory, bool incrementVersion, bool showDialog = true)
+        public static bool BuildAppxFromSLN(string productName, string msBuildVersion, bool forceRebuildAppx,
+            string buildConfig, string buildPlatform, string buildDirectory, bool incrementVersion,
+            bool showDialog = true)
         {
             EditorUtility.DisplayProgressBar("Build AppX", "Building AppX Package...", 0);
             string slnFilename = Path.Combine(buildDirectory, PlayerSettings.productName + ".sln");
@@ -237,7 +247,8 @@ namespace HoloToolkit.Unity
             // Bug in Unity editor that doesn't copy project.json and project.lock.json files correctly if solutionProjectPath is not in a folder named UWP.
             if (!File.Exists(storePath + "\\project.json"))
             {
-                File.Copy(unity + @"\Data\PlaybackEngines\MetroSupport\Tools\project.json", storePath + "\\project.json");
+                File.Copy(unity + @"\Data\PlaybackEngines\MetroSupport\Tools\project.json",
+                    storePath + "\\project.json");
             }
 
             string nugetPath = Path.Combine(unity, @"Data\PlaybackEngines\MetroSupport\Tools\NuGet.exe");
@@ -250,8 +261,10 @@ namespace HoloToolkit.Unity
             if (PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.WinRTDotNET &&
                 (!RestoreNugetPackages(nugetPath, storePath) ||
                  !RestoreNugetPackages(nugetPath, storePath + "\\" + productName) ||
-                 EditorUserBuildSettings.wsaGenerateReferenceProjects && !RestoreNugetPackages(nugetPath, assemblyCSharp) ||
-                 EditorUserBuildSettings.wsaGenerateReferenceProjects && restoreFirstPass && !RestoreNugetPackages(nugetPath, assemblyCSharpFirstPass)))
+                 EditorUserBuildSettings.wsaGenerateReferenceProjects &&
+                 !RestoreNugetPackages(nugetPath, assemblyCSharp) ||
+                 EditorUserBuildSettings.wsaGenerateReferenceProjects && restoreFirstPass &&
+                 !RestoreNugetPackages(nugetPath, assemblyCSharpFirstPass)))
             {
                 Debug.LogError("Failed to restore nuget packages");
                 EditorUtility.ClearProgressBar();
@@ -282,7 +295,7 @@ namespace HoloToolkit.Unity
             // Uncomment out to debug by copying into command window
             //Debug.Log("\"" + vs + "\"" + " " + pInfo.Arguments);
 
-            var process = new Process { StartInfo = pInfo };
+            var process = new Process {StartInfo = pInfo};
 
             try
             {
@@ -301,19 +314,21 @@ namespace HoloToolkit.Unity
                     showDialog &&
                     !EditorUtility.DisplayDialog("Build AppX", "AppX Build Successful!", "OK", "Open AppX Folder"))
                 {
-                    Process.Start("explorer.exe", "/f /open," + Path.GetFullPath(BuildDeployPrefs.BuildDirectory + "/" + PlayerSettings.productName + "/AppPackages"));
+                    Process.Start("explorer.exe",
+                        "/f /open," + Path.GetFullPath(BuildDeployPrefs.BuildDirectory + "/" +
+                                                       PlayerSettings.productName + "/AppPackages"));
                 }
 
                 if (process.ExitCode != 0)
                 {
                     Debug.LogError("MSBuild error (code = " + process.ExitCode + ")");
-                    EditorUtility.DisplayDialog(PlayerSettings.productName + " build Failed!", "Failed to build appx from solution. Error code: " + process.ExitCode, "OK");
+                    EditorUtility.DisplayDialog(PlayerSettings.productName + " build Failed!",
+                        "Failed to build appx from solution. Error code: " + process.ExitCode, "OK");
                     return false;
                 }
 
                 process.Close();
                 process.Dispose();
-
             }
             catch (Exception e)
             {
@@ -328,11 +343,13 @@ namespace HoloToolkit.Unity
         private static void IncrementPackageVersion()
         {
             // Find the manifest, assume the one we want is the first one
-            string[] manifests = Directory.GetFiles(BuildDeployPrefs.AbsoluteBuildDirectory, "Package.appxmanifest", SearchOption.AllDirectories);
+            string[] manifests = Directory.GetFiles(BuildDeployPrefs.AbsoluteBuildDirectory, "Package.appxmanifest",
+                SearchOption.AllDirectories);
 
             if (manifests.Length == 0)
             {
-                Debug.LogError("Unable to find Package.appxmanifest file for build (in path - " + BuildDeployPrefs.AbsoluteBuildDirectory + ")");
+                Debug.LogError("Unable to find Package.appxmanifest file for build (in path - " +
+                               BuildDeployPrefs.AbsoluteBuildDirectory + ")");
                 return;
             }
 
@@ -342,7 +359,8 @@ namespace HoloToolkit.Unity
 
             if (identityNode == null)
             {
-                Debug.LogError("Package.appxmanifest for build (in path - " + BuildDeployPrefs.AbsoluteBuildDirectory + ") is missing an <Identity /> node");
+                Debug.LogError("Package.appxmanifest for build (in path - " + BuildDeployPrefs.AbsoluteBuildDirectory +
+                               ") is missing an <Identity /> node");
                 return;
             }
 
@@ -353,7 +371,8 @@ namespace HoloToolkit.Unity
 
             if (versionAttr == null)
             {
-                Debug.LogError("Package.appxmanifest for build (in path - " + BuildDeployPrefs.AbsoluteBuildDirectory + ") is missing a version attribute in the <Identity /> node.");
+                Debug.LogError("Package.appxmanifest for build (in path - " + BuildDeployPrefs.AbsoluteBuildDirectory +
+                               ") is missing a version attribute in the <Identity /> node.");
                 return;
             }
 

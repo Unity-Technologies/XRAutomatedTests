@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR.WSA.Persistence;
 
 public static class PlatformSettings
 {
@@ -18,5 +15,16 @@ public static class PlatformSettings
     public static bool graphicsJobs;
     public static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     public static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    
+
+    public static void SerializeToAsset()
+    {
+        var settingsAsset = ScriptableObject.CreateInstance<CurrentSettings>();
+
+        settingsAsset.enabledXrTargets = enabledXrTargets;
+        settingsAsset.playerGraphicsApis = enabledXrTargets;
+        settingsAsset.stereoRenderingPaths = stereoRenderingPaths;
+        
+        AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
+        AssetDatabase.SaveAssets();
+    }
 }

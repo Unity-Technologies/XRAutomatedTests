@@ -7,9 +7,16 @@
     "includePlatforms": [
         "Android",
         "Editor",
-        "WindowsStandalone64",
-        "WindowsStandalone32"
+        "iOS",
+        "macOSStandalone",
+        "WSA",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

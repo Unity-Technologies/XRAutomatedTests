@@ -2,15 +2,13 @@ using System;
 using System.IO;
 using NDesk.Options;
 using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
 using UnityEngine.TestTools;
 
 public class EnablePlatformPrebuildStep : IPrebuildSetup
 {
     private static string buildTarget;
-    private static string[] enabledXrTargets;
+    private static string enabledXrTargets;
     private static string[] playerGraphicsApis;
 
     private static string[] stereoRenderingPaths;
@@ -22,7 +20,15 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
 
     public void Setup()
     {
-#if UNITY_EDITOR
+        var args =
+            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=cardboard;daydream;Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android"
+                .Split(' ');
+            //System.Environment.GetCommandLineArgs();
+            
+        var optionSet = DefineOptionSet();
+        
+        var unprocessedArgs = optionSet.Parse(args);
+        
         EditorUserBuildSettings.SwitchActiveBuildTarget(
             PlatformSettings.BuildTargetGroup,
             PlatformSettings.BuildTarget);
@@ -39,12 +45,15 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         EditorUserBuildSettings.androidBuildSystem =
             AndroidBuildSystem
                 .Internal;
-#endif
+
+        CopyOculusSignatureFilesToProject();
+        
+        PlatformSettings.SerializeToAsset();
     }
 
     private void CopyOculusSignatureFilesToProject()
     {
-        var files = Directory.GetFiles(@"..\OculusSignatureFiles");
+        var files = Directory.GetFiles(@"..\..\OculusSignatureFiles");
 
         foreach (var file in files)
         {
@@ -152,7 +161,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
             default:
             {
                 Debug.LogError("Unsupported build target.");
-                break;
+                return BuildTargetGroup.Standalone;
             }
         }
     }

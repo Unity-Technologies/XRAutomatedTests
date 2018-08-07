@@ -44,6 +44,7 @@ public class CameraCheck : OculusPrebuildSetup
 #if UNITY_EDITOR
         UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
 #endif
+        m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
     [UnityTest]
@@ -85,8 +86,14 @@ public class CameraCheck : OculusPrebuildSetup
     public void CheckRefreshRate()
     {
         var refreshRate = XRDevice.refreshRate;
-
-        Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Assert.GreaterOrEqual(refreshRate, 90, "Refresh rate returned to lower than expected");
+        }
+        if (Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
+        }
     }
 
     [Test]
@@ -130,7 +137,7 @@ public class CameraCheck : OculusPrebuildSetup
             zoomCount = zoomCount + 1f;
 
             XRDevice.fovZoomFactor = zoomAmount;
-            Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is to being respected");
+            Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is not being respected");
         }
     }
 
@@ -141,17 +148,9 @@ public class CameraCheck : OculusPrebuildSetup
 
         try
         {
-            //if (XRDevice.model.Contains("HoloLens"))
-            //{
-            //    m_FileName = Application.persistentDataPath + "/ScreenCaptureHoloLens.jpg";
-            //}
-            //else
-            //{
-            //    m_FileName = Application.temporaryCachePath + "/ScreenCaptureMR.jpg";
-            //}
             m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
 
-            ScreenCapture.CaptureScreenshot(m_FileName);
+            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
             m_DidSaveScreenCapture = true;
         }

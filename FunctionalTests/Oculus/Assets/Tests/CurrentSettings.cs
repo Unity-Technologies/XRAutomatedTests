@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CurrentSettings : ScriptableObject 
 {
-    public string[] enabledXrTargets;
-    public string[] playerGraphicsApis;
+    public string enabledXrTarget;
+    public string playerGraphicsApi;
 
-    public string[] stereoRenderingPaths;
+    public string stereoRenderingPath;
 
     public bool mtRendering = true;
     public bool graphicsJobs;

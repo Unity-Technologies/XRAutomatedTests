@@ -8,10 +8,10 @@ using UnityEngine.TestTools;
 public class EnablePlatformPrebuildStep : IPrebuildSetup
 {
     private static string buildTarget;
-    private static string enabledXrTargets;
-    private static string[] playerGraphicsApis;
+    private static string [] enabledXrTargets;
+    private static string playerGraphicsApi;
 
-    private static string[] stereoRenderingPaths;
+    private static string stereoRenderingPath;
 
     //private static bool mtRendering = true;
     //private static bool graphicsJobs;
@@ -21,9 +21,9 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
     public void Setup()
     {
         var args =
-            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=cardboard;daydream;Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android"
-                .Split(' ');
-            //System.Environment.GetCommandLineArgs();
+//            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=cardboard;daydream;Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android"
+//                .Split(' ');
+            System.Environment.GetCommandLineArgs();
             
         var optionSet = DefineOptionSet();
         
@@ -53,13 +53,17 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
 
     private void CopyOculusSignatureFilesToProject()
     {
-        var files = Directory.GetFiles(@"..\..\OculusSignatureFiles");
+    var signatureFilePath =
+        $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}OculusSignatureFiles";
+        var files = Directory.GetFiles(signatureFilePath);
+        var assetsPluginPath =
+            $"Assets{Path.DirectorySeparatorChar}Plugins{Path.DirectorySeparatorChar}Android{Path.DirectorySeparatorChar}assets";
 
         foreach (var file in files)
         {
-            if (!File.Exists(@"Assets\Plugins\Android\assets" + file.Substring(file.LastIndexOf('\\'))))
+            if (!File.Exists(assetsPluginPath+ file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar))))
             {
-                File.Copy(file, @"Assets\Plugins\Android\assets" + file.Substring(file.LastIndexOf('\\')));
+                File.Copy(file, assetsPluginPath + file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar)));
             }
         }
     }
@@ -75,12 +79,12 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
             },
             {
                 "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                graphicsDeviceTypes => PlatformSettings.playerGraphicsApis = ParseMultipleArgs(graphicsDeviceTypes)
+                graphicsDeviceType => PlatformSettings.playerGraphicsApi = graphicsDeviceType
             },
             {
                 "stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPathMode =>
-                    PlatformSettings.stereoRenderingPaths = ParseMultipleArgs(stereoRenderingPathMode)
+                stereoRenderingPath =>
+                    PlatformSettings.stereoRenderingPath = stereoRenderingPath
             } //,
             //{
             //    "mtRendering", "Use multi threaded rendering; true is default.",

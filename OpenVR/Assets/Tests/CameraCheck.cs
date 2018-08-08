@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using Tests;
 
-public class CameraCheck : OculusPrebuildSetup
+public class CameraCheck : OpenVRTestBase
 {
     private bool m_RaycastHit = false;
     private bool m_DidSaveScreenCapture = false;
@@ -47,7 +47,7 @@ public class CameraCheck : OculusPrebuildSetup
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
-    [Ignore("Issue with this test breaking the view frustram - disabled for now")]
+    [Ignore("Test is failing - disabling for now")]
     [UnityTest]
     public IEnumerator GazeCheck()
     {
@@ -89,7 +89,7 @@ public class CameraCheck : OculusPrebuildSetup
         var refreshRate = XRDevice.refreshRate;
         if (Application.platform == RuntimePlatform.Android)
         {
-            Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
+            Assert.GreaterOrEqual(refreshRate, 90, "Refresh rate returned to lower than expected");
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
@@ -147,40 +147,32 @@ public class CameraCheck : OculusPrebuildSetup
     {
         yield return null;
 
-		if (Application.platform == RuntimePlatform.Android)
+        try
         {
-            Debug.Log("Skip screen shot test for Android.");
-			Assert.IsTrue(true);
+            m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+
+            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
+
+            m_DidSaveScreenCapture = true;
         }
-		else
-		{
-			try
-			{
-				m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+        catch (Exception e)
+        {
+            Debug.Log("Failed to get capture! : " + e);
+            m_DidSaveScreenCapture = false;
+            Assert.Fail("Failed to get capture! : " + e);
+        }
 
-				ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
+        if (m_DidSaveScreenCapture)
+        {
+            yield return new WaitForSeconds(5);
 
-				m_DidSaveScreenCapture = true;
-			}
-			catch (Exception e)
-			{
-				Debug.Log("Failed to get capture! : " + e);
-				m_DidSaveScreenCapture = false;
-				Assert.Fail("Failed to get capture! : " + e);
-			}
+            Texture2D tex = new Texture2D(2, 2);
+            var texData = File.ReadAllBytes(m_FileName);
+            Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
 
-			if (m_DidSaveScreenCapture)
-			{
-				yield return new WaitForSeconds(5);
+            tex.LoadImage(texData);
 
-				Texture2D tex = new Texture2D(2, 2);
-				var texData = File.ReadAllBytes(m_FileName);
-				Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
-
-				tex.LoadImage(texData);
-
-				Assert.IsNotNull(tex, "Texture Data is empty");
-			}
-		}
+            Assert.IsNotNull(tex, "Texture Data is empty");
+        }
     }
 }

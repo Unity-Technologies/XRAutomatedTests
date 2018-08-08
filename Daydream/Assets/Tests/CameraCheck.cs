@@ -19,7 +19,7 @@ public class CameraCheck : DayDreamTestBase
 
     void Start()
     {
-        m_FileName = Application.persistentDataPath + "/ScreenCaptureOculus";
+        m_FileName = Application.persistentDataPath + "/ScreenCapture";
 
         m_StartingScale = XRSettings.eyeTextureResolutionScale;
         m_StartingZoomAmount = XRDevice.fovZoomFactor;
@@ -147,19 +147,29 @@ public class CameraCheck : DayDreamTestBase
     {
         yield return null;
 
-        try
+        if (Application.platform == RuntimePlatform.Android)
         {
-            m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
-
-            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
-
-            m_DidSaveScreenCapture = true;
+            Debug.Log("Skip screen shot test for Android.");
+            Assert.IsTrue(true);
         }
-        catch (Exception e)
+
+        else
         {
-            Debug.Log("Failed to get capture! : " + e);
-            m_DidSaveScreenCapture = false;
-            Assert.Fail("Failed to get capture! : " + e);
+            try
+            {
+                m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+
+                ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
+
+                m_DidSaveScreenCapture = true;
+            }
+
+            catch (Exception e)
+            {
+                Debug.Log("Failed to get capture! : " + e);
+                m_DidSaveScreenCapture = false;
+                Assert.Fail("Failed to get capture! : " + e);
+            }
         }
 
         if (m_DidSaveScreenCapture)

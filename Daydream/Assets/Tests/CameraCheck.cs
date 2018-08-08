@@ -116,7 +116,7 @@ public class CameraCheck : DayDreamTestBase
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             scale = scale + 1f;
             scaleCount = scaleCount + 1f;

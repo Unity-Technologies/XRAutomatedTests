@@ -140,32 +140,40 @@ internal class CameraCheck : CardboardSetup
     {
         yield return null;
 
-        try
+        if (Application.platform == RuntimePlatform.Android)
         {
-            m_FileName = Application.persistentDataPath + "/ScreenCapture.jpg";
-            
-            ScreenCapture.CaptureScreenshot(m_FileName);
-
-            m_DidSaveScreenCapture = true;
+            Debug.Log("Skip screen shot test for Android.");
+			Assert.IsTrue(true);
         }
-        catch (Exception e)
+        else
         {
-            Debug.Log("Failed to get capture! : " + e);
-            m_DidSaveScreenCapture = false;
-            Assert.Fail("Failed to get capture! : " + e);
-        }
-
-        if (m_DidSaveScreenCapture)
-        {
-            yield return new WaitForSeconds(5);
-
-            Texture2D tex = new Texture2D(2, 2);
-            var texData = File.ReadAllBytes(m_FileName);
-            Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
-
-            tex.LoadImage(texData);
-
-            Assert.IsNotNull(tex, "Texture Data is empty");
+            try
+            {
+                m_FileName = Application.persistentDataPath + "/ScreenCapture.jpg";
+                
+                ScreenCapture.CaptureScreenshot(m_FileName);
+    
+                m_DidSaveScreenCapture = true;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Failed to get capture! : " + e);
+                m_DidSaveScreenCapture = false;
+                Assert.Fail("Failed to get capture! : " + e);
+            }
+    
+            if (m_DidSaveScreenCapture)
+            {
+                yield return new WaitForSeconds(5);
+    
+                Texture2D tex = new Texture2D(2, 2);
+                var texData = File.ReadAllBytes(m_FileName);
+                Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
+    
+                tex.LoadImage(texData);
+    
+                Assert.IsNotNull(tex, "Texture Data is empty");
+            }
         }
     }
 }

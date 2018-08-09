@@ -109,6 +109,39 @@ namespace Tests
             Assert.IsTrue(m_TrackingEyeNode, "Eye Nodes are not tracking");
         }
 
+        [UnityTest]
+        public IEnumerator AtLeast4XRNodes()
+        {
+            yield return new WaitForSeconds(1f);
+            InputTracking.GetNodeStates(m_NodeList);
+
+            Assert.GreaterOrEqual(m_NodeList.Count, 4);
+        }
+        
+        [UnityTest]
+        public IEnumerator XRNodeTypesAreUnique()
+        {
+            List<XRNode> uniqueNodes = new List<XRNode>();
+            List<ulong> uniqueNodeIds = new List<ulong>();
+            List<string> uniqueNames = new List<string>();
+            
+            yield return new WaitForSeconds(1f);
+            InputTracking.GetNodeStates(m_NodeList);
+            
+            foreach (XRNodeState nodeState in m_NodeList)
+            {         
+                Assert.IsFalse(uniqueNodes.Contains(nodeState.nodeType));
+                uniqueNodes.Add(nodeState.nodeType);
+                
+                Assert.IsFalse(uniqueNodeIds.Contains(nodeState.uniqueID));
+                uniqueNodeIds.Add(nodeState.uniqueID);
+                
+                string nodeName = InputTracking.GetNodeName(nodeState.uniqueID);
+                Assert.IsFalse(uniqueNames.Contains(nodeName));
+                uniqueNames.Add(nodeName);
+            }
+        }
+
         private void InputTracking_nodeAdded(XRNodeState obj)
         {
             Debug.Log("Node Added : " + obj.nodeType);

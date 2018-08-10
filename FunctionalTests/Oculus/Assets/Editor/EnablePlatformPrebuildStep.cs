@@ -3,56 +3,42 @@ using System.IO;
 using NDesk.Options;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 
 public class EnablePlatformPrebuildStep : IPrebuildSetup
 {
-    private static string buildTarget;
-    private static string [] enabledXrTargets;
-    private static string playerGraphicsApi;
-
-    private static string stereoRenderingPath;
-
-    //private static bool mtRendering = true;
-    //private static bool graphicsJobs;
-    private static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    private static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-
     public void Setup()
     {
-        var args =
-//            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android".Split(' ');
-            System.Environment.GetCommandLineArgs();
+        var args = System.Environment.GetCommandLineArgs();
             
         var optionSet = DefineOptionSet();
         
         var unprocessedArgs = optionSet.Parse(args);
         
-        EditorUserBuildSettings.SwitchActiveBuildTarget(
-            PlatformSettings.BuildTargetGroup,
-            PlatformSettings.BuildTarget);
-
-        PlayerSettings.virtualRealitySupported = true;
-        StereoRenderingPath stereoSetting;
-        StereoRenderingPath.TryParse(stereoRenderingPath, out stereoSetting);
-
-        PlayerSettings.stereoRenderingPath = stereoSetting;
-
-
-        UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-            PlatformSettings.BuildTargetGroup,
-            PlatformSettings.enabledXrTargets);
-
-        EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
-        PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
-        EditorUserBuildSettings.androidBuildSystem =
-            AndroidBuildSystem
-                .Gradle;
+        ConfigureSettings();
 
         CopyOculusSignatureFilesToProject();
         
         PlatformSettings.SerializeToAsset();
         
+    }
+
+    private static void ConfigureSettings()
+    {
+        EditorUserBuildSettings.SwitchActiveBuildTarget(
+            PlatformSettings.BuildTargetGroup,
+            PlatformSettings.BuildTarget);
+
+        PlayerSettings.virtualRealitySupported = true;
+
+        UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
+            PlatformSettings.BuildTargetGroup,
+            PlatformSettings.enabledXrTargets);
+
+        PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
+        EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
+        EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
     }
 
     private void CopyOculusSignatureFilesToProject()
@@ -79,47 +65,46 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
             {
                 "enabledxrtargets=",
                 "XR targets to enable in player settings separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
-                xrTargets => PlatformSettings.enabledXrTargets = ParseMultipleArgs(xrTargets)
+                xrTarget => PlatformSettings.enabledXrTargets = new string [] {xrTarget, "None"}
             },
             {
                 "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                graphicsDeviceType => PlatformSettings.playerGraphicsApi = graphicsDeviceType
+                graphicsDeviceType => PlatformSettings.playerGraphicsApi = TryParse<GraphicsDeviceType>(graphicsDeviceType)
             },
             {
                 "stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPath =>
-                    PlatformSettings.stereoRenderingPath = stereoRenderingPath
-            } //,
-            //{
-            //    "mtRendering", "Use multi threaded rendering; true is default.",
-            //    gfxMultithreaded =>
-            //    {
-            //        if (gfxMultithreaded.ToLower() == "true")
-            //        {
-            //            mtRendering = true;
-            //            graphicsJobs = false;
-            //        }
-            //    }
-            //},
-            //{
-            //    "graphicsJobs", "Use graphics jobs rendering; false is default.",
-            //    gfxJobs =>
-            //    {
-            //        if (gfxJobs.ToLower() == "true")
-            //        {
-            //            mtRendering = false;
-            //            graphicsJobs = true;
-            //        }
-            //    }
-            //},
-            //{
-            //    "minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
-            //    minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion)
-            //},
-            //{
-            //    "targetandroidsdkversion=", "Target Android SDK Version to use.",
-            //    trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
-            //}
+                stereoRenderingPath => PlatformSettings.stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPath)
+            },
+            {
+                "mtRendering", "Use multi threaded rendering; true is default.",
+                gfxMultithreaded =>
+                {
+                    if (gfxMultithreaded.ToLower() == "true")
+                    {
+                        PlatformSettings.mtRendering = true;
+                        PlatformSettings.graphicsJobs = false;
+                    }
+                }
+            },
+            {
+                "graphicsJobs", "Use graphics jobs rendering; false is default.",
+                gfxJobs =>
+                {
+                    if (gfxJobs.ToLower() == "true")
+                    {
+                        PlatformSettings.mtRendering = false;
+                        PlatformSettings.graphicsJobs = true;
+                    }
+                }
+            },
+            {
+                "minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
+                minAndroidSdkVersion => PlatformSettings.minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion)
+            },
+            {
+                "targetandroidsdkversion=", "Target Android SDK Version to use.",
+                trgtAndroidSdkVersion => PlatformSettings.targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
+            }
         };
     }
 

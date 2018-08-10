@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.XR;
 
 public static class PlatformSettings
 {
@@ -8,9 +11,9 @@ public static class PlatformSettings
     public static BuildTarget BuildTarget => EditorUserBuildSettings.activeBuildTarget;
     
     public static string [] enabledXrTargets;
-    public static string playerGraphicsApi;
+    public static GraphicsDeviceType playerGraphicsApi;
 
-    public static string stereoRenderingPath;
+    public static StereoRenderingPath stereoRenderingPath;
 
     public static bool mtRendering = true;
     public static bool graphicsJobs;
@@ -23,9 +26,26 @@ public static class PlatformSettings
 
         settingsAsset.enabledXrTarget = enabledXrTargets.FirstOrDefault();
         settingsAsset.playerGraphicsApi = playerGraphicsApi;
-        settingsAsset.stereoRenderingPath = stereoRenderingPath;
+        settingsAsset.stereoRenderingPath = TryParse<XRSettings.StereoRenderingMode>(stereoRenderingPath.ToString());
+        settingsAsset.mtRendering = mtRendering;
+        settingsAsset.graphicsJobs = graphicsJobs;
         
         AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
         AssetDatabase.SaveAssets();
+    }
+    
+    private static T TryParse<T>(string stringToParse)
+    {
+        T thisType;
+        try
+        {
+            thisType = (T) Enum.Parse(typeof(T), stringToParse);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException(($"Couldn't cast {stringToParse} to {typeof(T)}"), e);
+        }
+
+        return thisType;
     }
 }

@@ -30,9 +30,6 @@ public class XRSmokeTest
     public void Setup()
     {
         settings = Resources.Load<CurrentSettings>("settings");
-
-        XRSettings.enabled = false;
-        XRSettings.LoadDeviceByName("None");
     }
 
     [UnityTest]
@@ -43,26 +40,16 @@ public class XRSmokeTest
         RuntimePlatform.WindowsPlayer,
         RuntimePlatform.Android,
         RuntimePlatform.IPhonePlayer,
-        RuntimePlatform.MetroPlayerX64,
-        RuntimePlatform.MetroPlayerX86,
+        RuntimePlatform.WSAPlayerX64,
+        RuntimePlatform.WSAPlayerX86,
         RuntimePlatform.OSXEditor,
         RuntimePlatform.OSXPlayer
     })]
     public IEnumerator CanBuildAndRun()
     {
         yield return null;
-
-        XRSettings.LoadDeviceByName(settings.enabledXrTarget);
-
-        yield return null;
-
-        Debug.Log($"Loaded Device = {XRSettings.loadedDeviceName}");
-        XRSettings.enabled = true;
-
-        yield return null;
-
+        
         Assert.IsTrue(XRSettings.enabled);
         Assert.AreEqual(settings.enabledXrTarget, XRSettings.loadedDeviceName, $"Loaded Device = {XRSettings.loadedDeviceName}");
     }
-
 }

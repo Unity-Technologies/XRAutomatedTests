@@ -21,8 +21,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
     public void Setup()
     {
         var args =
-//            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=cardboard;daydream;Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android"
-//                .Split(' ');
+//            "-runTests -projectPath \\Oculus\\ -enabledxrtargets=Oculus -playergraphicsapi=OpenGL stereoRenderingPath=MultiPass -testResults tests\\results.xml -logfile log.txt -testPlatform playmode -buildTarget Android".Split(' ');
             System.Environment.GetCommandLineArgs();
             
         var optionSet = DefineOptionSet();
@@ -34,6 +33,10 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
             PlatformSettings.BuildTarget);
 
         PlayerSettings.virtualRealitySupported = true;
+        StereoRenderingPath stereoSetting;
+        StereoRenderingPath.TryParse(stereoRenderingPath, out stereoSetting);
+
+        PlayerSettings.stereoRenderingPath = stereoSetting;
 
 
         UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
@@ -44,11 +47,12 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
         EditorUserBuildSettings.androidBuildSystem =
             AndroidBuildSystem
-                .Internal;
+                .Gradle;
 
         CopyOculusSignatureFilesToProject();
         
         PlatformSettings.SerializeToAsset();
+        
     }
 
     private void CopyOculusSignatureFilesToProject()

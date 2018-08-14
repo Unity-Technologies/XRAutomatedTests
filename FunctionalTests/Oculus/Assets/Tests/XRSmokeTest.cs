@@ -35,6 +35,19 @@ public class XRSmokeTest
         
     }
 
+    [UnitySetUp]
+    public IEnumerator SetUpAndEnableXR()
+    {
+        if (XRSettings.loadedDeviceName != settings.enabledXrTarget)
+        {
+            XRSettings.LoadDeviceByName(settings.enabledXrTarget);
+        }
+
+        yield return null;
+
+        XRSettings.enabled = true;
+    }
+
     [UnityTest]
     public IEnumerator CanBuildAndRun()
     {
@@ -44,57 +57,21 @@ public class XRSmokeTest
         Assert.AreEqual(settings.enabledXrTarget, XRSettings.loadedDeviceName, $"Loaded Device = {XRSettings.loadedDeviceName}");
     }
 
-    [UnityTest]
-    public IEnumerator CanDisableXR()
+    [Test]
+    public void XrApiCheck()
     {
-        
-        yield return null;
-        
-        XRSettings.enabled = false;
-        
-        yield return null;
-        
-        Assert.IsFalse(XRSettings.enabled);
-        Assert.AreEqual(settings.enabledXrTarget, XRSettings.loadedDeviceName, $"Loaded Device = {XRSettings.loadedDeviceName}");
+        Assert.IsTrue(XRSettings.eyeTextureHeight > 0f);
+        Assert.IsTrue(XRSettings.eyeTextureWidth > 0f);
+        Assert.IsTrue(XRSettings.eyeTextureResolutionScale > 0f);
+        Assert.IsTrue(XRSettings.renderViewportScale > 0f);
+        Assert.IsTrue(XRSettings.useOcclusionMesh);
+        Assert.IsTrue(XRSettings.stereoRenderingMode.ToString().Contains(settings.stereoRenderingMode.ToString()), $"{XRSettings.stereoRenderingMode} != {settings.stereoRenderingMode}");
     }
     
     [UnityTest]
+    [Ignore("Inconsistent results for test.")]
     public IEnumerator CanDisableAndEnableXR()
     {
-        yield return null;
-        
-        XRSettings.LoadDeviceByName("");
-        yield return null;
-        
-        XRSettings.enabled = false;
-        
-        yield return null;
-        
-        
-        Assert.IsFalse(XRSettings.enabled);
-        Assert.AreEqual("", XRSettings.loadedDeviceName, $"Loaded Device = {XRSettings.loadedDeviceName}");
-        
-        XRSettings.LoadDeviceByName(settings.enabledXrTarget);
-
-        yield return null;
-
-        XRSettings.enabled = true;
-
-        yield return null;
-        
-        Assert.IsTrue(XRSettings.enabled);
-        Assert.AreEqual(settings.enabledXrTarget, XRSettings.loadedDeviceName, $"Loaded Device = {XRSettings.loadedDeviceName}");
-
-    }
-
-    [TearDown]
-    public void CleanUp()
-    {
-        if (XRSettings.loadedDeviceName != settings.enabledXrTarget)
-        {
-            XRSettings.LoadDeviceByName(settings.enabledXrTarget);
-        }
-
-        XRSettings.enabled = true;
+        yield return new MonoBehaviourTest<SwapXREnabled>();
     }
 }

@@ -26,7 +26,7 @@ public static class PlatformSettings
 
         settingsAsset.enabledXrTarget = enabledXrTargets.FirstOrDefault();
         settingsAsset.playerGraphicsApi = playerGraphicsApi;
-        settingsAsset.stereoRenderingPath = TryParse<XRSettings.StereoRenderingMode>(stereoRenderingPath.ToString());
+        settingsAsset.stereoRenderingMode = TryParse<XRSettings.StereoRenderingMode>(stereoRenderingPath.ToString());
         settingsAsset.mtRendering = mtRendering;
         settingsAsset.graphicsJobs = graphicsJobs;
         

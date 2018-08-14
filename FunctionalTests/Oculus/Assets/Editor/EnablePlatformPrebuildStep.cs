@@ -11,10 +11,34 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
     public void Setup()
     {
         var args = System.Environment.GetCommandLineArgs();
-            
-        var optionSet = DefineOptionSet();
-        
-        var unprocessedArgs = optionSet.Parse(args);
+
+        if (args.Length <= 1)
+        {
+            switch (EditorUserBuildSettings.selectedBuildTargetGroup)
+            {
+                case BuildTargetGroup.Standalone:
+                    PlatformSettings.enabledXrTargets = new string[] {"MockHMD", "None"};
+                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
+                    PlatformSettings.playerGraphicsApi =
+                        (EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows)
+                            ? GraphicsDeviceType.Direct3D11
+                            : GraphicsDeviceType.OpenGLCore;
+                    PlatformSettings.mtRendering = true;
+                    PlatformSettings.graphicsJobs = false;
+                    break;
+                case BuildTargetGroup.Android:
+                case BuildTargetGroup.iOS:
+                    PlatformSettings.enabledXrTargets = new string[] {"cardboard", "None"};
+                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
+                    PlatformSettings.playerGraphicsApi = GraphicsDeviceType.OpenGLES3;
+                    break;
+            }
+        }
+        else
+        {   
+            var optionSet = DefineOptionSet();
+            var unprocessedArgs = optionSet.Parse(args);
+        }
         
         ConfigureSettings();
 
@@ -35,6 +59,8 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
             PlatformSettings.BuildTargetGroup,
             PlatformSettings.enabledXrTargets);
+
+        PlayerSettings.stereoRenderingPath = PlatformSettings.stereoRenderingPath;
 
         PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
         EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
@@ -63,8 +89,8 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         return new OptionSet()
         {
             {
-                "enabledxrtargets=",
-                "XR targets to enable in player settings separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
+                "enabledxrtarget=",
+                "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
                 xrTarget => PlatformSettings.enabledXrTargets = new string [] {xrTarget, "None"}
             },
             {
@@ -72,11 +98,11 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                 graphicsDeviceType => PlatformSettings.playerGraphicsApi = TryParse<GraphicsDeviceType>(graphicsDeviceType)
             },
             {
-                "stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPath => PlatformSettings.stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPath)
+                "stereorenderingpath=", "Stereo rendering path to enable. SinglePass is default",
+                stereoRenderingPath => PlatformSettings.stereoRenderingPath= TryParse<StereoRenderingPath>(stereoRenderingPath)
             },
             {
-                "mtRendering", "Use multi threaded rendering; true is default.",
+                "mtrendering", "Use multi threaded rendering; true is default.",
                 gfxMultithreaded =>
                 {
                     if (gfxMultithreaded.ToLower() == "true")
@@ -87,7 +113,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                 }
             },
             {
-                "graphicsJobs", "Use graphics jobs rendering; false is default.",
+                "graphicsjobs", "Use graphics jobs rendering; false is default.",
                 gfxJobs =>
                 {
                     if (gfxJobs.ToLower() == "true")

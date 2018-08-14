@@ -10,7 +10,7 @@ public class CurrentSettings : ScriptableObject
     public string enabledXrTarget;
     public GraphicsDeviceType playerGraphicsApi;
 
-    public XRSettings.StereoRenderingMode stereoRenderingPath;
+    public XRSettings.StereoRenderingMode stereoRenderingMode;
     
     public bool mtRendering = true;
     public bool graphicsJobs;

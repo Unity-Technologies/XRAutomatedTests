@@ -142,7 +142,7 @@ internal class CameraCheck : CardboardSetup
 
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            Debug.Log("Skip screen shot test for Android.");
+            Debug.Log("Skip screen shot test for Android and iOS.");
 			Assert.IsTrue(true);
         }
         else

@@ -12,14 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b05015b179c3488e93a1facc5dffd, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  enabledXrTargets:
-  - cardboard
-  - daydream
-  - Oculus
-  playerGraphicsApis:
-  - cardboard
-  - daydream
-  - Oculus
-  stereoRenderingPaths: []
+  enabledXrTarget: MockHMD
+  playerGraphicsApi: 2
+  stereoRenderingMode: 1
   mtRendering: 1
   graphicsJobs: 0

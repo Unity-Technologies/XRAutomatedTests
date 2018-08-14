@@ -14,7 +14,7 @@ public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTe
 {
 
     // Number of frames we capture and calculate metrics from
-    private readonly int numCaptureFrames = 100;
+    private readonly int numCaptureFrames = 200;
     private static readonly string AppStartupTimeName = "AppStartupTime";
     private static readonly string FpsName = "FPS";
     private static readonly string GpuTimeLastFrameName = "GpuTimeLastFrame";

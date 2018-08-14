@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Test.unity
+    guid: a1c650c1808c8d342bbb765c9d63e584
+  - enabled: 1
+    path: Assets/RenderTexture_MaterialTest.unity
+    guid: 7c0e23d1a6ef08348a9d99ce519ce10c
+  - enabled: 1
+    path: Assets/RenderPerformance.unity
+    guid: 2107d2f187c098c4f8f55716d9c74824
+  - enabled: 1
+    path: Assets/TerrainTest.unity
+    guid: e7bcad52ea436de4a8d0c0b984ffcd01
+  - enabled: 1
+    path: Assets/GPUInstancing_MaterialTest.unity
+    guid: 5e6e80741f9a7014b999dddfaa04a264
+  - enabled: 1
+    path: Assets/BakedLighting.unity
+    guid: c431ebb404895f843b5b00524a1b0ae3
+  - enabled: 1
+    path: Assets/PerformanceTest.unity
+    guid: dbbfe3d4e43ee2b419ed8114843e2375
+  - enabled: 1
+    path: Assets/RealtimeLighting_Directional.unity
+    guid: d147da46dc6271043a64c5a3403bd957
+  - enabled: 1
+    path: Assets/Stencil_MaterialTest.unity
+    guid: 11938b6799482a1479ba8c0383ddb907
+  - enabled: 1
+    path: Assets/SetTargetBuffer_MaterialTest.unity
+    guid: 51cde7b7cc56a464e83e87af836578ab
+  - enabled: 1
+    path: Assets/RealtimeLighting.unity
+    guid: e5ad5d1a62efb224ca028cddac95a49c
+  - enabled: 1
+    path: Assets/Transparent_MaterialTest.unity
+    guid: ef0a739be39709540b0831666f2e82fb
+  - enabled: 1
+    path: Assets/Standard_MaterialTest.unity
+    guid: f12c5e9bca2811245b3cc5aa74c896fc
+  - enabled: 1
+    path: Assets/RealtimeLighting_SpotLight.unity
+    guid: 0fe5280d6cbddb54c941077ffde01191
+  - enabled: 1
+    path: Assets/RealtimeLighting_PointLight.unity
+    guid: 54fbd65d8ce83e7408f977bf6a19b9c2
+  m_configObjects: {}

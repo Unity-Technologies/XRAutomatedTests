@@ -1,3 +1,10 @@
+automatedtests/playmodetests/Oculus
+
+automatedtests/playmodetests/Cardboard
+
+automatedtests/playmodetests/Daydream
+
+automatedtests/playmodetests/ARCore
 
 automatedtests/playmodetests/WindowsMixedReality/WindowsMR
 automatedtests/playmodetests/WindowsMixedReality/HoloLens

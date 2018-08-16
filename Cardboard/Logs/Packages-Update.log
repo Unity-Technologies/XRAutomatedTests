@@ -1,9 +1,0 @@
-
-=== Tue Aug  7 13:52:41 2018
-
-Packages were changed.
-Update Mode: updateDependencies
-
-The following packages were updated:
-  com.unity.analytics from version 3.0.5 to 3.0.9
-  com.unity.package-manager-ui from version 2.0.0-preview.3 to 2.0.0-preview.6

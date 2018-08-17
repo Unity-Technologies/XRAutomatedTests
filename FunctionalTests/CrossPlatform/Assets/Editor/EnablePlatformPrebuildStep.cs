@@ -3,6 +3,7 @@ using System.IO;
 using NDesk.Options;
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal.VR;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 
@@ -25,6 +26,22 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                             : GraphicsDeviceType.OpenGLCore;
                     PlatformSettings.mtRendering = true;
                     PlatformSettings.graphicsJobs = false;
+                    break;
+                case BuildTargetGroup.WSA:
+                    // Configure WSA build
+                    EditorUserBuildSettings.wsaUWPBuildType = WSAUWPBuildType.D3D;
+                    EditorUserBuildSettings.wsaSubtarget = WSASubtarget.AnyDevice;
+                    EditorUserBuildSettings.allowDebugging = true;
+
+                    PlayerSettings.SetScriptingBackend(BuildTargetGroup.WSA, ScriptingImplementation.IL2CPP);
+                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
+
+                    PlatformSettings.enabledXrTargets = new string[] {"WindowsMR", "None"};
+
+                    // Configure Holographic Emulation
+//                    var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
+//                    emulationWindow.Show();
+//                    emulationWindow.emulationMode = EmulationMode.Simulated;
                     break;
                 case BuildTargetGroup.Android:
                 case BuildTargetGroup.iOS:

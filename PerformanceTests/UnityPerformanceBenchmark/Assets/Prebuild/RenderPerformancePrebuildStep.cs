@@ -25,7 +25,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private string appleDeveloperTeamId;
     private string iOsProvisioningProfileId;
 
-    private string testRunPath
+    private string TestRunPath
     {
         get { return Path.Combine(Application.streamingAssetsPath, "PerformanceTestRunInfo.json"); }
     }
@@ -94,7 +94,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         string json;
         if (Application.platform == RuntimePlatform.Android)
         {
-            WWW reader = new WWW(testRunPath);
+            var reader = new WWW(TestRunPath);
             while (!reader.isDone)
             {
             }
@@ -102,7 +102,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         }
         else
         {
-            json = File.ReadAllText(testRunPath);
+            json = File.ReadAllText(TestRunPath);
         }
 
         try
@@ -117,14 +117,14 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 
     private void CreatePerformanceTestRunJson(PerformanceTestRun perfTestRun)
     {
-        string json = JsonUtility.ToJson(perfTestRun, true);
-        File.WriteAllText(testRunPath, json);
+        var json = JsonUtility.ToJson(perfTestRun, true);
+        File.WriteAllText(TestRunPath, json);
         AssetDatabase.Refresh();
     }
 
     private OptionSet DefineOptionSet()
     {
-        return new OptionSet()
+        return new OptionSet
         {
             {
                 "enabledxrtargets=",

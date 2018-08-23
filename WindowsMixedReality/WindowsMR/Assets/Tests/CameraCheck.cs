@@ -48,9 +48,11 @@ internal class CameraCheck : WindowsMrTestBase
 
     [UnityTest]
     public IEnumerator GazeCheck()
-    {
+    {  
         RaycastHit info = new RaycastHit();
         var head = InputTracking.GetLocalPosition(XRNode.Head);
+
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
 
         yield return new WaitForSeconds(0.05f);
 

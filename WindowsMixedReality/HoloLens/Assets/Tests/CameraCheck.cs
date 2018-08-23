@@ -51,6 +51,8 @@ internal class CameraCheck : HoloLensTestBase
     {
         RaycastHit info;
         var head = InputTracking.GetLocalPosition(XRNode.Head);
+
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
         
         if (Physics.Raycast(head, m_Camera.transform.forward, out info, 10f))
         {

@@ -47,14 +47,16 @@ public class CameraCheck : OculusPrebuildSetup
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
-    [Ignore("Issue with this test breaking the view frustram - disabled for now")]
     [UnityTest]
     public IEnumerator GazeCheck()
     {
         RaycastHit info = new RaycastHit();
+
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
-        yield return new WaitForSeconds(0.05f);
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
+
+        yield return new WaitForSeconds(3f);
 
         if (Physics.Raycast(head, m_Camera.GetComponent<Camera>().transform.forward, out info, 10f))
         {

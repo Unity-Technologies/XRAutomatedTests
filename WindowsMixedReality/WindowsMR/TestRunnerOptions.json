@@ -1,5 +1,5 @@
 {
 	"disabled" : false,
-	"disableBatchMode": false,
+	"disableBatchMode": true,
 	"runOnlyInEditor": false
 }

@@ -19,7 +19,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private GraphicsDeviceType playerGraphicsApi;
     private StereoRenderingPath stereoRenderingPath = StereoRenderingPath.SinglePass;
     private bool mtRendering = true;
-    private bool graphicsJobs;
+    private bool graphicsJobs = false;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private string appleDeveloperTeamId;
@@ -124,62 +124,26 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 
     private OptionSet DefineOptionSet()
     {
-        return new OptionSet
-        {
-            {
-                "enabledxrtargets=",
+        return new OptionSet()
+            .Add("enabledxrtargets=",
                 "XR targets to enable in player settings separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
-                xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets)
-            },
-            {
-                "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                (GraphicsDeviceType graphicsDeviceType) => playerGraphicsApi = graphicsDeviceType
-            },
-            {
-                "stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPathMode => stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPathMode)
-            },
-            {
-                "mtRendering=", "Use multi threaded rendering; true is default.",
-                gfxMultithreaded =>
-                {
-                    if (gfxMultithreaded.ToLower() == "false")
-                    {
-                        mtRendering = false;
-                        
-                    }
-                    graphicsJobs = false;
-                }
-            },
-            {
-                "graphicsJobs=", "Use graphics jobs rendering; false is default.",
-                gfxJobs =>
-                {
-                    if (gfxJobs.ToLower() == "true")
-                    {
-                        mtRendering = false;
-                        graphicsJobs = true;
-                    }
-                }
-            },
-            {
-                "minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
-                minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion)
-            },
-            {
-                "targetandroidsdkversion=", "Target Android SDK Version to use.",
-                trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
-            },
-            {
-                "appleDeveloperTeamID=", "Apple Developer Team ID",
-                appleTeamId => appleDeveloperTeamId = appleTeamId
-            },
-            {
-                "iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
-                id => iOsProvisioningProfileId = id
-            }
-
-        };
+                xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets))
+            .Add("playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
+                (GraphicsDeviceType graphicsDeviceType) => playerGraphicsApi = graphicsDeviceType)
+            .Add("stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
+                stereoRenderingPathMode => stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPathMode))
+            .Add("mtRendering", "Enable or disable multithreaded rendering.; true is default.",
+                option => mtRendering = option != null)
+            .Add("graphicsJobs", "Use graphics jobs rendering; false is default.",
+                option => graphicsJobs = option != null)
+            .Add("minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
+                minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion))
+            .Add("targetandroidsdkversion=", "Target Android SDK Version to use.",
+                trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion))
+            .Add("appleDeveloperTeamID=", "Apple Developer Team ID",
+                appleTeamId => appleDeveloperTeamId = appleTeamId)
+            .Add("iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
+                id => iOsProvisioningProfileId = id);
     }
 
     private T TryParse<T>(string stringToParse)

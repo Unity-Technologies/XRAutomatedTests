@@ -36,6 +36,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         // Get and parse args for player settings
         var args = Environment.GetCommandLineArgs();
         var optionSet = DefineOptionSet();
+
         var unprocessedArgs = optionSet.Parse(args);
 
         // Performance tests always need to be run as development build in order to capture performance profiler data
@@ -126,23 +127,23 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     {
         return new OptionSet()
             .Add("enabledxrtargets=",
-                "XR targets to enable in player settings separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
+                "XR targets to enable in XR enabled players, separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
                 xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets))
-            .Add("playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
+            .Add("playergraphicsapi=", "Optionally force player to use the specified GraphicsDeviceType. Direct3D11, OpenGLES2, OpenGLES3, PlayStationVita, PlayStation4, XboxOne, Metal, OpenGLCore, Direct3D12, N3DS, Vulkan, Switch, XboxOneD3D12",
                 (GraphicsDeviceType graphicsDeviceType) => playerGraphicsApi = graphicsDeviceType)
-            .Add("stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
+            .Add("stereoRenderingPath=", "StereoRenderingPath to use for XR enabled players. MultiPass, SinglePass, Instancing. Default is SinglePass.",
                 stereoRenderingPathMode => stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPathMode))
-            .Add("mtRendering", "Enable or disable multithreaded rendering.; true is default.",
+            .Add("mtRendering", "Enable or disable multithreaded rendering. Enabled is default. Use option to enable, or use option and append '-' to disable.",
                 option => mtRendering = option != null)
-            .Add("graphicsJobs", "Use graphics jobs rendering; false is default.",
+            .Add("graphicsJobs", "Enable graphics jobs rendering. Disabled is default. Use option to enable, or use option and append '-' to disable.",
                 option => graphicsJobs = option != null)
-            .Add("minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
+            .Add("minimumandroidsdkversion=", "Minimum Android SDK Version to use. Default is AndroidApiLevel24. Use for deployment and running tests on Android device.",
                 minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion))
-            .Add("targetandroidsdkversion=", "Target Android SDK Version to use.",
+            .Add("targetandroidsdkversion=", "Target Android SDK Version to use. Default is AndroidApiLevel24. Use for deployment and running tests on Android device.",
                 trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion))
-            .Add("appleDeveloperTeamID=", "Apple Developer Team ID",
+            .Add("appleDeveloperTeamID=", "Apple Developer Team ID. Use for deployment and running tests on iOS device.",
                 appleTeamId => appleDeveloperTeamId = appleTeamId)
-            .Add("iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
+            .Add("iOSProvisioningProfileID=", "iOS Provisioning Profile ID. Use for deployment and running tests on iOS device.",
                 id => iOsProvisioningProfileId = id);
     }
 

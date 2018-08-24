@@ -10,7 +10,7 @@ using UAssert = UnityEngine.Assertions.Assert;
 //[Ignore("Metro/wsa is disabled on Katana")]
 internal class EmulationControlTests : HoloLensTestBase
 {
-    const float k_RotationTolerance = .0001f;
+    const float k_RotationTolerance = .05f;
 
     bool m_PressedDetected;
     bool m_ReleasedDetected;
@@ -47,6 +47,7 @@ internal class EmulationControlTests : HoloLensTestBase
         UAssert.AreApproximatelyEqual(1, body.position.x);
         UAssert.AreApproximatelyEqual(2, body.position.y);
         UAssert.AreApproximatelyEqual(3, body.position.z);
+
         yield return null;
 
         var expectedPos = HolographicEmulationHelpers.CalcExpectedCameraPosition(head, body);
@@ -60,19 +61,21 @@ internal class EmulationControlTests : HoloLensTestBase
     public IEnumerator CameraRotatesWhenBodyRotates()
     {
         body.rotation = 79.3f;
-        yield return null;
+        yield return new WaitForSeconds(2f);
 
         UAssert.AreApproximatelyEqual(79.3f, m_Camera.GetComponent<Camera>().transform.eulerAngles.y, k_RotationTolerance);
     }
 
-    [Ignore("Unstable Test")]
+    [Ignore("Test is failing for a unknown reason")]
     [UnityTest]
     public IEnumerator CameraRotatesWhenHeadRotates()
-    { 
+    {
         head.eulerAngles = new Vector3(12f, 34f, 56f);
+
         yield return new WaitForSeconds(2f);
 
         var camRotation = m_Camera.GetComponent<Camera>().transform.rotation.eulerAngles;
+
         UAssert.AreApproximatelyEqual(12f, camRotation.x, k_RotationTolerance);
         UAssert.AreApproximatelyEqual(34f, camRotation.y, k_RotationTolerance);
         UAssert.AreApproximatelyEqual(56f, camRotation.z, k_RotationTolerance);
@@ -82,7 +85,7 @@ internal class EmulationControlTests : HoloLensTestBase
     public IEnumerator SimulatedHandsCanPerformGestures()
     {
         // 0.02 seconds seems to be the minimum required time for gestures to appear in the API.
-        var gestureWait = new WaitForSeconds(0.2f);
+        var gestureWait = new WaitForSeconds(0.3f);
 
         var hand = HolographicAutomation.simulatedRightHand;
         yield return null;

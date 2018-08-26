@@ -47,6 +47,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         PlayerSettings.SetGraphicsAPIs(EditorUserBuildSettings.activeBuildTarget, new[] {playerGraphicsApi});
         PlayerSettings.MTRendering = mtRendering;
         PlayerSettings.graphicsJobs = graphicsJobs;
+        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.unity3d.performance.benchmark");
 
         // If Android, setup Android player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Android)
@@ -61,6 +62,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
         {
             PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamId;
+            PlayerSettings.iOS.appleEnableAutomaticSigning = false;
             PlayerSettings.iOS.iOSManualProvisioningProfileID = iOsProvisioningProfileId;
             PlayerSettings.iOS.iOSManualProvisioningProfileType = ProvisioningProfileType.Development;
         }

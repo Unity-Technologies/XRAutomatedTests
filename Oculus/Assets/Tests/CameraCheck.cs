@@ -17,6 +17,8 @@ public class CameraCheck : OculusPrebuildSetup
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
 
+    private float kDeviceSetupWait = 1f;
+
     void Start()
     {
         m_FileName = Application.persistentDataPath + "/ScreenCaptureOculus";
@@ -50,6 +52,8 @@ public class CameraCheck : OculusPrebuildSetup
     [UnityTest]
     public IEnumerator GazeCheck()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         RaycastHit info = new RaycastHit();
 
         var head = InputTracking.GetLocalPosition(XRNode.Head);
@@ -70,25 +74,31 @@ public class CameraCheck : OculusPrebuildSetup
         Assert.IsTrue(m_RaycastHit, "Gaze check failed to hit something!");
     }
 #if UNITY_EDITOR
-    [Test]
-    public void CameraCheckForMultiPass()
+    [UnityTest]
+    public IEnumerator CameraCheckForMultiPass()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.MultiPass);
+        yield return null;
         Assert.AreEqual(UnityEditor.StereoRenderingPath.MultiPass, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
     }
 
-    [Test]
-    public void CameraCheckForInstancing()
+    [UnityTest]
+    public IEnumerator CameraCheckForInstancing()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
+        yield return null;
         Assert.AreEqual(UnityEditor.StereoRenderingPath.Instancing, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 
-    [Test]
-    public void CheckRefreshRate()
+    [UnityTest]
+    public IEnumerator CheckRefreshRate()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         var refreshRate = XRDevice.refreshRate;
+        yield return null;
         if (Application.platform == RuntimePlatform.Android)
         {
             Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
@@ -97,48 +107,63 @@ public class CameraCheck : OculusPrebuildSetup
         {
             Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
         }
+        yield return null;
     }
 
-    [Test]
-    public void RenderViewportScale()
+    [UnityTest]
+    public IEnumerator RenderViewportScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         XRSettings.renderViewportScale = 1f;
+        yield return null;
         Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
 
         XRSettings.renderViewportScale = 0.7f;
+        yield return null;
         Assert.AreEqual(0.7f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
 
         XRSettings.renderViewportScale = 0.5f;
+        yield return null;
         Assert.AreEqual(0.5f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
     }
 
-    [Test]
-    public void EyeTextureResolutionScale()
+    [UnityTest]
+    public IEnumerator EyeTextureResolutionScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        yield return null;
+
+        for (int i = 0; i < 4; i++)
         {
             scale = scale + 1f;
             scaleCount = scaleCount + 1f;
             XRSettings.eyeTextureResolutionScale = scale;
+            yield return new WaitForSeconds(1f);
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
     }
 
-    [Test]
-    public void DeviceZoom()
+    [UnityTest]
+    public IEnumerator DeviceZoom()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float zoomAmount = 0f;
         float zoomCount = 0f;
+
+        yield return null;
 
         for (int i = 0; i < 5; i++)
         {
             zoomAmount = zoomAmount + 1f;
             zoomCount = zoomCount + 1f;
 
+            yield return null;
             XRDevice.fovZoomFactor = zoomAmount;
             Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is not being respected");
         }

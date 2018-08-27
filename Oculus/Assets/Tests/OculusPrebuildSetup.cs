@@ -22,7 +22,6 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            m_Cube = new GameObject("Cube");
             m_TestSetupHelpers = new TestSetupHelpers();
 
             m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);

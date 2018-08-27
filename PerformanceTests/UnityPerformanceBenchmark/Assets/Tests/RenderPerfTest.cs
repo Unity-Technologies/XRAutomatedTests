@@ -4,7 +4,6 @@ using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
 using UnityEngine.TestTools;
-using QualitySettings = UnityEngine.QualitySettings;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif

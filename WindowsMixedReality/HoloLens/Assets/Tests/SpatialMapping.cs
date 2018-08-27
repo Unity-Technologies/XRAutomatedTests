@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine.XR.WSA;
 using UnityEngine.XR.WSA.Input;
 
+[Ignore("ignore for now")]
 [Platform("Win")]
 internal class SpatialMapping : HoloLensTestBase
 {

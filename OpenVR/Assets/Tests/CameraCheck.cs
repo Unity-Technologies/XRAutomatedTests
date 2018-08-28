@@ -54,10 +54,12 @@ public class CameraCheck : OpenVRTestBase
         RaycastHit info = new RaycastHit();
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
-        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
-
         InputTracking.Recenter();
 
+        yield return null;
+
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
+        
         yield return new WaitForSeconds(2f);
 
         if (Physics.Raycast(head, m_Camera.GetComponent<Camera>().transform.forward, out info, 10f))
@@ -124,7 +126,7 @@ public class CameraCheck : OpenVRTestBase
 
 
     [UnityTest]
-    public IEnumerator EyeTextureResolutionScale()
+    public IEnumerator zEyeTextureResolutionScale()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 
@@ -146,7 +148,7 @@ public class CameraCheck : OpenVRTestBase
     }
 
     [UnityTest]
-    public IEnumerator DeviceZoom()
+    public IEnumerator xDeviceZoom()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 

@@ -58,8 +58,12 @@ public class CameraCheck : OculusPrebuildSetup
 
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
-        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
+        InputTracking.Recenter();
 
+        yield return null;
+
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
+        
         yield return new WaitForSeconds(3f);
 
         if (Physics.Raycast(head, m_Camera.GetComponent<Camera>().transform.forward, out info, 10f))
@@ -128,7 +132,7 @@ public class CameraCheck : OculusPrebuildSetup
     }
 
     [UnityTest]
-    public IEnumerator EyeTextureResolutionScale()
+    public IEnumerator zEyeTextureResolutionScale()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 
@@ -149,7 +153,7 @@ public class CameraCheck : OculusPrebuildSetup
     }
 
     [UnityTest]
-    public IEnumerator DeviceZoom()
+    public IEnumerator xDeviceZoom()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 

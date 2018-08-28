@@ -6,6 +6,7 @@ using System.Collections;
 using System;
 using System.IO;
 using Tests;
+using UnityEditor;
 
 public class CameraCheck : OpenVRTestBase
 {
@@ -16,6 +17,7 @@ public class CameraCheck : OpenVRTestBase
     private float m_StartingScale;
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
+    private float kDeviceSetupWait = 1f;
 
     void Start()
     {
@@ -37,25 +39,26 @@ public class CameraCheck : OpenVRTestBase
     {
         m_RaycastHit = false;
 
-        XRSettings.eyeTextureResolutionScale = m_StartingScale;
+        XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
         XRSettings.renderViewportScale = m_StartingRenderScale;
 
-#if UNITY_EDITOR
-        UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
-#endif
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
     [UnityTest]
     public IEnumerator GazeCheck()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         RaycastHit info = new RaycastHit();
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
         m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
 
-        yield return new WaitForSeconds(0.05f);
+        InputTracking.Recenter();
+
+        yield return new WaitForSeconds(2f);
 
         if (Physics.Raycast(head, m_Camera.GetComponent<Camera>().transform.forward, out info, 10f))
         {
@@ -69,24 +72,30 @@ public class CameraCheck : OpenVRTestBase
         Assert.IsTrue(m_RaycastHit, "Gaze check failed to hit something!");
     }
 #if UNITY_EDITOR
-    [Test]
-    public void CameraCheckForMultiPass()
+    [UnityTest]
+    public IEnumerator CameraCheckForMultiPass()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.MultiPass);
         Assert.AreEqual(UnityEditor.StereoRenderingPath.MultiPass, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
     }
 
-    [Test]
-    public void CameraCheckForInstancing()
+    [UnityTest]
+    public IEnumerator CameraCheckForInstancing()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
         Assert.AreEqual(UnityEditor.StereoRenderingPath.Instancing, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 
-    [Test]
-    public void CheckRefreshRate()
+    [UnityTest]
+    public IEnumerator CheckRefreshRate()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         var refreshRate = XRDevice.refreshRate;
         if (Application.platform == RuntimePlatform.Android)
         {
@@ -98,9 +107,11 @@ public class CameraCheck : OpenVRTestBase
         }
     }
 
-    [Test]
-    public void RenderViewportScale()
+    [UnityTest]
+    public IEnumerator RenderViewportScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         XRSettings.renderViewportScale = 1f;
         Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
 
@@ -111,25 +122,34 @@ public class CameraCheck : OpenVRTestBase
         Assert.AreEqual(0.5f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
     }
 
-    [Test]
-    public void EyeTextureResolutionScale()
+
+    [UnityTest]
+    public IEnumerator EyeTextureResolutionScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        for (float i = 1f; i < 5; i++)
         {
             scale = scale + 1f;
             scaleCount = scaleCount + 1f;
+
             XRSettings.eyeTextureResolutionScale = scale;
+
+            yield return null;
+
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
     }
 
-    [Test]
-    public void DeviceZoom()
+    [UnityTest]
+    public IEnumerator DeviceZoom()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float zoomAmount = 0f;
         float zoomCount = 0f;
 
@@ -139,6 +159,10 @@ public class CameraCheck : OpenVRTestBase
             zoomCount = zoomCount + 1f;
 
             XRDevice.fovZoomFactor = zoomAmount;
+
+            yield return null;
+
+            Debug.Log("fovZoomFactor = " + zoomAmount);
             Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is not being respected");
         }
     }
@@ -146,7 +170,7 @@ public class CameraCheck : OpenVRTestBase
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return null;
+        yield return new WaitForSeconds(kDeviceSetupWait);
 
         try
         {

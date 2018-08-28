@@ -16,6 +16,7 @@ internal class CameraCheck : WindowsMrTestBase
     private float m_StartingScale;
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
+    private float kDeviceSetupWait = 2f;
 
     void Start()
     {
@@ -37,7 +38,7 @@ internal class CameraCheck : WindowsMrTestBase
     {
         m_RaycastHit = false;
 
-        XRSettings.eyeTextureResolutionScale = m_StartingScale;
+        XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
         XRSettings.renderViewportScale = m_StartingRenderScale;
 
@@ -49,8 +50,14 @@ internal class CameraCheck : WindowsMrTestBase
     [UnityTest]
     public IEnumerator GazeCheck()
     {  
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         RaycastHit info = new RaycastHit();
         var head = InputTracking.GetLocalPosition(XRNode.Head);
+
+        InputTracking.Recenter();
+
+        yield return new WaitForSeconds(1f);
 
         m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
 
@@ -68,32 +75,37 @@ internal class CameraCheck : WindowsMrTestBase
         Assert.IsTrue(m_RaycastHit, "Gaze check failed to hit something!");
     }
 #if UNITY_EDITOR
-    [Test]
-    public void CameraCheckForMultiPass()
+    [UnityTest]
+    public IEnumerator CameraCheckForMultiPass()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.MultiPass);
         Assert.AreEqual(UnityEditor.StereoRenderingPath.MultiPass, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
     }
 
-    [Test]
-    public void CameraCheckForInstancing()
+    [UnityTest]
+    public IEnumerator CameraCheckForInstancing()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
         Assert.AreEqual(UnityEditor.StereoRenderingPath.Instancing, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 
-    [Test]
-    public void CheckRefreshRate()
+    [UnityTest]
+    public IEnumerator CheckRefreshRate()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
         var refreshRate = XRDevice.refreshRate;
 
         Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
     }
 
-    [Test]
-    public void RenderViewportScale()
+    [UnityTest]
+    public IEnumerator RenderViewportScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         XRSettings.renderViewportScale = 1f;
         Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
 
@@ -104,9 +116,11 @@ internal class CameraCheck : WindowsMrTestBase
         Assert.AreEqual(0.5f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
     }
 
-    [Test]
-    public void EyeTextureResolutionScale()
+    [UnityTest]
+    public IEnumerator EyeTextureResolutionScale()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float scale = 0f;
         float scaleCount = 0f;
 
@@ -115,14 +129,19 @@ internal class CameraCheck : WindowsMrTestBase
             scale = scale + 1f;
             scaleCount = scaleCount + 1f;
             XRSettings.eyeTextureResolutionScale = scale;
+
+            yield return new WaitForSeconds(1f);
+
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
     }
 
-    [Test]
-    public void DeviceZoom()
+    [UnityTest]
+    public IEnumerator DeviceZoom()
     {
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
         float zoomAmount = 0f;
         float zoomCount = 0f;
 
@@ -130,6 +149,8 @@ internal class CameraCheck : WindowsMrTestBase
         {
             zoomAmount = zoomAmount + 1f;
             zoomCount = zoomCount + 1f;
+
+            yield return new WaitForSeconds(1f);
 
             XRDevice.fovZoomFactor = zoomAmount;
             Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is to being respected");
@@ -139,7 +160,7 @@ internal class CameraCheck : WindowsMrTestBase
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return null;
+        yield return new WaitForSeconds(kDeviceSetupWait);
 
         try
         {

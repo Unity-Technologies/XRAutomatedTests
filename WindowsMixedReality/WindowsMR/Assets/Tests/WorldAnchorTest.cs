@@ -17,7 +17,8 @@ internal class WorldAnchorTest : WindowsMrTestBase
     List<GameObject> objects = new List<GameObject>();
     WorldAnchorStore store = null;
 
-    float m_AnchorWait = 0.3f;
+    float m_AnchorWait = 1f;
+    private float kDeviceSetupWait = 2f;
 
     bool m_CreatedAnchor = false;
     bool m_KeywordRecognized = false;
@@ -42,16 +43,26 @@ internal class WorldAnchorTest : WindowsMrTestBase
     [UnityTest]
     public IEnumerator CreateAnchorOnObject()
     {
-        var thing = CreateCubeAt(new Vector3(0f, 0f, 2.5f));
+        yield return new WaitForSeconds(kDeviceSetupWait);
+
+        var thing = CreateCubeAt(new Vector3(0f, 0f, 5f));
+
+        yield return new WaitForSeconds(1f);
+
         var worldAnchor = thing.AddComponent<WorldAnchor>();
         var guid = Guid.NewGuid();
+
+        if (thing.GetComponent<WorldAnchor>())
+        {
+            m_CreatedAnchor = true;
+        }
 
         yield return new WaitForSeconds(m_AnchorWait);
 
         Debug.Log("Position of Cube: " + worldAnchor.transform.position);
         Debug.Log("isLocated = " + worldAnchor.isLocated);
         
-        Assert.IsTrue(worldAnchor.isLocated, "Anchor is not located");
+        Assert.IsTrue(m_CreatedAnchor, "Anchor was not created");
     }
 
     [UnityTest]

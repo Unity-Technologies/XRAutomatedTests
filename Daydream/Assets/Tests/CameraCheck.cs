@@ -37,9 +37,9 @@ public class CameraCheck : DayDreamTestBase
     {
         m_RaycastHit = false;
 
-        XRSettings.eyeTextureResolutionScale = m_StartingScale;
+        XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
-        XRSettings.renderViewportScale = m_StartingRenderScale;
+        XRSettings.renderViewportScale = 1f;
 
 #if UNITY_EDITOR
         UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
@@ -54,6 +54,10 @@ public class CameraCheck : DayDreamTestBase
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
         yield return null;
+
+        InputTracking.Recenter();
+
+        yield return new WaitForSeconds(2f);
 
         m_Cube.transform.position = new Vector3(head.x, head.y, head.y + 3f);
 
@@ -116,13 +120,13 @@ public class CameraCheck : DayDreamTestBase
     [Test]
     public void EyeTextureResolutionScale()
     {
-        float scale = 0f;
-        float scaleCount = 0f;
+        float scale = 0.1f;
+        float scaleCount = 0.1f;
 
-        for (int i = 0; i < 3; i++)
+        for (float i = 0.1f; i < 3; i++)
         {
-            scale = scale + 1f;
-            scaleCount = scaleCount + 1f;
+            scale = scale + 0.1f;
+            scaleCount = scaleCount + 0.1f;
             XRSettings.eyeTextureResolutionScale = scale;
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");

@@ -41,7 +41,7 @@ public class CameraCheck : OpenVRTestBase
 
         XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
-        XRSettings.renderViewportScale = m_StartingRenderScale;
+        XRSettings.renderViewportScale = 1f;
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
@@ -126,17 +126,17 @@ public class CameraCheck : OpenVRTestBase
 
 
     [UnityTest]
-    public IEnumerator zEyeTextureResolutionScale()
+    public IEnumerator EyeTextureResolutionScale()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 
-        float scale = 0f;
-        float scaleCount = 0f;
+        float scale = 0.1f;
+        float scaleCount = 0.1f;
 
-        for (float i = 1f; i < 5; i++)
+        for (float i = 0.1f; i < 2; i++)
         {
-            scale = scale + 1f;
-            scaleCount = scaleCount + 1f;
+            scale = scale + 0.1f;
+            scaleCount = scaleCount + 0.1f;
 
             XRSettings.eyeTextureResolutionScale = scale;
 
@@ -148,7 +148,7 @@ public class CameraCheck : OpenVRTestBase
     }
 
     [UnityTest]
-    public IEnumerator xDeviceZoom()
+    public IEnumerator DeviceZoom()
     {
         yield return new WaitForSeconds(kDeviceSetupWait);
 

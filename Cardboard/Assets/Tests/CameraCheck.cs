@@ -17,6 +17,8 @@ internal class CameraCheck : CardboardSetup
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
 
+    private float kDeviceWaitSetup = 2f;
+
     void Start()
     {
         m_FileName = Application.persistentDataPath + "/ScreenCaptureHoloLens";
@@ -37,9 +39,9 @@ internal class CameraCheck : CardboardSetup
     {
         m_RaycastHit = false;
 
-        XRSettings.eyeTextureResolutionScale = m_StartingScale;
+        XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
-        XRSettings.renderViewportScale = m_StartingRenderScale;
+        XRSettings.renderViewportScale = 1f;
 
 #if UNITY_EDITOR
         UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
@@ -49,10 +51,16 @@ internal class CameraCheck : CardboardSetup
     [UnityTest]
     public IEnumerator GazeCheck()
     {
+        yield return new WaitForSeconds(kDeviceWaitSetup);
+
         RaycastHit info = new RaycastHit();
         var head = InputTracking.GetLocalPosition(XRNode.Head);
 
         yield return null;
+
+        InputTracking.Recenter();
+
+        yield return new WaitForSeconds(2f);
 
         m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
 
@@ -106,25 +114,31 @@ internal class CameraCheck : CardboardSetup
         Assert.AreEqual(0.5f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
     }
 
-    [Test]
-    public void EyeTextureResolutionScale()
+    [UnityTest]
+    public IEnumerator EyeTextureResolutionScale()
     {
+        yield return new WaitForSeconds(kDeviceWaitSetup);
+
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        for (float i = 0.1f; i < 5; i++)
         {
-            scale = scale + 1f;
-            scaleCount = scaleCount + 1f;
+            scale = scale + 0.1f;
+            scaleCount = scaleCount + 0.1f;
             XRSettings.eyeTextureResolutionScale = scale;
+
+            yield return null;
+
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
     }
 
-    [Test]
-    public void DeviceZoom()
+    [UnityTest]
+    public IEnumerator DeviceZoom()
     {
+        yield return new WaitForSeconds(kDeviceWaitSetup);
         float zoomAmount = 0f;
         float zoomCount = 0f;
 
@@ -132,6 +146,8 @@ internal class CameraCheck : CardboardSetup
         {
             zoomAmount = zoomAmount + 1f;
             zoomCount = zoomCount + 1f;
+
+            yield return null;
 
             XRDevice.fovZoomFactor = zoomAmount;
             Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is to being respected");
@@ -141,7 +157,7 @@ internal class CameraCheck : CardboardSetup
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return null;
+        yield return new WaitForSeconds(kDeviceWaitSetup);
 
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {

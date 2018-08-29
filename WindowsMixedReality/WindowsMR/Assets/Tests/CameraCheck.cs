@@ -40,7 +40,7 @@ internal class CameraCheck : WindowsMrTestBase
 
         XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
-        XRSettings.renderViewportScale = m_StartingRenderScale;
+        XRSettings.renderViewportScale = 1f;
 
 #if UNITY_EDITOR
         UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
@@ -124,10 +124,10 @@ internal class CameraCheck : WindowsMrTestBase
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        for (float i = 0.1f; i < 5; i++)
         {
-            scale = scale + 1f;
-            scaleCount = scaleCount + 1f;
+            scale = scale + 0.1f;
+            scaleCount = scaleCount + 0.1f;
             XRSettings.eyeTextureResolutionScale = scale;
 
             yield return new WaitForSeconds(1f);

@@ -11,8 +11,20 @@ internal class HoloLensApiCheck : HoloLensTestBase
     [Test]
     public void WorldManagerStateCheck()
     {
-        Debug.Log("Current World Manager State : " + WorldManager.state);
-        Assert.GreaterOrEqual(PositionalLocatorState.OrientationOnly, WorldManager.state, " World state is not available");
+        if (WorldManager.state == PositionalLocatorState.Active)
+        {
+            Assert.AreEqual(PositionalLocatorState.Active, WorldManager.state, "Expecting World Manager state to be Active");
+        }
+
+        if (WorldManager.state == PositionalLocatorState.Inhibited)
+        {
+            Assert.AreEqual(PositionalLocatorState.Inhibited, WorldManager.state, "Expecting World Manager state to be Inhibited");
+        }
+
+        if (WorldManager.state == PositionalLocatorState.OrientationOnly)
+        {
+            Assert.AreEqual(PositionalLocatorState.OrientationOnly, WorldManager.state, "Expecting World Manager state to be OrientationOnly");
+        }
     }
 
     [Test]

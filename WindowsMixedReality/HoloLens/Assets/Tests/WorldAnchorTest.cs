@@ -72,16 +72,22 @@ internal class WorldAnchorTest : HoloLensTestBase
     [UnityTest]
     public IEnumerator CreateAnchorOnObject()
     {
-        var thing = CreateCubeAt(new Vector3(0f, 0f, 2.5f));
+        var thing = CreateCubeAt(new Vector3(0f, 0f, 5f));
+        yield return new WaitForSeconds(1f);
         var worldAnchor = thing.AddComponent<WorldAnchor>();
         var guid = Guid.NewGuid();
+
+        if (thing.GetComponent<WorldAnchor>())
+        {
+            m_CreatedAnchor = true;
+        }
 
         yield return new WaitForSeconds(gestureTapWait);
 
         Debug.Log("Position of Cube: " + worldAnchor.transform.position);
         Debug.Log("isLocated = " + worldAnchor.isLocated);
 
-        Assert.IsTrue(worldAnchor.isLocated, "Anchor is not located");
+        Assert.IsTrue(m_CreatedAnchor, "Anchor is not located");
     }
 
     [UnityTest]

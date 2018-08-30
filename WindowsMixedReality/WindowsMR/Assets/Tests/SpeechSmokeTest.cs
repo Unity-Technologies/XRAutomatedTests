@@ -45,6 +45,7 @@ internal class SpeechSmokeTest : WindowsMrTestBase
         yield return new WaitForSeconds(3f);
     }
 
+	[Ignore("Unsupported Test")]
     [UnityTest]
     public IEnumerator DictationTest()
     {
@@ -78,7 +79,6 @@ internal class SpeechSmokeTest : WindowsMrTestBase
         yield return null;
     }
 
-    [Ignore("Unsupported Test")]
     [UnityTest]
     public IEnumerator GrammarTest()
     {

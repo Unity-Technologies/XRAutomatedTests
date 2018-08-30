@@ -59,7 +59,7 @@ public class CameraCheck : DayDreamTestBase
 
         yield return new WaitForSeconds(2f);
 
-        m_Cube.transform.position = new Vector3(head.x, head.y, head.y + 3f);
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
 
         yield return new WaitForSeconds(0.05f);
 

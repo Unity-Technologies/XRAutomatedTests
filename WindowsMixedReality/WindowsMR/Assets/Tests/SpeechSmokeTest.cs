@@ -20,6 +20,7 @@ internal class SpeechSmokeTest : WindowsMrTestBase
 
     public bool BadPathTest = false;
 
+    [Ignore("Unsupported Test")]
     [UnityTest]
     public IEnumerator KeywordTest()
     {
@@ -44,6 +45,7 @@ internal class SpeechSmokeTest : WindowsMrTestBase
         yield return new WaitForSeconds(3f);
     }
 
+	[Ignore("Unsupported Test")]
     [UnityTest]
     public IEnumerator DictationTest()
     {

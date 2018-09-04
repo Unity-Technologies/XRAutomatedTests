@@ -4,6 +4,8 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEditor;
 using System;
+using UnityEngine.Experimental.XR;
+using UnityEngine.XR;
 
 namespace Tests
 {
@@ -19,7 +21,6 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            m_Cube = new GameObject("Cube");
             m_TestSetupHelpers = new TestSetupHelpers();
 
             m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
@@ -39,6 +40,7 @@ namespace Tests
                 var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
 
                 PlayerSettings.virtualRealitySupported = true;
+                PlayerSettings.stereoRenderingPath = StereoRenderingPath.Instancing;
 
                 if (buildTargetGroup == BuildTargetGroup.Standalone)
                 {

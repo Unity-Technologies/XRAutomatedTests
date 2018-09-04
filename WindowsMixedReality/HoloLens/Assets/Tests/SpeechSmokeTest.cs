@@ -23,15 +23,16 @@ internal class SpeechSmokeTest : HoloLensTestBase
     [SetUp]
     public void SetUp()
     {
-
+        PhraseRecognitionSystem.Restart();
     }
 
     [TearDown]
     public void TearDown()
     {
-
+        PhraseRecognitionSystem.Shutdown();
     }
 
+    [Ignore("No supported at the moment by Jenkins")]
     [UnityTest]
     public IEnumerator KeywordTest()
     {
@@ -56,6 +57,7 @@ internal class SpeechSmokeTest : HoloLensTestBase
         yield return new WaitForSeconds(3f);
     }
 
+	[Ignore("No supported at the moment by Jenkins")]
     [UnityTest]
     public IEnumerator DictationTest()
     {

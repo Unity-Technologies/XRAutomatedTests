@@ -40,7 +40,6 @@ namespace Tests
                 var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
 
                 PlayerSettings.virtualRealitySupported = true;
-                PlayerSettings.stereoRenderingPath = StereoRenderingPath.Instancing;
 
                 if (buildTargetGroup == BuildTargetGroup.Standalone)
                 {

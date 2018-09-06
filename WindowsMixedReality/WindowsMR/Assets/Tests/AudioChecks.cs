@@ -14,6 +14,8 @@ internal class AudioChecks : WindowsMrTestBase
     [SetUp]
     public void Setup()
     {
+        m_TestSetupHelpers.TestCubeSetup(TestCubesConfig.TestCube);
+
         m_Cube.AddComponent<AudioSource>();
         m_Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
 

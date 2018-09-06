@@ -18,6 +18,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private List<string> enabledXrTargets = new List<string>();
     private GraphicsDeviceType playerGraphicsApi;
     private StereoRenderingPath stereoRenderingPath = StereoRenderingPath.SinglePass;
+    private ScriptingImplementation scriptingImplementation = ScriptingImplementation.IL2CPP;
     private bool mtRendering = true;
     private bool graphicsJobs = false;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
@@ -47,7 +48,8 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         PlayerSettings.SetGraphicsAPIs(EditorUserBuildSettings.activeBuildTarget, new[] {playerGraphicsApi});
         PlayerSettings.MTRendering = mtRendering;
         PlayerSettings.graphicsJobs = graphicsJobs;
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.unity3d.performance.benchmark");
+        PlayerSettings.SetScriptingBackend(EditorUserBuildSettings.selectedBuildTargetGroup, scriptingImplementation);
+        
 
         // If Android, setup Android player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Android)
@@ -61,6 +63,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         // If iOS, setup iOS player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
         {
+            PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.unity3d.performance.benchmark");
             PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamId;
             PlayerSettings.iOS.appleEnableAutomaticSigning = false;
             PlayerSettings.iOS.iOSManualProvisioningProfileID = iOsProvisioningProfileId;
@@ -128,6 +131,9 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private OptionSet DefineOptionSet()
     {
         return new OptionSet()
+            .Add("scriptingbackend=",
+                "Scripting backend to use. IL2CPP is default. Values: IL2CPP, Mono",
+                ParseScriptingBackend)
             .Add("enabledxrtargets=",
                 "XR targets to enable in XR enabled players, separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
                 xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets))
@@ -175,6 +181,24 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         }
 
         return vrTargets;
+    }
+
+    private void ParseScriptingBackend(string scriptingBackend)
+    {
+        var sb = scriptingBackend.ToLower();
+        if (sb.Equals("mono"))
+        {
+            scriptingImplementation = ScriptingImplementation.Mono2x;
+        } else if (sb.Equals("il2cpp"))
+        {
+            scriptingImplementation = ScriptingImplementation.IL2CPP;
+        }
+        else
+        {
+            throw new ArgumentException(string.Format("Unrecognized scripting backend {0}. Valid options are Mono or IL2CPP", scriptingBackend));
+        }
+
+
     }
 #endif
 }

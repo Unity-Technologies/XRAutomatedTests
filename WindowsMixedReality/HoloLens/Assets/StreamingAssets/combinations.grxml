@@ -1,0 +1,1092 @@
+<?xml version="1.0"?>
+<grammar mode="voice" root="ROOT" tag-format="semantics/1.0" version="1.0" xml:lang="en-US" xmlns="http://www.w3.org/2001/06/grammar" xmlns:sapi="http://schemas.microsoft.com/Speech/2002/06/SRGSExtensions" >
+  <rule id="ROOT" scope="public">
+    <one-of>
+<!--
+        <item>
+          <ruleref uri="#DigitBlock_3Digits" />
+        </item>
+-->
+        <item>
+          <ruleref uri="#DigitBlock_4Digits" />
+        </item>
+    </one-of>
+  </rule>
+
+<!--
+  Category: Cardinal
+  Description: Cardinal rules describe numeric values in the range of zero to 1 million. The numeric range is encoded in
+    the rule name. For example, Cardinal_1_to_9 will contain numbers in the range of 1...9 (i.e. "one", "two", ..., "nine").
+    The <Cardinal> rule covers the full range.
+    All return an integer _value semantic item.
+-->
+
+  <!-- Cardinal_0._value: integer [0] -->
+  <rule id="Cardinal_0" scope="public">
+    <example> zero </example>
+    <one-of>
+      <item>
+        zero
+      </item>
+      <item>
+        oh
+      </item>
+    </one-of>
+    <tag> out._value = 0; </tag>
+  </rule>
+
+<!-- Cardinal._value: integer [0...1,000,000] -->
+<rule id="Cardinal" scope="public">
+  <example> one </example>
+  <example> nine thousand </example>
+  <example> four hundred and fifty six thousand three hundred and sixty two </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1000_to_999999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item> a </item>
+          <item> one </item>
+        </one-of>
+      </item>
+      million
+      <tag> out._value = 1000000;</tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_0_to_9._value: integer [0...9] -->
+<rule id="Cardinal_0_to_9" scope="public">
+  <example> one </example>
+  <example> two </example>
+  <example> five </example>
+  <example> nine </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1_to_9" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_0_to_10._value: integer [0...10] -->
+<rule id="Cardinal_0_to_10" scope="public">
+  <example> one </example>
+  <example> two </example>
+  <example> five </example>
+  <example> ten </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      ten <tag> out._value = 10; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_0_to_100._value: integer [0...100] -->
+<rule id="Cardinal_0_to_100" scope="public">
+  <example> one </example>
+  <example> twenty three </example>
+  <example> ninety five </example>
+  <example> one hundred </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1_to_99" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item> a </item>
+          <item> one </item>
+        </one-of>
+      </item>
+      hundred <tag> out._value = 100; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_0_to_1000._value: integer [0...1000] -->
+<rule id="Cardinal_0_to_1000" scope="public">
+  <example> one </example>
+  <example> twenty three </example>
+  <example> two hundred and thirty </example>
+  <example> one thousand </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item> a </item>
+          <item> one </item>
+        </one-of>
+      </item>
+      thousand <tag> out._value = 1000; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_0_to_10000._value: integer [0...10000] -->
+<rule id="Cardinal_0_to_10000" scope="public">
+  <example> one </example>
+  <example> twenty three </example>
+  <example> two hundred and thirty </example>
+  <example> ten thousand </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_1_to_9999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      ten thousand <tag> out._value = 10000; </tag>
+    </item>
+  </one-of>
+</rule>
+
+
+<!-- Cardinal_1_to_9._value: integer [1...9] -->
+<rule id="Cardinal_1_to_9" scope="public">
+  <example> one </example>
+  <example> two </example>
+  <example> five </example>
+  <example> nine </example>
+  <one-of>
+    <item>
+      one <tag> out._value = 1; </tag>
+    </item>
+    <item>
+      two <tag> out._value = 2; </tag>
+    </item>
+    <item>
+      three <tag> out._value = 3; </tag>
+    </item>
+    <item>
+      four <tag> out._value = 4; </tag>
+    </item>
+    <item>
+      five <tag> out._value = 5; </tag>
+    </item>
+    <item>
+      six <tag> out._value = 6; </tag>
+    </item>
+    <item>
+      seven <tag> out._value = 7; </tag>
+    </item>
+    <item>
+      eight <tag> out._value = 8; </tag>
+    </item>
+    <item>
+      nine <tag> out._value = 9; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_1_to_99._value: integer [1...99] -->
+<rule id="Cardinal_1_to_99" scope="public">
+  <example> one </example>
+  <example> thirteen </example>
+  <example> fifty nine </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_1_to_9" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_10_to_19" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_20_to_99" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_1_to_999._value: integer [1...999] -->
+<rule id="Cardinal_1_to_999" scope="public">
+  <example> one </example>
+  <example> thirteen </example>
+  <example> fifty nine </example>
+  <example> eight hundred sixty seven </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_1_to_99" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_100_to_999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_1_to_9999._value: integer [1...9999] -->
+<rule id="Cardinal_1_to_9999" scope="public">
+  <example> one </example>
+  <example> thirteen </example>
+  <example> fifty nine </example>
+  <example> eight hundred sixty seven </example>
+  <example> two thousand eight hundred sixty seven </example>
+  <tag> out._value = 1; </tag>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item>
+            a <tag> out._value = 1; </tag>
+          </item>
+          <item>
+            <ruleref uri="#Cardinal_1_to_9" />
+            <tag> out = rules.latest(); </tag>
+          </item>
+        </one-of>
+      </item>
+      thousand <tag> out._value = out._value * 1000; </tag>
+
+      <item repeat="0-1">
+        <item repeat="0-1"> and </item>
+        <ruleref uri="#Cardinal_1_to_999" />
+        <tag> out._value = out._value + rules.latest()._value; </tag>
+      </item>
+    </item>
+  </one-of>
+</rule>
+
+
+<!-- Cardinal_2_to_9._value: integer [2...9] -->
+<rule id="Cardinal_2_to_9" scope="public">
+  <example> two </example>
+  <example> five </example>
+  <example> nine </example>
+  <one-of>
+    <item>
+      two <tag> out._value = 2; </tag>
+    </item>
+    <item>
+      three <tag> out._value = 3; </tag>
+    </item>
+    <item>
+      four <tag> out._value = 4; </tag>
+    </item>
+    <item>
+      five <tag> out._value = 5; </tag>
+    </item>
+    <item>
+      six <tag> out._value = 6; </tag>
+    </item>
+    <item>
+      seven <tag> out._value = 7; </tag>
+    </item>
+    <item>
+      eight <tag> out._value = 8; </tag>
+    </item>
+    <item>
+      nine <tag> out._value = 9; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_10_to_19._value: integer [10...19] -->
+<rule id="Cardinal_10_to_19" scope="public">
+  <example> ten </example>
+  <example> eleven </example>
+  <example> nineteen </example>
+  <one-of>
+    <item>
+      ten <tag> out._value = 10; </tag>
+    </item>
+    <item>
+      eleven <tag> out._value = 11; </tag>
+    </item>
+    <item>
+      twelve <tag> out._value = 12; </tag>
+    </item>
+    <item>
+      thirteen <tag> out._value = 13; </tag>
+    </item>
+    <item>
+      fourteen <tag> out._value = 14; </tag>
+    </item>
+    <item>
+      fifteen <tag> out._value = 15; </tag>
+    </item>
+    <item>
+      sixteen <tag> out._value = 16; </tag>
+    </item>
+    <item>
+      seventeen <tag> out._value = 17; </tag>
+    </item>
+    <item>
+      eighteen <tag> out._value = 18; </tag>
+    </item>
+    <item>
+      nineteen <tag> out._value = 19; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Cardinal_10_to_99._value: integer [10...99] -->
+<rule id="Cardinal_10_to_99" scope="public">
+  <example> twelve </example>
+  <example> seventy nine </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_10_to_19" />
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_20_to_99" />
+    </item>
+  </one-of>
+  <tag> out._value = rules.latest()._value; </tag>
+</rule>
+
+<!-- Cardinal_20_to_29._value: integer [20...29] -->
+<rule id="Cardinal_20_to_29" scope="public">
+  <example> twenty </example>
+  <example> twenty nine </example>
+  twenty <tag> out._value = 20; </tag>
+  <item repeat="0-1">
+    <one-of>
+      <item>
+        one <tag> out._value = 21; </tag>
+      </item>
+      <item>
+        two <tag> out._value = 22; </tag>
+      </item>
+      <item>
+        three <tag> out._value = 23; </tag>
+      </item>
+      <item>
+        four <tag> out._value = 24; </tag>
+      </item>
+      <item>
+        five <tag> out._value = 25; </tag>
+      </item>
+      <item>
+        six <tag> out._value = 26; </tag>
+      </item>
+      <item>
+        seven <tag> out._value = 27; </tag>
+      </item>
+      <item>
+        eight <tag> out._value = 28; </tag>
+      </item>
+      <item>
+        nine <tag> out._value = 29; </tag>
+      </item>
+    </one-of>
+  </item>
+</rule>
+
+<!-- Cardinal_20_to_99._value: integer [20...99] -->
+<rule id="Cardinal_20_to_99" scope="public">
+  <example> twenty one </example>
+  <example> fifty seven </example>
+  <example> ninety </example>
+  <one-of>
+    <item>
+      twenty
+      <tag> out._value = 20; </tag>
+    </item>
+    <item>
+      thirty
+      <tag> out._value = 30; </tag>
+    </item>
+    <item>
+      forty
+      <tag> out._value = 40; </tag>
+    </item>
+    <item>
+      fifty
+      <tag> out._value = 50; </tag>
+    </item>
+    <item>
+      sixty
+      <tag> out._value = 60; </tag>
+    </item>
+    <item>
+      seventy
+      <tag> out._value = 70; </tag>
+    </item>
+    <item>
+      eighty
+      <tag> out._value = 80; </tag>
+    </item>
+    <item>
+      ninety
+      <tag> out._value = 90; </tag>
+    </item>
+  </one-of>
+  <item repeat="0-1">
+    <ruleref uri="#Cardinal_1_to_9" />
+    <tag> out._value = out._value + rules.latest()._value </tag>
+  </item>
+</rule>
+
+<!-- Cardinal_100_to_999._value: integer [100...999] -->
+<rule id="Cardinal_100_to_999" scope="public">
+  <example> one hundred fifty seven </example>
+  <example> eight hundred and thirty nine </example>
+  <example> nine hundred </example>
+
+  <tag> out._value = 1; </tag>
+  <item repeat="0-1">
+    <one-of>
+      <item>
+        a <tag> out._value = 1; </tag>
+      </item>
+      <item>
+        <ruleref uri="#Cardinal_1_to_9" />
+        <tag> out = rules.latest(); </tag>
+      </item>
+    </one-of>
+  </item>
+  hundred <tag> out._value = out._value * 100; </tag>
+
+  <item repeat="0-1">
+    <item repeat="0-1"> and </item>
+    <ruleref uri="#Cardinal_1_to_99" />
+    <tag> out._value = out._value + rules.latest()._value; </tag>
+  </item>
+</rule>
+
+<!-- Cardinal_1000_to_999999._value: integer [1000...999999] -->
+<rule id="Cardinal_1000_to_999999" scope="public">
+  <example> one hundred fifty seven thousand three hundred and twenty seven</example>
+  <example> eight hundred and thirty nine thousand </example>
+  <example> ten thousand and fifty </example>
+
+  <tag> out._value = 1; </tag>
+  <item repeat="0-1">
+    <one-of>
+      <item>
+        a <tag> out._value = 1; </tag>
+      </item>
+      <item>
+        <ruleref uri="#Cardinal_1_to_999" />
+        <tag> out = rules.latest(); </tag>
+      </item>
+    </one-of>
+  </item>
+
+  thousand <tag> out._value = out._value * 1000; </tag>
+
+  <item repeat="0-1">
+    <item repeat="0-1"> and </item>
+    <ruleref uri="#Cardinal_1_to_999" />
+    <tag> out._value = out._value + rules.latest()._value; </tag>
+  </item>
+</rule>
+
+<rule id="Cardinal_1000_to_9999" scope="public">
+    <example> one thousand three hundred and twenty seven</example>
+    <example> eight hundred and thirty nine </example>
+    <example> two thousand and fifty </example>
+
+    <tag> out._value = 1; </tag>
+    <item repeat="0-1">
+      <one-of>
+        <item>
+          a <tag> out._value = 1; </tag>
+        </item>
+        <item>
+          <ruleref uri="#Cardinal_1_to_9" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+      </one-of>
+    </item>
+
+    thousand <tag> out._value = out._value * 1000; </tag>
+
+    <item repeat="0-1">
+      <item repeat="0-1"> and </item>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+  </rule>
+
+<!--
+  Category: Ordinal
+  Description: Ordinal rules describe numeric ordering values in the range of 1 (first) to 100 (one hundredth).
+    The numeric range is encoded in the rule name. For example, Ordinal_1_to_9 will contain ordinals: first, second, third, ...,
+    ninth.
+    The <Ordinal> rule covers the full range.
+    All return an integer _value semantic item.
+-->
+<!-- Ordinal._value: integer [1...100] -->
+<rule id="Ordinal" scope="public">
+  <example> first </example>
+  <example> thirteenth </example>
+  <example> fifty ninth </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Ordinal_1_to_9" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Ordinal_10_to_19" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Ordinal_20_to_99" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <item repeat="0-1"> one </item>
+      hundredth
+      <tag> out._value = 100; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Ordinal_1_to_9._value: integer [1...9] -->
+<rule id="Ordinal_1_to_9" scope="public">
+  <example> first </example>
+  <example> ninth </example>
+  <one-of>
+    <item>
+      first <tag> out._value = 1; </tag>
+    </item>
+    <item>
+      second <tag> out._value = 2; </tag>
+    </item>
+    <item>
+      third <tag> out._value = 3; </tag>
+    </item>
+    <item>
+      fourth <tag> out._value = 4; </tag>
+    </item>
+    <item>
+      fifth <tag> out._value = 5; </tag>
+    </item>
+    <item>
+      sixth <tag> out._value = 6; </tag>
+    </item>
+    <item>
+      seventh <tag> out._value = 7; </tag>
+    </item>
+    <item>
+      eighth <tag> out._value = 8; </tag>
+    </item>
+    <item>
+      ninth <tag> out._value = 9; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Ordinal_1_to_31._value: integer [1...31] -->
+<rule id="Ordinal_1_to_31" scope="public">
+  <example> first </example>
+  <example> eleventh </example>
+  <example> twenty ninth </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Ordinal_1_to_9" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Ordinal_10_to_19" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      <ruleref uri="#Ordinal_20_to_29" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      thirtieth
+      <tag> out._value = 30; </tag>
+    </item>
+    <item>
+      thirty first
+      <tag> out._value = 31; </tag>
+    </item>
+  </one-of>
+</rule>
+
+
+<!-- Ordinal_10_to_19._value: integer [10...19] -->
+<rule id="Ordinal_10_to_19" scope="public">
+  <example> tenth </example>
+  <example> nineteenth </example>
+  <one-of>
+    <item>
+      tenth <tag> out._value = 10; </tag>
+    </item>
+    <item>
+      eleventh <tag> out._value = 11; </tag>
+    </item>
+    <item>
+      twelfth <tag> out._value = 12; </tag>
+    </item>
+    <item>
+      thirteenth <tag> out._value = 13; </tag>
+    </item>
+    <item>
+      fourteenth <tag> out._value = 14; </tag>
+    </item>
+    <item>
+      fifteenth <tag> out._value = 15; </tag>
+    </item>
+    <item>
+      sixteenth <tag> out._value = 16; </tag>
+    </item>
+    <item>
+      seventeenth <tag> out._value = 17; </tag>
+    </item>
+    <item>
+      eighteenth <tag> out._value = 18; </tag>
+    </item>
+    <item>
+      nineteenth <tag> out._value = 19; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Ordinal_20_to_29._value: integer [20...29] -->
+<rule id="Ordinal_20_to_29" scope="public">
+  <example> twentieth </example>
+  <example> twenty ninth </example>
+  <one-of>
+    <item>
+      twentieth <tag> out._value = 20; </tag>
+    </item>
+    <item>
+      twenty <tag> out._value = 20; </tag>
+      <one-of>
+        <item>
+          first <tag> out._value = 21; </tag>
+        </item>
+        <item>
+          second <tag> out._value = 22; </tag>
+        </item>
+        <item>
+          third <tag> out._value = 23; </tag>
+        </item>
+        <item>
+          fourth <tag> out._value = 24; </tag>
+        </item>
+        <item>
+          fifth <tag> out._value = 25; </tag>
+        </item>
+        <item>
+          sixth <tag> out._value = 26; </tag>
+        </item>
+        <item>
+          seventh <tag> out._value = 27; </tag>
+        </item>
+        <item>
+          eighth <tag> out._value = 28; </tag>
+        </item>
+        <item>
+          ninth <tag> out._value = 29; </tag>
+        </item>
+      </one-of>
+    </item>
+  </one-of>
+</rule>
+
+<!-- Ordinal_20_to_99._value: integer [20...99] -->
+<rule id="Ordinal_20_to_99" scope="public">
+  <example> twentieth </example>
+  <example> forty ninth </example>
+  <example> sixty seventh </example>
+  <one-of>
+    <item>
+      <ruleref uri="#Ordinal_20_to_29" />
+      <tag> out = rules.latest(); </tag>
+    </item>
+    <item>
+      thirtieth
+      <tag> out._value = 30; </tag>
+    </item>
+    <item>
+      fortieth
+      <tag> out._value = 40; </tag>
+    </item>
+    <item>
+      fiftieth
+      <tag> out._value = 50; </tag>
+    </item>
+    <item>
+      sixtieth
+      <tag> out._value = 60; </tag>
+    </item>
+    <item>
+      seventieth
+      <tag> out._value = 70; </tag>
+    </item>
+    <item>
+      eightieth
+      <tag> out._value = 80; </tag>
+    </item>
+    <item>
+      ninetieth
+      <tag> out._value = 90; </tag>
+    </item>
+    <item>
+      <one-of>
+        <item>
+          thirty
+          <tag> out._value = 30; </tag>
+        </item>
+        <item>
+          forty
+          <tag> out._value = 40; </tag>
+        </item>
+        <item>
+          fifty
+          <tag> out._value = 50; </tag>
+        </item>
+        <item>
+          sixty
+          <tag> out._value = 60; </tag>
+        </item>
+        <item>
+          seventy
+          <tag> out._value = 70; </tag>
+        </item>
+        <item>
+          eighty
+          <tag> out._value = 80; </tag>
+        </item>
+        <item>
+          ninety
+          <tag> out._value = 90; </tag>
+        </item>
+      </one-of>
+      <ruleref uri="#Ordinal_1_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!--
+  Category: Number
+  Description: Number rules describe numeric values on the range of - 1 million to 1 million including two decimal points. The numeric range is encoded in
+    the rule name. For example, Number_0_to_1000 will contain numbers on the range of 0...1000, like 5.65.
+    The <Number> rule covers the full range.
+    All return an float _value semantic item.
+-->
+<!-- Number._value: integer [-1,000,000.00 ... 1,000,000.00] -->
+<rule id="Number" scope="public">
+  <example> one point one </example>
+  <example> minus nine thousand </example>
+  <example> plus four hundred and fifty six thousand three hundred and sixty two point seven two </example>
+  <tag> var plusminus = 1;</tag>
+  <item repeat="0-1">
+    <one-of>
+      <item>
+        plus <tag>plusminus = 1;</tag>
+      </item>
+      <item>
+        minus <tag>plusminus = -1;</tag>
+      </item>
+    </one-of>
+  </item>
+  <one-of>
+    <item>
+      <one-of>
+        <item>
+          <ruleref uri="#Cardinal_0" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+        <item>
+          <ruleref uri="#Cardinal_1_to_999" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+        <item>
+          <ruleref uri="#Cardinal_1000_to_999999" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+      </one-of>
+      <item repeat="0-1">
+        point
+        <ruleref uri="#Cardinal_0_to_9" /><tag> out._value = out._value + rules.latest()._value / 10; </tag><item repeat="0-1">
+          <ruleref uri="#Cardinal_0_to_9" />
+          <tag> out._value = out._value + rules.latest()._value / 100; </tag>
+        </item>
+      </item>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item> a </item>
+          <item> one </item>
+        </one-of>
+      </item>
+      million
+      <tag> out._value = 1000000;</tag>
+    </item>
+  </one-of>
+  <tag> out._value = out._value * plusminus; </tag>
+</rule>
+<!-- Number_upto1000._value: integer [-1,000.00 ... 1,000.00] -->
+<rule id="Number_upto1000" scope="public">
+  <example> one point one </example>
+  <example> minus nine hundred </example>
+  <example> plus four hundred and fifty two point seven two </example>
+  <tag> var plusminus = 1;</tag>
+  <item repeat="0-1">
+    <one-of>
+      <item>
+        plus <tag>plusminus = 1;</tag>
+      </item>
+      <item>
+        minus <tag>plusminus = -1;</tag>
+      </item>
+    </one-of>
+  </item>
+  <one-of>
+    <item>
+      <one-of>
+        <item>
+          <ruleref uri="#Cardinal_0" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+        <item>
+          <ruleref uri="#Cardinal_1_to_999" />
+          <tag> out = rules.latest(); </tag>
+        </item>
+      </one-of>
+      <item repeat="0-1">
+        point
+        <ruleref uri="#Cardinal_0_to_9" /><tag> out._value = out._value + rules.latest()._value / 10; </tag><item repeat="0-1">
+          <ruleref uri="#Cardinal_0_to_9" />
+          <tag> out._value = out._value + rules.latest()._value / 100; </tag>
+        </item>
+      </item>
+    </item>
+    <item>
+      <item repeat="0-1">
+        <one-of>
+          <item> a </item>
+          <item> one </item>
+        </one-of>
+      </item>
+      thousand <tag> out._value = 1000; </tag>
+    </item>
+  </one-of>
+  <tag> out._value = out._value * plusminus; </tag>
+</rule>
+
+<!--
+  Category: DigitBlock
+  Description: DigitBlock rules describe sequences of digit strings in length from 2 to 4. For example 20 is "two zero",
+    2354 is "two three five four" or "twenty three fifty four", etc.
+    The length of the DigitBlock is encoded in the rule name. For example, DigitBlock_2Digits provides for digit strings of
+    length 2. E.g. "two one", "eleven", "four seven", etc.
+
+    All return a string _value semantic item giving the digit string
+-->
+
+<!-- DigitBlock_2Digits._value: string [length 2] -->
+<rule id="DigitBlock_2Digits" scope="public">
+  <example> zero zero </example>
+  <example> one nine </example>
+  <example> nineteen </example>
+  <tag> out._value = ''; </tag>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    <item>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- DigitBlock_3Digits._value: string [length 3] -->
+<rule id="DigitBlock_3Digits" scope="public">
+  <example> zero zero three </example>
+  <example> one two three </example>
+  <example> one twenty </example>
+  <example> two hundred </example>
+  <tag> out._value = ''; </tag>
+  <one-of>
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#DigitBlock_2Digits" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+
+    <item>
+      <ruleref uri="#Cardinal_1_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      hundred
+      <tag> out._value = out._value + '00'; </tag>
+    </item>
+  </one-of>
+</rule>
+
+<!-- DigitBlock_4Digits._value: string [length 4] -->
+<rule id="DigitBlock_4Digits" scope="public">
+  <example> one two three four </example>
+  <example> twenty twenty four </example>
+  <example> twenty four twenty </example>
+  <example> thirteen oh four </example>
+  <example> oh four thirteen </example>
+  <example> four thousand </example>
+  <example> two three hundred </example>
+  <example> twenty three hundred </example>
+  <tag> out._value = '' ;</tag>
+  <one-of>
+    <!-- one nine two six -->
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    <!-- one nine twentysix -->
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    <!-- nineteen twenty six -->
+    <item>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    <!-- nineteen oh six -->
+    <item>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    <!-- oh nine ninety nine -->
+    <item>
+      <ruleref uri="#Cardinal_0" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+
+    <!-- one nine hundred nine nine -->
+    <!-- one nine hundred ninety nine -->
+    <!-- nineteen hundred nine nine -->
+    <!-- nineteen hundred ninety nine -->
+    <item>
+      <one-of>
+        <item>
+          <ruleref uri="#Cardinal_0_to_9" />
+          <tag> out._value = out._value + rules.latest()._value; </tag>
+          <ruleref uri="#Cardinal_1_to_9" />
+          <tag> out._value = out._value + rules.latest()._value; </tag>
+        </item>
+        <item>
+          <ruleref uri="#Cardinal_10_to_99" />
+          <tag> out._value = out._value + rules.latest()._value; </tag>
+        </item>
+      </one-of>
+      hundred
+      <one-of>
+      <item>
+        <ruleref uri="#Cardinal_0_to_9" />
+        <tag> out._value = out._value + rules.latest()._value; </tag>
+        <ruleref uri="#Cardinal_0_to_9" />
+        <tag> out._value = out._value + rules.latest()._value; </tag>
+      </item>
+      <item>
+        <ruleref uri="#Cardinal_10_to_99" />
+        <tag> out._value = out._value + rules.latest()._value; </tag>
+      </item>
+      <item>
+        <tag> out._value = out._value + '00'; </tag>
+      </item>
+    </one-of>
+    </item>
+
+    <!-- nine thousand twenty six-->
+    <item>
+      <ruleref uri="#Cardinal_1000_to_9999" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    
+    <!-- one ninety five eight -->
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_10_to_99" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    
+    <!-- one nine hundred fifty eight -->
+    <item>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    
+    <!-- one hundred ninety five eight -->
+    <item>
+      <ruleref uri="#Cardinal_1_to_999" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+      <ruleref uri="#Cardinal_0_to_9" />
+      <tag> out._value = out._value + rules.latest()._value; </tag>
+    </item>
+    
+  </one-of>
+</rule>
+
+</grammar>
+

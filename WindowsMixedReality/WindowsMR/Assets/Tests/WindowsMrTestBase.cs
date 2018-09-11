@@ -21,8 +21,7 @@ internal class WindowsMrTestBase
     public void WindowsMrTestBaseSetup()
     {
         HolographicAutomation.Reset();
-        
-        m_Cube = new GameObject("Cube");
+
         m_TestSetupHelpers = new TestSetupHelpers();
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
@@ -46,7 +45,6 @@ internal class WindowsMrTestBase
             EditorUserBuildSettings.allowDebugging = true;
 
             PlayerSettings.SetScriptingBackend(BuildTargetGroup.WSA, ScriptingImplementation.WinRTDotNET);
-            PlayerSettings.stereoRenderingPath = StereoRenderingPath.Instancing;
 
             // Enable HoloLens SDK
             VREditor.SetVREnabledOnTargetGroup(BuildTargetGroup.WSA, true);

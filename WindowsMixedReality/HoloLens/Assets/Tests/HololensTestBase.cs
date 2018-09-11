@@ -49,7 +49,6 @@ internal class HoloLensTestBase
             EditorUserBuildSettings.allowDebugging = true;
 
             PlayerSettings.SetScriptingBackend(BuildTargetGroup.WSA, ScriptingImplementation.WinRTDotNET);
-            PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
 
             // Enable HoloLens SDK
             VREditor.SetVREnabledOnTargetGroup(BuildTargetGroup.WSA, true);

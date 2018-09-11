@@ -37,9 +37,9 @@ internal class CameraCheck : HoloLensTestBase
     {
         m_RaycastHit = false;
 
-        XRSettings.eyeTextureResolutionScale = m_StartingScale;
+        XRSettings.eyeTextureResolutionScale = 1f;
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
-        XRSettings.renderViewportScale = m_StartingRenderScale;
+        XRSettings.renderViewportScale = 1f;
 
         UnityEditor.PlayerSettings.stereoRenderingPath = UnityEditor.StereoRenderingPath.Instancing;
 
@@ -51,6 +51,8 @@ internal class CameraCheck : HoloLensTestBase
     {
         RaycastHit info;
         var head = InputTracking.GetLocalPosition(XRNode.Head);
+
+        m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 3f);
         
         if (Physics.Raycast(head, m_Camera.transform.forward, out info, 10f))
         {
@@ -105,10 +107,10 @@ internal class CameraCheck : HoloLensTestBase
         float scale = 0f;
         float scaleCount = 0f;
 
-        for (int i = 0; i < 5; i++)
+        for (float i = 0f; i < 5; i++)
         {
-            scale = scale + 1f;
-            scaleCount = scaleCount + 1f;
+            scale = scale + 0.1f;
+            scaleCount = scaleCount + 0.1f;
             XRSettings.eyeTextureResolutionScale = scale;
             Debug.Log("EyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");

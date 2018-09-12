@@ -10,44 +10,8 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 
-[UnityPlatform(include = new[]
+public class XRSmokeTest : TestBaseSetup
 {
-    RuntimePlatform.WindowsEditor,
-    RuntimePlatform.WindowsPlayer,
-    RuntimePlatform.Android,
-    RuntimePlatform.IPhonePlayer,
-    RuntimePlatform.OSXEditor,
-    RuntimePlatform.OSXPlayer,
-    RuntimePlatform.Lumin,
-    RuntimePlatform.WSAPlayerARM,
-    RuntimePlatform.WSAPlayerX64,
-    RuntimePlatform.WSAPlayerX86
-})]
-[PrebuildSetup("EnablePlatformPrebuildStep")]
-public class XRSmokeTest
-{
-    private CurrentSettings settings;
-
-    [OneTimeSetUp]
-    public void Setup()
-    {
-        settings = Resources.Load<CurrentSettings>("settings");
-        
-    }
-
-    [UnitySetUp]
-    public IEnumerator SetUpAndEnableXR()
-    {
-        if (XRSettings.loadedDeviceName != settings.enabledXrTarget)
-        {
-            XRSettings.LoadDeviceByName(settings.enabledXrTarget);
-        }
-
-        yield return null;
-
-        XRSettings.enabled = true;
-    }
-
     [UnityTest]
     public IEnumerator CanBuildAndRun()
     {

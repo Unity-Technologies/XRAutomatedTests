@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: settings
   m_EditorClassIdentifier: 
   enabledXrTarget: MockHMD
-  playerGraphicsApi: 2
+  playerGraphicsApi: 17
   stereoRenderingMode: 1
   mtRendering: 1
   graphicsJobs: 0

@@ -19,15 +19,11 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     private static readonly string ObjectCountName = "ObjectCount";
     private static readonly string VerticesName = "Vertices";
     private static readonly string TrianglesName = "Triangles";
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
     private static readonly string AppStartupTimeName = "AppStartupTime";
-#endif
-#if ENABLE_VR
-    protected static readonly string GpuTimeLastFrameName = "GpuTimeLastFrame";
-#endif
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
     private static long appStartupTime;
-#endif
+
+    protected static readonly string GpuTimeLastFrameName = "GpuTimeLastFrame";
+
 
     private long verts;
     private long tris;
@@ -38,13 +34,10 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     private readonly SampleGroupDefinition objCountSg = new SampleGroupDefinition(ObjectCountName, SampleUnit.None);
     private readonly SampleGroupDefinition trianglesSg = new SampleGroupDefinition(TrianglesName, SampleUnit.None);
     private readonly SampleGroupDefinition verticesSg = new SampleGroupDefinition(VerticesName, SampleUnit.None);
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
     private readonly SampleGroupDefinition startupTimeSg = new SampleGroupDefinition(AppStartupTimeName);
-#endif
+
     protected abstract SampleGroupDefinition FpsSg { get; }
-#if ENABLE_VR
     protected abstract SampleGroupDefinition GpuTimeLastFrameSg { get; }
-#endif
 
     public int FrameCount { get; private set; }
 
@@ -116,13 +109,15 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     public void Awake()
     {
 #if ENABLE_VR && UNITY_2017_1_OR_NEWER
-        var thisCamera = Camera.main.gameObject.GetComponent<Camera>();
-        if (thisCamera != null)
+        if (XRSettings.enabled)
         {
-            XRDevice.DisableAutoXRCameraTracking(thisCamera, true);
+            var thisCamera = Camera.main.gameObject.GetComponent<Camera>();
+            if (thisCamera != null)
+            {
+                XRDevice.DisableAutoXRCameraTracking(thisCamera, true);
+            }
         }
 #endif
-        
     }
 
     public virtual void RunStartCode()
@@ -135,7 +130,7 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     private void Start()
     {
 #if ENABLE_VR
-        if (XRDevice.isPresent && !XRSettings.isDeviceActive)
+        if (XRSettings.enabled && !XRSettings.isDeviceActive)
         {
             Debug.LogAssertion("Expect XRSettings.isDeviceActive to be true, but it is false. Terminating test.");
         }
@@ -151,7 +146,10 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
             FrameCount++;
             SampleFps();
 #if ENABLE_VR
-            SampleGpuTimeLastFrame();
+            if (XRSettings.enabled)
+            {
+                SampleGpuTimeLastFrame();
+            }
 #endif
         }
 
@@ -180,8 +178,7 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     {
         return (Time.renderedFrameCount - startFrameCount) / Time.unscaledDeltaTime;
     }
-
-#if ENABLE_VR
+    
     private void SampleGpuTimeLastFrame()
     {
         var gpuTimeLastFrame = GetGpuTimeLastFrame();
@@ -190,15 +187,14 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 
     private float GetGpuTimeLastFrame()
     {
-        float GpuTimeLastFrame;
+        float gpuTimeLastFrame;
         float renderTime = 0;
-        if (XRStats.TryGetGPUTimeLastFrame(out GpuTimeLastFrame))
+        if (XRStats.TryGetGPUTimeLastFrame(out gpuTimeLastFrame))
         {
-            renderTime = GpuTimeLastFrame;
+            renderTime = gpuTimeLastFrame;
         }
         return renderTime;
     }
-#endif
 
     public void FindRenderedObjectMetrics()
     {

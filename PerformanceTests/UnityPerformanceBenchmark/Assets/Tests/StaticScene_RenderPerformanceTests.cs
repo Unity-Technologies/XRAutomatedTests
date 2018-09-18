@@ -1,10 +1,13 @@
 ﻿#if UNITY_2018_1_OR_NEWER
+using System;
 using UnityEngine;
 using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
-using UnityEngine.TestTools;
+#if ENABLE_VR
+using UnityEngine.XR;
+#endif
 
 #if ENABLE_VR
 [Category("XR")]
@@ -15,13 +18,22 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     private readonly string basicSceneName = "RenderPerformance";
     private readonly string bakedLightingTestSceneName = "BakedLighting";
     
-    protected readonly SampleGroupDefinition[] SamplerNames = {
+    protected SampleGroupDefinition[] SamplerNames = {
         new SampleGroupDefinition("Camera.Render"),
         new SampleGroupDefinition("Render.Mesh"),
-#if ENABLE_VR
-        new SampleGroupDefinition("XR.WaitForGPU", SampleUnit.Millisecond, AggregationType.Min)
-#endif
     };
+
+    [SetUp]
+    public void Setup()
+    {
+#if ENABLE_VR
+        if (XRSettings.enabled)
+        {
+            Array.Resize(ref SamplerNames, SamplerNames.Length + 1);
+            SamplerNames[SamplerNames.Length - 1] = new SampleGroupDefinition("XR.WaitForGPU");
+        }
+#endif
+    }
 
     [PerformanceUnityTest]
     public IEnumerator EmptyScene()

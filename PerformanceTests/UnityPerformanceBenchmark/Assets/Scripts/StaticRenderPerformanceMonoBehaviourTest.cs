@@ -11,13 +11,9 @@ public class StaticRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBeh
         }
     }
 
-#if ENABLE_VR
-protected override SampleGroupDefinition GpuTimeLastFrameSg {
-        get
-        {
-            return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Median);
-        }
+    protected override SampleGroupDefinition GpuTimeLastFrameSg
+    {
+        get { return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Median); }
     }
-#endif
 }
 #endif

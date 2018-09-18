@@ -1,17 +1,14 @@
 ﻿#if UNITY_2018_1_OR_NEWER
+using System;
 using UnityEngine;
 using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
-
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
 
-#if ENABLE_VR
-[Category("XR")]
-#endif
 [Category("Performance")]
 public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 {
@@ -28,14 +25,24 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     private readonly string realTimeLightingSpotlightTestSceneName = "RealtimeLighting_SpotLight";
     private readonly string terrainTestSceneName = "TerrainTest";
 
-    protected readonly SampleGroupDefinition[] SamplerNames = {
+    protected SampleGroupDefinition[] SamplerNames = {
         new SampleGroupDefinition("Camera.Render", SampleUnit.Millisecond, AggregationType.Min),
-        new SampleGroupDefinition("Render.Mesh", SampleUnit.Millisecond, AggregationType.Min),
-#if ENABLE_VR
-        new SampleGroupDefinition("XR.WaitForGPU", SampleUnit.Millisecond, AggregationType.Min)
-#endif
+        new SampleGroupDefinition("Render.Mesh", SampleUnit.Millisecond, AggregationType.Min)
     };
 
+    [SetUp]
+    public void Setup()
+    {
+#if ENABLE_VR
+        if (XRSettings.enabled)
+        {
+            Array.Resize(ref SamplerNames, SamplerNames.Length + 1); 
+            SamplerNames[SamplerNames.Length - 1] = new SampleGroupDefinition("XR.WaitForGPU", SampleUnit.Millisecond, AggregationType.Min);
+        }
+#endif
+    }
+
+    [PerformanceUnityTest]
     public IEnumerator Terrain()
     {
         yield return SceneManager.LoadSceneAsync(terrainTestSceneName, LoadSceneMode.Additive);

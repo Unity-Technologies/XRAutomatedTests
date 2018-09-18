@@ -3,7 +3,7 @@
 --- !u!310 &1
 UnityConnectSettings:
   m_ObjectHideFlags: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_TestMode: 0
   m_TestEventUrl: 
   m_TestConfigUrl: 
@@ -11,15 +11,15 @@ UnityConnectSettings:
   CrashReportingSettings:
     m_EventUrl: https://perf-events.cloud.unity3d.com
     m_NativeEventUrl: https://perf-events.cloud.unity3d.com/symbolicate
-    m_Enabled: 0
+    m_Enabled: 1
     m_CaptureEditorExceptions: 1
   UnityPurchasingSettings:
     m_Enabled: 0
     m_TestMode: 0
   UnityAnalyticsSettings:
-    m_Enabled: 0
+    m_Enabled: 1
     m_InitializeOnStartup: 1
-    m_TestMode: 0
+    m_TestMode: 1
     m_TestEventUrl: 
     m_TestConfigUrl: 
   UnityAdsSettings:

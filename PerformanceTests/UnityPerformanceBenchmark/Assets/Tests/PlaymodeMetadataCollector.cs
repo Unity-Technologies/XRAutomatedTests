@@ -24,7 +24,8 @@ using UnityEditor;
 /// if you want to ensure test run metadata is included in the result when using IL2CPP, include this class/test in your project.
 /// </summary>
 [Category("Performance")]
-public class PlaymodeMetadataCollector : IPrebuildSetup
+[PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
+public class PlaymodeMetadataCollector
 {
     private PerformanceTestRun m_TestRun;
 
@@ -33,7 +34,7 @@ public class PlaymodeMetadataCollector : IPrebuildSetup
         get { return Path.Combine(Application.streamingAssetsPath, "PerformanceTestRunInfo.json"); }
     }
 
-    [UnityTest, Order(0), PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
+    [UnityTest, Order(0)]
     public IEnumerator GetPlayerSettingsTest()
     {
         yield return ReadPerformanceTestRunJsonAsync();

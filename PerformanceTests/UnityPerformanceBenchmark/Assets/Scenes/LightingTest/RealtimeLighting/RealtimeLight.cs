@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RealtimeLight : MonoBehaviour {
     public new Light light { get; private set; }

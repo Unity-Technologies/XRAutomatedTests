@@ -1,7 +1,8 @@
-﻿using System;
+﻿#if UNITY_2018_1_OR_NEWER // Unity Performance Testing Extension supported on 2018.1 or newer
+using System;
 using System.Linq;
-using UnityEngine;
 using Unity.PerformanceTesting;
+using UnityEngine;
 using UnityEngine.TestTools;
 #if UNITY_ANALYTICS
 using UnityEngine.Analytics;
@@ -10,27 +11,35 @@ using UnityEngine.Analytics;
 using UnityEngine.XR;
 #endif
 
-public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTest
+public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IMonoBehaviourTest
 {
-
     // Number of frames we capture and calculate metrics from
-    private readonly int numCaptureFrames = 100;
-    private static readonly string AppStartupTimeName = "AppStartupTime";
-    private static readonly string FpsName = "FPS";
-    private static readonly string GpuTimeLastFrameName = "GpuTimeLastFrame";
+    private readonly int numCaptureFrames = 200;
+    protected static readonly string FpsName = "FPS";
     private static readonly string ObjectCountName = "ObjectCount";
     private static readonly string VerticesName = "Vertices";
     private static readonly string TrianglesName = "Triangles";
+    private static readonly string AppStartupTimeName = "AppStartupTime";
+    private static long appStartupTime;
+
+    protected static readonly string GpuTimeLastFrameName = "GpuTimeLastFrame";
+
+
     private long verts;
     private long tris;
     private long renderedGameObjects;
+    private int startFrameCount;
 
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
-    private static long appStartupTime;
-#endif
+    // SampleGroupDefinitions
+    private readonly SampleGroupDefinition objCountSg = new SampleGroupDefinition(ObjectCountName, SampleUnit.None);
+    private readonly SampleGroupDefinition trianglesSg = new SampleGroupDefinition(TrianglesName, SampleUnit.None);
+    private readonly SampleGroupDefinition verticesSg = new SampleGroupDefinition(VerticesName, SampleUnit.None);
+    private readonly SampleGroupDefinition startupTimeSg = new SampleGroupDefinition(AppStartupTimeName);
+
+    protected abstract SampleGroupDefinition FpsSg { get; }
+    protected abstract SampleGroupDefinition GpuTimeLastFrameSg { get; }
 
     public int FrameCount { get; private set; }
-    private int startFrameCount;
 
     public long Verts
     {
@@ -72,107 +81,11 @@ public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTe
     }
 
     public bool CaptureMetrics { get; set; }
-
     public float Fps { get; set; }
-
-    private readonly SampleGroupDefinition fpsSg = new SampleGroupDefinition(FpsName, SampleUnit.None, AggregationType.Median, 0.1, true);
-    private readonly SampleGroupDefinition startupTimeSg = new SampleGroupDefinition(AppStartupTimeName);
-    private readonly SampleGroupDefinition gpuTimeLastFrameSg = new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Median, .1, false, false);
-    private readonly SampleGroupDefinition objCountSg = new SampleGroupDefinition(ObjectCountName, SampleUnit.None);
-    private readonly SampleGroupDefinition trianglesSg = new SampleGroupDefinition(TrianglesName, SampleUnit.None);
-    private readonly SampleGroupDefinition verticesSg = new SampleGroupDefinition(VerticesName, SampleUnit.None);
 
     public bool IsMetricsCaptured
     {
         get { return FrameCount >= numCaptureFrames; }
-    }
-
-    public void Awake()
-    {
-#if ENABLE_VR && UNITY_2017_1_OR_NEWER
-        var thisCamera = Camera.main.gameObject.GetComponent<Camera>();
-        if (thisCamera != null)
-        {
-            XRDevice.DisableAutoXRCameraTracking(thisCamera, true);
-        }
-#endif
-        
-    }
-
-    public virtual void RunStartCode()
-    {
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
-        appStartupTime = PerformanceReporting.graphicsInitializationFinishTime / 1000;
-#endif
-    }
-
-    void Start()
-    {
-#if ENABLE_VR
-        if (XRDevice.isPresent && !XRSettings.isDeviceActive)
-        {
-            Debug.LogAssertion("Expect XRSettings.isDeviceActive to be true, but it is false. Terminating test.");
-        }
-#endif
-
-        RunStartCode();
-    }
-
-    void Update()
-    {
-        if (CaptureMetrics)
-        {
-            FrameCount++;
-            SampleFps();
-#if ENABLE_VR
-            SampleGpuTimeLastFrame();
-#endif
-        }
-
-        if (IsMetricsCaptured)
-        {
-            EndMetricCapture();
-        }
-    }
-    
-
-    public void EndMetricCapture()
-    {
-        CaptureMetrics = false;
-#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
-        Measure.Custom(startupTimeSg, appStartupTime);
-#endif
-    }
-    
-    private void SampleFps()
-    {
-        Fps = GetFps();
-        Measure.Custom(fpsSg, Fps);
-        startFrameCount = Time.renderedFrameCount;
-    }
-
-#if ENABLE_VR
-    private void SampleGpuTimeLastFrame()
-    {
-        var gpuTimeLastFrame = GetGpuTimeLastFrame();
-        Measure.Custom(gpuTimeLastFrameSg, gpuTimeLastFrame * 1000);
-    }
-
-    private float GetGpuTimeLastFrame()
-    {
-        float GpuTimeLastFrame;
-        float renderTime = 0;
-        if (XRStats.TryGetGPUTimeLastFrame(out GpuTimeLastFrame))
-        {
-            renderTime = GpuTimeLastFrame;
-        }
-        return renderTime;
-    }
-#endif
-
-    private float GetFps()
-    {
-        return (Time.renderedFrameCount - startFrameCount) / Time.unscaledDeltaTime;
     }
 
     public bool IsTestFinished
@@ -191,6 +104,96 @@ public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTe
 
             return isTestFinished;
         }
+    }
+
+    public void Awake()
+    {
+#if ENABLE_VR && UNITY_2017_1_OR_NEWER
+        if (XRSettings.enabled)
+        {
+            var thisCamera = Camera.main.gameObject.GetComponent<Camera>();
+            if (thisCamera != null)
+            {
+                XRDevice.DisableAutoXRCameraTracking(thisCamera, true);
+            }
+        }
+#endif
+    }
+
+    public virtual void RunStartCode()
+    {
+#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
+        appStartupTime = PerformanceReporting.graphicsInitializationFinishTime / 1000;
+#endif
+    }
+
+    private void Start()
+    {
+#if ENABLE_VR
+        if (XRSettings.enabled && !XRSettings.isDeviceActive)
+        {
+            Debug.LogAssertion("Expect XRSettings.isDeviceActive to be true, but it is false. Terminating test.");
+        }
+#endif
+
+        RunStartCode();
+    }
+
+    private void Update()
+    {
+        if (CaptureMetrics)
+        {
+            FrameCount++;
+            SampleFps();
+#if ENABLE_VR
+            if (XRSettings.enabled)
+            {
+                SampleGpuTimeLastFrame();
+            }
+#endif
+        }
+
+        if (IsMetricsCaptured)
+        {
+            EndMetricCapture();
+        }
+    }
+
+    public void EndMetricCapture()
+    {
+        CaptureMetrics = false;
+#if UNITY_ANALYTICS && UNITY_2018_2_OR_NEWER
+        Measure.Custom(startupTimeSg, appStartupTime);
+#endif
+    }
+
+    private void SampleFps()
+    {
+        Fps = GetFps();
+        Measure.Custom(FpsSg, Fps);
+        startFrameCount = Time.renderedFrameCount;
+    }
+
+    private float GetFps()
+    {
+        return (Time.renderedFrameCount - startFrameCount) / Time.unscaledDeltaTime;
+    }
+    
+    private void SampleGpuTimeLastFrame()
+    {
+        var gpuTimeLastFrame = GetGpuTimeLastFrame();
+        Measure.Custom(GpuTimeLastFrameSg, gpuTimeLastFrame * 1000);
+    }
+
+    private float GetGpuTimeLastFrame()
+    {
+        float gpuTimeLastFrame;
+        float renderTime = 0;
+        if (XRStats.TryGetGPUTimeLastFrame(out gpuTimeLastFrame))
+        {
+            renderTime = gpuTimeLastFrame;
+        }
+        return renderTime;
     }
 
     public void FindRenderedObjectMetrics()
@@ -216,7 +219,6 @@ public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTe
                     Console.WriteLine(e);
                     throw;
                 }
-                
             }
         }
 
@@ -224,3 +226,4 @@ public class RenderPerformanceMonoBehaviorTest : MonoBehaviour, IMonoBehaviourTe
         tris = trianglesLength;
     }
 }
+#endif

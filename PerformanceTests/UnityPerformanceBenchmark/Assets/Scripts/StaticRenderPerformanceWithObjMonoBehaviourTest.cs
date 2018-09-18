@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class RenderPerformanceWithObjMonoBehaviorTest : RenderPerformanceMonoBehaviorTest
+public class StaticRenderPerformanceWithObjMonoBehaviourTest : StaticRenderPerformanceMonoBehaviourTest
 {
     public override void RunStartCode()
     {

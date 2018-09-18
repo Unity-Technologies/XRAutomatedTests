@@ -80,6 +80,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             PlayerSettings.stereoRenderingPath = stereoRenderingPath;
         }
 
+
         QualitySettings.antiAliasing = 2;
 
         var perfTestRun = ReadPerformanceTestRunJson();

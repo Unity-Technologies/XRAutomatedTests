@@ -80,8 +80,14 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
             PlayerSettings.stereoRenderingPath = stereoRenderingPath;
         }
 
-
-        QualitySettings.antiAliasing = 2;
+        if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Standalone)
+        {
+            SetQualitySettingsToUltra();
+        }
+        else
+        {
+            SetQualitySettingsToMedium();
+        }
 
         var perfTestRun = ReadPerformanceTestRunJson();
         if (perfTestRun.PlayerSettings == null)
@@ -93,6 +99,56 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 
     CreatePerformanceTestRunJson(perfTestRun);
 #endif
+    }
+
+    private static void SetQualitySettingsToMedium()
+    {
+        QualitySettings.pixelLightCount = 1;
+        QualitySettings.anisotropicFiltering = AnisotropicFiltering.Enable;
+        QualitySettings.antiAliasing = 0;
+        QualitySettings.softParticles = false;
+        QualitySettings.realtimeReflectionProbes = false;
+        QualitySettings.billboardsFaceCameraPosition = false;
+        QualitySettings.resolutionScalingFixedDPIFactor = 1;
+        QualitySettings.shadowmaskMode = ShadowmaskMode.Shadowmask;
+        QualitySettings.shadows = ShadowQuality.HardOnly;
+        QualitySettings.shadowResolution = ShadowResolution.Low;
+        QualitySettings.shadowProjection = ShadowProjection.StableFit;
+        QualitySettings.shadowDistance = 20;
+        QualitySettings.shadowNearPlaneOffset = 3;
+        QualitySettings.shadowCascades = 0;
+        QualitySettings.blendWeights = BlendWeights.TwoBones;
+        QualitySettings.vSyncCount = 2;
+        QualitySettings.lodBias = 0.7f;
+        QualitySettings.maximumLODLevel = 0;
+        QualitySettings.particleRaycastBudget = 64;
+        QualitySettings.asyncUploadTimeSlice = 2;
+        QualitySettings.asyncUploadBufferSize = 4;
+    }
+
+    private static void SetQualitySettingsToUltra()
+    {
+        QualitySettings.pixelLightCount = 4;
+        QualitySettings.anisotropicFiltering = AnisotropicFiltering.ForceEnable;
+        QualitySettings.antiAliasing = 2;
+        QualitySettings.softParticles = true;
+        QualitySettings.realtimeReflectionProbes = true;
+        QualitySettings.billboardsFaceCameraPosition = true;
+        QualitySettings.resolutionScalingFixedDPIFactor = 1;
+        QualitySettings.shadowmaskMode = ShadowmaskMode.DistanceShadowmask;
+        QualitySettings.shadows = ShadowQuality.All;
+        QualitySettings.shadowResolution = ShadowResolution.High;
+        QualitySettings.shadowProjection = ShadowProjection.StableFit;
+        QualitySettings.shadowDistance = 150;
+        QualitySettings.shadowNearPlaneOffset = 3;
+        QualitySettings.shadowCascades = 4;
+        QualitySettings.blendWeights = BlendWeights.FourBones;
+        QualitySettings.vSyncCount = 1;
+        QualitySettings.lodBias = 2;
+        QualitySettings.maximumLODLevel = 0;
+        QualitySettings.particleRaycastBudget = 4096;
+        QualitySettings.asyncUploadTimeSlice = 2;
+        QualitySettings.asyncUploadBufferSize = 4;
     }
 
 #if UNITY_EDITOR

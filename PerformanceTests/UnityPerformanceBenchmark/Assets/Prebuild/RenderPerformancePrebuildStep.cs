@@ -40,8 +40,6 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 
         var unprocessedArgs = optionSet.Parse(args);
 
-        // Performance tests always need to be run as development build in order to capture performance profiler data
-        EditorUserBuildSettings.development = true;
         PlayerSettings.SplashScreen.showUnityLogo = false;
 
         // Setup all-inclusive player settings

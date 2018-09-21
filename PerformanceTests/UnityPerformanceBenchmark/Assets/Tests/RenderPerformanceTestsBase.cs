@@ -4,10 +4,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 [PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
+[Category("Performance")]
 public abstract class RenderPerformanceTestsBase
 {
     // Time, in seconds, to allow settling after scene load, object creation, etc, before we start sampling metrics
-    protected readonly float SettleTime = 4f;
+    protected readonly float SettleTimeSeconds = 2f;
 
     protected ExistingMonobehaviourTest<T> SetupPerfTest<T>() where T : RenderPerformanceMonoBehaviourTestBase
     {

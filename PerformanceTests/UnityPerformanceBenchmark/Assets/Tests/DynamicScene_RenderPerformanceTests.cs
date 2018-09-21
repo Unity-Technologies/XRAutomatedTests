@@ -9,7 +9,6 @@ using NUnit.Framework;
 using UnityEngine.XR;
 #endif
 
-[Category("Performance")]
 public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 {
     private readonly string basicSceneName = "RenderPerformance";
@@ -53,14 +52,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -79,14 +78,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -105,14 +104,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
-        using(Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -131,14 +130,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -157,11 +156,12 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
+
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
 
@@ -183,14 +183,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -209,14 +209,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -235,14 +235,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -261,14 +261,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -287,14 +287,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -313,14 +313,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         var renderPerformanceTest = SetupPerfTest<DynamicRenderPerformanceMonoBehaviourTest>();
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -343,14 +343,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         XRSettings.renderViewportScale = .9f;
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }
@@ -375,14 +375,14 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         XRSettings.renderViewportScale = .5f;
 
         // allow time to settle before taking measurements
-        yield return new WaitForSecondsRealtime(SettleTime);
+        yield return new WaitForSecondsRealtime(SettleTimeSeconds);
 
         // use ProfilerMarkers API from Performance Test Extension
         using (Measure.ProfilerMarkers(SamplerNames))
         {
             // Set CaptureMetrics flag to TRUE; let's start capturing metrics
             renderPerformanceTest.component.CaptureMetrics = true;
-             
+
             // Run the MonoBehaviour Test
             yield return renderPerformanceTest;
         }

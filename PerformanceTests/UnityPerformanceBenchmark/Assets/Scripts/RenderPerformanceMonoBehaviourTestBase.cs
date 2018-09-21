@@ -14,7 +14,7 @@ using UnityEngine.XR;
 public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IMonoBehaviourTest
 {
     // Number of frames we capture and calculate metrics from
-    private readonly int numCaptureFrames = 200;
+    private readonly int numCaptureFrames = 100;
     protected static readonly string FpsName = "FPS";
     private static readonly string ObjectCountName = "ObjectCount";
     private static readonly string VerticesName = "Vertices";
@@ -146,7 +146,8 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
             FrameCount++;
             SampleFps();
 #if ENABLE_VR
-            if (XRSettings.enabled)
+            // Currently XRStats.TryGetGPUTimeLastFrame only works on OculusRift and OpenVR on Windows
+            if (XRSettings.enabled && Application.platform == RuntimePlatform.WindowsPlayer)
             {
                 SampleGpuTimeLastFrame();
             }

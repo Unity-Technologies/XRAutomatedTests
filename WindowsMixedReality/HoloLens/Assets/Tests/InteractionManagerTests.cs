@@ -453,7 +453,7 @@ internal class InteractionManagerTests : HoloLensTestBase
         Assert.IsTrue(m_SourceLost, "Source is still detected");
     }
 
-    [Ignore("Bug causing interaction source state coming back empty in simulation (965088)")]
+    //[Ignore("Bug causing interaction source state coming back empty in simulation (965088)")]
     [UnityTest]
     public IEnumerator CheckCurrentReading()
     {
@@ -514,6 +514,7 @@ internal class InteractionManagerTests : HoloLensTestBase
 
     private void InteractionManager_SourceUpdated(InteractionSourceUpdatedEventArgs obj)
     {
+        InteractionSourceState[] sourceState = new InteractionSourceState[] {}; 
         m_SourceUpdated = true;
 
         m_HasHandLocation = obj.state.sourcePose.TryGetPosition(out m_HandPosition);

@@ -1,7 +1,7 @@
 {
     "name": "Editor",
     "references": [
-        "Tests"
+        "Unity.WindowsMRAutomation"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

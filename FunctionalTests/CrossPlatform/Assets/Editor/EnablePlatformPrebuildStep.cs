@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 using UnityEngine.XR.WSA;
-using Tests;
+using Unity;
 using NUnit.Framework;
 
 public class EnablePlatformPrebuildStep : IPrebuildSetup
@@ -39,11 +39,6 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
 
                     PlatformSettings.enabledXrTargets = new string[] { "WindowsMR", "None" };
-
-                    // Configure Holographic Emulation
-                    //var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
-                    //emulationWindow.Show();
-                    //emulationWindow.emulationMode = EmulationMode.Simulated;
                     break;
                 case BuildTargetGroup.Android:
                 case BuildTargetGroup.iOS:
@@ -111,6 +106,11 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     "enabledxrtarget=",
                     "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
                     xrTarget => PlatformSettings.enabledXrTargets = new string[] {xrTarget, "None"}
+                },
+                {
+                    "simulationMode=",
+                    "Enable Simulation modes for Windows MR in Editor. Values: \r\n\"HoloLens\"\r\n\"WindowsMR\"\r\n\"Remoting\"",
+                    simMode => PlatformSettings.simulationMode = simMode
                 },
                 {
                     "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",

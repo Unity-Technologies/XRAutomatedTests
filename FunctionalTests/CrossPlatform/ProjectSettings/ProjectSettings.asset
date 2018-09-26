@@ -358,6 +358,11 @@ PlayerSettings:
     m_Devices:
     - MockHMD
     - None
+  - m_BuildTarget: Metro
+    m_Enabled: 1
+    m_Devices:
+    - WindowsMR
+    - None
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0

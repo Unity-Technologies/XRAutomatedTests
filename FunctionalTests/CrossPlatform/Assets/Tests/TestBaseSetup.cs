@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using NUnit.Framework;
+using NUnit.Framework.Api;
+using NUnit.Framework.Interfaces;
 using Tests;
+using UnityEngine.XR.WSA;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditorInternal.VR;
+#endif
 
 [UnityPlatform(include = new[]
 {
@@ -31,6 +40,10 @@ public class TestBaseSetup
 
     public CurrentSettings settings;
 
+#if UNITY_EDITOR
+    public EditorWindow m_EmulationWindow;
+#endif
+
     [OneTimeSetUp]
     public void Setup()
     {
@@ -38,7 +51,23 @@ public class TestBaseSetup
 
         m_TestSetupHelpers = new TestSetupHelpers();
 
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
+#if UNITY_EDITOR
+        if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
+        {
+            //Configure Holographic Emulation
+            var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
+            emulationWindow.Show();
+
+            if (settings.simulationMode == "HoloLens")
+            {
+                emulationWindow.emulationMode = EmulationMode.Simulated;
+            }
+            else if (settings.simulationMode == "WindowsMR")
+            {
+                emulationWindow.emulationMode = EmulationMode.None;
+            }   
+        }
+#endif
     }
 
     [OneTimeTearDown]

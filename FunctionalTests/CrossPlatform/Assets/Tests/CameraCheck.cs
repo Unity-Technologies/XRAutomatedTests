@@ -98,9 +98,9 @@ public class CameraCheck : TestBaseSetup
         yield return new WaitForSeconds(kDeviceSetupWait);
 
         var refreshRate = XRDevice.refreshRate;
-        if (Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            Assert.GreaterOrEqual(refreshRate, 90, "Refresh rate returned to lower than expected");
+            Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {

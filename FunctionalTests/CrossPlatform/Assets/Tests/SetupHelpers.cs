@@ -22,12 +22,9 @@ namespace Tests
         TestMassCube
     }
 
-    public class TestSetupHelpers 
+    public class TestSetupHelpers : TestBaseSetup
     {
         private int m_CubeCount = 0;
-        public GameObject m_Camera;
-        public GameObject m_Light;
-        public GameObject m_Cube;
 
         public void CameraLightSetup()
         {

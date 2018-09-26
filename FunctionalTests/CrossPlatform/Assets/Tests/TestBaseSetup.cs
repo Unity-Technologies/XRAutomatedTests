@@ -30,15 +30,14 @@ using UnityEditorInternal.VR;
 })]
 
 [PrebuildSetup("EnablePlatformPrebuildStep")]
-public class TestBaseSetup 
+public class TestBaseSetup
 {
-    public static GameObject m_Camera;
-    public static GameObject m_Light;
-    public static GameObject m_Cube;
-
     public TestSetupHelpers m_TestSetupHelpers;
-
     public CurrentSettings settings;
+
+    public GameObject m_Camera;
+    public GameObject m_Light;
+    public GameObject m_Cube;
 
 #if UNITY_EDITOR
     public EditorWindow m_EmulationWindow;
@@ -68,6 +67,7 @@ public class TestBaseSetup
             }   
         }
 #endif
+        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }
 
     [OneTimeTearDown]
@@ -89,4 +89,19 @@ public class TestBaseSetup
         XRSettings.enabled = true;
     }
 
+    public bool WmrDeviceCheck()
+    {
+        if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
+        {
+            return true;
+        }
+
+        if (settings.enabledXrTarget == "WindowsMR")
+        {
+            return true;
+        }
+        
+        Assert.Ignore("Current Setup is not for Windows MR device or Emulation");
+        return false;
+    }
 }

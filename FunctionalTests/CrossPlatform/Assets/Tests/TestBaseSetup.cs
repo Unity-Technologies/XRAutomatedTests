@@ -23,9 +23,9 @@ using UnityEngine.XR;
 [PrebuildSetup("EnablePlatformPrebuildStep")]
 public class TestBaseSetup 
 {
-    public static GameObject m_Camera;
-    public static GameObject m_Light;
-    public static GameObject m_Cube;
+    public GameObject m_Camera;
+    public GameObject m_Light;
+    public GameObject m_Cube;
 
     public TestSetupHelpers m_TestSetupHelpers;
 
@@ -35,16 +35,20 @@ public class TestBaseSetup
     public void Setup()
     {
         settings = Resources.Load<CurrentSettings>("settings");
-
-        m_TestSetupHelpers = new TestSetupHelpers();
-
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }
 
     [OneTimeTearDown]
     public void TearDown()
     {
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
+    }
+
+    [SetUp]
+    public void TestSetup()
+    {
+        m_TestSetupHelpers = new TestSetupHelpers();
+
+        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }
 
     [UnitySetUp]

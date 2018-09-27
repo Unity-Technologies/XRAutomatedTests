@@ -20,8 +20,7 @@ public class CameraCheck : TestBaseSetup
 
     void Start()
     {
-        m_FileName = Application.persistentDataPath + "/ScreenCaptureOculus";
-
+       
         m_StartingScale = XRSettings.eyeTextureResolutionScale;
         m_StartingZoomAmount = XRDevice.fovZoomFactor;
         m_StartingRenderScale = XRSettings.renderViewportScale;
@@ -175,7 +174,14 @@ public class CameraCheck : TestBaseSetup
 
         try
         {
-            m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                m_FileName = Path.Combine(Application.persistentDataPath, "ScreenCaptureAutomation.png");
+            }
+            else
+            {
+                m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+            }
 
             ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
 

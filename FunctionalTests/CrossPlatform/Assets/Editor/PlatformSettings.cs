@@ -28,7 +28,7 @@ public static class PlatformSettings
 
         settingsAsset.enabledXrTarget = enabledXrTargets.FirstOrDefault();
         settingsAsset.playerGraphicsApi = playerGraphicsApi;
-        settingsAsset.stereoRenderingMode = TryParse<XRSettings.StereoRenderingMode>(stereoRenderingPath.ToString());
+        settingsAsset.stereoRenderingMode = GetXRStereoRenderingPathMapping(stereoRenderingPath);
         settingsAsset.mtRendering = mtRendering;
         settingsAsset.graphicsJobs = graphicsJobs;
         if (simulationMode != String.Empty || simulationMode != null)
@@ -43,19 +43,19 @@ public static class PlatformSettings
         AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
         AssetDatabase.SaveAssets();
     }
-    
-    private static T TryParse<T>(string stringToParse)
-    {
-        T thisType;
-        try
-        {
-            thisType = (T) Enum.Parse(typeof(T), stringToParse);
-        }
-        catch (Exception e)
-        {
-            throw new ArgumentException(($"Couldn't cast {stringToParse} to {typeof(T)}"), e);
-        }
 
-        return thisType;
+    private static XRSettings.StereoRenderingMode GetXRStereoRenderingPathMapping(StereoRenderingPath stereoRenderingPath)
+    {
+        switch (stereoRenderingPath)
+        {
+            case StereoRenderingPath.SinglePass:
+                return XRSettings.StereoRenderingMode.SinglePass;
+            case StereoRenderingPath.MultiPass:
+                return XRSettings.StereoRenderingMode.MultiPass;
+            case StereoRenderingPath.Instancing:
+                return XRSettings.StereoRenderingMode.SinglePassInstanced;
+            default:
+                return XRSettings.StereoRenderingMode.SinglePassMultiview;
+        }
     }
 }

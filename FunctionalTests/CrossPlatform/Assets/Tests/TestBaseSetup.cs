@@ -67,13 +67,20 @@ public class TestBaseSetup
             }   
         }
 #endif
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }
 
     [OneTimeTearDown]
     public void TearDown()
     {
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
+    }
+
+    [SetUp]
+    public void TestSetup()
+    {
+        m_TestSetupHelpers = new TestSetupHelpers();
+
+        m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
     }
 
     [UnitySetUp]

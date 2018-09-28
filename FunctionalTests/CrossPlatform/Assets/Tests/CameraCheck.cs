@@ -17,6 +17,8 @@ public class CameraCheck : TestBaseSetup
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
     private float kDeviceSetupWait = 1f;
+    
+    private Texture2D m_MobileTexture;
 
     void Start()
     {
@@ -176,14 +178,18 @@ public class CameraCheck : TestBaseSetup
         {
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             {
-                m_FileName = Path.Combine(Application.persistentDataPath, "ScreenCaptureAutomation.png");
+                var cam = GameObject.Find("Camera");
+                var width = cam.GetComponent<Camera>().scaledPixelWidth;
+                var height = cam.GetComponent<Camera>().scaledPixelHeight;
+
+                m_MobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                m_MobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
             else
             {
                 m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+                ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
-
-            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
             m_DidSaveScreenCapture = true;
         }

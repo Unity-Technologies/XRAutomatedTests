@@ -200,7 +200,7 @@ public class CameraCheck : TestBaseSetup
             Assert.Fail("Failed to get capture! : " + e);
         }
 
-        if (m_DidSaveScreenCapture)
+        if (m_DidSaveScreenCapture && Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
             yield return new WaitForSeconds(5);
 

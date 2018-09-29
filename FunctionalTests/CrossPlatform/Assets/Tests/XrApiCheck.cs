@@ -167,5 +167,45 @@ public class XRApiWmrCheck : TestBaseSetup
 
         GameObject.Destroy(focusPoint);
     }
+
+    [Test]
+    public void SpatialCoordinateSystemPtr()
+    {
+        string ptr = WorldManager.GetNativeISpatialCoordinateSystemPtr().ToString();
+        Assert.IsNotEmpty(ptr, "Spatial Coordinate is empty");
+    }
+
+    [Test]
+    public void UserPresenceCheck()
+    {
+        if (XRDevice.userPresence == UserPresenceState.Present)
+        {
+            Assert.AreEqual(UserPresenceState.Present, XRDevice.userPresence, "User Presence reported reported unexpected value");
+        }
+
+        if (XRDevice.userPresence == UserPresenceState.NotPresent)
+        {
+            Assert.AreEqual(UserPresenceState.NotPresent, XRDevice.userPresence, "User Presence reported reported unexpected value");
+        }
+    }
+
+    [Test]
+    public void WorldManagerStateCheck()
+    {
+        if (WorldManager.state == PositionalLocatorState.Active)
+        {
+            Assert.AreEqual(PositionalLocatorState.Active, WorldManager.state, "Expecting World Manager state to be Active");
+        }
+
+        if (WorldManager.state == PositionalLocatorState.Inhibited)
+        {
+            Assert.AreEqual(PositionalLocatorState.Inhibited, WorldManager.state, "Expecting World Manager state to be Inhibited");
+        }
+
+        if (WorldManager.state == PositionalLocatorState.OrientationOnly)
+        {
+            Assert.AreEqual(PositionalLocatorState.OrientationOnly, WorldManager.state, "Expecting World Manager state to be OrientationOnly");
+        }
+    }
 }
 

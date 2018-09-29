@@ -5,7 +5,6 @@ using NUnit.Framework;
 using System.Collections;
 using System;
 using System.IO;
-using Tests;
 
 public class CameraCheck : TestBaseSetup
 {
@@ -17,6 +16,8 @@ public class CameraCheck : TestBaseSetup
     private float m_StartingZoomAmount;
     private float m_StartingRenderScale;
     private float kDeviceSetupWait = 1f;
+
+    private Texture2D m_MobileTexture;
 
     void Start()
     {
@@ -56,7 +57,16 @@ public class CameraCheck : TestBaseSetup
 
         yield return null;
 
-        m_TestSetupHelpers.m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
+        if (m_TestSetupHelpers.m_Cube != null)
+        {
+            m_TestSetupHelpers.m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
+        }
+        else if (m_TestSetupHelpers.m_Cube == null)
+        {
+            m_TestSetupHelpers.TestCubeSetup(TestCubesConfig.TestCube);
+            m_TestSetupHelpers.m_Cube.transform.position = new Vector3(head.x, head.y, head.z + 2f);
+        }
+
         
         yield return new WaitForSeconds(2f);
 
@@ -67,6 +77,11 @@ public class CameraCheck : TestBaseSetup
             {
                 m_RaycastHit = true;
             }
+        }
+
+        if (m_TestSetupHelpers.m_Cube != null)
+        {
+            GameObject.Destroy(m_TestSetupHelpers.m_Cube);
         }
 
         Assert.IsTrue(m_RaycastHit, "Gaze check failed to hit something!");
@@ -176,14 +191,18 @@ public class CameraCheck : TestBaseSetup
         {
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
             {
-                m_FileName = Path.Combine(Application.persistentDataPath, "ScreenCaptureAutomation.png");
+                var cam = GameObject.Find("Camera");
+                var width = cam.GetComponent<Camera>().scaledPixelWidth;
+                var height = cam.GetComponent<Camera>().scaledPixelHeight;
+
+                m_MobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                m_MobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
             else
             {
                 m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+                ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
-
-            ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
             m_DidSaveScreenCapture = true;
         }
@@ -194,7 +213,7 @@ public class CameraCheck : TestBaseSetup
             Assert.Fail("Failed to get capture! : " + e);
         }
 
-        if (m_DidSaveScreenCapture)
+        if (m_DidSaveScreenCapture && Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
             yield return new WaitForSeconds(5);
 

@@ -3,7 +3,6 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using System;
-using Tests;
 using UnityEngine.XR;
 
 public class EyeCameraCheck : TestBaseSetup
@@ -107,6 +106,5 @@ public class EyeCameraCheck : TestBaseSetup
             Debug.Log("Eyes are in behind of the head : " + LeftEyeInverse.z);
             m_EyesInFront = false;
         }
-
     }
 }

@@ -1,14 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using NUnit.Framework;
-using NUnit.Framework.Api;
-using NUnit.Framework.Interfaces;
-using Tests;
-using UnityEngine.XR.WSA;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
+using UnityEngine.XR.WSA;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -48,8 +43,6 @@ public class TestBaseSetup
     {
         settings = Resources.Load<CurrentSettings>("settings");
 
-        m_TestSetupHelpers = new TestSetupHelpers();
-
 #if UNITY_EDITOR
         if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
         {
@@ -69,18 +62,18 @@ public class TestBaseSetup
 #endif
     }
 
-    [OneTimeTearDown]
-    public void TearDown()
-    {
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
-    }
-
     [SetUp]
-    public void TestSetup()
+    public void SetUp()
     {
         m_TestSetupHelpers = new TestSetupHelpers();
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.BaseStageSetup);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }
 
     [UnitySetUp]

@@ -93,7 +93,7 @@ internal class CameraCheck : TestBaseSetup
         yield return new WaitForSeconds(kDeviceSetupWait);
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.MultiPass);
-        Assert.AreEqual(UnityEditor.StereoRenderingPath.MultiPass, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
+        Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
     }
 
     [UnityTest]
@@ -102,7 +102,7 @@ internal class CameraCheck : TestBaseSetup
         yield return new WaitForSeconds(kDeviceSetupWait);
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
-        Assert.AreEqual(UnityEditor.StereoRenderingPath.Instancing, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
+        ssert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 

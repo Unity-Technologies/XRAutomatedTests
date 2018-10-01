@@ -5,7 +5,7 @@ using System.Collections;
 using System;
 using UnityEngine.XR;
 
-public class EyeCameraCheck : TestBaseSetup
+internal class EyeCameraCheck : TestBaseSetup
 {
     private Transform m_CameraTransform;
 

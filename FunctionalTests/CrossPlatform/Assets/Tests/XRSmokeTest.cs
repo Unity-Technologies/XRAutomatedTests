@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 
-public class XRSmokeTest : TestBaseSetup
+internal class XRSmokeTest : TestBaseSetup
 {
     [UnityTest]
     public IEnumerator CanBuildAndRun()

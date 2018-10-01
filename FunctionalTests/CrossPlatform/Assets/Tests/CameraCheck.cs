@@ -6,7 +6,7 @@ using System.Collections;
 using System;
 using System.IO;
 
-public class CameraCheck : TestBaseSetup
+internal class CameraCheck : TestBaseSetup
 {
     private bool m_RaycastHit = false;
     private bool m_DidSaveScreenCapture = false;

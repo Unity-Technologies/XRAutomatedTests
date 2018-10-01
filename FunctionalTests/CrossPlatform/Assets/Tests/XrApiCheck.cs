@@ -6,7 +6,7 @@ using UnityEngine.XR;
 using UnityEngine.XR.WSA;
 using System;
 
-public class XrApiCheck : TestBaseSetup
+internal class XrApiCheck : TestBaseSetup
 {
     [Test]
     public void MobilePlatformCheck()
@@ -83,7 +83,7 @@ public class XrApiCheck : TestBaseSetup
     RuntimePlatform.WSAPlayerX64,
     RuntimePlatform.WSAPlayerX86
 })]
-public class XRApiWmrCheck : TestBaseSetup
+internal class XRApiWmrCheck : TestBaseSetup
 {
     [UnityTest]
     public IEnumerator ContentProtectionTest()

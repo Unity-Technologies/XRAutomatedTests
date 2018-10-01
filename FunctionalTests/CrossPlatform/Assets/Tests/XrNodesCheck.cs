@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.XR;
 using System.Collections.Generic;
 
-public class XrNodes : TestBaseSetup
+internal class XrNodes : TestBaseSetup
 {
     private XRNodeState m_XrNodeState;
     private List<XRNodeState> m_NodeList;

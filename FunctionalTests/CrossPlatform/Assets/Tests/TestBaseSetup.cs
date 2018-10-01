@@ -7,7 +7,6 @@ using UnityEngine.XR.WSA;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEditorInternal.VR;
 #endif
 
 [UnityPlatform(include = new[]
@@ -25,7 +24,7 @@ using UnityEditorInternal.VR;
 })]
 
 [PrebuildSetup("EnablePlatformPrebuildStep")]
-public class TestBaseSetup
+internal class TestBaseSetup
 {
     public TestSetupHelpers m_TestSetupHelpers;
     public CurrentSettings settings;
@@ -35,6 +34,12 @@ public class TestBaseSetup
     public GameObject m_Cube;
 
 #if UNITY_EDITOR
+    public SimulatedHead head { get { return HolographicAutomation.simulatedHead; } }
+    public SimulatedBody body { get { return HolographicAutomation.simulatedBody; } }
+    public SimulatedHand leftHand { get { return HolographicAutomation.simulatedLeftHand; } }
+    public SimulatedHand rightHand { get { return HolographicAutomation.simulatedRightHand; } }
+
+
     public EditorWindow m_EmulationWindow;
 #endif
 

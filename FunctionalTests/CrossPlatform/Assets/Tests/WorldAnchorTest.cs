@@ -306,9 +306,8 @@ internal class WorldAnchorTest : TestBaseSetup
         {
             messages.RemoveAt(0);
         }
-        var Text = new GameObject("Output");
-        Text.AddComponent<TextMesh>();
-        Text.GetComponent<TextMesh>().text = LastMessages();
+
+        Debug.Log(LastMessages());
         Debug.Log(stampedMessage);
     }
 

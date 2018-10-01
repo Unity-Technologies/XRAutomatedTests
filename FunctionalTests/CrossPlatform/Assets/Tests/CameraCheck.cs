@@ -200,17 +200,25 @@ public class CameraCheck : TestBaseSetup
             Assert.Fail("Failed to get capture! : " + e);
         }
 
-        if (m_DidSaveScreenCapture && Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        if (m_DidSaveScreenCapture)
         {
             yield return new WaitForSeconds(5);
 
-            Texture2D tex = new Texture2D(2, 2);
-            var texData = File.ReadAllBytes(m_FileName);
-            Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                Assert.IsNotNull(m_MobileTexture, "Texture data is empty for mobile");
+            }
+            else
+            {
+                Texture2D tex = new Texture2D(2, 2);
 
-            tex.LoadImage(texData);
+                var texData = File.ReadAllBytes(m_FileName);
+                Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
 
-            Assert.IsNotNull(tex, "Texture Data is empty");
+                tex.LoadImage(texData);
+
+                Assert.IsNotNull(tex, "Texture Data is empty");
+            }
         }
     }
 }

@@ -11,11 +11,11 @@ public class XrApiCheck : TestBaseSetup
     {
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            Assert.IsTrue(Application.isMobilePlatform, "Open VR returned as a non mobile platform ");
+            Assert.IsTrue(Application.isMobilePlatform, "This should be mobile platform but returned as a non mobile platform");
         }
         else
         {
-            Assert.IsFalse(Application.isMobilePlatform, "Open VR returned as a mobile platform");
+            Assert.IsFalse(Application.isMobilePlatform, "This should be non-mobile platform but returned as a mobile platform");
         }
     }
 

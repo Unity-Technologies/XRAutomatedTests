@@ -151,8 +151,8 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                 },
                 {
                     "targetandroidsdkversion=", "Target Android SDK Version to use.",
-                    trgtAndroidSdkVersion => PlatformSettings.targetAndroidSdkVersion =
-                        TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
+                    targetAndroidSdkVersion => PlatformSettings.targetAndroidSdkVersion =
+                        TryParse<AndroidSdkVersions>(targetAndroidSdkVersion)
                 }
             };
     }

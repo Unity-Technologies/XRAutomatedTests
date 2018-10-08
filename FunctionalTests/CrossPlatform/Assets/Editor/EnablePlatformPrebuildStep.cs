@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
-using UnityEngine.XR.WSA;
-using Unity;
-using NUnit.Framework;
 
 public class EnablePlatformPrebuildStep : IPrebuildSetup
 {

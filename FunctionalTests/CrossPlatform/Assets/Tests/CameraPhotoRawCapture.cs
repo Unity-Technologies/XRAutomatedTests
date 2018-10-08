@@ -2,12 +2,16 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR.WSA.WebCam;
 using System.Linq;
 using System.Collections.Generic;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA.WebCam;
+#endif
+
 internal class CameraPhotoRawCapture : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     PhotoCapture m_PhotoCaptureObject = null;
     Texture2D m_TargetTexture = null;
     Renderer m_QuadRenderer = null;
@@ -109,4 +113,5 @@ internal class CameraPhotoRawCapture : TestBaseSetup
             });
         });
     }
+#endif
 }

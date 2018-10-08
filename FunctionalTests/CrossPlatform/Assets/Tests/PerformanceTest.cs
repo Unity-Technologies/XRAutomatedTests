@@ -3,9 +3,12 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR.WSA;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA;
+#endif
 
 internal class PerformanceTestHoloLens : TestBaseSetup
 {
@@ -32,8 +35,10 @@ internal class PerformanceTestHoloLens : TestBaseSetup
         if (Time.deltaTime > k_FrameTimeMax)
             ++m_NonPerformantFrameCount;
 
+#if ENABLE_HOLOLENS_MODULE
         if (m_TestingFocalPoint)
             HolographicSettings.SetFocusPointForFrame(new Vector3(Random.value, Random.value, Random.value));
+#endif
     }
 
     [UnityTest]

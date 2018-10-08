@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.XR;
 using NUnit.Framework;
 using UnityEngine.TestTools;
+
+#if ENABLE_HOLOLENS_MODULE
 using UnityEngine.XR.WSA;
+#endif
 
 //[Ignore("Metro/wsa is disabled on Katana")]
 internal class TrackingSpace : TestBaseSetup
 {
+
     [UnityTest]
     public IEnumerator GetCurrentTrackingSpace()
     {
@@ -22,6 +26,7 @@ internal class TrackingSpace : TestBaseSetup
     [UnityTest]
     public IEnumerator SwitchTrackingModes()
     {
+#if ENABLE_HOLOLENS_MODULE
         TrackingSpaceType trackingSpaceResult = new TrackingSpaceType();
 
         if (WorldManager.state != PositionalLocatorState.Inhibited)
@@ -40,6 +45,8 @@ internal class TrackingSpace : TestBaseSetup
         trackingSpaceResult = XRDevice.GetTrackingSpaceType();
         yield return null;
         Assert.AreEqual(TrackingSpaceType.Stationary, trackingSpaceResult, "Tracking space failed to switch to Stationary");
+#endif
+        yield return null;
     }
 
     [Ignore("This API is not hooked up yet")]

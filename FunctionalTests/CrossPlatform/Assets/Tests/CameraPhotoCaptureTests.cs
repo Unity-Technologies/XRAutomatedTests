@@ -2,12 +2,16 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR.WSA.WebCam;
 using System;
 using System.Linq;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA.WebCam;
+#endif
+
 internal class CameraPhotoCaptureTests : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     PhotoCapture m_PhotoCaptureObject = null;
     private Texture2D m_TargetTexture = null;
     // Projection Matrix for the HoloLens Camera and the Unity Camera
@@ -193,4 +197,5 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
         yield return new WaitForSeconds(3f);
         m_PhotoCaptureObject = null;
     }
+#endif
 }

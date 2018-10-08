@@ -2,12 +2,16 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR.WSA.WebCam;
 using System.Collections.Generic;
 using System;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA.WebCam;
+#endif
+
 internal class CameraProjectionMatrix : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     GameObject m_Canvas = null;
     Renderer m_CanvasRenderer = null;
     PhotoCapture m_PhotoCaptureObj = null;
@@ -197,4 +201,5 @@ internal class CameraProjectionMatrix : TestBaseSetup
             m_PhotoCaptureObj = null;
         }
     }
+#endif
 }

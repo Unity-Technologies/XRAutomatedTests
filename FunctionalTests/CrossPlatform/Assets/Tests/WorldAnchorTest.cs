@@ -2,17 +2,21 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR.WSA.Input;
-using UnityEngine.XR.WSA.Persistence;
 using System.Collections.Generic;
-using UnityEngine.XR.WSA;
 using UnityEngine.XR;
 using System;
 using System.Text;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA.Input;
+using UnityEngine.XR.WSA.Persistence;
+using UnityEngine.XR.WSA;
+#endif
+
 //[Ignore("Metro/wsa is disabled on Katana")]
 internal class WorldAnchorTest : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     List<string> messages = new List<string>();
     List<GameObject> objects = new List<GameObject>();
     WorldAnchorStore store = null;
@@ -321,4 +325,5 @@ internal class WorldAnchorTest : TestBaseSetup
         }
         return sb.ToString();
     }
+#endif
 }

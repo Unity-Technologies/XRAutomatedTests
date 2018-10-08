@@ -3,8 +3,11 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using UnityEngine.XR;
-using UnityEngine.XR.WSA;
 using System;
+
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA;
+#endif
 
 internal class XrApiCheck : TestBaseSetup
 {
@@ -85,6 +88,7 @@ internal class XrApiCheck : TestBaseSetup
 })]
 internal class XRApiWmrCheck : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     [UnityTest]
     public IEnumerator ContentProtectionTest()
     {
@@ -207,5 +211,6 @@ internal class XRApiWmrCheck : TestBaseSetup
             Assert.AreEqual(PositionalLocatorState.OrientationOnly, WorldManager.state, "Expecting World Manager state to be OrientationOnly");
         }
     }
+#endif
 }
 

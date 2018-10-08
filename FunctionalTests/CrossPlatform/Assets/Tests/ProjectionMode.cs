@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.WSA;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 using System.Threading;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.XR.WSA;
+#endif
+
 internal class ProjectionMode : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     [TearDown]
     public void TearDown()
     {
+
         HolographicSettings.IsContentProtectionEnabled = false;
         HolographicSettings.ReprojectionMode = HolographicSettings.HolographicReprojectionMode.Disabled;
+
     }
 
     [UnityTest]
@@ -79,4 +85,5 @@ internal class ProjectionMode : TestBaseSetup
 
         Assert.IsTrue(HolographicSettings.IsContentProtectionEnabled, "Content Protection is disabled");
     }
+#endif
 }

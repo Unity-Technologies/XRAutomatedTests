@@ -19,8 +19,6 @@ internal class CameraCheck : TestBaseSetup
     
     private Texture2D m_MobileTexture;
 
-    private Texture2D m_MobileTexture;
-
     void Start()
     {
        
@@ -104,7 +102,7 @@ internal class CameraCheck : TestBaseSetup
         yield return new WaitForSeconds(kDeviceSetupWait);
 
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
-        ssert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
+        Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 

@@ -1,8 +1,6 @@
 {
     "name": "Unity.WindowsMRAutomation",
-    "references": [
-        "Unity.XR.WindowsMR"
-    ],
+    "references": [],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],

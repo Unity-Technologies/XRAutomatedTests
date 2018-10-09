@@ -2,12 +2,16 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.Windows.Speech;
 using System.Text;
 using System;
 
+#if ENABLE_HOLOLENS_MODULE
+using UnityEngine.Windows.Speech;
+#endif
+
 internal class SpeechSmokeTest : TestBaseSetup
 {
+#if ENABLE_HOLOLENS_MODULE
     // Speech Systems
     private KeywordRecognizer m_Keyword = null;
     private DictationRecognizer m_Dictation = null;
@@ -184,5 +188,6 @@ internal class SpeechSmokeTest : TestBaseSetup
     {
         Debug.Log("Keyword Recognized");
     }
+#endif
 }
 

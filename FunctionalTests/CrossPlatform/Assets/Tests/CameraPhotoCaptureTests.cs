@@ -5,13 +5,13 @@ using System.Collections;
 using System;
 using System.Linq;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA.WebCam;
 #endif
 
 internal class CameraPhotoCaptureTests : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     PhotoCapture m_PhotoCaptureObject = null;
     private Texture2D m_TargetTexture = null;
     // Projection Matrix for the HoloLens Camera and the Unity Camera

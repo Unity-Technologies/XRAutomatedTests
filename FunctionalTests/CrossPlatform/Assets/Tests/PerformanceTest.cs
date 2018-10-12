@@ -6,7 +6,7 @@ using System.Collections;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA;
 #endif
 
@@ -35,7 +35,7 @@ internal class PerformanceTestHoloLens : TestBaseSetup
         if (Time.deltaTime > k_FrameTimeMax)
             ++m_NonPerformantFrameCount;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
         if (m_TestingFocalPoint)
             HolographicSettings.SetFocusPointForFrame(new Vector3(Random.value, Random.value, Random.value));
 #endif

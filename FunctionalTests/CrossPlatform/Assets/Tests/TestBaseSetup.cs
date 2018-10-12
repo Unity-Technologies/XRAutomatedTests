@@ -3,11 +3,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
-
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA;
 #endif
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -36,7 +34,7 @@ internal class TestBaseSetup
     public GameObject m_Light;
     public GameObject m_Cube;
 
-#if UNITY_EDITOR && ENABLE_HOLOLENS_MODULE
+#if UNITY_EDITOR && UNITY_METRO
     public SimulatedHead head { get { return HolographicAutomation.simulatedHead; } }
     public SimulatedBody body { get { return HolographicAutomation.simulatedBody; } }
     public SimulatedHand leftHand { get { return HolographicAutomation.simulatedLeftHand; } }
@@ -51,7 +49,7 @@ internal class TestBaseSetup
     {
         settings = Resources.Load<CurrentSettings>("settings");
 
-#if UNITY_EDITOR && ENABLE_HOLOLENS_MODULE
+#if UNITY_EDITOR && UNITY_METRO
         if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
         {
             //Configure Holographic Emulation
@@ -61,6 +59,7 @@ internal class TestBaseSetup
             if (settings.simulationMode == "HoloLens")
             {
                 emulationWindow.emulationMode = EmulationMode.Simulated;
+                HolographicAutomation.SetPlaymodeInputType(PlaymodeInputType.LeftHand);
             }
             else if (settings.simulationMode == "WindowsMR")
             {

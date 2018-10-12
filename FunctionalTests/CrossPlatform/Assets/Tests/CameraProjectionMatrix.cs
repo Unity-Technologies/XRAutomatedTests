@@ -5,13 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA.WebCam;
 #endif
 
 internal class CameraProjectionMatrix : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     GameObject m_Canvas = null;
     Renderer m_CanvasRenderer = null;
     PhotoCapture m_PhotoCaptureObj = null;

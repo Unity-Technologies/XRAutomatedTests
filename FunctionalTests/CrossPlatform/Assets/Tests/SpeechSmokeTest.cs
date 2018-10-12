@@ -5,13 +5,13 @@ using System.Collections;
 using System.Text;
 using System;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.Windows.Speech;
 #endif
 
 internal class SpeechSmokeTest : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     // Speech Systems
     private KeywordRecognizer m_Keyword = null;
     private DictationRecognizer m_Dictation = null;

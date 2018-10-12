@@ -6,13 +6,13 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using System.Threading;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA;
 #endif
 
 internal class ProjectionMode : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     [TearDown]
     public void TearDown()
     {

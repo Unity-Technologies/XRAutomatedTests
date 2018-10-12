@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.XR;
 using System;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA;
 #endif
 
@@ -88,7 +88,7 @@ internal class XrApiCheck : TestBaseSetup
 })]
 internal class XRApiWmrCheck : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     [UnityTest]
     public IEnumerator ContentProtectionTest()
     {

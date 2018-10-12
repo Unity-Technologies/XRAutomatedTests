@@ -5,13 +5,13 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA.WebCam;
 #endif
 
 internal class CameraPhotoRawCapture : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     PhotoCapture m_PhotoCaptureObject = null;
     Texture2D m_TargetTexture = null;
     Renderer m_QuadRenderer = null;

@@ -5,14 +5,14 @@ using System.Collections;
 using System;
 using System.Linq;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA.WebCam;
 #endif
 
 [Ignore("Test is not failing for a unknown reason")]
 internal class CameraVideoCaptureTests : TestBaseSetup
 {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
     VideoCapture m_VideoCapture = null;
     VideoCapture.VideoCaptureResult m_Result;
 

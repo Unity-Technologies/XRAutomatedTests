@@ -5,7 +5,7 @@ using UnityEngine.XR;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
 using UnityEngine.XR.WSA;
 #endif
 
@@ -26,7 +26,7 @@ internal class TrackingSpace : TestBaseSetup
     [UnityTest]
     public IEnumerator SwitchTrackingModes()
     {
-#if ENABLE_HOLOLENS_MODULE
+#if UNITY_METRO
         TrackingSpaceType trackingSpaceResult = new TrackingSpaceType();
 
         if (WorldManager.state != PositionalLocatorState.Inhibited)

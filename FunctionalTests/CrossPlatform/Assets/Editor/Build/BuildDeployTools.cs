@@ -261,9 +261,8 @@ namespace HoloToolkit.Unity
             if (PlayerSettings.GetScriptingBackend(BuildTargetGroup.WSA) == ScriptingImplementation.WinRTDotNET &&
                 (!RestoreNugetPackages(nugetPath, storePath) ||
                  !RestoreNugetPackages(nugetPath, storePath + "\\" + productName) ||
-                 EditorUserBuildSettings.wsaGenerateReferenceProjects &&
                  !RestoreNugetPackages(nugetPath, assemblyCSharp) ||
-                 EditorUserBuildSettings.wsaGenerateReferenceProjects && restoreFirstPass &&
+                 restoreFirstPass &&
                  !RestoreNugetPackages(nugetPath, assemblyCSharpFirstPass)))
             {
                 Debug.LogError("Failed to restore nuget packages");

@@ -122,7 +122,15 @@ internal class XRApiWmrCheck : TestBaseSetup
     {
         WmrDeviceCheck();
         yield return null;
-        Assert.IsFalse(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
+        if (Application.isMobilePlatform)
+        {
+            Assert.IsTrue(HolographicSettings.IsDisplayOpaque, "Display came back as not Opaque!");
+        }
+
+        if (!Application.isMobilePlatform)
+        {
+            Assert.IsTrue(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
+        }
     }
 
     [UnityTest]

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SurfRim
+  m_Shader: {fileID: 4800000, guid: cfa6effdcdb43454391b19ccff95d7f7, type: 3}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 57e020d5e89e349a7b1db77f3f80db54, type: 3}
+          m_Scale: {x: 6, y: 4}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _RimPower
+        second: 3.11194038
+    m_Colors:
+      data:
+        first:
+          name: _RimColor
+        second: {r: .902985096, g: .563354909, b: .417799056, a: 0}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

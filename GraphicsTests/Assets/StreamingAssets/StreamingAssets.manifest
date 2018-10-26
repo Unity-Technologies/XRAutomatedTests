@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1558313389
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: referenceimages-linear-windowsplayer-direct3d11
+      Dependencies: {}

@@ -1,0 +1,94 @@
+ManifestFileVersion: 0
+CRC: 3807214994
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c62f1f04db7055b52df9dce764b62800
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/014-DynamicGeom.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/068-ShadSoft-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/037-LightAlloc-Fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/039-PixelLights.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/211-FXAAII.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/212-SSAA.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/061-ShadDir-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/196-ShadStableFit2-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/198-ShadCloseFit1-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/186-DefClearFlags-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/197-ShadStableFit4-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/071-TextureFormats.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/215-GrabShared-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/224-BakedLightingDirectionalLightmaps-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/195-ShadStableFit1-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/200-ShadCloseFit4-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/223-BakedLightingProbesVariousMats-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/036-BlendModesSep.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/199-ShadCloseFit2-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/195-ShadStableFit1-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/038-LightsAlpha-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/234-StaticBatching.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/037-LightAlloc-VLit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/037-LightAlloc-Def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/067-Shadows-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/189-DynBatchDepthTex-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/051-RenderToStaticCube.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/214-GrabMultiple-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/041-VertexLightsSpec.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/143-DefLargeCoords.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/103-CameraDepthNormalTexture.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/216-TexScaleOffset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/064-ShadDirSoft-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/146-CookiesDef.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/212-DLAA.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/087-TerrainTreeShadow.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/200-ShadCloseFit4-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/013-ImmediateMode-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/040-VertexLights.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/210-FxFXAA-B.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/082-TerrainSplatLit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/067-Shadows-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/106-LayerCullDistances-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/009-DisabledShadows-subset
+  def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/172-DynBatchVColors.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/141-PointShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/064-ShadDirSoft-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/210-FxFXAA-A.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/230-ShurikenColorSizeRotation-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/197-ShadStableFit4-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/242-TextMeshCulling-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/148-StaticBatchedTrees.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/224-BakedLightingDirectionalLightmaps-legdef.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/009-DisabledShadows-subset
+  fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/142-DefFwdShadows-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/099-ScaledShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/199-ShadCloseFit2-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/GPUInstancing.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/072-TextureFilters.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/189-DynBatchDepthTex-vlit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/241-RenderToCubeShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/189-DynBatchDepthTex-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/068-ShadSoft-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/050-RenderToCubemap.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/167-TerrGrassFade.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/168-BlendStrips-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/196-ShadStableFit2-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/211-FXNFAA 1.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/046-Projector.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/168-BlendStrips-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/198-ShadCloseFit1-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/142-DefFwdShadows-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/061-ShadDir-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/224-BakedLightingDirectionalLightmaps-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/223-BakedLightingProbesVariousMats-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/166-Terr30Trees.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/005-CoordConvO-subset.png
+Dependencies: []

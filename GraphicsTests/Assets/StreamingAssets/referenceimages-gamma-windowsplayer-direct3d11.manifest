@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1963558738
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e08d3d6f11d5ea8304368efe74d7284d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/ReferenceImages/Gamma/WindowsPlayer/Direct3D11/SampleScene.png
+Dependencies: []

@@ -28,6 +28,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     break;
                 case BuildTargetGroup.WSA:
                     // Configure WSA build
+                    EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.WSA, BuildTarget.WSAPlayer);
                     EditorUserBuildSettings.wsaUWPBuildType = WSAUWPBuildType.D3D;
                     EditorUserBuildSettings.wsaSubtarget = WSASubtarget.AnyDevice;
                     EditorUserBuildSettings.allowDebugging = true;

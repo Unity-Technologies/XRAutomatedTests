@@ -49,6 +49,10 @@ internal class TestBaseSetup
     {
         settings = Resources.Load<CurrentSettings>("settings");
 
+#if UNITY_EDITOR
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.WSA, BuildTarget.WSAPlayer);
+#endif
+
 #if UNITY_EDITOR && UNITY_METRO
         if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
         {

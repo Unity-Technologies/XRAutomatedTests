@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.IO;
 using NDesk.Options;
 using UnityEngine;
@@ -62,15 +63,18 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
 
     private static void ConfigureSettings()
     {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(
-            PlatformSettings.BuildTargetGroup,
-            PlatformSettings.BuildTarget);
-
         PlayerSettings.virtualRealitySupported = true;
 
         UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
             PlatformSettings.BuildTargetGroup,
             PlatformSettings.enabledXrTargets);
+
+        if (PlatformSettings.enabledXrTargets.FirstOrDefault() != "WindowsMR")
+        {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(
+                PlatformSettings.BuildTargetGroup,
+                PlatformSettings.BuildTarget);
+        }
 
         PlayerSettings.stereoRenderingPath = PlatformSettings.stereoRenderingPath;
 

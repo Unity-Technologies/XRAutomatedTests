@@ -129,7 +129,7 @@ internal class XRApiWmrCheck : TestBaseSetup
 
         if (!Application.isMobilePlatform)
         {
-            Assert.IsTrue(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
+            Assert.IsFalse(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
         }
     }
 

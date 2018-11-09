@@ -117,6 +117,7 @@ internal class XRApiWmrCheck : TestBaseSetup
         }
     }
 
+    [Ignore("Windows MR and HoloLens simulator returning inconsistemt value. Need Wes to investigate.")]
     [UnityTest]
     public IEnumerator DisplayOpaqueTest()
     {

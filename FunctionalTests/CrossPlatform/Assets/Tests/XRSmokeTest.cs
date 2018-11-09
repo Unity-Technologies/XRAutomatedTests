@@ -29,7 +29,10 @@ internal class XRSmokeTest : TestBaseSetup
         Assert.IsTrue(XRSettings.eyeTextureResolutionScale > 0f);
         Assert.IsTrue(XRSettings.renderViewportScale > 0f);
         Assert.IsTrue(XRSettings.useOcclusionMesh);
+#if !UNITY_EDITOR
+        // Known bug, if run tests in Editor, XRSettings won't update
         Assert.IsTrue(XRSettings.stereoRenderingMode.ToString().Contains(settings.stereoRenderingMode.ToString()), $"{XRSettings.stereoRenderingMode} != {settings.stereoRenderingMode}");
+#endif
     }
     
     [UnityTest]

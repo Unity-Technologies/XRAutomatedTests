@@ -21,36 +21,54 @@
 namespace GoogleARCoreInternal
 {
     using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.InteropServices;
     using GoogleARCore;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
-    public class PointApi
-    {
-        private NativeApi m_NativeApi;
+#if UNITY_IOS && !UNITY_EDITOR
+    using AndroidImport = GoogleARCoreInternal.DllImportNoop;
+    using IOSImport = System.Runtime.InteropServices.DllImportAttribute;
+#else
+    using AndroidImport = System.Runtime.InteropServices.DllImportAttribute;
+    using IOSImport = GoogleARCoreInternal.DllImportNoop;
+#endif
 
-        public PointApi(NativeApi nativeApi)
+    internal class PointApi
+    {
+        private NativeSession m_NativeSession;
+
+        public PointApi(NativeSession nativeSession)
         {
-            m_NativeApi = nativeApi;
+            m_NativeSession = nativeSession;
         }
 
-        public Pose GetPose(IntPtr planeHandle)
+        public Pose GetPose(IntPtr pointHandle)
         {
-            var poseHandle = m_NativeApi.Pose.Create();
-            ExternApi.ArPoint_getPose(m_NativeApi.SessionHandle, planeHandle, poseHandle);
-            Pose resultPose = m_NativeApi.Pose.ExtractPoseValue(poseHandle);
-            m_NativeApi.Pose.Destroy(poseHandle);
+            var poseHandle = m_NativeSession.PoseApi.Create();
+            ExternApi.ArPoint_getPose(m_NativeSession.SessionHandle, pointHandle, poseHandle);
+            Pose resultPose = m_NativeSession.PoseApi.ExtractPoseValue(poseHandle);
+            m_NativeSession.PoseApi.Destroy(poseHandle);
             return resultPose;
+        }
+
+        public FeaturePointOrientationMode GetOrientationMode(IntPtr pointHandle)
+        {
+            ApiFeaturePointOrientationMode orientationMode =
+                ApiFeaturePointOrientationMode.Identity;
+            ExternApi.ArPoint_getOrientationMode(m_NativeSession.SessionHandle, pointHandle,
+                ref orientationMode);
+            return orientationMode.ToFeaturePointOrientationMode();
         }
 
         private struct ExternApi
         {
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+#pragma warning disable 626
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArPoint_getPose(IntPtr session, IntPtr point, IntPtr out_pose);
+
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArPoint_getOrientationMode(IntPtr session, IntPtr point,
+                ref ApiFeaturePointOrientationMode orientationMode);
+#pragma warning restore 626
         }
     }
 }

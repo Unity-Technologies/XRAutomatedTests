@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright file="ApiDisplayUvCoords.cs" company="Google">
 //
 // Copyright 2017 Google Inc. All Rights Reserved.
@@ -29,7 +29,7 @@ namespace GoogleARCoreInternal
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
+        Justification = "Internal")]
     public struct ApiDisplayUvCoords
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace GoogleARCoreInternal
         public Vector2 BottomRight;
 
         public ApiDisplayUvCoords(Vector2 topLeft, Vector2 topRight,
-                                  Vector2 bottomLeft, Vector2 bottomRight)
+            Vector2 bottomLeft, Vector2 bottomRight)
         {
             TopLeft = topLeft;
             TopRight = topRight;

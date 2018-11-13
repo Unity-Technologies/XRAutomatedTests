@@ -26,10 +26,10 @@ namespace GoogleARCore
     using UnityEngine;
 
     /// <summary>
-    /// Struct to contain camera metadata's value. When querying data from the struct, caller is responsible
-    /// for making sure the querying data type matches the m_type.
+    /// Struct to contain camera metadata's value. When querying data from the struct, caller is responsible 
+    /// for making sure the querying data type matches the ValueType.
     ///
-    /// For example: if m_type is NdkCameraMetadataType.Byte, caller should only use
+    /// For example: if ValueType is typeof(byte), caller should only use
     /// CameraMetadataValue.AsByte() to access the value.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
@@ -153,6 +153,33 @@ namespace GoogleARCore
         }
 
         /// <summary>
+        /// Gets the Type of the CameraMetadataValue. This Type must be used to call the proper query function.
+        /// </summary>
+        public Type ValueType 
+        {
+            get
+            {
+                switch (m_Type)
+                {
+                case NdkCameraMetadataType.Byte:
+                    return typeof(Byte);
+                case NdkCameraMetadataType.Int32:
+                    return typeof(int);
+                case NdkCameraMetadataType.Float:
+                    return typeof(float);
+                case NdkCameraMetadataType.Int64:
+                    return typeof(long);
+                case NdkCameraMetadataType.Double:
+                    return typeof(double);
+                case NdkCameraMetadataType.Rational:
+                    return typeof(CameraMetadataRational);
+                default:
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets sbyte value from the struct. This function checks if the querying type matches the internal
         /// type field, and logs error if the types do not match.
         /// </summary>
@@ -245,8 +272,8 @@ namespace GoogleARCore
         private void LogError(NdkCameraMetadataType requestedType)
         {
             ARDebug.LogErrorFormat("Error getting value from CameraMetadataType due to type mismatch. " +
-                "requested type = {0}, internal type = {1}\n" +
-                "Are you sure you are querying the correct type?", requestedType, m_Type);
+                    "requested type = {0}, internal type = {1}\n" +
+                    "Are you sure you are querying the correct type?", requestedType, m_Type);
         }
     }
 

@@ -29,7 +29,7 @@ namespace GoogleARCoreInternal
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
+    Justification = "Internal")]
     public struct ApiPoseData
     {
         [MarshalAs(UnmanagedType.R4)]

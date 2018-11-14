@@ -55,7 +55,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Android)
         {
             EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
-            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
+            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
             PlayerSettings.Android.minSdkVersion = minimumAndroidSdkVersion;
             PlayerSettings.Android.targetSdkVersion = targetAndroidSdkVersion;
         }

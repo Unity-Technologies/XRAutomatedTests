@@ -18,5 +18,25 @@ public class DynamicRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBe
     {
         get { return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Min); }
     }
+
+    protected override SampleGroupDefinition CurrentBatterySg
+    {
+        get { return new SampleGroupDefinition("CurrentBattery", SampleUnit.None, AggregationType.Min); }
+    }
+
+    protected override SampleGroupDefinition BatteryTempSg
+    {
+        get { return new SampleGroupDefinition("BatteryTemp", SampleUnit.None, AggregationType.Min); }
+    }
+
+    protected override SampleGroupDefinition CpuScoreSg
+    {
+        get { return new SampleGroupDefinition("CpuScore", SampleUnit.Millisecond, AggregationType.Min); }
+    }
+
+    protected override SampleGroupDefinition MemScoreSg
+    {
+        get { return new SampleGroupDefinition("MemScore", SampleUnit.Byte, AggregationType.Min); }
+    }
 }
 #endif

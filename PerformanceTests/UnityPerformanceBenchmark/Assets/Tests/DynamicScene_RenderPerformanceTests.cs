@@ -12,7 +12,6 @@ using UnityEngine.XR;
 [Category("Performance")]
 public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 {
-    private readonly string basicSceneName = "RenderPerformance";
     private readonly string spiralSceneName = "PerformanceTest";
     private readonly string setTargetBufferMaterialTestSceneName = "SetTargetBuffer_MaterialTest";
     private readonly string renderTextureMaterialTestSceneName = "RenderTexture_MaterialTest";
@@ -36,15 +35,20 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 #if ENABLE_VR
         if (XRSettings.enabled)
         {
-            Array.Resize(ref SamplerNames, SamplerNames.Length + 1); 
+            Array.Resize(ref SamplerNames, SamplerNames.Length + 1);
             SamplerNames[SamplerNames.Length - 1] = new SampleGroupDefinition("XR.WaitForGPU", SampleUnit.Millisecond, AggregationType.Min);
         }
 #endif
     }
 
+
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator Terrain()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(terrainTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(terrainTestSceneName);
@@ -55,22 +59,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(terrainTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator RealtimeLighting_Directional()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(realTimeLightingDirectionalTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(realTimeLightingDirectionalTestSceneName);
@@ -81,22 +95,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(realTimeLightingDirectionalTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator RealtimeLighting_Point()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(realTimeLightingPointLightTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(realTimeLightingPointLightTestSceneName);
@@ -107,22 +131,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using(Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(realTimeLightingPointLightTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator RealtimeLighting_Spot()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(realTimeLightingSpotlightTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(realTimeLightingSpotlightTestSceneName);
@@ -133,22 +167,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(realTimeLightingSpotlightTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator SpiralFlame_RenderPerformance()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(spiralSceneName);
@@ -159,22 +203,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
 
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator SetTargetBufferMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(setTargetBufferMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(setTargetBufferMaterialTestSceneName);
@@ -185,22 +239,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(setTargetBufferMaterialTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator RenderTextureMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(renderTextureMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(renderTextureMaterialTestSceneName);
@@ -211,22 +275,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(renderTextureMaterialTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator StencilMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(stencilMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(stencilMaterialTestSceneName);
@@ -237,22 +311,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(stencilMaterialTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator TransparentMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(transparentMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(transparentMaterialTestSceneName);
@@ -263,22 +347,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(transparentMaterialTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator GpuInstacingMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(gpuInstancingMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(gpuInstancingMaterialTestSceneName);
@@ -289,22 +383,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(gpuInstancingMaterialTestSceneName);
     }
 
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator StandardMaterial()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(standardMaterialTestSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(standardMaterialTestSceneName);
@@ -315,24 +419,32 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         yield return SceneManager.UnloadSceneAsync(standardMaterialTestSceneName);
     }
 
-#if ENABLE_VR
-
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator SpiralFlame_RenderPerformance_RenderViewPortScale_90_Percent()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(spiralSceneName);
@@ -345,26 +457,34 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         XRSettings.renderViewportScale = 1f;
 
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
-#endif
 
-#if ENABLE_VR
+    [Version("4")]
     [PerformanceUnityTest]
+    [Timeout(120000)]
     public IEnumerator SpiralFlame_RenderPerformance_RenderViewPortScale_50_Percent()
     {
+        yield return CoolDown();
+
         yield return SceneManager.LoadSceneAsync(spiralSceneName, LoadSceneMode.Additive);
 
         SetActiveScene(spiralSceneName);
@@ -377,20 +497,25 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         // allow time to settle before taking measurements
         yield return new WaitForSecondsRealtime(SettleTime);
 
-        // use ProfilerMarkers API from Performance Test Extension
-        using (Measure.ProfilerMarkers(SamplerNames))
+        using (Measure.Scope())
         {
-            // Set CaptureMetrics flag to TRUE; let's start capturing metrics
-            renderPerformanceTest.component.CaptureMetrics = true;
-             
-            // Run the MonoBehaviour Test
-            yield return renderPerformanceTest;
+            using (Measure.Frames().Scope())
+            {
+                // use ProfilerMarkers API from Performance Test Extension
+                using (Measure.ProfilerMarkers(SamplerNames))
+                {
+                    // Set CaptureMetrics flag to TRUE; let's start capturing metrics
+                    renderPerformanceTest.component.CaptureMetrics = true;
+
+                    // Run the MonoBehaviour Test
+                    yield return renderPerformanceTest;
+                }
+            }
         }
 
         XRSettings.renderViewportScale = 1f;
 
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
-#endif
 }
 #endif

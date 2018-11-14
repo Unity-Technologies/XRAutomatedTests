@@ -1,5 +1,6 @@
 ﻿#if UNITY_2018_1_OR_NEWER // Unity Performance Testing Extension supported on 2018.1 or newer
 using System;
+using System.Collections;
 using System.Linq;
 using Unity.PerformanceTesting;
 using UnityEngine;
@@ -7,14 +8,13 @@ using UnityEngine.TestTools;
 #if UNITY_ANALYTICS
 using UnityEngine.Analytics;
 #endif
-#if ENABLE_VR && UNITY_2017_1_OR_NEWER
+#if ENABLE_VR
 using UnityEngine.XR;
 #endif
 
 public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IMonoBehaviourTest
 {
-    // Number of frames we capture and calculate metrics from
-    private readonly int numCaptureFrames = 200;
+    private readonly int numCaptureSeconds = 30;
     protected static readonly string FpsName = "FPS";
     private static readonly string ObjectCountName = "ObjectCount";
     private static readonly string VerticesName = "Vertices";
@@ -38,8 +38,16 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 
     protected abstract SampleGroupDefinition FpsSg { get; }
     protected abstract SampleGroupDefinition GpuTimeLastFrameSg { get; }
+    protected abstract SampleGroupDefinition CurrentBatterySg { get; }
+    protected abstract SampleGroupDefinition BatteryTempSg { get; }
+    protected abstract SampleGroupDefinition CpuScoreSg { get; }
+    protected abstract SampleGroupDefinition MemScoreSg { get; }
 
-    public int FrameCount { get; private set; }
+    private int frameCount;
+
+    private float lastCpuScore;
+    private float lastMemScore;
+    private int reportFrame;
 
     public long Verts
     {
@@ -82,11 +90,8 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 
     public bool CaptureMetrics { get; set; }
     public float Fps { get; set; }
+    public bool IsMetricsCaptured { get; set; }
 
-    public bool IsMetricsCaptured
-    {
-        get { return FrameCount >= numCaptureFrames; }
-    }
 
     public bool IsTestFinished
     {
@@ -127,7 +132,7 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 #endif
     }
 
-    private void Start()
+    IEnumerator Start()
     {
 #if ENABLE_VR
         if (XRSettings.enabled && !XRSettings.isDeviceActive)
@@ -135,15 +140,21 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
             Debug.LogAssertion("Expect XRSettings.isDeviceActive to be true, but it is false. Terminating test.");
         }
 #endif
-
         RunStartCode();
+
+        yield return new WaitUntil(() => CaptureMetrics);
+
+        yield return new WaitForSecondsRealtime(numCaptureSeconds);
+
+        IsMetricsCaptured = true;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (CaptureMetrics)
         {
-            FrameCount++;
+            ReportStats();
+            
             SampleFps();
 #if ENABLE_VR
             if (XRSettings.enabled)
@@ -156,6 +167,31 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
         if (IsMetricsCaptured)
         {
             EndMetricCapture();
+        }
+    }
+
+    void ReportStats()
+    {
+        frameCount = (frameCount + 1) % 30;
+       
+        if (frameCount == 0)
+        {
+            // Benchmarks are expsensive so run them at 1/2 of the reporting freq
+            if (reportFrame % 2 == 0)
+            {
+                lastCpuScore = Utils.GetMicroBenchmarkScore();
+                lastMemScore = Utils.GetMemBenchmarkScore();
+            }
+
+            var currentBattery = Utils.GetBatteryCurrent();
+            var batteryTemp = Utils.GetBatteryTemp();
+
+            Measure.Custom(CurrentBatterySg, currentBattery);
+            Measure.Custom(BatteryTempSg, batteryTemp);
+            Measure.Custom(CpuScoreSg, lastCpuScore);
+            Measure.Custom(MemScoreSg, lastMemScore);
+
+            reportFrame++;
         }
     }
 
@@ -178,7 +214,7 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     {
         return (Time.renderedFrameCount - startFrameCount) / Time.unscaledDeltaTime;
     }
-    
+
     private void SampleGpuTimeLastFrame()
     {
         var gpuTimeLastFrame = GetGpuTimeLastFrame();

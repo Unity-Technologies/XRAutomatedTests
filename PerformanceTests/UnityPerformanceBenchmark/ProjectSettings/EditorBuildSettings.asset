@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Test.unity
     guid: a1c650c1808c8d342bbb765c9d63e584
   - enabled: 1
+    path: Assets/cool_down.unity
+    guid: 794febef3d158dd4b9687c8193a1df31
+  - enabled: 1
     path: Assets/RenderTexture_MaterialTest.unity
     guid: 7c0e23d1a6ef08348a9d99ce519ce10c
   - enabled: 1

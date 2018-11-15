@@ -117,6 +117,7 @@ internal class XRApiWmrCheck : TestBaseSetup
         }
     }
 
+    [Ignore("Windows MR and HoloLens simulator returning inconsistemt value. Need Wes to investigate.")]
     [UnityTest]
     public IEnumerator DisplayOpaqueTest()
     {
@@ -129,7 +130,7 @@ internal class XRApiWmrCheck : TestBaseSetup
 
         if (!Application.isMobilePlatform)
         {
-            Assert.IsTrue(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
+            Assert.IsFalse(HolographicSettings.IsDisplayOpaque, "Display came back as Opaque!");
         }
     }
 

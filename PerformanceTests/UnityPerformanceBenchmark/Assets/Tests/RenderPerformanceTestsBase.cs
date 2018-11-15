@@ -7,8 +7,13 @@ using UnityEngine.TestTools;
 public abstract class RenderPerformanceTestsBase
 {
     // Time, in seconds, to allow settling after scene load, object creation, etc, before we start sampling metrics
-    protected readonly float SettleTime = 10f;
+#if UNITY_ANDROID || UNITY_IOS
     protected readonly float CoolOffDuration = 30f;
+    protected readonly float SettleTime = 10f;
+#else
+    protected readonly float CoolOffDuration = 0f;
+    protected readonly float SettleTime = 10f;
+#endif
     
     protected readonly string CoolDownSceneName = "cool_down";
 

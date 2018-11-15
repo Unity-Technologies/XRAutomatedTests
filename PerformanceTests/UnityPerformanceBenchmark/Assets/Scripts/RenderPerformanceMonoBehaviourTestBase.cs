@@ -38,10 +38,12 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
 
     protected abstract SampleGroupDefinition FpsSg { get; }
     protected abstract SampleGroupDefinition GpuTimeLastFrameSg { get; }
+#if UNITY_ANDROID || UNITY_IOS
     protected abstract SampleGroupDefinition CurrentBatterySg { get; }
     protected abstract SampleGroupDefinition BatteryTempSg { get; }
     protected abstract SampleGroupDefinition CpuScoreSg { get; }
     protected abstract SampleGroupDefinition MemScoreSg { get; }
+#endif
 
     private int frameCount;
 
@@ -153,7 +155,9 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
     {
         if (CaptureMetrics)
         {
-            ReportStats();
+#if UNITY_ANDROID || UNITY_IOS
+            ReportMobileStats();
+#endif
             
             SampleFps();
 #if ENABLE_VR
@@ -170,7 +174,8 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
         }
     }
 
-    void ReportStats()
+#if UNITY_ANDROID || UNITY_IOS
+    void ReportMobileStats()
     {
         frameCount = (frameCount + 1) % 30;
        
@@ -186,14 +191,18 @@ public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IM
             var currentBattery = Utils.GetBatteryCurrent();
             var batteryTemp = Utils.GetBatteryTemp();
 
+
             Measure.Custom(CurrentBatterySg, currentBattery);
             Measure.Custom(BatteryTempSg, batteryTemp);
             Measure.Custom(CpuScoreSg, lastCpuScore);
             Measure.Custom(MemScoreSg, lastMemScore);
 
+            
+
             reportFrame++;
         }
     }
+#endif
 
     public void EndMetricCapture()
     {

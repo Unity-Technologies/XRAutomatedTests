@@ -15,7 +15,7 @@ public class StaticRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBeh
     {
         get { return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Median); }
     }
-
+#if UNITY_ANDROID || UNITY_IOS
     protected override SampleGroupDefinition CurrentBatterySg
     {
         get { return new SampleGroupDefinition("CurrentBattery", SampleUnit.None, AggregationType.Median); }
@@ -35,5 +35,6 @@ public class StaticRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBeh
     {
         get { return new SampleGroupDefinition("MemScore", SampleUnit.Byte, AggregationType.Median); }
     }
+#endif
 }
 #endif

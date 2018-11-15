@@ -19,6 +19,7 @@ public class DynamicRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBe
         get { return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Min); }
     }
 
+#if UNITY_ANDROID || UNITY_IOS
     protected override SampleGroupDefinition CurrentBatterySg
     {
         get { return new SampleGroupDefinition("CurrentBattery", SampleUnit.None, AggregationType.Min); }
@@ -38,5 +39,6 @@ public class DynamicRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBe
     {
         get { return new SampleGroupDefinition("MemScore", SampleUnit.Byte, AggregationType.Min); }
     }
+#endif
 }
 #endif

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b05015b179c3488e93a1facc5dffd, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  enabledXrTarget: WindowsMR
-  playerGraphicsApi: 0
+  enabledXrTarget: MockHMD
+  playerGraphicsApi: 17
   stereoRenderingMode: 1
   mtRendering: 1
   graphicsJobs: 0

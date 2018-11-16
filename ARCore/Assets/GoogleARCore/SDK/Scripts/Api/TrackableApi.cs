@@ -22,63 +22,67 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.InteropServices;
     using GoogleARCore;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
-    public class TrackableApi
-    {
-        private NativeApi m_NativeApi;
+#if UNITY_IOS && !UNITY_EDITOR
+    using AndroidImport = GoogleARCoreInternal.DllImportNoop;
+    using IOSImport = System.Runtime.InteropServices.DllImportAttribute;
+#else
+    using AndroidImport = System.Runtime.InteropServices.DllImportAttribute;
+    using IOSImport = GoogleARCoreInternal.DllImportNoop;
+#endif
 
-        public TrackableApi(NativeApi nativeApi)
+    internal class TrackableApi
+    {
+        private NativeSession m_NativeSession;
+
+        public TrackableApi(NativeSession nativeSession)
         {
-            m_NativeApi = nativeApi;
+            m_NativeSession = nativeSession;
         }
 
         public ApiTrackableType GetType(IntPtr trackableHandle)
         {
             ApiTrackableType type = ApiTrackableType.Plane;
-            ExternApi.ArTrackable_getType(m_NativeApi.SessionHandle, trackableHandle, ref type);
+            ExternApi.ArTrackable_getType(m_NativeSession.SessionHandle, trackableHandle, ref type);
             return type;
         }
 
         public TrackingState GetTrackingState(IntPtr trackableHandle)
         {
             ApiTrackingState apiTrackingState = ApiTrackingState.Stopped;
-            ExternApi.ArTrackable_getTrackingState(m_NativeApi.SessionHandle, trackableHandle,
+            ExternApi.ArTrackable_getTrackingState(m_NativeSession.SessionHandle, trackableHandle,
                 ref apiTrackingState);
             return apiTrackingState.ToTrackingState();
         }
 
         public bool AcquireNewAnchor(IntPtr trackableHandle, Pose pose, out IntPtr anchorHandle)
         {
-            IntPtr poseHandle = m_NativeApi.Pose.Create(pose);
+            IntPtr poseHandle = m_NativeSession.PoseApi.Create(pose);
             anchorHandle = IntPtr.Zero;
-            int status = ExternApi.ArTrackable_acquireNewAnchor(m_NativeApi.SessionHandle, trackableHandle, poseHandle,
-                    ref anchorHandle);
-            m_NativeApi.Pose.Destroy(poseHandle);
+            int status = ExternApi.ArTrackable_acquireNewAnchor(m_NativeSession.SessionHandle, trackableHandle, poseHandle,
+                ref anchorHandle);
+            m_NativeSession.PoseApi.Destroy(poseHandle);
             return status == 0;
         }
 
         public void Release(IntPtr trackableHandle)
         {
-            ExternApi.ArTrackable_release(trackableHandle);
+             ExternApi.ArTrackable_release(trackableHandle);
         }
 
         public void GetAnchors(IntPtr trackableHandle, List<Anchor> anchors)
         {
-            IntPtr anchorListHandle = m_NativeApi.Anchor.CreateList();
-            ExternApi.ArTrackable_getAnchors(m_NativeApi.SessionHandle, trackableHandle, anchorListHandle);
+            IntPtr anchorListHandle = m_NativeSession.AnchorApi.CreateList();
+            ExternApi.ArTrackable_getAnchors(m_NativeSession.SessionHandle, trackableHandle, anchorListHandle);
 
             anchors.Clear();
-            int anchorCount = m_NativeApi.Anchor.GetListSize(anchorListHandle);
+            int anchorCount = m_NativeSession.AnchorApi.GetListSize(anchorListHandle);
             for (int i = 0; i < anchorCount; i++)
             {
-                IntPtr anchorHandle = m_NativeApi.Anchor.AcquireListItem(anchorListHandle, i);
-                Anchor anchor = Anchor.AnchorFactory(anchorHandle, m_NativeApi);
+                IntPtr anchorHandle = m_NativeSession.AnchorApi.AcquireListItem(anchorListHandle, i);
+                Anchor anchor = Anchor.Factory(m_NativeSession, anchorHandle, false);
                 if (anchor == null)
                 {
                     Debug.LogFormat("Unable to find Anchor component for handle {0}", anchorHandle);
@@ -89,29 +93,31 @@ namespace GoogleARCoreInternal
                 }
             }
 
-            m_NativeApi.Anchor.DestroyList(anchorListHandle);
+            m_NativeSession.AnchorApi.DestroyList(anchorListHandle);
         }
 
         private struct ExternApi
         {
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+#pragma warning disable 626
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArTrackable_getType(IntPtr sessionHandle, IntPtr trackableHandle,
                 ref ApiTrackableType trackableType);
 
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArTrackable_getTrackingState(IntPtr sessionHandle,
                 IntPtr trackableHandle, ref ApiTrackingState trackingState);
 
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern int ArTrackable_acquireNewAnchor(IntPtr sessionHandle, IntPtr trackableHandle,
                 IntPtr poseHandle, ref IntPtr anchorHandle);
 
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArTrackable_release(IntPtr trackableHandle);
 
-            [DllImport(ApiConstants.ARCoreNativeApi)]
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArTrackable_getAnchors(IntPtr sessionHandle, IntPtr trackableHandle,
                 IntPtr outputListHandle);
+#pragma warning restore 626
         }
     }
 }

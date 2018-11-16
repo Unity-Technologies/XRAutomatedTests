@@ -1,0 +1,19 @@
+{
+    "name": "Tests",
+    "references": [
+        "Unity.XR.ARFoundation",
+        "Unity.XR.Mock",
+        "Unity.XR.Simulation",
+        "Unity.XR.Remoting"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

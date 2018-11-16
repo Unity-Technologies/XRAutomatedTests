@@ -20,15 +20,9 @@
 
 namespace GoogleARCoreInternal
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.InteropServices;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
-    public class ConversionHelper
+    internal class ConversionHelper
     {
         public static void UnityPoseToApiPose(Pose unityPose, out ApiPoseData apiPose)
         {
@@ -38,7 +32,7 @@ namespace GoogleARCoreInternal
 
             Vector3 position = unityWorld_T_unityLocal.GetColumn(3);
             Quaternion rotation = Quaternion.LookRotation(unityWorld_T_unityLocal.GetColumn(2),
-                    unityWorld_T_unityLocal.GetColumn(1));
+                unityWorld_T_unityLocal.GetColumn(1));
 
             apiPose.X = position.x;
             apiPose.Y = position.y;
@@ -52,13 +46,13 @@ namespace GoogleARCoreInternal
         public static void ApiPoseToUnityPose(ApiPoseData apiPose, out Pose unityPose)
         {
             Matrix4x4 glWorld_T_glLocal = Matrix4x4.TRS(new Vector3(apiPose.X, apiPose.Y, apiPose.Z),
-                    new Quaternion(apiPose.Qx, apiPose.Qy, apiPose.Qz, apiPose.Qw), Vector3.one);
+                new Quaternion(apiPose.Qx, apiPose.Qy, apiPose.Qz, apiPose.Qw), Vector3.one);
             Matrix4x4 unityWorld_T_glWorld = Matrix4x4.Scale(new Vector3(1, 1, -1));
             Matrix4x4 unityWorld_T_unityLocal = unityWorld_T_glWorld * glWorld_T_glLocal * unityWorld_T_glWorld.inverse;
 
             Vector3 position = unityWorld_T_unityLocal.GetColumn(3);
             Quaternion rotation = Quaternion.LookRotation(unityWorld_T_unityLocal.GetColumn(2),
-                    unityWorld_T_unityLocal.GetColumn(1));
+                unityWorld_T_unityLocal.GetColumn(1));
 
             unityPose = new Pose(position, rotation);
         }

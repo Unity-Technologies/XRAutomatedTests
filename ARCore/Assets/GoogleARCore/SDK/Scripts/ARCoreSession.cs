@@ -20,15 +20,14 @@
 
 namespace GoogleARCore
 {
-    using System;
-    using System.Runtime.InteropServices;
+    using System.Collections.Generic;
     using GoogleARCoreInternal;
     using UnityEngine;
-    using UnityEngine.XR;
 
     /// <summary>
     /// A component that manages the ARCore Session in a Unity scene.
     /// </summary>
+    [HelpURL("https://developers.google.com/ar/reference/unity/class/GoogleARCore/ARCoreSession")]
     public class ARCoreSession : MonoBehaviour
     {
         /// <summary>
@@ -37,180 +36,74 @@ namespace GoogleARCore
         [Tooltip("A scriptable object specifying the ARCore session configuration.")]
         public ARCoreSessionConfig SessionConfig;
 
-        /// <summary>
-        /// Toggles whether the tango service should be automatically connected upon Awake.
-        /// </summary>
-        [Tooltip("Toggles whether the tango service should be automatically connected upon Awake.")]
-        public bool ConnectOnAwake = false;
+        private OnChooseCameraConfigurationDelegate m_OnChooseCameraConfiguration;
 
-        private SessionManager m_SessionManager;
+        /// <summary>
+        /// Selects a camera configuration for the ARCore session being resumed.
+        /// </summary>
+        /// <param name="supportedConfigurations">
+        /// A list of supported camera configurations. Currently it contains 3 camera configs.
+        /// The GPU texture resolutions are the same in all three configs.
+        /// Currently, most devices provide GPU texture resolution of 1920 x 1080,
+        /// but devices might provide higher or lower resolution textures, depending
+        /// on device capabilities. The CPU image resolutions returned are VGA, 720p,
+        /// and a resolution matching the GPU texture.</param>
+        /// <returns>The index of the camera configuration in <c>supportedConfigurations</c> to be used for the
+        /// ARCore session.  If the return value is not a valid index (e.g. the value -1), then no camera
+        /// configuration will be set and the ARCore session will use the previously selected camera
+        /// configuration or a default configuration if no previous selection exists.</returns>
+        public delegate int OnChooseCameraConfigurationDelegate(List<CameraConfig> supportedConfigurations);
 
         /// <summary>
         /// Unity Awake.
         /// </summary>
+        [SuppressMemoryAllocationError(Reason = "Could create new LifecycleManager")]
         public void Awake()
         {
-            if (Application.isEditor)
-            {
-                enabled = false;
-                return;
-            }
-
-            if (FindObjectsOfType<ARCoreSession>().Length > 1)
-            {
-                ARDebug.LogError("Multiple SessionComponents present in the game scene.  Destroying the gameobject " +
-                    "of the newest one.");
-                Destroy(gameObject);
-                return;
-            }
-
-            m_SessionManager = SessionManager.CreateSession();
-            Session.Initialize(m_SessionManager);
-
-            if (Session.ConnectionState != SessionConnectionState.Uninitialized)
-            {
-                ARDebug.LogError("Could not create an ARCore session.  The current Unity Editor may not support this " +
-                    "version of ARCore.");
-                return;
-            }
-
-            if (ConnectOnAwake)
-            {
-                Connect();
-            }
+            LifecycleManager.Instance.CreateSession(this);
         }
 
         /// <summary>
         /// Unity OnDestroy.
         /// </summary>
+        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Requires further investigation.")]
         public void OnDestroy()
         {
-            Frame.Destroy();
-            Session.Destroy();
+            LifecycleManager.Instance.ResetSession();
         }
 
         /// <summary>
-        /// Unity Update.
+        /// Unity OnEnable.
         /// </summary>
-        public void Update()
+        [SuppressMemoryAllocationError(Reason = "Enabling session creates a new ARSessionConfiguration")]
+        public void OnEnable()
         {
-            if (m_SessionManager == null)
-            {
-                return;
-            }
-
-            AsyncTask.OnUpdate();
+            LifecycleManager.Instance.EnableSession();
         }
 
         /// <summary>
-        /// Connects an ARSession using {@link sessionConfig} configuration. Note that if user permissions are needed
-        /// they will be requested and thus this is an asynchronous method.
+        /// Unity OnDisable.
         /// </summary>
-        /// <returns>An {@link AsyncTask<T>} that completes when the connection has been made or failed. </returns>
-        public AsyncTask<SessionConnectionState> Connect()
+        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Requires further investigation.")]
+        public void OnDisable()
         {
-            return Connect(SessionConfig);
+            LifecycleManager.Instance.DisableSession();
         }
 
         /// <summary>
-        /// Connects an ARSession.  Note that if user permissions are needed they will be requested and thus this is an
-        /// asynchronous method.
+        /// Registers a callback that allows a camera configuration to be selected from a list of valid configurations.
+        /// The callback will be invoked each time the ARCore session is resumed which can happen when the ARCoreSession
+        /// component becomes enabled or the Android application moves from 'paused' to 'resumed' state.
         /// </summary>
-        /// <param name="sessionConfig">The session configuration.</param>
-        /// <returns>An {@link AsyncTask<T>} that completes when the connection has been made or failed. </returns>
-        public AsyncTask<SessionConnectionState> Connect(ARCoreSessionConfig sessionConfig)
+        /// <param name="onChooseCameraConfiguration">The callback to register for selecting a camera configuration.</param>
+        public void RegisterChooseCameraConfigurationCallback(OnChooseCameraConfigurationDelegate onChooseCameraConfiguration)
         {
-            const string androidCameraPermissionName = "android.permission.CAMERA";
-
-            if (m_SessionManager == null)
-            {
-                ARDebug.LogError("Cannot connect because ARCoreSession failed to initialize.");
-                return new AsyncTask<SessionConnectionState>(SessionConnectionState.Uninitialized);
-            }
-
-            if (sessionConfig == null)
-            {
-                ARDebug.LogError("Unable to connect ARSession session due to missing ARSessionConfig.");
-                m_SessionManager.ConnectionState = SessionConnectionState.MissingConfiguration;
-                return new AsyncTask<SessionConnectionState>(Session.ConnectionState);
-            }
-
-            // We have already connected at least once.
-            if (Session.ConnectionState != SessionConnectionState.Uninitialized)
-            {
-                ARDebug.LogError("Multiple attempts to connect to the ARSession.  Note that the ARSession connection " +
-                    "spans the lifetime of the application and cannot be reconfigured.  This will change in future " +
-                    "versions of ARCore.");
-                return new AsyncTask<SessionConnectionState>(Session.ConnectionState);
-            }
-
-            // Create an asynchronous task for the potential permissions flow and service connection.
-            Action<SessionConnectionState> onTaskComplete;
-            var returnTask = new AsyncTask<SessionConnectionState>(out onTaskComplete);
-            returnTask.ThenAction((connectionState) =>
-                {
-                    m_SessionManager.ConnectionState = connectionState;
-                });
-
-            // Attempt service connection immediately if permissions are granted.
-            if (AndroidPermissionsManager.IsPermissionGranted(androidCameraPermissionName))
-            {
-                _ResumeSession(sessionConfig, onTaskComplete);
-                return returnTask;
-            }
-
-            // Request needed permissions and attempt service connection if granted.
-            AndroidPermissionsManager.RequestPermission(androidCameraPermissionName).ThenAction((requestResult) =>
-                {
-                    if (requestResult.IsAllGranted)
-                    {
-                        _ResumeSession(sessionConfig, onTaskComplete);
-                    }
-                    else
-                    {
-                        ARDebug.LogError("ARCore connection failed because a needed permission was rejected.");
-                        onTaskComplete(SessionConnectionState.UserRejectedNeededPermission);
-                    }
-                });
-
-            return returnTask;
+            m_OnChooseCameraConfiguration = onChooseCameraConfiguration;
         }
 
-        /// <summary>
-        /// Connects to the ARCore service.
-        /// </summary>
-        /// <param name="sessionConfig">The session configuration to connect with.</param>
-        /// <param name="onComplete">A callback for when the result of the connection attempt is known.</param>
-        private void _ResumeSession(ARCoreSessionConfig sessionConfig, Action<SessionConnectionState> onComplete)
+        internal OnChooseCameraConfigurationDelegate GetChooseCameraConfigurationCallback()
         {
-            if (!m_SessionManager.CheckSupported(sessionConfig))
-            {
-                ARDebug.LogError("The requested ARCore session configuration is not supported.");
-                onComplete(SessionConnectionState.InvalidConfiguration);
-                return;
-            }
-
-            if (!m_SessionManager.SetConfiguration(sessionConfig))
-            {
-                ARDebug.LogError("ARCore connection failed because the current configuration is not supported.");
-                onComplete(SessionConnectionState.InvalidConfiguration);
-                return;
-            }
-
-            Frame.Initialize(m_SessionManager.FrameManager);
-
-            // ArSession_resume needs to be called in the UI thread due to b/69682628.
-            AsyncTask.PerformActionInUIThread(() =>
-                {
-                    if (!m_SessionManager.Resume())
-                    {
-                        onComplete(SessionConnectionState.ConnectToServiceFailed);
-                    }
-                    else
-                    {
-                        onComplete(SessionConnectionState.Connected);
-                    }
-                });
+            return m_OnChooseCameraConfiguration;
         }
     }
 }

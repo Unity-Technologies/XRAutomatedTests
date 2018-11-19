@@ -2,8 +2,9 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.XR;
 
-internal class RenderingChecks : TestBaseSetup
+internal class GraphicsCheck : TestBaseSetup
 {
     enum States
     {
@@ -137,3 +138,4 @@ internal class RenderingChecks : TestBaseSetup
         Graphics.Blit(src, dst);
     }
 }
+

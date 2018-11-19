@@ -14,5 +14,6 @@ public class CurrentSettings : ScriptableObject
     
     public bool mtRendering = true;
     public bool graphicsJobs;
-    
+
+    public string simulationMode;
 }

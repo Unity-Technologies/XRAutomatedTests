@@ -20,6 +20,8 @@ public static class PlatformSettings
     public static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     public static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
 
+    public static string simulationMode;
+
     public static void SerializeToAsset()
     {
         var settingsAsset = ScriptableObject.CreateInstance<CurrentSettings>();
@@ -29,7 +31,15 @@ public static class PlatformSettings
         settingsAsset.stereoRenderingMode = GetXRStereoRenderingPathMapping(stereoRenderingPath);
         settingsAsset.mtRendering = mtRendering;
         settingsAsset.graphicsJobs = graphicsJobs;
-        
+        if (simulationMode != String.Empty || simulationMode != null)
+        {
+            settingsAsset.simulationMode = simulationMode;
+        }
+        else
+        {
+            settingsAsset.simulationMode = "None";
+        }
+
         AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
         AssetDatabase.SaveAssets();
     }

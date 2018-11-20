@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+<Tracking>
+<ModelTarget name="VuforiaMars_ModelTarget"/>
+</Tracking>
+
+<Assembly name="VuforiaMars_ModelTargets_assembly">
+<Part name="VuforiaMars_ModelTarget" translation="0 0 0" rotation="AD: 0 0 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.00186161 0.0490036 0.389349" rotation="AD: -0.025804994015287446 -1.0353623759039299 3.841657353474937 179.665">
+
+</EntryPoint>
+
+</Assembly>
+</QCARConfig>

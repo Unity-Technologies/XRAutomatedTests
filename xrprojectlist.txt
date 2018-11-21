@@ -7,3 +7,4 @@ automatedtests/playmodetests/WindowsMixedReality/WindowsMR
 automatedtests/playmodetests/WindowsMixedReality/HoloLens
 automatedtests/playmodetests/WindowsMixedReality/HoloLens-Remoting
 automatedtests/playmodetests/ARFoundation
+automatedtests/playmodetests/VuforiaPlaymodeTest

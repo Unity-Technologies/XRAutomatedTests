@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_info.xsd">
+<TargetSet version="7.0" toolVersion="7.0.0">
+<ModelTarget name="VuforiaMars_ModelTarget" targetId="ddcf29fe83b64ee984697b36afc5e823" version="2.0" toolVersion="1.2.0" bbox="-0.076974 0.000075 -0.054267 0.073280 0.110221 0.076523"/>
+</TargetSet>
+
+<Assembly name="{cad_assembly_name}">
+{entry_point_info_definition}
+</Assembly>
+</QCARInfo>

@@ -63,7 +63,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     PlayerSettings.GetVirtualRealitySDKs(EditorUserBuildSettings.selectedBuildTargetGroup);
 
             if (!stereoPathWasSet)
-                PlatformSettings.stereoRenderingPath = PlayerSettings.stereoRenderingPath;
+                PlatformSettings.stereoRenderingPath = PlayerSettings.stereoRenderingPath;  
         }
 
         ConfigureSettings();
@@ -71,7 +71,6 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         CopyOculusSignatureFilesToProject();
 
         PlatformSettings.SerializeToAsset();
-
     }
 
     private static void ConfigureSettings()
@@ -123,12 +122,13 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
                     graphicsDeviceType => {
                         PlatformSettings.playerGraphicsApi = TryParse<GraphicsDeviceType>(graphicsDeviceType);
-                        stereoPathWasSet = true; }
+                        }
                 },
                 {
                     "stereorenderingpath=", "Stereo rendering path to enable. SinglePass is default",
-                    stereoRenderingPath => PlatformSettings.stereoRenderingPath =
-                        TryParse<StereoRenderingPath>(stereoRenderingPath)
+                    stereoRenderingPath => { PlatformSettings.stereoRenderingPath =
+                        TryParse<StereoRenderingPath>(stereoRenderingPath);
+                        stereoPathWasSet = true; }
                 },
                 {
                     "mtrendering", "Use multi threaded rendering; true is default.",

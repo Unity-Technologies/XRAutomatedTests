@@ -20,7 +20,7 @@ public class GraphicsTests
 
         yield return null;
         
-        //XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
+        XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
 
         var testSettings = GameObject.FindObjectOfType<GraphicsTestSettings>();
 
@@ -31,8 +31,10 @@ public class GraphicsTests
         yield return null;
         yield return new WaitForEndOfFrame();
 
-        var screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
+        var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);
 
+        screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
+        
         ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
     }
 }

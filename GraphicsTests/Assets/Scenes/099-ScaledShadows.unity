@@ -1371,6 +1371,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 151}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1483,12 +1484,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 1
   m_Color: {r: 0.97985613, g: 1, b: 0.8923077, a: 1}
   m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 2
@@ -1615,12 +1617,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.69496405, g: 1, b: 0.5923077, a: 1}
   m_Intensity: 6
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 1
@@ -1685,6 +1688,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 178}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1735,6 +1739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 184}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1801,6 +1806,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 192}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1977,6 +1983,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 210}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2112,7 +2119,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: 2
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -2352,6 +2359,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 252}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 82b3052f63b2e413787418161fe3e192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2401,12 +2409,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 1
   m_Color: {r: 0.5723733, g: 0.5508284, b: 0.8230769, a: 1}
   m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 2
@@ -2803,6 +2812,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115073606}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: d9c4062cdfca84ab98ecb70323fc31f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2832,6 +2842,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115073606}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 20f198885badb1f4fa1e65869995ff82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

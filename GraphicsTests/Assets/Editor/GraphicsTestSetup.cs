@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.TestTools;
-using UnityEngine.XR;
-using UnityEditor;
+﻿using UnityEngine.TestTools;
 
 public class GraphicsTestSetup : IPrebuildSetup
 {

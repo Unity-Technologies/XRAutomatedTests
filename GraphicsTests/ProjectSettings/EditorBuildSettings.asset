@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/005-CoordConvO-subset.unity
+    path: Assets/Scenes/005-CoordConvO.unity
     guid: 219056cd86d0f4404b997cf2ba0e27aa
   - enabled: 0
     path: Assets/Scenes/009-DisabledShadows-subset def.unity
@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/009-DisabledShadows-subset fwd.unity
     guid: 72a31f116a9c04e4cbccd11c0b42c997
   - enabled: 0
-    path: Assets/Scenes/013-ImmediateMode-subset.unity
+    path: Assets/Scenes/013-ImmediateMode.unity
     guid: 04192350597564a7c913b0d5e6cf6b85
   - enabled: 0
     path: Assets/Scenes/014-DynamicGeom.unity
@@ -101,7 +101,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/106-LayerCullDistances-subset.unity
     guid: 0a7ec1f53953f5f4190a412e22440ec5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/141-PointShadows.unity
     guid: 49f5eeb29dd2e47c48aa6399e03ff7df
   - enabled: 0
@@ -113,7 +113,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/143-DefLargeCoords.unity
     guid: 26b4aa8c223428c4ead78909570e62be
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/146-CookiesDef.unity
     guid: cd1c2fb01ac89469a9512138d0d54b77
   - enabled: 0
@@ -239,4 +239,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GPUInstancing.unity
     guid: fd52f6a945686f247be99d0efc7ed4e6
+  - enabled: 0
+    path: Assets/Scenes/blarkscene.unity
+    guid: 277e46086e2b4a944b7a527ae539b47a
   m_configObjects: {}

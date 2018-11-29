@@ -102,6 +102,7 @@ namespace UnityEditor.TestTools.Graphics
                         continue;
 
                     importer.textureCompression = TextureImporterCompression.Uncompressed;
+                    importer.SetPlatformTextureSettings(new TextureImporterPlatformSettings() { format = TextureImporterFormat.RGBA32 });
                     importer.isReadable = true;
                     importer.mipmapEnabled = false;
                     importer.npotScale = TextureImporterNPOTScale.None;

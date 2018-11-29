@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 39bdae083a6225f40b359dcbc8d92b04, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  enabledXrTarget: OpenVR
-  playerGraphicsApi: 0
+  enabledXrTarget: cardboard
+  playerGraphicsApi: 11
   stereoRenderingMode: 1
   mtRendering: 1
   graphicsJobs: 0

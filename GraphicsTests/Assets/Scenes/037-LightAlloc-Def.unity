@@ -219,12 +219,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0.7402151, b: 0.72442204, a: 1}
   m_Intensity: 1
   m_Range: 3
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -288,12 +289,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.6853437, g: 0.7969024, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 3
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -357,12 +359,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.9546044, g: 1, b: 0.678584, a: 1}
   m_Intensity: 5
   m_Range: 3
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -426,12 +429,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.6853437, g: 0.7969024, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 3
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -587,12 +591,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
   m_Range: 3
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -642,6 +647,7 @@ GameObject:
   - component: {fileID: 521382784}
   - component: {fileID: 521382783}
   - component: {fileID: 521382782}
+  - component: {fileID: 521382785}
   m_Layer: 0
   m_Name: _TestSceneParameters
   m_TagString: Untagged
@@ -658,6 +664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 521382781}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: d9c4062cdfca84ab98ecb70323fc31f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -671,6 +678,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 521382781}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 20f198885badb1f4fa1e65869995ff82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -693,3 +701,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &521382785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521382781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 030edebd3cefe8f4e9467d2a2583c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Filters:
+  - ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    Reason: deferred lighting not supported on android stereo

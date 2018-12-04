@@ -239,7 +239,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GPUInstancing.unity
     guid: fd52f6a945686f247be99d0efc7ed4e6
-  - enabled: 0
-    path: Assets/Scenes/blarkscene.unity
-    guid: 277e46086e2b4a944b7a527ae539b47a
   m_configObjects: {}

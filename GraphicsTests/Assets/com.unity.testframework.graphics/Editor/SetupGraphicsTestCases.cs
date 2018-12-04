@@ -97,26 +97,44 @@ namespace UnityEditor.TestTools.Graphics
             foreach( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
+                
+                EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Additive);
+                Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
+                EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
+
+                var settings = GameObject.FindObjectOfType<PlatformConfigTestFilters>();
+
+                if (settings != null)
+                {
+                    var configs = settings.GetComponent<PlatformConfigTestFilters>();
+
+                    if (configs != null)
+                    {
+                        foreach (var filter in configs.Filters)
+                        {
+                            if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
+                                (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
+                                (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized))
+                            {
+                                EditorBuildSettings.scenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
+                                Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));
+                            }
+                        }
+                    }
+                }
+
                 var labels = new System.Collections.Generic.List<string>(AssetDatabase.GetLabels(sceneAsset));
                 if ( labels.Contains(bakeLabel) )
-                {
-
-                    EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Additive);
-
-                    Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
-
-                    EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
-                    
+                {   
                     Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
 
                     Lightmapping.Bake();
     
                     EditorSceneManagement.EditorSceneManager.SaveScene( currentScene );
-
-                    EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
-
-                    EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
                 }
+
+                EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
+                EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
 
             if (!IsBuildingForEditorPlaymode)

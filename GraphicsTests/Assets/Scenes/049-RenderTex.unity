@@ -283,6 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 20f198885badb1f4fa1e65869995ff82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -500,12 +501,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -547,6 +549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 10}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 912edf17270dd3741a5796a39dcc8147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -568,9 +571,10 @@ GameObject:
   - component: {fileID: 669801920}
   - component: {fileID: 669801918}
   - component: {fileID: 669801919}
+  - component: {fileID: 669801921}
   m_Layer: 0
   m_Name: _TestSceneParameters
-  m_TagString: Untagged
+  m_TagString: TestSettings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,6 +588,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 669801917}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: d9c4062cdfca84ab98ecb70323fc31f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -597,6 +602,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 669801917}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 20f198885badb1f4fa1e65869995ff82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -619,3 +625,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &669801921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669801917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 030edebd3cefe8f4e9467d2a2583c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Filters:
+  - ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    Reason: this test isn't rendering correctly for some reason, need to investigate

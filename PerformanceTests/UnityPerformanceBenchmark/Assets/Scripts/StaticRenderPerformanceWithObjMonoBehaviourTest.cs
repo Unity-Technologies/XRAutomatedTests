@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_2018_1_OR_NEWER
+using UnityEngine;
 
 
-public class RenderPerformanceWithObjMonoBehaviorTest : RenderPerformanceMonoBehaviorTest
+public class StaticRenderPerformanceWithObjMonoBehaviourTest : StaticRenderPerformanceMonoBehaviourTest
 {
     public override void RunStartCode()
     {
@@ -15,4 +16,5 @@ public class RenderPerformanceWithObjMonoBehaviorTest : RenderPerformanceMonoBeh
         Camera.main.transform.LookAt(cube.transform);
     }
 }
+#endif
 

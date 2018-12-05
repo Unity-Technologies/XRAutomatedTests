@@ -18,14 +18,15 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
     private List<string> enabledXrTargets = new List<string>();
     private GraphicsDeviceType playerGraphicsApi;
     private StereoRenderingPath stereoRenderingPath = StereoRenderingPath.SinglePass;
+    private ScriptingImplementation scriptingImplementation = ScriptingImplementation.IL2CPP;
     private bool mtRendering = true;
-    private bool graphicsJobs;
+    private bool graphicsJobs = false;
     private AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
     private string appleDeveloperTeamId;
     private string iOsProvisioningProfileId;
 
-    private string testRunPath
+    private string TestRunPath
     {
         get { return Path.Combine(Application.streamingAssetsPath, "PerformanceTestRunInfo.json"); }
     }
@@ -36,6 +37,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         // Get and parse args for player settings
         var args = Environment.GetCommandLineArgs();
         var optionSet = DefineOptionSet();
+
         var unprocessedArgs = optionSet.Parse(args);
 
         // Performance tests always need to be run as development build in order to capture performance profiler data
@@ -46,12 +48,14 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         PlayerSettings.SetGraphicsAPIs(EditorUserBuildSettings.activeBuildTarget, new[] {playerGraphicsApi});
         PlayerSettings.MTRendering = mtRendering;
         PlayerSettings.graphicsJobs = graphicsJobs;
+        PlayerSettings.SetScriptingBackend(EditorUserBuildSettings.selectedBuildTargetGroup, scriptingImplementation);
+        
 
         // If Android, setup Android player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Android)
         {
             EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
-            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
+            EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
             PlayerSettings.Android.minSdkVersion = minimumAndroidSdkVersion;
             PlayerSettings.Android.targetSdkVersion = targetAndroidSdkVersion;
         }
@@ -59,7 +63,9 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         // If iOS, setup iOS player settings
         if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.iOS)
         {
+            PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.unity3d.performance.benchmark");
             PlayerSettings.iOS.appleDeveloperTeamID = appleDeveloperTeamId;
+            PlayerSettings.iOS.appleEnableAutomaticSigning = false;
             PlayerSettings.iOS.iOSManualProvisioningProfileID = iOsProvisioningProfileId;
             PlayerSettings.iOS.iOSManualProvisioningProfileType = ProvisioningProfileType.Development;
         }
@@ -73,6 +79,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
                 enabledXrTargets.ToArray());
             PlayerSettings.stereoRenderingPath = stereoRenderingPath;
         }
+
 
         QualitySettings.antiAliasing = 2;
 
@@ -94,7 +101,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         string json;
         if (Application.platform == RuntimePlatform.Android)
         {
-            WWW reader = new WWW(testRunPath);
+            var reader = new WWW(TestRunPath);
             while (!reader.isDone)
             {
             }
@@ -102,7 +109,7 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         }
         else
         {
-            json = File.ReadAllText(testRunPath);
+            json = File.ReadAllText(TestRunPath);
         }
 
         try
@@ -117,69 +124,36 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
 
     private void CreatePerformanceTestRunJson(PerformanceTestRun perfTestRun)
     {
-        string json = JsonUtility.ToJson(perfTestRun, true);
-        File.WriteAllText(testRunPath, json);
+        var json = JsonUtility.ToJson(perfTestRun, true);
+        File.WriteAllText(TestRunPath, json);
         AssetDatabase.Refresh();
     }
 
     private OptionSet DefineOptionSet()
     {
         return new OptionSet()
-        {
-            {
-                "enabledxrtargets=",
-                "XR targets to enable in player settings separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
-                xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets)
-            },
-            {
-                "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                (GraphicsDeviceType graphicsDeviceType) => playerGraphicsApi = graphicsDeviceType
-            },
-            {
-                "stereoRenderingPath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPathMode => stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPathMode)
-            },
-            {
-                "mtRendering=", "Use multi threaded rendering; true is default.",
-                gfxMultithreaded =>
-                {
-                    if (gfxMultithreaded.ToLower() == "false")
-                    {
-                        mtRendering = false;
-                        
-                    }
-                    graphicsJobs = false;
-                }
-            },
-            {
-                "graphicsJobs=", "Use graphics jobs rendering; false is default.",
-                gfxJobs =>
-                {
-                    if (gfxJobs.ToLower() == "true")
-                    {
-                        mtRendering = false;
-                        graphicsJobs = true;
-                    }
-                }
-            },
-            {
-                "minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
-                minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion)
-            },
-            {
-                "targetandroidsdkversion=", "Target Android SDK Version to use.",
-                trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion)
-            },
-            {
-                "appleDeveloperTeamID=", "Apple Developer Team ID",
-                appleTeamId => appleDeveloperTeamId = appleTeamId
-            },
-            {
-                "iOSProvisioningProfileID=", "iOS Provisioning Profile ID",
-                id => iOsProvisioningProfileId = id
-            }
-
-        };
+            .Add("scriptingbackend=",
+                "Scripting backend to use. IL2CPP is default. Values: IL2CPP, Mono",
+                ParseScriptingBackend)
+            .Add("enabledxrtargets=",
+                "XR targets to enable in XR enabled players, separated by ';'. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"",
+                xrTargets => enabledXrTargets = ParseEnabledXrTargets(xrTargets))
+            .Add("playergraphicsapi=", "Optionally force player to use the specified GraphicsDeviceType. Direct3D11, OpenGLES2, OpenGLES3, PlayStationVita, PlayStation4, XboxOne, Metal, OpenGLCore, Direct3D12, N3DS, Vulkan, Switch, XboxOneD3D12",
+                (GraphicsDeviceType graphicsDeviceType) => playerGraphicsApi = graphicsDeviceType)
+            .Add("stereoRenderingPath=", "StereoRenderingPath to use for XR enabled players. MultiPass, SinglePass, Instancing. Default is SinglePass.",
+                stereoRenderingPathMode => stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPathMode))
+            .Add("mtRendering", "Enable or disable multithreaded rendering. Enabled is default. Use option to enable, or use option and append '-' to disable.",
+                option => mtRendering = option != null)
+            .Add("graphicsJobs", "Enable graphics jobs rendering. Disabled is default. Use option to enable, or use option and append '-' to disable.",
+                option => graphicsJobs = option != null)
+            .Add("minimumandroidsdkversion=", "Minimum Android SDK Version to use. Default is AndroidApiLevel24. Use for deployment and running tests on Android device.",
+                minAndroidSdkVersion => minimumAndroidSdkVersion = TryParse<AndroidSdkVersions>(minAndroidSdkVersion))
+            .Add("targetandroidsdkversion=", "Target Android SDK Version to use. Default is AndroidApiLevel24. Use for deployment and running tests on Android device.",
+                trgtAndroidSdkVersion => targetAndroidSdkVersion = TryParse<AndroidSdkVersions>(trgtAndroidSdkVersion))
+            .Add("appleDeveloperTeamID=", "Apple Developer Team ID. Use for deployment and running tests on iOS device.",
+                appleTeamId => appleDeveloperTeamId = appleTeamId)
+            .Add("iOSProvisioningProfileID=", "iOS Provisioning Profile ID. Use for deployment and running tests on iOS device.",
+                id => iOsProvisioningProfileId = id);
     }
 
     private T TryParse<T>(string stringToParse)
@@ -208,6 +182,24 @@ public class RenderPerformancePrebuildStep : IPrebuildSetup
         }
 
         return vrTargets;
+    }
+
+    private void ParseScriptingBackend(string scriptingBackend)
+    {
+        var sb = scriptingBackend.ToLower();
+        if (sb.Equals("mono"))
+        {
+            scriptingImplementation = ScriptingImplementation.Mono2x;
+        } else if (sb.Equals("il2cpp"))
+        {
+            scriptingImplementation = ScriptingImplementation.IL2CPP;
+        }
+        else
+        {
+            throw new ArgumentException(string.Format("Unrecognized scripting backend {0}. Valid options are Mono or IL2CPP", scriptingBackend));
+        }
+
+
     }
 #endif
 }

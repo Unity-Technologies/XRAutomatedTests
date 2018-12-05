@@ -19,12 +19,18 @@
       "Microsoft.Packaging.Tools.Trimming/1.1.0-preview1-26619-01": {},
       "Mono.Options/5.3.0.1": {
         "runtime": {
-          "lib/netstandard1.3/Mono.Options.dll": {}
+          "lib/netstandard1.3/Mono.Options.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.3.0.0"
+          }
         }
       },
       "Newtonsoft.Json/11.0.2": {
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.2.21924"
+          }
         }
       }
     }

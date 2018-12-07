@@ -214,7 +214,7 @@ Transform:
   - {fileID: 29}
   - {fileID: 105}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &27
 Transform:
@@ -228,7 +228,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &29
 Transform:
@@ -1262,6 +1262,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &251302844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251302846}
+  - component: {fileID: 251302845}
+  m_Layer: 0
+  m_Name: _TestCaseFilters
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &251302845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251302844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 030edebd3cefe8f4e9467d2a2583c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Filters:
+  - ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    Reason: deferred lighting not supported on android stereo
+--- !u!4 &251302846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251302844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327348599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1322,6 @@ GameObject:
   - component: {fileID: 1327348601}
   - component: {fileID: 1327348600}
   - component: {fileID: 1327348602}
-  - component: {fileID: 1327348603}
   m_Layer: 0
   m_Name: _TestSceneParameters
   m_TagString: Untagged
@@ -1309,7 +1357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1327348602
 MonoBehaviour:
@@ -1329,21 +1377,3 @@ MonoBehaviour:
     TargetHeight: 512
     PerPixelCorrectnessThreshold: 0
     AverageCorrectnessThreshold: 0.01
---- !u!114 &1327348603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327348599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: 030edebd3cefe8f4e9467d2a2583c33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Filters:
-  - ColorSpace: -1
-    BuildPlatform: 13
-    GraphicsDevice: 4
-    Reason: deferred lighting not supported on android stereo

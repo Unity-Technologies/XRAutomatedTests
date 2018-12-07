@@ -2,6 +2,7 @@ fileFormatVersion: 2
 guid: 3828ccfd50442ff48a4c2071f50ce4d5
 labels:
 - Lightmapping
+- TestRunnerBake
 DefaultImporter:
   externalObjects: {}
   userData: 

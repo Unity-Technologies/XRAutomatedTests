@@ -87,14 +87,15 @@ namespace UnityEditor.TestTools.Graphics
                         buildPlatform);
                 }
             }
-
             
             // For each scene in the build settings, force build of the lightmaps if it has "DoLightmap" label.
             // Note that in the PreBuildSetup stage, TestRunner has already created a new scene with its testing monobehaviours
 
             Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
 
-            foreach( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+            EditorBuildSettingsScene[] scenesWithDisabledScenes = EditorBuildSettings.scenes;
+
+            foreach ( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
                 
@@ -116,7 +117,7 @@ namespace UnityEditor.TestTools.Graphics
                                 (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
                                 (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized))
                             {
-                                EditorBuildSettings.scenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
+                                scenesWithDisabledScenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
                                 Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));
                             }
                         }
@@ -136,6 +137,8 @@ namespace UnityEditor.TestTools.Graphics
                 EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
                 EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
+
+            EditorBuildSettings.scenes = scenesWithDisabledScenes;
 
             if (!IsBuildingForEditorPlaymode)
                 new CreateSceneListFileFromBuildSettings().Setup();

@@ -8,11 +8,6 @@ public class CameraDepthTex : MonoBehaviour
 
     public void Start()
     {
-        if (!SystemInfo.supportsImageEffects)
-        {
-            enabled = false;
-            return;
-        }
         if (!shader.isSupported)
         {
             enabled = false;
@@ -33,7 +28,17 @@ public class CameraDepthTex : MonoBehaviour
 
     public void OnRenderImage(RenderTexture source, RenderTexture dest)
     {
-        Graphics.Blit(source, dest, material);
+        if (UnityEngine.XR.XRSettings.stereoRenderingMode == UnityEngine.XR.XRSettings.StereoRenderingMode.SinglePassInstanced)
+        {
+            material.SetFloat("_Slice", 0.0f);
+            Graphics.Blit(source, dest, material, -1, 0);
+            material.SetFloat("_Slice", 1.0f);
+            Graphics.Blit(source, dest, material, -1, 1);
+        }
+        else
+        {
+            Graphics.Blit(source, dest, material);
+        }
     }
 
     public CameraDepthTex()

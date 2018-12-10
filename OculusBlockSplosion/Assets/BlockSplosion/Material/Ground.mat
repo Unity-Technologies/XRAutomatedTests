@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Ground
+  m_Shader: {fileID: 4800000, guid: bfe81f5311fea1645a39f161e301a8e1, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 07fba5a936f25ef42a72a9b88583278d, type: 3}
+          m_Scale: {x: 50, y: 50}
+          m_Offset: {x: .5, y: .5}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _Scale
+        second: 8
+      data:
+        first:
+          name: _Distance
+        second: 2.25
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: .5, g: .5, b: .5, a: .5}
+      data:
+        first:
+          name: _Position
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _Position0
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position1
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position2
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position3
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position4
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position5
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position6
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position7
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position8
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Position9
+        second: {r: 0, g: 0, b: 0, a: 1}

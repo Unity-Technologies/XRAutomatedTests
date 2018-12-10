@@ -1,0 +1,692 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: TallWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootMapOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c69a194fd61c49a9b75283b6ad19e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shouldCopyAllTheThings: 0
+  _shouldDeleteAllTheThings: 0
+  _showLevel: 1
+  _shouldSpawnLevel: 0
+  _levelData:
+  - Name: GreenCube
+    Position: {x: 0, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 0, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 0, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 0, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 2, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 2, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 2, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 2, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 4, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 4, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 4, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 4, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: -2, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: -2, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: -2, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -2, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: -4, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: -4, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: -4, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: -4, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 20, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 20, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 20, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 22, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 22, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 22, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 22, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 24, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 24, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 24, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 24, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 18, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 18, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 18, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 18, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 16, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 16, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 16, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 16, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 6, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 6, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 6, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 8, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 8, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 8, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 8, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 14, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 14, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 14, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 14, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 12, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 12, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: BlueCube
+    Position: {x: 12, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 12, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 10, y: 27, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: BlueCube
+    Position: {x: 10, y: 1, z: 4}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+  - Name: GreenCube
+    Position: {x: 10, y: 18.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 20.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 22.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 24.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 10.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 12.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 14.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 16.9884319, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 8.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 6.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 4.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  - Name: GreenCube
+    Position: {x: 10, y: 2.98843193, z: 4}
+    Rotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  _threeStarShots: 3
+  _twoStarShots: 5
+  _infinitePlay: 0
+  _newLevelSound: NewLevelSound
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

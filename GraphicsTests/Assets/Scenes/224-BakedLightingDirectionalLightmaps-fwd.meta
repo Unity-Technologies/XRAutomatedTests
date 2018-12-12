@@ -1,8 +1,6 @@
 fileFormatVersion: 2
-guid: 3fd21304c6e0c99409f489f5b61aeef3
-labels:
-- Lightmapping
-- TestRunnerBake
+guid: 954b7ca66de6da1428d35d761f4768a1
+folderAsset: yes
 DefaultImporter:
   externalObjects: {}
   userData: 

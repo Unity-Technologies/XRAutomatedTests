@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 using UnityEditor;
 using EditorSceneManagement = UnityEditor.SceneManagement;
@@ -40,6 +41,8 @@ namespace UnityEditor.TestTools.Graphics
             BuildTarget buildPlatform;
             RuntimePlatform runtimePlatform;
             GraphicsDeviceType[] graphicsDevices;
+            StereoRenderingPath stereoPath;
+            
 
             // Figure out if we're preparing to run in Editor playmode, or if we're building to run outside the Editor
             if (IsBuildingForEditorPlaymode)
@@ -56,6 +59,8 @@ namespace UnityEditor.TestTools.Graphics
                 colorSpace = PlayerSettings.colorSpace;
                 graphicsDevices = PlayerSettings.GetGraphicsAPIs(buildPlatform);
             }
+
+            stereoPath = PlayerSettings.stereoRenderingPath;
 
             var bundleBuilds = new List<AssetBundleBuild>();
 
@@ -87,14 +92,15 @@ namespace UnityEditor.TestTools.Graphics
                         buildPlatform);
                 }
             }
-
             
             // For each scene in the build settings, force build of the lightmaps if it has "DoLightmap" label.
             // Note that in the PreBuildSetup stage, TestRunner has already created a new scene with its testing monobehaviours
 
             Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
 
-            foreach( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+            EditorBuildSettingsScene[] scenesWithDisabledScenes = EditorBuildSettings.scenes;
+
+            foreach ( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
                 
@@ -114,9 +120,10 @@ namespace UnityEditor.TestTools.Graphics
                         {
                             if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
                                 (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
-                                (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized))
+                                (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized) &&
+                                (filter.stereoModes == null || filter.stereoModes.Contains(stereoPath)))
                             {
-                                EditorBuildSettings.scenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
+                                scenesWithDisabledScenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
                                 Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));
                             }
                         }
@@ -136,6 +143,8 @@ namespace UnityEditor.TestTools.Graphics
                 EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
                 EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
+
+            EditorBuildSettings.scenes = scenesWithDisabledScenes;
 
             if (!IsBuildingForEditorPlaymode)
                 new CreateSceneListFileFromBuildSettings().Setup();

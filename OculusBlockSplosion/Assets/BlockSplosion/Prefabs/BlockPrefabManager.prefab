@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: BlockPrefabManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootMapOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed7471dc1fa04baf8700364358db383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blockPrefabs:
+  - Name: RedCube
+    Prefab: {fileID: 100004, guid: d077994b7f878be4ebbd84814eba0bb0, type: 2}
+  - Name: GreenCube
+    Prefab: {fileID: 100000, guid: 86a2693fe315a4775a59789db0212ab9, type: 2}
+  - Name: BlueCube
+    Prefab: {fileID: 100000, guid: d4ab66a6aa01b484b960743f7b1933aa, type: 2}
+  - Name: YellowCube
+    Prefab: {fileID: 100010, guid: b2c55e6a684c8ca498b9fb89b39f1410, type: 2}
+  - Name: LongBlock
+    Prefab: {fileID: 100000, guid: 0a108f73732834de09cd116cf53d94b3, type: 2}
+  - Name: RedCubeBig
+    Prefab: {fileID: 100004, guid: a03849c7efe9b4c46a2e7473139c6eb5, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

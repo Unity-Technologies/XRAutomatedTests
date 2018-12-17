@@ -42,6 +42,7 @@ namespace UnityEditor.TestTools.Graphics
             RuntimePlatform runtimePlatform;
             GraphicsDeviceType[] graphicsDevices;
             StereoRenderingPath stereoPath;
+            string[] vrSDK;
             
 
             // Figure out if we're preparing to run in Editor playmode, or if we're building to run outside the Editor
@@ -58,6 +59,7 @@ namespace UnityEditor.TestTools.Graphics
                 runtimePlatform = Utils.BuildTargetToRuntimePlatform(buildPlatform);
                 colorSpace = PlayerSettings.colorSpace;
                 graphicsDevices = PlayerSettings.GetGraphicsAPIs(buildPlatform);
+                vrSDK = PlayerSettings.GetVirtualRealitySDKs(BuildPipeline.GetBuildTargetGroup(buildPlatform));
             }
 
             stereoPath = PlayerSettings.stereoRenderingPath;
@@ -121,7 +123,7 @@ namespace UnityEditor.TestTools.Graphics
                             if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
                                 (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
                                 (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized) &&
-                                (filter.stereoModes == null || filter.stereoModes.Contains(stereoPath)))
+                                (filter.stereoModes == null || filter.stereoModes.Length == 0|| filter.stereoModes.Contains(stereoPath)))
                             {
                                 scenesWithDisabledScenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
                                 Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));

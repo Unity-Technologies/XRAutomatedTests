@@ -227,7 +227,7 @@ Transform:
   - {fileID: 28}
   - {fileID: 30}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &30
 Transform:
@@ -288,7 +288,7 @@ Transform:
   - {fileID: 41}
   - {fileID: 39}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &39
 Transform:
@@ -417,7 +417,7 @@ Transform:
   - {fileID: 54}
   - {fileID: 52}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &52
 Transform:
@@ -602,7 +602,7 @@ Transform:
   - {fileID: 72}
   - {fileID: 70}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &72
 Transform:
@@ -663,7 +663,7 @@ Transform:
   - {fileID: 83}
   - {fileID: 81}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &81
 Transform:
@@ -877,7 +877,7 @@ Transform:
   - {fileID: 104}
   - {fileID: 106}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &106
 Transform:
@@ -1295,7 +1295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &155
 GameObject:
@@ -1847,6 +1847,11 @@ MonoBehaviour:
     GraphicsDevice: 4
     stereoModes: 02000000
     Reason: instancing does not support legacy deferred rendering
+  - ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    stereoModes: 0100000002000000
+    Reason: instancing does not support legacy deferred rendering
 --- !u!4 &57494514
 Transform:
   m_ObjectHideFlags: 0
@@ -1859,7 +1864,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428595893
 GameObject:
@@ -1906,7 +1911,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &428595896
 MonoBehaviour:

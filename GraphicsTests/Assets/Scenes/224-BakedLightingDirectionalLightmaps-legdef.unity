@@ -1002,8 +1002,8 @@ MonoBehaviour:
   - ColorSpace: -1
     BuildPlatform: 13
     GraphicsDevice: 4
-    stereoModes: 
-    Reason: deferred lighting not supported on android stereo
+    stereoModes: 0100000002000000
+    Reason: deferred lighting not supported on android stereo instancing
   - ColorSpace: -1
     BuildPlatform: -2
     GraphicsDevice: 4

@@ -95,7 +95,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
     private void CopyOculusSignatureFilesToProject()
     {
         var signatureFilePath =
-            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}OculusSignatureFiles";
+            $"..{Path.DirectorySeparatorChar}OculusSignatureFiles";
         var files = Directory.GetFiles(signatureFilePath);
         var assetsPluginPath =
             $"Assets{Path.DirectorySeparatorChar}Plugins{Path.DirectorySeparatorChar}Android{Path.DirectorySeparatorChar}assets";

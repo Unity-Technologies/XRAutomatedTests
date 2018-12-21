@@ -26,6 +26,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                         (EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows)
                             ? GraphicsDeviceType.Direct3D11
                             : GraphicsDeviceType.OpenGLCore;
+                    PlayerSettings.colorSpace = ColorSpace.Linear;
                     PlatformSettings.mtRendering = true;
                     PlatformSettings.graphicsJobs = false;
                     break;
@@ -50,6 +51,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     PlatformSettings.enabledXrTargets = new string[] { "cardboard", "None" };
                     PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
                     PlatformSettings.playerGraphicsApi = GraphicsDeviceType.OpenGLES3;
+                    PlayerSettings.colorSpace = ColorSpace.Gamma;
                     break;
             }
         }
@@ -120,14 +122,16 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                 },
                 {
                     "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                    graphicsDeviceType => {
-                        PlatformSettings.playerGraphicsApi = TryParse<GraphicsDeviceType>(graphicsDeviceType);
-                        }
+                    graphicsDeviceType => { PlatformSettings.playerGraphicsApi = TryParse<GraphicsDeviceType>(graphicsDeviceType); }
+                },
+                {
+                    "colorspace=", "Linear or Gamma color space.",
+                    colorSpace => { PlayerSettings.colorSpace = TryParse<ColorSpace>(colorSpace); }
                 },
                 {
                     "stereorenderingpath=", "Stereo rendering path to enable. SinglePass is default",
-                    stereoRenderingPath => { PlatformSettings.stereoRenderingPath =
-                        TryParse<StereoRenderingPath>(stereoRenderingPath);
+                    stereoRenderingPath => {
+                        PlatformSettings.stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPath);
                         stereoPathWasSet = true; }
                 },
                 {

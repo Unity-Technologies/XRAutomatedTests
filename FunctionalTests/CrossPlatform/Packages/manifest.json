@@ -2,7 +2,7 @@
   "dependencies": {
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
-    "com.unity.collab-proxy": "1.2.9",
+    "com.unity.collab-proxy": "1.2.15",
     "com.unity.package-manager-ui": "0.0.0-builtin",
     "com.unity.purchasing": "2.0.1",
     "com.unity.textmeshpro": "1.3.0",

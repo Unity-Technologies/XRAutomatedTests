@@ -28,7 +28,10 @@ internal class DllNativePluginTest : TestBaseSetup
     [SetUp]
     public void NativeDllTestSetUp()
     {
-        CreateDllLoad();
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            CreateDllLoad();
+        }
     }
 
     [TearDown]
@@ -62,22 +65,44 @@ internal class DllNativePluginTest : TestBaseSetup
     [Test]
     public void NativeDllSceneBuild()
     {
-        Assert.IsNotNull(m_SceneObjectsLoaded, "Scene Objects was not created");
+        if(Application.platform != RuntimePlatform.Android)
+        {
+            Assert.IsNotNull(m_SceneObjectsLoaded, "Scene Objects was not created");
+        }
+        else
+        {
+            Assert.Ignore("Android is not supported at the moment");
+        }
+
     }
 
     [UnityTest]
     public IEnumerator NativeDllTest()
     {
-        yield return new WaitForSeconds(1);
-        m_RenderingImage = IsPlaneRendering();
-        Assert.IsTrue(m_RenderingImage, "Image rendering couldn't be found");
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            yield return new WaitForSeconds(1);
+            m_RenderingImage = IsPlaneRendering();
+            Assert.IsTrue(m_RenderingImage, "Image rendering couldn't be found");
+        }
+        else
+        {
+            Assert.Ignore("Android is not supported at the moment");
+        }
     }
 
     [UnityTest]
     public IEnumerator RenderingFPSCheck()
     {
-        yield return new WaitForSeconds(3f);
-        Assert.AreEqual(0, m_NonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            yield return new WaitForSeconds(3f);
+            Assert.AreEqual(0, m_NonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
+        }
+        else
+        {
+            Assert.Ignore("Android is not supported at the moment");
+        }
     }
 
     public bool IsPlaneRendering()

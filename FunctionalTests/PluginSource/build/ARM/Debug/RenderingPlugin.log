@@ -1,0 +1,21 @@
+﻿cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
+cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : Command line warning D9007: '/Gm' requires '/Zi'; option ignored
+cl : Command line warning D9002: ignoring unknown option '/ZI'
+  gl3w.c
+cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
+cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : Command line warning D9007: '/Gm' requires '/Zi'; option ignored
+cl : Command line warning D9002: ignoring unknown option '/ZI'
+  RenderAPI.cpp
+  RenderAPI_D3D11.cpp
+  RenderAPI_D3D12.cpp
+  RenderAPI_OpenGLCoreES.cpp
+  RenderingPlugin.cpp
+  Generating Code...
+cl : Command line warning D9038: /ZI is not supported on this platform; enabling /Zi instead
+cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : Command line warning D9007: '/Gm' requires '/Zi'; option ignored
+cl : Command line warning D9002: ignoring unknown option '/ZI'
+  RenderAPI_Vulkan.cpp
+LINK : fatal error LNK1104: cannot open file 'opengl32.lib'

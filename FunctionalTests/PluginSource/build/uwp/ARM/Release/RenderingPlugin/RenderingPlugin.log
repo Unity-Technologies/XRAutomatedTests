@@ -1,0 +1,10 @@
+﻿  RenderAPI.cpp
+  RenderAPI_D3D11.cpp
+  RenderAPI_D3D12.cpp
+  RenderingPlugin.cpp
+     Creating library C:\Dev\xr.xrautomatedtests\FunctionalTests\PluginSource\projects\UWPVisualStudio2015\..\..\build\uwp\ARM\Release\RenderingPlugin\RenderingPlugin.lib and object C:\Dev\xr.xrautomatedtests\FunctionalTests\PluginSource\projects\UWPVisualStudio2015\..\..\build\uwp\ARM\Release\RenderingPlugin\RenderingPlugin.exp
+  Generating code
+  Finished generating code
+  RenderingPlugin.vcxproj -> C:\Dev\xr.xrautomatedtests\FunctionalTests\PluginSource\projects\UWPVisualStudio2015\..\..\build\uwp\ARM\Release\RenderingPlugin\RenderingPlugin.dll
+  Target Plugin Path is C:\Dev\xr.xrautomatedtests\FunctionalTests\PluginSource\projects\UWPVisualStudio2015\..\..\..\UnityProject\Assets\
+          1 file(s) copied.

@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.XR.WSA;
 #endif
 
-internal class PerformanceTestHoloLens : TestBaseSetup
+internal class PerformanceTest : TestBaseSetup
 {
     int m_NonPerformantFrameCount;
     private int m_CubeCount = 0;

@@ -27,7 +27,7 @@ namespace Tests
 #if UNITY_EDITOR
                 var buildTargetGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
 
-                PlayerSettings.virtualRealitySupported = true;
+				PlayerSettings.virtualRealitySupported = true;
 
                 if (buildTargetGroup == BuildTargetGroup.Standalone)
                 {
@@ -37,12 +37,14 @@ namespace Tests
                 }
                 else if (buildTargetGroup == BuildTargetGroup.Android)
                 {
+					
                     EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
                     PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel19;
+					PlayerSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
                     EditorUserBuildSettings.androidBuildSystem =
                         AndroidBuildSystem
                             .Gradle; // Currently Oculus SDK doesn't provide a targetSDKVersion, which causes a permission request on startup
-                    CopyOculusSignatureFilesToProject();
+                    //CopyOculusSignatureFilesToProject();
                     UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                         buildTargetGroup,
                         new[] {"Oculus"});

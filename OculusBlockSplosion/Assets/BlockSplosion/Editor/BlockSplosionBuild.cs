@@ -32,7 +32,7 @@ partial class OculusBuildSamples
 
 		PlayerSettings.virtualRealitySupported = true;
 #if UNITY_ANDROID
-		EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Internal;
+		EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
 		#if UNITY_5_6_OR_NEWER
 		PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.oculus.integ.blocksplosion");
 		#else

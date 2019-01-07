@@ -37,7 +37,8 @@ namespace Tests
         [UnityTest]
         public IEnumerator BlockSplosion_TestLoadingScreen()
         {
-            yield return null;
+			//takes a sec to get inputFocus
+			yield return new WaitForSeconds(1);
 
             Assert.IsTrue(SceneManager.GetActiveScene().name == "Startup_Sample");
 
@@ -50,7 +51,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator BlockSplosion_TestSceneChange()
         {
-            yield return null;
+			yield return new WaitForSeconds(3);
 
             SceneManager.activeSceneChanged += ChangedActiveScene;
 
@@ -65,6 +66,14 @@ namespace Tests
 
             VerifyStandardOculusComponents();
         }
+
+		[UnityTest]
+		public IEnumerator BlockSplosion_TestOVRPluginAndSDK()
+		{
+			yield return null;
+			Assert.AreNotEqual (OVRPlugin.version.ToString().Substring(0,1), "0");
+			Assert.AreNotEqual (OVRPlugin.nativeSDKVersion.ToString().Substring (0, 1), "0");
+		}
 
         private void ChangedActiveScene(Scene current, Scene next)
         {
@@ -81,6 +90,7 @@ namespace Tests
             Assert.IsNotNull(cameraRig.GetComponent<OVRCameraRig>());
 
             // Will only pass if HMD is being worn
+			Assert.IsTrue(OVRManager.isHmdPresent, "HMD is present");
             Assert.IsTrue(OVRManager.hasInputFocus, "App has input focus");
             Assert.IsTrue(OVRManager.hasVrFocus, "App has VR focus");
         }

@@ -91,7 +91,7 @@ namespace UnityEngine.XR.ARFoundation
         void UpdateVisibility()
         {
             var visible = enabled &&
-                (m_Plane.trackingState != TrackingState.Unavailable) &&
+                (m_Plane.trackingState != UnityEngine.Experimental.XR.TrackingState.Unavailable) &&
                 (ARSubsystemManager.systemState > ARSystemState.Ready);
 
             SetVisible(visible);

@@ -20,7 +20,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <summary>
         /// The previous tracking state of the reference point, prior to this update.
         /// </summary>
-        public TrackingState previousTrackingState { get; private set; }
+        public UnityEngine.Experimental.XR.TrackingState previousTrackingState { get; private set; }
 
         /// <summary>
         /// The pose of the reference point prior to this update, in local (session) space.
@@ -50,7 +50,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <param name="previousPose">The session-space pose prior to this update.</param>
         public ARReferencePointUpdatedEventArgs(
             ARReferencePoint referencePoint,
-            TrackingState previousTrackingState,
+            UnityEngine.Experimental.XR.TrackingState previousTrackingState,
             Pose previousPose)
         {
             if (referencePoint == null)

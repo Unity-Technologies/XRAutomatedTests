@@ -82,12 +82,12 @@ namespace UnityEngine.XR.ARFoundation
         /// <summary>
         /// Gets the current <c>TrackingState</c> of this <see cref="ARPlane"/>.
         /// </summary>
-        public TrackingState trackingState
+        public UnityEngine.Experimental.XR.TrackingState trackingState
         {
             get
             {
                 if (ARSubsystemManager.planeSubsystem == null)
-                    return TrackingState.Unknown;
+                    return UnityEngine.Experimental.XR.TrackingState.Unknown;
                 else
                     return ARSubsystemManager.planeSubsystem.GetTrackingState(boundedPlane.Id);
             }

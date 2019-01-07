@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Experimental;
 using UnityEngine.Experimental.XR;
+using UnityEngine.XR.FaceSubsystem;
 using UnityEngine.XR.ARExtensions;
 
 namespace UnityEngine.XR.ARFoundation
@@ -123,7 +124,7 @@ namespace UnityEngine.XR.ARFoundation
                 {
                     foreach (var descriptor in descriptors)
                     {
-                        if(descriptor.id.IndexOf(id, StringComparison.OrdinalIgnoreCase) >= 0)
+                        if (descriptor.id.IndexOf(id, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             return descriptor.Create();
                         }
@@ -159,5 +160,53 @@ namespace UnityEngine.XR.ARFoundation
         static List<XRReferencePointSubsystemDescriptor> s_ReferencePointSubsystemDescriptors = new List<XRReferencePointSubsystemDescriptor>();
 
         static List<XRRaycastSubsystemDescriptor> s_RaycastSubsystemDescriptors = new List<XRRaycastSubsystemDescriptor>();
+
+        /// <summary>
+        /// Creates a <c>XRFaceSubsystem</c>.
+        /// </summary>
+        /// <param name="id">(Optional) The name of the subsystem to create.</param>
+        /// <returns>A <c>XRFaceSubsystem</c> if successful, <c>null</c> otherwise.</returns>
+        public static XRFaceSubsystem CreateFaceSubsystem(string id = null)
+        {
+            return CreateStandaloneSubsystem<XRFaceSubsystemDescriptor, XRFaceSubsystem>(s_FaceSubsystemDescriptors, id);
+        }
+
+        static TSubsystem CreateStandaloneSubsystem<TDescriptor, TSubsystem>(List<TDescriptor> descriptors, string id = null)
+            where TDescriptor : SubsystemDescriptor<TSubsystem>
+            where TSubsystem : Subsystem<TDescriptor>
+        {
+            if (descriptors == null)
+                throw new ArgumentNullException("descriptors");
+
+            SubsystemManager.GetSubsystemDescriptors<TDescriptor>(descriptors);
+
+            if (descriptors.Count > 0)
+            {
+                if (id != null)
+                {
+                    foreach (var descriptor in descriptors)
+                    {
+                        if (descriptor.id == id)
+                            return descriptor.Create();
+                    }
+                }
+                else
+                {
+                    var descriptorToUse = descriptors[0];
+                    if (descriptors.Count > 1)
+                    {
+                        Type typeOfD = typeof(TDescriptor);
+                        Debug.LogWarningFormat("Found {0} {1}s. Using \"{2}\"",
+                            descriptors.Count, typeOfD.Name, descriptorToUse.id);
+                    }
+
+                    return descriptorToUse.Create();
+                }
+            }
+
+            return null;
+        }
+
+        static List<XRFaceSubsystemDescriptor> s_FaceSubsystemDescriptors = new List<XRFaceSubsystemDescriptor>();
     }
 }

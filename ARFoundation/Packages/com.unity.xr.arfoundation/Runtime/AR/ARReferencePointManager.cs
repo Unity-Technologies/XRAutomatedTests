@@ -204,11 +204,11 @@ namespace UnityEngine.XR.ARFoundation
         struct ReferencePointShadow
         {
             public TrackableId trackableId;
-            public TrackingState trackingState;
+            public UnityEngine.Experimental.XR.TrackingState trackingState;
             public Pose pose;
         }
 
-        ReferencePoint CreateReferencePointData(TrackableId trackableId, TrackingState trackingState, Pose pose)
+        ReferencePoint CreateReferencePointData(TrackableId trackableId, UnityEngine.Experimental.XR.TrackingState trackingState, Pose pose)
         {
             var shadowData = new ReferencePointShadow()
             {
@@ -268,7 +268,7 @@ namespace UnityEngine.XR.ARFoundation
             // It's possible the native code has updated its internal state to include the reference
             // point we just created, so manufacture some data in that case.
             if (!referencePointExists)
-                referencePointData = CreateReferencePointData(referencePointId, TrackingState.Unknown, pose);
+                referencePointData = CreateReferencePointData(referencePointId, UnityEngine.Experimental.XR.TrackingState.Unknown, pose);
 
             return CreateArReferencePoint(referencePointData);
         }

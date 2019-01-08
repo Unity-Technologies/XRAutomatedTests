@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Unity.Collections;
@@ -113,14 +114,21 @@ namespace UnityEngine.TestTools.Graphics
                         diffImage.SetPixels32(diffPixelsArray, 0);
                         diffImage.Apply(false);
 
-                        TestContext.CurrentContext.Test.Properties.Set("DiffImage", Convert.ToBase64String(diffImage.EncodeToPNG()));
+                        var saveDir = Path.Combine(Application.persistentDataPath, TestContext.CurrentContext.Test.Name + "-DiffImage.png");
+
+                        File.WriteAllBytes(saveDir, diffImage.EncodeToPNG());
+
+                       // TestContext.CurrentContext.Test.Properties.Set("DiffImage", Convert.ToBase64String(diffImage.EncodeToPNG()));
                         throw;
                     }
                 }
             }
             catch (AssertionException)
             {
-                TestContext.CurrentContext.Test.Properties.Set("Image", Convert.ToBase64String(actual.EncodeToPNG()));
+                var saveDir = Path.Combine(Application.persistentDataPath, TestContext.CurrentContext.Test.Name + "-ActualImage.png");
+                Debug.Log("Saved image at " + saveDir);
+                File.WriteAllBytes(saveDir, actual.EncodeToPNG());
+                //TestContext.CurrentContext.Test.Properties.Set("Image", Convert.ToBase64String(actual.EncodeToPNG()));
                 throw;
             }
         }

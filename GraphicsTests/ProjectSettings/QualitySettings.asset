@@ -113,8 +113,8 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms:
-    - Standalone
     - Android
+    - Standalone
   - serializedVersion: 2
     name: High
     pixelLightCount: 2
@@ -187,8 +187,8 @@ QualitySettings:
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms:
-    - Standalone
     - Android
+    - Standalone
   - serializedVersion: 2
     name: Ultra
     pixelLightCount: 4

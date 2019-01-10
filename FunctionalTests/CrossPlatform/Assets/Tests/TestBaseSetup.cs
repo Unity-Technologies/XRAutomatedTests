@@ -118,4 +118,20 @@ internal class TestBaseSetup
         Assert.Ignore("Current Setup is not for Windows MR device or Emulation");
         return false;
     }
+
+    public bool EmulationDeviceCheck()
+    {
+        if (settings.simulationMode == "HoloLens")
+        {
+            return true;
+        }
+
+        if (settings.enabledXrTarget == "WindowsMR")
+        {
+            return true;
+        }
+
+        Assert.Ignore("Current Setup is not for Emulation");
+        return false;
+    }
 }

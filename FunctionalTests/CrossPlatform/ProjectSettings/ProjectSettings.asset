@@ -370,9 +370,7 @@ PlayerSettings:
   m_BuildTargetVRSettings:
   - m_BuildTarget: Android
     m_Enabled: 1
-    m_Devices:
-    - daydream
-    - None
+    m_Devices: []
   - m_BuildTarget: Standalone
     m_Enabled: 1
     m_Devices: []

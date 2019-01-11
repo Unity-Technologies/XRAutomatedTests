@@ -15,7 +15,7 @@ public abstract class RenderPerformanceTestsBase
     protected readonly float CoolOffDuration = 2f;
 #endif
 
-    protected readonly float SettleTime = 5f;
+    protected readonly float SettleTime = 10f;
 
     
     protected readonly string CoolDownSceneName = "cool_down";

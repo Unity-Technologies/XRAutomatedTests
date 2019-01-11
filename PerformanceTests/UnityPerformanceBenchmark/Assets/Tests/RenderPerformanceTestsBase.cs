@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using UnityEngine.XR;
 
 [PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
 public abstract class RenderPerformanceTestsBase
@@ -16,7 +15,7 @@ public abstract class RenderPerformanceTestsBase
     protected readonly float CoolOffDuration = 2f;
 #endif
 
-    protected readonly float SettleTime = 10f;
+    protected readonly float SettleTime = 5f;
 
     
     protected readonly string CoolDownSceneName = "cool_down";

@@ -14,7 +14,11 @@ using UnityEngine.XR;
 
 public abstract class RenderPerformanceMonoBehaviourTestBase : MonoBehaviour, IMonoBehaviourTest
 {
+#if UNITY_ANDROID || UNITY_IOS
     private readonly int numCaptureSeconds = 30;
+#else
+    private readonly int numCaptureSeconds = 10;
+#endif
     protected static readonly string FpsName = "FPS";
     private static readonly string ObjectCountName = "ObjectCount";
     private static readonly string VerticesName = "Vertices";

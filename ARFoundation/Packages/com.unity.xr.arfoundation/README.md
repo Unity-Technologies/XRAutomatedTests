@@ -8,6 +8,7 @@ AR Foundation is a set of utilities for dealing with devices that support follow
 - Reference points: an arbitrary position and orientation that the device tracks
 - Light estimation: estimates for average color temperature and brightness in physical space.
 - World tracking: tracking the device's position and orientation in physical space.
+- Face tracking: tracking the position and orientation of the face of a person.
 
 ## Installing AR Foundation
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.Experimental.XR;
+using UnityEngine.XR.ARExtensions;
 
 namespace UnityEngine.XR.ARFoundation
 {
@@ -29,6 +30,31 @@ namespace UnityEngine.XR.ARFoundation
         {
             get { return m_PlanePrefab; }
             set { m_PlanePrefab = value; }
+        }
+
+        [SerializeField, PlaneDetectionFlagsMask]
+        [Tooltip("Specifies the types of planes to detect.")]
+        PlaneDetectionFlags m_DetectionFlags = k_PlaneDetectionFlagEverything;
+
+        /// <summary>
+        /// Get or set the <c>PlaneDetectionFlags</c> to use for plane detection.
+        /// </summary>
+        public PlaneDetectionFlags detectionFlags
+        {
+            get
+            {
+                if (m_DetectionFlags == k_PlaneDetectionFlagEverything)
+                    return PlaneDetectionFlags.Horizontal | PlaneDetectionFlags.Vertical;
+
+                return m_DetectionFlags;
+            }
+            set
+            {
+                m_DetectionFlags = value;
+
+                if (enabled)
+                    ARSubsystemManager.planeDetectionFlags = detectionFlags;
+            }
         }
 
         /// <summary>
@@ -91,6 +117,7 @@ namespace UnityEngine.XR.ARFoundation
         void OnEnable()
         {
             SyncPlanes();
+            ARSubsystemManager.planeDetectionFlags = detectionFlags;
             ARSubsystemManager.planeAdded += OnPlaneAdded;
             ARSubsystemManager.planeUpdated += OnPlaneUpdated;
             ARSubsystemManager.planeRemoved += OnPlaneRemoved;
@@ -246,5 +273,7 @@ namespace UnityEngine.XR.ARFoundation
         static HashSet<TrackableId> s_TrackableIds = new HashSet<TrackableId>();
 
         static List<TrackableId> s_PlanesToRemove = new List<TrackableId>();
+
+        const PlaneDetectionFlags k_PlaneDetectionFlagEverything = (PlaneDetectionFlags)(-1);
     }
 }

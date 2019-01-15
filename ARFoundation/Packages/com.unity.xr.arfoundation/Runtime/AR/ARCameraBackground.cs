@@ -76,7 +76,11 @@ namespace UnityEngine.XR.ARFoundation
         public bool useCustomRendererAsset
         {
             get { return m_UseCustomRendererAsset; }
-            set { m_UseCustomRendererAsset = value; }
+            set
+            {
+                m_UseCustomRendererAsset = value;
+                SetupBackgroundRenderer();
+            }
         }
 
         [SerializeField] 
@@ -89,6 +93,11 @@ namespace UnityEngine.XR.ARFoundation
         public ARBackgroundRendererAsset customRendererAsset
         {
             get { return m_CustomRendererAsset; }
+            set
+            {
+                m_CustomRendererAsset = value;
+                SetupBackgroundRenderer();
+            }
         }
 
         ARFoundationBackgroundRenderer backgroundRenderer { get; set; }
@@ -122,46 +131,60 @@ namespace UnityEngine.XR.ARFoundation
 
         void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
         {
-            ARSubsystemManager.cameraSubsystem.Camera = camera;
+            ARSubsystemManager.cameraSubsystem.Camera = m_Camera;
             UpdateMaterial();
-            backgroundRenderer.mode = ARRenderMode.MaterialAsBackground;
+            mode = ARRenderMode.MaterialAsBackground;
+        }
+
+        void SetupBackgroundRenderer()
+        {
+            if (useRenderPipeline)
+            {
+                if (m_LwrpBackgroundRenderer == null)
+                {
+                    m_LwrpBackgroundRenderer = m_CustomRendererAsset.CreateARBackgroundRenderer();
+                    m_CustomRendererAsset.CreateHelperComponents(gameObject);
+                }
+
+                backgroundRenderer = m_LwrpBackgroundRenderer;
+            }
+            else
+            {
+                if (m_LegacyBackgroundRenderer == null)
+                    m_LegacyBackgroundRenderer = new ARFoundationBackgroundRenderer();
+
+                backgroundRenderer = m_LegacyBackgroundRenderer;
+            }
+
+            backgroundRenderer.mode = mode;
+            backgroundRenderer.camera = m_Camera;
         }
 
         void Awake()
         {
-            var useRenderPipeline = GraphicsSettings.renderPipelineAsset != null;
-            if (useRenderPipeline && m_UseCustomRendererAsset && m_CustomRendererAsset != null)
-            {
-                backgroundRenderer = m_CustomRendererAsset.CreateARBackgroundRenderer();
-                m_CustomRendererAsset.CreateHelperComponents(gameObject);
-            }
-            else
-            {
-                backgroundRenderer = new ARFoundationBackgroundRenderer();
-            }
-            
-            backgroundRenderer.camera = GetComponent<Camera>();
+            m_Camera = GetComponent<Camera>();
+            SetupBackgroundRenderer();
         }
 
         void OnEnable()
         {
             UpdateMaterial();
             if (ARSubsystemManager.cameraSubsystem != null)
-                ARSubsystemManager.cameraSubsystem.Camera = camera;
+                ARSubsystemManager.cameraSubsystem.Camera = m_Camera;
             ARSubsystemManager.cameraFrameReceived += OnCameraFrameReceived;
             ARSubsystemManager.systemStateChanged += OnSystemStateChanged;
         }
 
         void OnDisable()
         {
-            backgroundRenderer.mode = ARRenderMode.StandardBackground;
+            mode = ARRenderMode.StandardBackground;
             ARSubsystemManager.cameraFrameReceived -= OnCameraFrameReceived;
             ARSubsystemManager.systemStateChanged -= OnSystemStateChanged;
             m_CameraSetupThrewException = false;
 
             // Tell the camera subsystem to stop doing work if we are still the active camera
             var cameraSubsystem = ARSubsystemManager.cameraSubsystem;
-            if ((cameraSubsystem != null) && (cameraSubsystem.Camera == camera))
+            if ((cameraSubsystem != null) && (cameraSubsystem.Camera == m_Camera))
             {
                 cameraSubsystem.Camera = null;
                 cameraSubsystem.Material = null;
@@ -170,20 +193,19 @@ namespace UnityEngine.XR.ARFoundation
             // We are no longer setting the projection matrix
             // so tell the camera to resume its normal projection
             // matrix calculations.
-            camera.ResetProjectionMatrix();
+            m_Camera.ResetProjectionMatrix();
         }
 
         void OnSystemStateChanged(ARSystemStateChangedEventArgs eventArgs)
         {
             // If the session goes away then return to using standard background mode
             if (eventArgs.state < ARSystemState.SessionInitializing && backgroundRenderer != null)
-                backgroundRenderer.mode = ARRenderMode.StandardBackground;
+                mode = ARRenderMode.StandardBackground;
         }
 
         void UpdateMaterial()
         {
-            var useRenderPipeline = GraphicsSettings.renderPipelineAsset != null;
-            if (useRenderPipeline && m_UseCustomRendererAsset && m_CustomRendererAsset != null)
+            if (useRenderPipeline)
             {
                 material = lwrpMaterial;
             }
@@ -195,12 +217,7 @@ namespace UnityEngine.XR.ARFoundation
 
         bool m_CameraSetupThrewException;
 
-#if UNITY_EDITOR
-        new Camera camera
-#else
-        Camera camera
-#endif
-        { get { return backgroundRenderer.camera; } }
+        Camera m_Camera;
 
         Material m_SubsystemMaterial;
 
@@ -230,6 +247,36 @@ namespace UnityEngine.XR.ARFoundation
                 }
 
                 return m_LwrpMaterial;
+            }
+        }
+
+        ARFoundationBackgroundRenderer m_LegacyBackgroundRenderer;
+
+        ARFoundationBackgroundRenderer m_LwrpBackgroundRenderer;
+
+        ARRenderMode m_Mode;
+
+        ARRenderMode mode
+        {
+            get { return m_Mode; }
+            set
+            {
+                m_Mode = value;
+                if (m_LwrpBackgroundRenderer != null)
+                    m_LwrpBackgroundRenderer.mode = m_Mode;
+                if (m_LegacyBackgroundRenderer != null)
+                    m_LegacyBackgroundRenderer.mode = m_Mode;
+            }
+        }
+
+        bool useRenderPipeline
+        {
+            get
+            {
+                return
+                    m_UseCustomRendererAsset &&
+                    (m_CustomRendererAsset != null) &&
+                    (GraphicsSettings.renderPipelineAsset != null);
             }
         }
     }

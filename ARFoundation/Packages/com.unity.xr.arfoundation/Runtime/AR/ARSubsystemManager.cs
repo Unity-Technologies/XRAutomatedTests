@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Experimental;
 using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARExtensions;
+using UnityEngine.XR.FaceSubsystem;
 
 namespace UnityEngine.XR.ARFoundation
 {
@@ -13,7 +14,7 @@ namespace UnityEngine.XR.ARFoundation
     /// The XR Subsystems provide direct access to the underlying data providers for a specific device.
     /// ARFoundation provides higher level abstractions and utilities on top of the low-level XR Subsystems,
     /// so, in general, you don't need to interact directly with the XR Subsystems.
-    /// 
+    ///
     /// A typical AR session may involve the following subsystems:
     /// <list type="number">
     /// <item><description><c>XRSessionSubsystem</c></description></item>
@@ -65,6 +66,10 @@ namespace UnityEngine.XR.ARFoundation
         public static XRRaycastSubsystem raycastSubsystem { get; private set; }
 
         /// <summary>
+        /// Gets the <c>XRFaceSubsystem</c>. This subsystem provides access to the face tracking interface.
+        /// </summary>
+        public static XRFaceSubsystem faceSubsystem { get; private set; }
+        /// <summary>
         /// Allows to filter subsystem ids and initialize first one containing specified string.
         /// </summary>
         public static string subsystemFilter { get; set; }
@@ -77,13 +82,13 @@ namespace UnityEngine.XR.ARFoundation
             add
             {
                 s_CameraFrameReceived += value;
-                SetRunning(cameraSubsystem, cameraSubsystemRequested);
+                UpdateCameraSubsystem();
             }
 
             remove
             {
                 s_CameraFrameReceived -= value;
-                SetRunning(cameraSubsystem, cameraSubsystemRequested);
+                UpdateCameraSubsystem();
             }
         }
 
@@ -103,7 +108,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <remarks>
         /// This is the low-level XR interface, and the data is in session space.
         /// Consider instead subscribing to the more useful <see cref="ARPlaneManager.planeAdded"/>.
-        /// 
+        ///
         /// Plane detection is disabled if there are no subscribers to at least one
         /// of <see cref="planeAdded"/>, <see cref="planeUpdated"/>, or <see cref="planeRemoved"/>.
         /// </remarks>
@@ -112,15 +117,16 @@ namespace UnityEngine.XR.ARFoundation
             add
             {
                 s_PlaneAdded += value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
             }
 
             remove
             {
                 s_PlaneAdded -= value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
             }
         }
+
 
         /// <summary>
         /// This event is invoked whenever an existing plane is updated.
@@ -128,7 +134,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <remarks>
         /// This is the low-level XR interface, and the data is in session space.
         /// Consider instead subscribing to the more useful <see cref="ARPlaneManager.planeUpdated"/>.
-        /// 
+        ///
         /// Plane detection is disabled if there are no subscribers to at least one
         /// of <see cref="planeAdded"/>, <see cref="planeUpdated"/>, or <see cref="planeRemoved"/>.
         /// </remarks>
@@ -137,13 +143,13 @@ namespace UnityEngine.XR.ARFoundation
             add
             {
                 s_PlaneUpdated += value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
             }
 
             remove
             {
                 s_PlaneUpdated -= value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
             }
         }
 
@@ -153,7 +159,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <remarks>
         /// This is the low-level XR interface, and the data is in session space.
         /// Consider instead subscribing to the more useful <see cref="ARPlaneManager.planeRemoved"/>.
-        /// 
+        ///
         /// Plane detection is disabled if there are no subscribers to at least one
         /// of <see cref="planeAdded"/>, <see cref="planeUpdated"/>, or <see cref="planeRemoved"/>.
         /// </remarks>
@@ -162,13 +168,31 @@ namespace UnityEngine.XR.ARFoundation
             add
             {
                 s_PlaneRemoved += value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
             }
 
             remove
             {
                 s_PlaneRemoved -= value;
-                SetRunning(planeSubsystem, planeDetectionRequested);
+                UpdatePlaneDetection();
+            }
+        }
+
+        /// <summary>
+        /// Get or set the plane detection flags, used to specify which
+        /// type of plane detection to enable, e.g., horizontal, vertical, or both.
+        /// </summary>
+        public static PlaneDetectionFlags planeDetectionFlags
+        {
+            get { return s_PlaneDetectionFlags; }
+            set
+            {
+                if (s_PlaneDetectionFlags == value)
+                    return;
+
+                s_PlaneDetectionFlags = value;
+                if (planeSubsystem != null)
+                    planeSubsystem.TrySetPlaneDetectionFlags(s_PlaneDetectionFlags);
             }
         }
 
@@ -178,7 +202,7 @@ namespace UnityEngine.XR.ARFoundation
         /// <remarks>
         /// This is the low-level XR interface, and the data is in session space.
         /// Consider instead subscribing to the more useful <see cref="ARPointCloudManager.pointCloudUpdated"/>.
-        /// 
+        ///
         /// Point clouds are disabled if there are no subscribes to this event.
         /// </remarks>
         public static event Action<PointCloudUpdatedEventArgs> pointCloudUpdated
@@ -204,6 +228,82 @@ namespace UnityEngine.XR.ARFoundation
         /// Consider instead subscribing to the more useful <see cref="ARReferencePointManager.referencePointUpdated"/>.
         /// </remarks>
         public static event Action<ReferencePointUpdatedEventArgs> referencePointUpdated;
+
+        /// <summary>
+        /// This event is invoked whenever a face is added.
+        /// </summary>
+        /// <remarks>
+        /// This is the low-level XR interface, and the data is in session space.
+        /// Consider instead subscribing to the more useful <see cref="ARFaceManager.faceAdded"/>.
+        ///
+        /// Face tracking is disabled if there are no subscribers to at least one
+        /// of <see cref="faceAdded"/>, <see cref="faceUpdated"/>, or <see cref="faceRemoved"/>.
+        /// </remarks>
+        public static event Action<FaceAddedEventArgs> faceAdded
+        {
+            add
+            {
+                s_FaceAdded += value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+
+            remove
+            {
+                s_FaceAdded -= value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+        }
+
+        /// <summary>
+        /// This event is invoked whenever an existing face is updated.
+        /// </summary>
+        /// <remarks>
+        /// This is the low-level XR interface, and the data is in session space.
+        /// Consider instead subscribing to the more useful <see cref="ARFaceManager.faceUpdated"/>.
+        ///
+        /// Face tracking is disabled if there are no subscribers to at least one
+        /// of <see cref="faceAdded"/>, <see cref="faceUpdated"/>, or <see cref="faceRemoved"/>.
+        /// </remarks>
+        public static event Action<FaceUpdatedEventArgs> faceUpdated
+        {
+            add
+            {
+                s_FaceUpdated += value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+
+            remove
+            {
+                s_FaceUpdated -= value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+        }
+
+        /// <summary>
+        /// This event is invoked whenever an existing face is removed.
+        /// </summary>
+        /// <remarks>
+        /// This is the low-level XR interface, and the data is in session space.
+        /// Consider instead subscribing to the more useful <see cref="ARFaceManager.faceRemoved"/>.
+        ///
+        /// Face tracking is disabled if there are no subscribers to at least one
+        /// of <see cref="faceAdded"/>, <see cref="faceUpdated"/>, or <see cref="faceRemoved"/>.
+        /// </remarks>
+        public static event Action<FaceRemovedEventArgs> faceRemoved
+        {
+            add
+            {
+                s_FaceRemoved += value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+
+            remove
+            {
+                s_FaceRemoved -= value;
+                SetRunning(faceSubsystem, faceDetectionRequested);
+            }
+        }
+
 
         /// <summary>
         /// The state of the entire system. Use this to determine the status of AR availability and installation.
@@ -244,11 +344,26 @@ namespace UnityEngine.XR.ARFoundation
                 if (cameraSubsystem != null)
                     cameraSubsystem.LightEstimationRequested = value;
 
-                SetRunning(cameraSubsystem, cameraSubsystemRequested);
+                UpdateCameraSubsystem();
             }
         }
 
-        static SessionAvailability s_Availability;
+        /// <summary>
+        /// Get or set the <c>CameraFocusMode</c> to use on the physica AR camera.
+        /// </summary>
+        public static CameraFocusMode cameraFocusMode
+        {
+            get { return s_CameraFocusMode; }
+            set
+            {
+                if (s_CameraFocusMode == value)
+                    return;
+
+                s_CameraFocusMode = value;
+                if (cameraSubsystem != null)
+                    cameraSubsystem.TrySetFocusMode(value);
+            }
+        }
 
         /// <summary>
         /// Start checking the availability of AR on the current device.
@@ -345,6 +460,8 @@ namespace UnityEngine.XR.ARFoundation
             referencePointSubsystem = ARSubsystemUtil.CreateReferencePointSubsystem(subsystemFilter);
             raycastSubsystem = ARSubsystemUtil.CreateRaycastSubsystem(subsystemFilter);
 
+            faceSubsystem = ARSubsystemUtil.CreateFaceSubsystem(subsystemFilter);
+
             if (planeSubsystem != null)
             {
                 planeSubsystem.PlaneAdded -= OnPlaneAdded;
@@ -354,6 +471,17 @@ namespace UnityEngine.XR.ARFoundation
                 planeSubsystem.PlaneRemoved -= OnPlaneRemoved;
                 planeSubsystem.PlaneRemoved += OnPlaneRemoved;
             }
+
+            if (faceSubsystem != null)
+            {
+                faceSubsystem.faceAdded -= OnFaceAdded;
+                faceSubsystem.faceAdded += OnFaceAdded;
+                faceSubsystem.faceUpdated -= OnFaceUpdated;
+                faceSubsystem.faceUpdated += OnFaceUpdated;
+                faceSubsystem.faceRemoved -= OnFaceRemoved;
+                faceSubsystem.faceRemoved += OnFaceRemoved;
+            }
+
 
             if (depthSubsystem != null)
             {
@@ -396,6 +524,7 @@ namespace UnityEngine.XR.ARFoundation
             DestroySubsystem(planeSubsystem);
             DestroySubsystem(referencePointSubsystem);
             DestroySubsystem(raycastSubsystem);
+            DestroySubsystem(faceSubsystem);
 
             sessionSubsystem = null;
             cameraSubsystem = null;
@@ -431,9 +560,10 @@ namespace UnityEngine.XR.ARFoundation
             SetRunning(raycastSubsystem, true);
             SetRunning(referencePointSubsystem, true);
             SetRunning(inputSubsystem, true);
-            SetRunning(planeSubsystem, planeDetectionRequested);
+            UpdatePlaneDetection();
             SetRunning(depthSubsystem, depthDataRequested);
-            SetRunning(cameraSubsystem, cameraSubsystemRequested);
+            UpdateCameraSubsystem();
+            SetRunning(faceSubsystem, faceDetectionRequested);
 
             sessionSubsystem.Start();
 
@@ -462,10 +592,11 @@ namespace UnityEngine.XR.ARFoundation
             SetRunning(planeSubsystem, false);
             SetRunning(depthSubsystem, false);
             SetRunning(cameraSubsystem, false);
+            SetRunning(faceSubsystem, false);
             sessionSubsystem.Stop();
             systemState = ARSystemState.Ready;
         }
-        
+
         static void RaiseSessionDestroyedEvent()
         {
             if (sessionDestroyed != null)
@@ -482,11 +613,11 @@ namespace UnityEngine.XR.ARFoundation
         {
             switch (eventArgs.NewState)
             {
-                case TrackingState.Unknown:
-                case TrackingState.Unavailable:
+                case UnityEngine.Experimental.XR.TrackingState.Unknown:
+                case UnityEngine.Experimental.XR.TrackingState.Unavailable:
                     systemState = ARSystemState.SessionInitializing;
                     break;
-                case TrackingState.Tracking:
+                case UnityEngine.Experimental.XR.TrackingState.Tracking:
                     systemState = ARSystemState.SessionTracking;
                     break;
             }
@@ -550,8 +681,26 @@ namespace UnityEngine.XR.ARFoundation
                 referencePointUpdated(eventArgs);
         }
 
+        static void OnFaceAdded(FaceAddedEventArgs eventArgs)
+        {
+            if (s_FaceAdded != null)
+                s_FaceAdded(eventArgs);
+        }
+
+        static void OnFaceUpdated(FaceUpdatedEventArgs eventArgs)
+        {
+            if (s_FaceUpdated != null)
+                s_FaceUpdated(eventArgs);
+        }
+
+        static void OnFaceRemoved(FaceRemovedEventArgs eventArgs)
+        {
+            if (s_FaceRemoved != null)
+                s_FaceRemoved(eventArgs);
+        }
+
 #if UNITY_2018_3_OR_NEWER
-        static void DestroySubsystem(IntegratedSubsystem subsystem)
+        static void DestroySubsystem(ISubsystem subsystem)
 #else
         static void DestroySubsystem(Subsystem subsystem)
 #endif
@@ -561,7 +710,7 @@ namespace UnityEngine.XR.ARFoundation
         }
 
 #if UNITY_2018_3_OR_NEWER
-        static void SetRunning(IntegratedSubsystem subsystem, bool shouldBeRunning)
+        static void SetRunning(ISubsystem subsystem, bool shouldBeRunning)
 #else
         static void SetRunning(Subsystem subsystem, bool shouldBeRunning)
 #endif
@@ -573,6 +722,20 @@ namespace UnityEngine.XR.ARFoundation
                 subsystem.Start();
             else
                 subsystem.Stop();
+        }
+
+        static void UpdatePlaneDetection()
+        {
+            SetRunning(planeSubsystem, planeDetectionRequested);
+            if (planeDetectionRequested && planeSubsystem != null)
+                planeSubsystem.TrySetPlaneDetectionFlags(s_PlaneDetectionFlags);
+        }
+
+        static void UpdateCameraSubsystem()
+        {
+            SetRunning(cameraSubsystem, cameraSubsystemRequested);
+            if (cameraSubsystem != null)
+                cameraSubsystem.TrySetFocusMode(s_CameraFocusMode);
         }
 
         static ARSystemState s_SystemState;
@@ -606,6 +769,29 @@ namespace UnityEngine.XR.ARFoundation
                     (s_PlaneRemoved != null);
             }
         }
+
+        static SessionAvailability s_Availability;
+
+        static Action<FaceAddedEventArgs> s_FaceAdded;
+
+        static Action<FaceUpdatedEventArgs> s_FaceUpdated;
+
+        static Action<FaceRemovedEventArgs> s_FaceRemoved;
+
+        static bool faceDetectionRequested
+        {
+            get
+            {
+                return
+                    (s_FaceAdded != null) ||
+                    (s_FaceUpdated != null) ||
+                    (s_FaceRemoved != null);
+            }
+        }
+
+        static PlaneDetectionFlags s_PlaneDetectionFlags = PlaneDetectionFlags.Horizontal | PlaneDetectionFlags.Vertical;
+
+        static CameraFocusMode s_CameraFocusMode = CameraFocusMode.Fixed;
 
         static Action<PointCloudUpdatedEventArgs> s_PointCloudUpdated;
 

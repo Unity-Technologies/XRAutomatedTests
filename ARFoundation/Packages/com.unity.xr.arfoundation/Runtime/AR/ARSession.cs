@@ -16,25 +16,6 @@ namespace UnityEngine.XR.ARFoundation
     public class ARSession : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("When enabled, requests that light estimation information be made available.")]
-        bool m_LightEstimation;
-
-        /// <summary>
-        /// When enabled, requests that light estimation information be made available.
-        /// Not all AR devices support light estimation.
-        /// </summary>
-        public bool lightEstimation
-        {
-            get { return m_LightEstimation; }
-            set
-            {
-                m_LightEstimation = value;
-                if (enabled)
-                    ARSubsystemManager.lightEstimationRequested = value;
-            }
-        }
-
-        [SerializeField]
         [Tooltip("If enabled, the session will attempt to update a supported device if its AR software is out of date.")]
         bool m_AttemptUpdate = true;
 
@@ -62,7 +43,6 @@ namespace UnityEngine.XR.ARFoundation
             ARSubsystemManager.StopSubsystems();
             ARSubsystemManager.DestroySubsystems();
             ARSubsystemManager.CreateSubsystems();
-            ARSubsystemManager.lightEstimationRequested = lightEstimation;
             ARSubsystemManager.StartSubsystems();
         }
 
@@ -124,7 +104,6 @@ namespace UnityEngine.XR.ARFoundation
             // If we're still enabled and everything is ready, then start.
             if (ARSubsystemManager.systemState == ARSystemState.Ready && enabled)
             {
-                ARSubsystemManager.lightEstimationRequested = lightEstimation;
                 ARSubsystemManager.StartSubsystems();
             }
             else

@@ -96,7 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 112000002, guid: 0f8558f24ef12e94eafc83a17d15c7d3,
+  m_LightingDataAsset: {fileID: 112000004, guid: 75c49fd822bd48c45bdde7db8ea03f11,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &5
@@ -821,7 +821,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 0.56643355, g: 1, b: 0.5, a: 1}
+  m_Color: {r: 0.5165184, g: 1, b: 0.5019608, a: 1}
   m_Intensity: 1.4
   m_Range: 10
   m_SpotAngle: 30
@@ -874,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1086255778
 MonoBehaviour:
   m_ObjectHideFlags: 0

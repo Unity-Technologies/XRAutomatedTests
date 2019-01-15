@@ -138,7 +138,9 @@ namespace UnityEditor.TestTools.Graphics
                     Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
 
                     Lightmapping.Bake();
-    
+
+                    Lightmapping.ClearDiskCache();
+
                     EditorSceneManagement.EditorSceneManager.SaveScene( currentScene );
                 }
 

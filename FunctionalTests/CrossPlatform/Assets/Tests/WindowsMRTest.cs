@@ -123,7 +123,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureTap()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             yield return new WaitForSeconds(gestureTapWait);
             rightHand.EnsureVisible();
@@ -143,7 +143,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureManipulation()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
@@ -173,7 +173,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureNavigation()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             m_RightGestureRecognizer.StopCapturingGestures();
             yield return new WaitForSeconds(gestureTapWait);
@@ -216,7 +216,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureManipulationCancel()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             rightHand.EnsureVisible();
             yield return null;
@@ -240,7 +240,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureNavigationCancel()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             m_RightGestureRecognizer.StopCapturingGestures();
             yield return new WaitForSeconds(gestureTapWait);
@@ -283,7 +283,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureHold()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             yield return null;
             rightHand.EnsureVisible();
@@ -309,7 +309,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureHoldCancel()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             yield return null;
             rightHand.EnsureVisible();
@@ -337,7 +337,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GestureDoubleTap()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
 
             yield return new WaitForSeconds(gestureTapWait);
             rightHand.EnsureVisible();
@@ -562,7 +562,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourcePosition()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             yield return null;
             rightHand.EnsureVisible();
             yield return null;
@@ -585,7 +585,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceVelocity()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -612,7 +612,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceRotation()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -640,7 +640,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceUp()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -668,7 +668,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceForward()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -696,7 +696,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceAngularVelocity()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -723,7 +723,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourcePositionAccuracy()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -759,7 +759,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceLossDirection()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -786,7 +786,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourceLossRisk()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             var handX = rightHand.position.x;
             var handY = rightHand.position.y;
             var handZ = rightHand.position.z;
@@ -813,7 +813,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetKind()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             yield return null;
             rightHand.EnsureVisible();
             yield return null;
@@ -832,7 +832,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetID()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             rightHand.EnsureVisible();
             yield return null;
 
@@ -850,7 +850,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator GetSourcePressType()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             rightHand.EnsureVisible();
             yield return null;
 
@@ -868,7 +868,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator SourcePressAndReleaseEventCheck()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             rightHand.EnsureVisible();
             yield return null;
 
@@ -884,7 +884,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator SourceDetectedEventCheck()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             rightHand.EnsureVisible();
             yield return new WaitForSeconds(k_GestureTapWait);
 
@@ -902,7 +902,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator SourceLostEventCheck()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             rightHand.EnsureVisible();
             yield return new WaitForSeconds(k_GestureTapWait);
 
@@ -924,7 +924,7 @@ public class WindowsMR
         [UnityTest]
         public IEnumerator CheckCurrentReading()
         {
-            EmulationDeviceCheck();
+            OnlyRunHoloLensSimulatedDeviceCheck();
             InteractionSourceState[] sourceStates = new InteractionSourceState[] { };
 
             yield return new WaitForSeconds(k_GestureTapWait);

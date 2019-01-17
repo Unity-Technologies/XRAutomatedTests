@@ -52,6 +52,7 @@ namespace UnityEditor.TestTools.Graphics
                 buildPlatform = BuildTarget.NoTarget;
                 runtimePlatform = Application.platform;
                 graphicsDevices = new[] {SystemInfo.graphicsDeviceType};
+                vrSDK = new string[] { "None" };
             }
             else
             {
@@ -68,7 +69,8 @@ namespace UnityEditor.TestTools.Graphics
 
             foreach (var api in graphicsDevices)
             {
-                var images = EditorGraphicsTestCaseProvider.CollectReferenceImagePathsFor(colorSpace, runtimePlatform, api);
+                var images = EditorGraphicsTestCaseProvider.CollectReferenceImagePathsFor(
+                    colorSpace, runtimePlatform, api, vrSDK.FirstOrDefault());
 
                 Utils.SetupReferenceImageImportSettings(images.Values);
 
@@ -77,7 +79,8 @@ namespace UnityEditor.TestTools.Graphics
 
                 bundleBuilds.Add(new AssetBundleBuild
                 {
-                    assetBundleName = string.Format("referenceimages-{0}-{1}-{2}", colorSpace, runtimePlatform, api),
+                    assetBundleName = string.Format("referenceimages-{0}-{1}-{2}-{3}", 
+                        colorSpace, runtimePlatform, api, vrSDK.FirstOrDefault()).ToLower(),
                     addressableNames = images.Keys.ToArray(),
                     assetNames = images.Values.ToArray()
                 });
@@ -139,6 +142,7 @@ namespace UnityEditor.TestTools.Graphics
 
                     Lightmapping.Bake();
 
+                    // disk cache needs to be cleared to prevent bug 742012 where duplicate lights are double baked
                     Lightmapping.ClearDiskCache();
 
                     EditorSceneManagement.EditorSceneManager.SaveScene( currentScene );

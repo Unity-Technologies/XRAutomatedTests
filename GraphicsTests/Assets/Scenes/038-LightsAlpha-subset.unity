@@ -14,7 +14,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 1
     m_BakeResolution: 50
     m_AtlasSize: 1024
@@ -22,6 +22,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 0
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -36,10 +37,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 0
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 0
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -48,6 +55,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &2
@@ -279,12 +287,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.53579, g: 0.97854584, b: 0.97833216, a: 0.13}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -348,12 +357,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.9950561, g: 0.99858093, b: 0.74119174, a: 0.13}
   m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 60
   m_Shadows:
     m_Type: 0
@@ -475,9 +485,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.50251013, g: 0.50251013, b: 0.50251013, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -532,6 +543,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387533796}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: d9c4062cdfca84ab98ecb70323fc31f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -545,6 +557,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387533796}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 20f198885badb1f4fa1e65869995ff82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -552,7 +565,7 @@ MonoBehaviour:
     TargetWidth: 1024
     TargetHeight: 512
     PerPixelCorrectnessThreshold: 0
-    AverageCorrectnessThreshold: 0.01
+    AverageCorrectnessThreshold: 0.005
 --- !u!4 &387533799
 Transform:
   m_ObjectHideFlags: 0

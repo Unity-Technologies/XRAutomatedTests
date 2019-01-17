@@ -32,13 +32,22 @@ namespace UnityEngine.TestTools.Graphics
             }
         }
 
+        public string LoadedXRDevice
+        {
+            get
+            {
+                return XR.XRSettings.loadedDeviceName == "" ? "None" : XR.XRSettings.loadedDeviceName;
+            }
+        }
+
         public IEnumerable<GraphicsTestCase> GetTestCases()
         {
             AssetBundle referenceImagesBundle = null;
             string[] scenePaths;
 
             // need the ToLower here for Unix path case sensitivity (android, linux, OSX, iOS)
-            var bundleName = string.Format("referenceimages-{0}-{1}-{2}", ColorSpace, Platform, GraphicsDevice).ToLower();
+            var bundleName = string.Format("referenceimages-{0}-{1}-{2}-{3}",
+                ColorSpace, Platform, GraphicsDevice, LoadedXRDevice).ToLower();
 
             var referenceImagesBundlePath = Path.Combine(Application.streamingAssetsPath, bundleName);
 

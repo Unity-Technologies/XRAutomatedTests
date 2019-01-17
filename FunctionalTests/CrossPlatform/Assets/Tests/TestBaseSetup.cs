@@ -27,6 +27,13 @@ using UnityEditor;
 [PrebuildSetup("EnablePlatformPrebuildStep")]
 internal class TestBaseSetup
 {
+    public enum HolographicRuntimeType
+    {
+        SimulatedHoloLens,
+        MixedRealityHMD,
+        Remoting
+    };
+
     public TestSetupHelpers m_TestSetupHelpers;
     public CurrentSettings settings;
 
@@ -117,5 +124,26 @@ internal class TestBaseSetup
         
         Assert.Ignore("Current Setup is not for Windows MR device or Emulation");
         return false;
+    }
+
+    public bool OnlyRunHoloLensSimulatedDeviceCheck()
+    {
+#if UNITY_EDITOR && UNITY_METRO
+        var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
+        
+        if (emulationWindow.emulationMode == EmulationMode.None)
+        {
+            Assert.Ignore("Current Setup is not for Simulated Device");
+            return false;
+        }
+        else if(emulationWindow.emulationMode != EmulationMode.Simulated)
+        {
+            return true;
+        }
+#endif
+
+        Assert.Ignore("Current Setup is not for Emulation");
+        return false;
+
     }
 }

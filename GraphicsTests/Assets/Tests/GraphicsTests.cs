@@ -13,6 +13,7 @@ public class GraphicsTests
 {
     [UnityTest]
     [PrebuildSetup("GraphicsTestSetup")]
+    [PostBuildCleanup("GraphicsTestCleanup")]
     [UseGraphicsTestCases]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {

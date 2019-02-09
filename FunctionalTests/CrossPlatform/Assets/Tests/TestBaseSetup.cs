@@ -25,7 +25,7 @@ using UnityEditor;
 })]
 
 [PrebuildSetup("EnablePlatformPrebuildStep")]
-internal class TestBaseSetup
+public class TestBaseSetup
 {
     public enum HolographicRuntimeType
     {
@@ -52,7 +52,7 @@ internal class TestBaseSetup
 #endif
 
     [OneTimeSetUp]
-    public void Setup()
+    public virtual void OneTimeSetUp()
     {
         settings = Resources.Load<CurrentSettings>("settings");
 
@@ -84,7 +84,7 @@ internal class TestBaseSetup
     }
 
     [SetUp]
-    public void SetUp()
+    public virtual void SetUp()
     {
         m_TestSetupHelpers = new TestSetupHelpers();
 
@@ -92,7 +92,7 @@ internal class TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public virtual void TearDown()
     {
         m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
     }

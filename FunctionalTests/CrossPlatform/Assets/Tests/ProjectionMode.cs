@@ -14,12 +14,12 @@ internal class ProjectionMode : TestBaseSetup
 {
 #if UNITY_METRO
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
 
         HolographicSettings.IsContentProtectionEnabled = false;
         HolographicSettings.ReprojectionMode = HolographicSettings.HolographicReprojectionMode.Disabled;
-
+        base.TearDown();
     }
 
     [UnityTest]

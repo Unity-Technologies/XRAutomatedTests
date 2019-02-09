@@ -28,13 +28,14 @@ internal class CameraCheck : TestBaseSetup
     }
 
     [SetUp]
-    public void Setup()
+    public override void SetUp()
     {
+        base.SetUp();
         m_TestSetupHelpers.TestCubeSetup(TestCubesConfig.TestCube);
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         m_RaycastHit = false;
 
@@ -42,7 +43,7 @@ internal class CameraCheck : TestBaseSetup
         XRDevice.fovZoomFactor = m_StartingZoomAmount;
         XRSettings.renderViewportScale = 1f;
 
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
+        base.TearDown();
     }
 
     [UnityTest]

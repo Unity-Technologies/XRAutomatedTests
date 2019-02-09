@@ -31,7 +31,7 @@ internal class CameraProjectionMatrix : TestBaseSetup
     bool m_HoloWCordCheck = false;
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         if (m_PhotoCaptureObj != null)
         {
@@ -40,6 +40,7 @@ internal class CameraProjectionMatrix : TestBaseSetup
         }
         GameObject.Destroy(m_Canvas);
         m_PhotoCaptureObj = null;
+        base.TearDown();
     }
 
 	[UnityTest]

@@ -22,8 +22,9 @@ internal class RenderingChecks : TestBaseSetup
     private Material testMat;
 
     [SetUp]
-    public void SetUp()
+    public override void SetUp()
     {
+        base.SetUp();
         testMat = new Material(Resources.Load("Materials/YFlipColorMesh", typeof(Material)) as Material);
         currentState = States.MSAA_AND_HDR;
 
@@ -33,9 +34,10 @@ internal class RenderingChecks : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         GameObject.Destroy(colorScreen);
+        base.TearDown();
     }
 
     [UnityTest]

@@ -23,8 +23,9 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
     PhotoCapture.PhotoCaptureResult m_Result;
 
     [SetUp]
-    public void SetUp()
+    public override void SetUp()
     {
+        base.SetUp();
         // Creating the plane for the Picture Texture to be seen by the user
         m_ImagePlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
         // Placing the ImagePlane in front of the user and about 2.5m in front of the camera
@@ -36,10 +37,11 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         GameObject.Destroy(m_TargetTexture = null);
         GameObject.Destroy(m_ImagePlane);
+        base.TearDown();
     }
 
 	[UnityTest]

@@ -14,10 +14,6 @@ public class Build
     private static string[] enabledXrTargets;
     private static string[] playerGraphicsApis;
     private static string[] stereoRenderingPaths;
-    //private static bool mtRendering = true;
-    //private static bool graphicsJobs;
-    private static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    private static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
 
     [MenuItem("Build/Build Project")]
     public static void BuildProject()

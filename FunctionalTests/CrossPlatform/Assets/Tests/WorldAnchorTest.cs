@@ -30,8 +30,9 @@ internal class WorldAnchorTest : TestBaseSetup
     bool m_LoadedAnchors = false;
 
     [SetUp]
-    public void Setup()
+    public override void SetUp()
     {
+        base.SetUp();
         m_CreatedAnchor = m_KeywordRecognized = m_ErasedAnchor = m_LoadedAnchors = false;
 
         WorldAnchorStore.GetAsync(storeLoaded);
@@ -39,9 +40,10 @@ internal class WorldAnchorTest : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         ClearAnchors();
+        base.TearDown();
     }
 
     [UnityTest]

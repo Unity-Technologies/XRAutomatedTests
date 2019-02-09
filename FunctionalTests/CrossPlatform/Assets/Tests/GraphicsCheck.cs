@@ -2,7 +2,6 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
-using UnityEngine.XR;
 
 internal class GraphicsCheck : TestBaseSetup
 {
@@ -23,8 +22,9 @@ internal class GraphicsCheck : TestBaseSetup
     private Material testMat;
 
     [SetUp]
-    public void SetUp()
+    public override void SetUp()
     {
+        base.SetUp();
         testMat = new Material(Resources.Load("Materials/YFlipColorMesh", typeof(Material)) as Material);
         currentState = States.MSAA_AND_HDR;
 
@@ -34,9 +34,10 @@ internal class GraphicsCheck : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         GameObject.Destroy(colorScreen);
+        base.TearDown();
     }
 
     [UnityTest]

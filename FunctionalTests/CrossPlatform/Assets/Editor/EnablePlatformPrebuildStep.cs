@@ -1,11 +1,11 @@
 using System;
-using System.Linq;
 using System.IO;
-using NDesk.Options;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
+using NDesk.Options;
 
 public class EnablePlatformPrebuildStep : IPrebuildSetup
 {
@@ -64,7 +64,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
 
     }
 
-    private static void ConfigureSettings()
+    private void ConfigureSettings()
     {
         PlayerSettings.virtualRealitySupported = true;
 

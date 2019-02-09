@@ -24,8 +24,9 @@ internal class PerformanceTest : TestBaseSetup
     const float k_FrameTimeMax = 1f / 52f;
 
     [SetUp]
-    public void Setup()
+    public override void SetUp()
     {
+        base.SetUp();
         m_TestingFocalPoint = false;
         m_CubeCount = 0;
     }

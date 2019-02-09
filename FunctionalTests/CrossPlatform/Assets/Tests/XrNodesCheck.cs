@@ -18,8 +18,9 @@ internal class XrNodes : TestBaseSetup
     public bool m_TrackingEyeNode { get; private set; }
 
     [SetUp]
-    public void Setup()
+    public override void SetUp()
     {
+        base.SetUp();
         m_XrNodeState = new XRNodeState();
         m_NodeList = new List<XRNodeState>();
 
@@ -32,12 +33,13 @@ internal class XrNodes : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         InputTracking.trackingAcquired -= InputTracking_trackingAcquired;
         InputTracking.trackingLost -= InputTracking_trackingLost;
         InputTracking.nodeAdded -= InputTracking_nodeAdded;
         InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
+        base.TearDown();
     }
 
     [UnityTest]

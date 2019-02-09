@@ -15,12 +15,6 @@ internal class EyeCameraCheck : TestBaseSetup
     private bool m_AngleCheck = false;
     private bool m_EyesInFront = false;
 
-    [TearDown]
-    public void TearDown()
-    {
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.CleanStage);
-    }
-
     [UnityTest]
     public IEnumerator EyesParallelHead()
     {

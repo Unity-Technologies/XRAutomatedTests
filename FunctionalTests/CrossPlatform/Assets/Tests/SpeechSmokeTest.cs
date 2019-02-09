@@ -31,9 +31,10 @@ internal class SpeechSmokeTest : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         PhraseRecognitionSystem.Shutdown();
+        base.TearDown();
     }
 
     [Ignore("Not supported at the moment by Jenkins")]

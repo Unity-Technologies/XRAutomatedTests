@@ -20,7 +20,7 @@ public enum TestCubesConfig
     TestMassCube
 }
 
-internal class TestSetupHelpers : TestBaseSetup
+public class TestSetupHelpers : TestBaseSetup
 {
     private int m_CubeCount = 0;
 

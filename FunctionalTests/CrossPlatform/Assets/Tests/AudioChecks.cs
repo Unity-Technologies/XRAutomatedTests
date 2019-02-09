@@ -8,12 +8,13 @@ internal class AudioChecks : TestBaseSetup
 {
     private AudioSource m_AudioSource = null;
 
-    private float kAudioPlayWait = 3f;
-    private float kAudioTolerance = .01f;
+    private readonly float audioPlayWait = 3f;
+    private readonly float audioTolerance = .01f;
 
     [SetUp]
-    public void Setup()
+    public override void SetUp()
     {
+        base.SetUp();
         m_TestSetupHelpers.TestCubeSetup(TestCubesConfig.TestCube);
         m_TestSetupHelpers.m_Cube.AddComponent<AudioSource>();
         m_TestSetupHelpers.m_Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
@@ -22,9 +23,10 @@ internal class AudioChecks : TestBaseSetup
     }
 
     [TearDown]
-    public void TearDown()
+    public override void TearDown()
     {
         GameObject.Destroy(m_AudioSource);
+        base.TearDown();
     }
 
     [UnityTest]
@@ -33,7 +35,7 @@ internal class AudioChecks : TestBaseSetup
         yield return null;
 
         m_AudioSource.Play();
-        yield return new WaitForSeconds(kAudioPlayWait);
+        yield return new WaitForSeconds(audioPlayWait);
         Assert.AreEqual(m_AudioSource.isPlaying, true, "Audio source is not playing");
     }
 
@@ -43,15 +45,15 @@ internal class AudioChecks : TestBaseSetup
         yield return null;
 
         m_AudioSource.Play();
-        yield return new WaitForSeconds(kAudioPlayWait);
+        yield return new WaitForSeconds(audioPlayWait);
         Assert.AreEqual(m_AudioSource.isPlaying, true, "Audio source is not playing");
 
         m_AudioSource.Pause();
-        yield return new WaitForSeconds(kAudioPlayWait);
+        yield return new WaitForSeconds(audioPlayWait);
         Assert.AreEqual(m_AudioSource.isPlaying, false, "Audio source is not paused");
 
         m_AudioSource.UnPause();
-        yield return new WaitForSeconds(kAudioPlayWait);
+        yield return new WaitForSeconds(audioPlayWait);
         Assert.AreEqual(m_AudioSource.isPlaying, true, "Audio source didn't un-paused");
 
         m_AudioSource.Stop();
@@ -81,7 +83,7 @@ internal class AudioChecks : TestBaseSetup
 
             yield return new WaitForSeconds(1f);
 
-            UAssert.AreApproximatelyEqual(blendAmount, m_AudioSource.spatialBlend, kAudioTolerance, "Spatial Blend as failed to be set");
+            UAssert.AreApproximatelyEqual(blendAmount, m_AudioSource.spatialBlend, audioTolerance, "Spatial Blend as failed to be set");
         }
     }
 

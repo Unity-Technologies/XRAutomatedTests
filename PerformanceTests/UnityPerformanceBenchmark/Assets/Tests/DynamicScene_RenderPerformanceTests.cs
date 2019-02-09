@@ -9,6 +9,7 @@ using NUnit.Framework;
 using UnityEngine.XR;
 #endif
 
+[Category("XR")]
 [Category("Performance")]
 public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 {

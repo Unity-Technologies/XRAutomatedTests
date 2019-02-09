@@ -1,12 +1,14 @@
 {
-    "name": "Prebuild",
+    "name": "Unity.PerformanceTesting.Editor",
     "references": [
         "Unity.PerformanceTesting"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false
 }

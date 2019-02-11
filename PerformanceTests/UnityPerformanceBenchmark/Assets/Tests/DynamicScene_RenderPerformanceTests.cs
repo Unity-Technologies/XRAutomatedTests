@@ -43,7 +43,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator Terrain()
@@ -79,7 +79,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(terrainTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Directional()
@@ -115,7 +115,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingDirectionalTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Point()
@@ -151,7 +151,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingPointLightTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Spot()
@@ -187,7 +187,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingSpotlightTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator SpiralFlame_RenderPerformance()
@@ -223,7 +223,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator SetTargetBufferMaterial()
@@ -259,7 +259,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(setTargetBufferMaterialTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator RenderTextureMaterial()
@@ -295,7 +295,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(renderTextureMaterialTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator StencilMaterial()
@@ -331,7 +331,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(stencilMaterialTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator TransparentMaterial()
@@ -367,7 +367,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(transparentMaterialTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator GpuInstacingMaterial()
@@ -403,7 +403,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(gpuInstancingMaterialTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator StandardMaterial()

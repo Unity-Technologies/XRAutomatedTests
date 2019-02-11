@@ -33,7 +33,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
 #endif
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator EmptyScene()
@@ -69,7 +69,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(basicSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator BakedLighting()
@@ -105,7 +105,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(bakedLightingTestSceneName);
     }
 
-    [Version("4")]
+    [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
     public IEnumerator SinglePrimitiveCube()

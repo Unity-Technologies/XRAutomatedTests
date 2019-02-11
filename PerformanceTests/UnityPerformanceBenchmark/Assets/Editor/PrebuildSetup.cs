@@ -21,7 +21,7 @@ namespace Assets.Editor
         private static bool mtRendering = true;
         private static bool graphicsJobs = false;
         private static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
-        private static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+        private static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
         private static string appleDeveloperTeamId;
         private static string iOsProvisioningProfileId;
 

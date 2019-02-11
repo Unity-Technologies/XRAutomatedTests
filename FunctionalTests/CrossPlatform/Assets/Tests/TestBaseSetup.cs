@@ -25,7 +25,7 @@ using UnityEditor;
 })]
 
 [PrebuildSetup("EnablePlatformPrebuildStep")]
-public class TestBaseSetup
+internal class TestBaseSetup
 {
     public enum HolographicRuntimeType
     {

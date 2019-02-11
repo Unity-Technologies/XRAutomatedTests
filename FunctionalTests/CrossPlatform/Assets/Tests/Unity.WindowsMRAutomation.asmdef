@@ -6,9 +6,7 @@
     ],
     "includePlatforms": [],
     "excludePlatforms": [
-        "LinuxStandalone32",
         "LinuxStandalone64",
-        "LinuxStandaloneUniversal",
         "Lumin",
         "PS4",
         "Switch",

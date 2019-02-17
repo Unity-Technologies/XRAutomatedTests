@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
@@ -34,7 +35,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator EmptyScene()
     {
@@ -70,7 +71,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator BakedLighting()
     {
@@ -106,7 +107,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator SinglePrimitiveCube()
     {

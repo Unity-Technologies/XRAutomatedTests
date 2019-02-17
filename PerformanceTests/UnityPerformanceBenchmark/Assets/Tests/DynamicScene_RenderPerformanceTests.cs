@@ -5,6 +5,7 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
@@ -44,7 +45,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator Terrain()
     {
@@ -80,7 +81,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Directional()
     {
@@ -116,7 +117,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Point()
     {
@@ -152,7 +153,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator RealtimeLighting_Spot()
     {
@@ -188,7 +189,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator SpiralFlame_RenderPerformance()
     {
@@ -224,7 +225,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator SetTargetBufferMaterial()
     {
@@ -260,7 +261,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator RenderTextureMaterial()
     {
@@ -296,7 +297,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator StencilMaterial()
     {
@@ -332,7 +333,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator TransparentMaterial()
     {
@@ -368,7 +369,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator GpuInstacingMaterial()
     {
@@ -404,7 +405,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
     public IEnumerator StandardMaterial()
     {

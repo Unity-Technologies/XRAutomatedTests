@@ -1,1 +1,0 @@
-﻿OpenGL32.Lib(OPENGL32.dll) : fatal error LNK1112: module machine type 'x64' conflicts with target machine type 'ARM'

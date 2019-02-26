@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
@@ -57,9 +56,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         }
 
         ConfigureSettings();
-
-        CopyOculusSignatureFilesToProject();
-
+        
         PlatformSettings.SerializeToAsset();
 
     }
@@ -84,23 +81,6 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
         PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
         EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
         EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
-    }
-
-    private void CopyOculusSignatureFilesToProject()
-    {
-        var signatureFilePath =
-            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}OculusSignatureFiles";
-        var files = Directory.GetFiles(signatureFilePath);
-        var assetsPluginPath =
-            $"Assets{Path.DirectorySeparatorChar}Plugins{Path.DirectorySeparatorChar}Android{Path.DirectorySeparatorChar}assets";
-
-        foreach (var file in files)
-        {
-            if (!File.Exists(assetsPluginPath + file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar))))
-            {
-                File.Copy(file, assetsPluginPath + file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar)));
-            }
-        }
     }
 
     private static OptionSet DefineOptionSet()

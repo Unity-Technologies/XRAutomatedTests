@@ -1,7 +1,7 @@
 {
     "name": "Editor",
     "references": [
-        "Unity.WindowsMRAutomation"
+        "GUID:c6bedd5ae7ab748e5b010e812f9d5d1b"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [
@@ -12,5 +12,6 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": []
 }

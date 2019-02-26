@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System;
 
 #if UNITY_METRO
-using UnityEngine.XR.WSA.WebCam;
+
 #endif
 
 internal class CameraProjectionMatrix : TestBaseSetup
@@ -14,9 +14,9 @@ internal class CameraProjectionMatrix : TestBaseSetup
 #if UNITY_METRO
     GameObject m_Canvas = null;
     Renderer m_CanvasRenderer = null;
-    PhotoCapture m_PhotoCaptureObj = null;
-    PhotoCapture.PhotoCaptureResult m_Result;
-    CameraParameters m_CameraParameters;
+    UnityEngine.Windows.WebCam.PhotoCapture m_PhotoCaptureObj = null;
+    UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult m_Result;
+    UnityEngine.Windows.WebCam.CameraParameters m_CameraParameters;
     Texture2D m_Texture = null;
     Matrix4x4 m_HoloLensProjectionMatrix;
     Matrix4x4 m_UnityCameraProjectionMatrix;
@@ -50,19 +50,19 @@ internal class CameraProjectionMatrix : TestBaseSetup
         GameObject.Destroy(m_TestSetupHelpers.m_Cube);
 
         Debug.Log("Initializing...");
-        List<Resolution> resolutions = new List<Resolution>(PhotoCapture.SupportedResolutions);
+        List<Resolution> resolutions = new List<Resolution>(UnityEngine.Windows.WebCam.PhotoCapture.SupportedResolutions);
         Resolution selectedResolution = resolutions[0];
 
-        m_CameraParameters = new CameraParameters(WebCamMode.PhotoMode);
+        m_CameraParameters = new UnityEngine.Windows.WebCam.CameraParameters(UnityEngine.Windows.WebCam.WebCamMode.PhotoMode);
         m_CameraParameters.cameraResolutionWidth = selectedResolution.width;
         m_CameraParameters.cameraResolutionHeight = selectedResolution.height;
         m_CameraParameters.hologramOpacity = 0.0f;
-        m_CameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
+        m_CameraParameters.pixelFormat = UnityEngine.Windows.WebCam.CapturePixelFormat.BGRA32;
 
         m_Texture = new Texture2D(selectedResolution.width, selectedResolution.height, TextureFormat.BGRA32, false);
 
 
-        PhotoCapture.CreateAsync(false, OnCreatedPhotoCaptureObject);
+        UnityEngine.Windows.WebCam.PhotoCapture.CreateAsync(false, OnCreatedPhotoCaptureObject);
 
         yield return new WaitForSeconds(1f);
 
@@ -78,18 +78,18 @@ internal class CameraProjectionMatrix : TestBaseSetup
         Assert.IsTrue(m_HoloWCordCheck, "W Coordinate doesn't = 0" + HoloWCoord);
     }
 
-    void OnCreatedPhotoCaptureObject(PhotoCapture captureObject)
+    void OnCreatedPhotoCaptureObject(UnityEngine.Windows.WebCam.PhotoCapture captureObject)
     {
         m_PhotoCaptureObj = captureObject;
         m_PhotoCaptureObj.StartPhotoModeAsync(m_CameraParameters, OnStartPhotoMode);
     }
 
-    void OnStartPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    void OnStartPhotoMode(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
     {
         Debug.Log("Ready!");
     }
 
-    void OnPhotoCaptured(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
+    void OnPhotoCaptured(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result, UnityEngine.Windows.WebCam.PhotoCaptureFrame photoCaptureFrame)
     {
         if (m_Canvas == null)
         {
@@ -129,7 +129,7 @@ internal class CameraProjectionMatrix : TestBaseSetup
         m_PhotoCaptureObj.StopPhotoModeAsync(OnStoppedPhotoMode);
     }
 
-    public void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    public void OnStoppedPhotoMode(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
     {
         Debug.Log("Photo Capture has stopped");
         m_PhotoCaptureObj.Dispose();

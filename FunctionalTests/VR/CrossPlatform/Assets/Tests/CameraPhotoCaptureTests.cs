@@ -6,21 +6,21 @@ using System;
 using System.Linq;
 
 #if UNITY_METRO
-using UnityEngine.XR.WSA.WebCam;
+
 #endif
 
 internal class CameraPhotoCaptureTests : TestBaseSetup
 {
 #if UNITY_METRO
-    PhotoCapture m_PhotoCaptureObject = null;
+    UnityEngine.Windows.WebCam.PhotoCapture m_PhotoCaptureObject = null;
     private Texture2D m_TargetTexture = null;
     // Projection Matrix for the HoloLens Camera and the Unity Camera
     private Matrix4x4 m_HoloLensProjectionMatrix;
     private Matrix4x4 m_UnityCameraProjectionMatrix;
-    CameraParameters m_PhotoParameters;
+    UnityEngine.Windows.WebCam.CameraParameters m_PhotoParameters;
     // The plane created to view the image captured from the Web Camera
     private GameObject m_ImagePlane = null;
-    PhotoCapture.PhotoCaptureResult m_Result;
+    UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult m_Result;
 
     [SetUp]
     public override void SetUp()
@@ -68,7 +68,7 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
     // Start of the delegate Calls
     //
 
-    void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
+    void OnCapturedPhotoToMemory(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result, UnityEngine.Windows.WebCam.PhotoCaptureFrame photoCaptureFrame)
     {
         // Copy the raw image data into our target texture
         photoCaptureFrame.UploadImageDataToTexture(m_TargetTexture);
@@ -86,7 +86,7 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
         PlaneRenderer.material.SetTexture("_MainTex", m_TargetTexture);
     }
 
-    void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    void OnStoppedPhotoMode(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
     {
         // Shutdown the photo capture object and check result.
         if (result.success)
@@ -157,9 +157,9 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
         }
     }
 
-    public void SetCameraParameters(float HologramOpacity, Resolution CameraResolution, CapturePixelFormat PixelFormat)
+    public void SetCameraParameters(float HologramOpacity, Resolution CameraResolution, UnityEngine.Windows.WebCam.CapturePixelFormat PixelFormat)
     {
-        m_PhotoParameters = new CameraParameters();
+        m_PhotoParameters = new UnityEngine.Windows.WebCam.CameraParameters();
         m_PhotoParameters.hologramOpacity = HologramOpacity;
         m_PhotoParameters.cameraResolutionWidth = CameraResolution.width;
         m_PhotoParameters.cameraResolutionHeight = CameraResolution.height;
@@ -171,21 +171,21 @@ internal class CameraPhotoCaptureTests : TestBaseSetup
     public void TakeThePicture()
     {
         // Grab and set the resolution to the first in the list of supported resolutions
-        Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+        Resolution cameraResolution = UnityEngine.Windows.WebCam.PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         m_TargetTexture = new Texture2D(cameraResolution.width, cameraResolution.height);
 
         Debug.Log("Created the camera resolution: " + cameraResolution);
 
-        PhotoCapture.CreateAsync(true, delegate (PhotoCapture captureObject)
+        UnityEngine.Windows.WebCam.PhotoCapture.CreateAsync(true, delegate (UnityEngine.Windows.WebCam.PhotoCapture captureObject)
         {
             this.m_PhotoCaptureObject = captureObject;
 
-            SetCameraParameters(1f, cameraResolution, CapturePixelFormat.BGRA32);
+            SetCameraParameters(1f, cameraResolution, UnityEngine.Windows.WebCam.CapturePixelFormat.BGRA32);
             Debug.Log("camera resolution: " + cameraResolution +
                                                    Environment.NewLine + "Holo Opacity: " + 1f +
                                                    Environment.NewLine + "Format:  BGRA32");
 
-            captureObject.StartPhotoModeAsync(m_PhotoParameters, delegate (PhotoCapture.PhotoCaptureResult result)
+            captureObject.StartPhotoModeAsync(m_PhotoParameters, delegate (UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
             {
                 m_PhotoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
                 Debug.Log("Taking the Picture");

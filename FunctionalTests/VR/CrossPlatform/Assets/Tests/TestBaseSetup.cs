@@ -42,13 +42,13 @@ internal class TestBaseSetup
     public GameObject m_Cube;
 
 #if UNITY_EDITOR && UNITY_METRO
-    public SimulatedHead head { get { return HolographicAutomation.simulatedHead; } }
-    public SimulatedBody body { get { return HolographicAutomation.simulatedBody; } }
-    public SimulatedHand leftHand { get { return HolographicAutomation.simulatedLeftHand; } }
-    public SimulatedHand rightHand { get { return HolographicAutomation.simulatedRightHand; } }
+    //public SimulatedHead head { get { return HolographicAutomation.simulatedHead; } }
+    //public SimulatedBody body { get { return HolographicAutomation.simulatedBody; } }
+    //public SimulatedHand leftHand { get { return HolographicAutomation.simulatedLeftHand; } }
+    //public SimulatedHand rightHand { get { return HolographicAutomation.simulatedRightHand; } }
 
 
-    public EditorWindow m_EmulationWindow;
+    //public EditorWindow m_EmulationWindow;
 #endif
 
     [OneTimeSetUp]
@@ -64,22 +64,22 @@ internal class TestBaseSetup
 #endif
 
 #if UNITY_EDITOR && UNITY_METRO
-        if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
-        {
-            //Configure Holographic Emulation
-            var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
-            emulationWindow.Show();
+        //if (settings.simulationMode == "HoloLens" || settings.simulationMode == "WindowsMR")
+        //{
+        //    //Configure Holographic Emulation
+        //    var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
+        //    emulationWindow.Show();
 
-            if (settings.simulationMode == "HoloLens")
-            {
-                emulationWindow.emulationMode = EmulationMode.Simulated;
-                HolographicAutomation.SetPlaymodeInputType(PlaymodeInputType.LeftHand);
-            }
-            else if (settings.simulationMode == "WindowsMR")
-            {
-                emulationWindow.emulationMode = EmulationMode.None;
-            }   
-        }
+        //    if (settings.simulationMode == "HoloLens")
+        //    {
+        //        emulationWindow.emulationMode = EmulationMode.Simulated;
+        //        HolographicAutomation.SetPlaymodeInputType(PlaymodeInputType.LeftHand);
+        //    }
+        //    else if (settings.simulationMode == "WindowsMR")
+        //    {
+        //        emulationWindow.emulationMode = EmulationMode.None;
+        //    }   
+        //}
 #endif
     }
 
@@ -128,19 +128,19 @@ internal class TestBaseSetup
 
     public bool OnlyRunHoloLensSimulatedDeviceCheck()
     {
-#if UNITY_EDITOR && UNITY_METRO
-        var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
+//#if UNITY_EDITOR && UNITY_METRO
+//        var emulationWindow = EditorWindow.GetWindow<HolographicEmulationWindow>();
         
-        if (emulationWindow.emulationMode == EmulationMode.None)
-        {
-            Assert.Ignore("Current Setup is not for Simulated Device");
-            return false;
-        }
-        else if(emulationWindow.emulationMode != EmulationMode.Simulated)
-        {
-            return true;
-        }
-#endif
+//        if (emulationWindow.emulationMode == EmulationMode.None)
+//        {
+//            Assert.Ignore("Current Setup is not for Simulated Device");
+//            return false;
+//        }
+//        else if(emulationWindow.emulationMode != EmulationMode.Simulated)
+//        {
+//            return true;
+//        }
+//#endif
 
         Assert.Ignore("Current Setup is not for Emulation");
         return false;

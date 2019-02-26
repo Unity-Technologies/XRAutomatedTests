@@ -6,17 +6,17 @@ using System.Linq;
 using System.Collections.Generic;
 
 #if UNITY_METRO
-using UnityEngine.XR.WSA.WebCam;
+
 #endif
 
 internal class CameraPhotoRawCapture : TestBaseSetup
 {
 #if UNITY_METRO
-    PhotoCapture m_PhotoCaptureObject = null;
+    UnityEngine.Windows.WebCam.PhotoCapture m_PhotoCaptureObject = null;
     Texture2D m_TargetTexture = null;
     Renderer m_QuadRenderer = null;
 
-    private PhotoCapture.PhotoCaptureResult m_Result;
+    private UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult m_Result;
 
     [TearDown]
     public void TearDown()
@@ -46,7 +46,7 @@ internal class CameraPhotoRawCapture : TestBaseSetup
         
 	}
 
-    public void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
+    public void OnCapturedPhotoToMemory(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result, UnityEngine.Windows.WebCam.PhotoCaptureFrame photoCaptureFrame)
     {
         List<byte> imageBufferList = new List<byte>();
         // Copy the raw IMFMediaBuffer data into our empty byte list.
@@ -82,7 +82,7 @@ internal class CameraPhotoRawCapture : TestBaseSetup
         m_QuadRenderer.material.SetTexture("_MainTex", m_TargetTexture);
     }
 
-    public void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    public void OnStoppedPhotoMode(UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
     {
         Debug.Log("Captured images have been saved at the following path.");
         Debug.Log(Application.persistentDataPath);
@@ -92,21 +92,21 @@ internal class CameraPhotoRawCapture : TestBaseSetup
 
     void PhotoCaptureCreate()
     {
-        Resolution cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+        Resolution cameraResolution = UnityEngine.Windows.WebCam.PhotoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
 
         m_TargetTexture = new Texture2D(cameraResolution.width, cameraResolution.height, TextureFormat.RGBA32, false);
 
-        PhotoCapture.CreateAsync(false, delegate (PhotoCapture captureObject)
+        UnityEngine.Windows.WebCam.PhotoCapture.CreateAsync(false, delegate (UnityEngine.Windows.WebCam.PhotoCapture captureObject)
         {
             Debug.Log("Created PhotoCapture Object");
             m_PhotoCaptureObject = captureObject;
 
-            CameraParameters c = new CameraParameters();
+            UnityEngine.Windows.WebCam.CameraParameters c = new UnityEngine.Windows.WebCam.CameraParameters();
             c.cameraResolutionWidth = m_TargetTexture.width;
             c.cameraResolutionHeight = m_TargetTexture.height;
-            c.pixelFormat = CapturePixelFormat.BGRA32;
+            c.pixelFormat = UnityEngine.Windows.WebCam.CapturePixelFormat.BGRA32;
 
-            captureObject.StartPhotoModeAsync(c, delegate (PhotoCapture.PhotoCaptureResult result)
+            captureObject.StartPhotoModeAsync(c, delegate (UnityEngine.Windows.WebCam.PhotoCapture.PhotoCaptureResult result)
             {
                 Debug.Log("Started Photo Capture Mode");
                 m_PhotoCaptureObject.TakePhotoAsync(this.OnCapturedPhotoToMemory);

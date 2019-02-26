@@ -6,15 +6,15 @@ using System;
 using System.Linq;
 
 #if UNITY_METRO
-using UnityEngine.XR.WSA.WebCam;
+
 #endif
 
 [Ignore("Test is not failing for a unknown reason")]
 internal class CameraVideoCaptureTests : TestBaseSetup
 {
 #if UNITY_METRO
-    VideoCapture m_VideoCapture = null;
-    VideoCapture.VideoCaptureResult m_Result;
+    UnityEngine.Windows.WebCam.VideoCapture m_VideoCapture = null;
+    UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult m_Result;
 
 
     [UnityTest]
@@ -34,31 +34,31 @@ internal class CameraVideoCaptureTests : TestBaseSetup
     {
         // Set the camera resolution by picking the first resolution from the supported list
         Resolution cameraResolution =
-            VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
+            UnityEngine.Windows.WebCam.VideoCapture.SupportedResolutions.OrderByDescending((res) => res.width * res.height).First();
         Debug.Log(cameraResolution);
 
         // Set the FPS by picking the first resolution from the supported list
         float cameraFramerate =
-            VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
+            UnityEngine.Windows.WebCam.VideoCapture.GetSupportedFrameRatesForResolution(cameraResolution).OrderByDescending((fps) => fps).First();
         Debug.Log("Camera fps: " + cameraFramerate);
 
-        VideoCapture.CreateAsync(false, delegate (VideoCapture videoCapture)
+        UnityEngine.Windows.WebCam.VideoCapture.CreateAsync(false, delegate (UnityEngine.Windows.WebCam.VideoCapture videoCapture)
         {
             if (videoCapture != null)
             {
                 m_VideoCapture = videoCapture;
                 Debug.Log("Created VideoCapture Instance!");
 
-                CameraParameters cameraParameters = new CameraParameters(WebCamMode.VideoMode);
-                Debug.Log("Initial WebCam Mode = " + WebCam.Mode);
+                UnityEngine.Windows.WebCam.CameraParameters cameraParameters = new UnityEngine.Windows.WebCam.CameraParameters(UnityEngine.Windows.WebCam.WebCamMode.VideoMode);
+                Debug.Log("Initial WebCam Mode = " + UnityEngine.Windows.WebCam.WebCam.Mode);
                 cameraParameters.hologramOpacity = 1f;
                 cameraParameters.frameRate = cameraFramerate;
                 cameraParameters.cameraResolutionWidth = cameraResolution.width;
                 cameraParameters.cameraResolutionHeight = cameraResolution.height;
-                cameraParameters.pixelFormat = CapturePixelFormat.BGRA32;
+                cameraParameters.pixelFormat = UnityEngine.Windows.WebCam.CapturePixelFormat.BGRA32;
 
                 m_VideoCapture.StartVideoModeAsync(cameraParameters,
-                    VideoCapture.AudioState.ApplicationAndMicAudio,
+                    UnityEngine.Windows.WebCam.VideoCapture.AudioState.ApplicationAndMicAudio,
                     OnStartedVideoCaptureMode);
             }
             else
@@ -76,10 +76,10 @@ internal class CameraVideoCaptureTests : TestBaseSetup
     //
     // Start of the Delegate calls for Video Capture
     //
-    void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    void OnStartedVideoCaptureMode(UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult result)
     {
         Debug.Log("Started Video Capture Mode!");
-        Debug.Log(WebCam.Mode);
+        Debug.Log(UnityEngine.Windows.WebCam.WebCam.Mode);
         string timeStamp = Time.time.ToString().Replace(".", "");
         string fileNameVideo = string.Format("TestVideo_{0}.mp4", timeStamp);
         string filePathVideo = System.IO.Path.Combine(Application.persistentDataPath, fileNameVideo);
@@ -92,21 +92,21 @@ internal class CameraVideoCaptureTests : TestBaseSetup
         }
     }
 
-    void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    void OnStartedRecordingVideo(UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult result)
     {
         Debug.Log("Started Recording Video!");
     }
 
-    void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    void OnStoppedRecordingVideo(UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult result)
     {
         Debug.Log("Stopped Recording Video!");
         m_VideoCapture.StopVideoModeAsync(OnStoppedVideoCaptureMode);
     }
 
-    void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    void OnStoppedVideoCaptureMode(UnityEngine.Windows.WebCam.VideoCapture.VideoCaptureResult result)
     {
         Debug.Log("Stopped Video Capture Mode!");
-        Debug.Log(WebCam.Mode);
+        Debug.Log(UnityEngine.Windows.WebCam.WebCam.Mode);
 
         m_VideoCapture.Dispose();
         m_VideoCapture = null;

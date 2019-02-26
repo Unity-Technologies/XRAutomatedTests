@@ -20,7 +20,7 @@ namespace UnityEngine.TestTools.Graphics
         /// <param name="expected">The expected image that should be rendered by the camera.</param>
         /// <param name="camera">The camera to render from.</param>
         /// <param name="settings">Optional settings that control how the image comparison is performed. Can be null, in which case the rendered image is required to be exactly identical to the reference.</param>
-        public static void AreEqual(Texture2D expected, Camera camera, ImageComparisonSettings settings = null)
+        public static void AreEqual(Texture2D expected, Camera camera, ImageComparisonSettings settings = null, string testResultsDirectory = "")
         {
             if (!camera)
                 throw new ArgumentNullException("camera");
@@ -47,7 +47,7 @@ namespace UnityEngine.TestTools.Graphics
 
                 actual.Apply();
 
-                AreEqual(expected, actual, settings);
+                AreEqual(expected, actual, settings, testResultsDirectory);
             }
             finally
             {
@@ -63,7 +63,7 @@ namespace UnityEngine.TestTools.Graphics
         /// <param name="expected">What the image is supposed to look like.</param>
         /// <param name="actual">What the image actually looks like.</param>
         /// <param name="settings">Optional settings that control how the comparison is performed. Can be null, in which case the images are required to be exactly identical.</param>
-        public static void AreEqual(Texture2D expected, Texture2D actual, ImageComparisonSettings settings = null)
+        public static void AreEqual(Texture2D expected, Texture2D actual, ImageComparisonSettings settings = null, string testResultsDirectory = "")
         {
             if (actual == null)
                 throw new ArgumentNullException("actual");
@@ -117,7 +117,7 @@ namespace UnityEngine.TestTools.Graphics
                         var imageName = TestContext.CurrentContext.Test.Name + "-DiffImage.png";
                         var saveDir = Path.Combine(Application.persistentDataPath, imageName);
                         File.WriteAllBytes(saveDir, diffImage.EncodeToPNG());
-                        TestContext.CurrentContext.Test.Properties.Set("DiffImage", imageName);
+                        TestContext.CurrentContext.Test.Properties.Set("DiffImage", Path.Combine(testResultsDirectory, imageName));
 
                         throw;
                     }
@@ -128,7 +128,7 @@ namespace UnityEngine.TestTools.Graphics
                 var imageName = TestContext.CurrentContext.Test.Name + "-ActualImage.png";
                 var saveDir = Path.Combine(Application.persistentDataPath, imageName);
                 File.WriteAllBytes(saveDir, actual.EncodeToPNG());
-                TestContext.CurrentContext.Test.Properties.Set("Image", imageName);
+                TestContext.CurrentContext.Test.Properties.Set("Image", Path.Combine(testResultsDirectory, imageName));
 
                 throw;
             }

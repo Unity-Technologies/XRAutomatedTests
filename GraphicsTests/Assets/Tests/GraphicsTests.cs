@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,17 @@ using UnityEditor;
 
 public class GraphicsTests
 {
+    private string imageResultsPath;
+
+    [OneTimeSetUp()]
+    public void CreateResultsDirectoryAsset()
+    {
+        // this asset should be created in the prebuild setup, the value comes from a cmdline parameter
+        imageResultsPath = Resources.Load<TextAsset>("ResultsImagesDirectory")?.text;
+        if (imageResultsPath == null)
+            imageResultsPath = string.Empty;
+    }
+
     [UnityTest]
     [PrebuildSetup("GraphicsTestSetup")]
     [PostBuildCleanup("GraphicsTestCleanup")]
@@ -36,6 +48,6 @@ public class GraphicsTests
 
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
         
-        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
+        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
     }
 }

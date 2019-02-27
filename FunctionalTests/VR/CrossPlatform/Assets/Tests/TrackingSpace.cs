@@ -5,14 +5,8 @@ using UnityEngine.XR;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-#if UNITY_METRO
-using UnityEngine.XR.WSA;
-#endif
-
-//[Ignore("Metro/wsa is disabled on Katana")]
-internal class TrackingSpace : TestBaseSetup
+public class TrackingSpace : TestBaseSetup
 {
-
     [UnityTest]
     public IEnumerator GetCurrentTrackingSpace()
     {
@@ -26,10 +20,9 @@ internal class TrackingSpace : TestBaseSetup
     [UnityTest]
     public IEnumerator SwitchTrackingModes()
     {
-#if UNITY_METRO
         TrackingSpaceType trackingSpaceResult = new TrackingSpaceType();
 
-        if (WorldManager.state != PositionalLocatorState.Inhibited)
+        if (XRDevice.GetTrackingSpaceType() != TrackingSpaceType.RoomScale)
         {
             XRDevice.SetTrackingSpaceType(TrackingSpaceType.RoomScale);
             yield return null;
@@ -45,7 +38,6 @@ internal class TrackingSpace : TestBaseSetup
         trackingSpaceResult = XRDevice.GetTrackingSpaceType();
         yield return null;
         Assert.AreEqual(TrackingSpaceType.Stationary, trackingSpaceResult, "Tracking space failed to switch to Stationary");
-#endif
         yield return null;
     }
 

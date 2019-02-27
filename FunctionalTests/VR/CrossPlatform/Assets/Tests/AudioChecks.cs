@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UAssert = UnityEngine.Assertions.Assert;
 
-internal class AudioChecks : TestBaseSetup
+public class AudioChecks : TestBaseSetup
 {
     private AudioSource m_AudioSource = null;
 

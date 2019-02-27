@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-internal class RenderingChecks : TestBaseSetup
+public class RenderingChecks : TestBaseSetup
 {
     enum States
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-internal class DllNativePluginTest : TestBaseSetup
+public class DllNativePluginTest : TestBaseSetup
 {
     private bool m_SceneObjectsLoaded = false;
     private bool m_RenderingImage = false;

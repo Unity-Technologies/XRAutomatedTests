@@ -39,7 +39,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     PlayerSettings.SetScriptingBackend(BuildTargetGroup.WSA, ScriptingImplementation.IL2CPP);
                     PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
 
-                    PlatformSettings.enabledXrTargets = new string[] { "WindowsMR", "None" };
+                    PlatformSettings.enabledXrTargets = new string[] { "None" };
                     break;
                 case BuildTargetGroup.Android:
                 case BuildTargetGroup.iOS:
@@ -69,7 +69,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
             PlatformSettings.BuildTargetGroup,
             PlatformSettings.enabledXrTargets);
 
-        if (PlatformSettings.enabledXrTargets.FirstOrDefault() != "WindowsMR")
+        if (PlatformSettings.enabledXrTargets.FirstOrDefault() != "None")
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(
                 PlatformSettings.BuildTargetGroup,
@@ -92,11 +92,7 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
                     "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
                     xrTarget => PlatformSettings.enabledXrTargets = new string[] {xrTarget, "None"}
                 },
-                {
-                    "simulationMode=",
-                    "Enable Simulation modes for Windows MR in Editor. Values: \r\n\"HoloLens\"\r\n\"WindowsMR\"\r\n\"Remoting\"",
-                    simMode => PlatformSettings.simulationMode = simMode
-                },
+
                 {
                     "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
                     graphicsDeviceType => PlatformSettings.playerGraphicsApi =

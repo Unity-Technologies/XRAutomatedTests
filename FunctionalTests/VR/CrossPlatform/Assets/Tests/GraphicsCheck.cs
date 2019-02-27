@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-internal class GraphicsCheck : TestBaseSetup
+public class GraphicsCheck : TestBaseSetup
 {
     enum States
     {

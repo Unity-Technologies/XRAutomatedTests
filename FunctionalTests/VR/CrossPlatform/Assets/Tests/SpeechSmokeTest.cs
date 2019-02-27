@@ -9,7 +9,7 @@ using System;
 using UnityEngine.Windows.Speech;
 #endif
 
-internal class SpeechSmokeTest : TestBaseSetup
+public class SpeechSmokeTest : TestBaseSetup
 {
 #if UNITY_METRO
     // Speech Systems
@@ -41,7 +41,6 @@ internal class SpeechSmokeTest : TestBaseSetup
     [UnityTest]
     public IEnumerator KeywordTest()
     {
-        WmrDeviceCheck();
         m_Keyword = new KeywordRecognizer(keywords);
         m_Keyword.OnPhraseRecognized += M_Keyword_OnPhraseRecognized;
         m_Keyword.Start();
@@ -67,7 +66,6 @@ internal class SpeechSmokeTest : TestBaseSetup
     [UnityTest]
     public IEnumerator DictationTest()
 	{
-	    WmrDeviceCheck();
         m_Dictation = new DictationRecognizer(ConfidenceLevel.High, DictationTopicConstraint.Dictation);
         m_Dictation.AutoSilenceTimeoutSeconds = UnityEngine.Random.Range(5f, 100f);
         m_Dictation.InitialSilenceTimeoutSeconds = UnityEngine.Random.Range(5, 100f);
@@ -102,7 +100,6 @@ internal class SpeechSmokeTest : TestBaseSetup
     [UnityTest]
     public IEnumerator GrammarTest()
 	{
-	    WmrDeviceCheck();
         if (PhraseRecognitionSystem.isSupported)
         {
             m_GrammarFilePath = Application.streamingAssetsPath + "/combinations.grxml";

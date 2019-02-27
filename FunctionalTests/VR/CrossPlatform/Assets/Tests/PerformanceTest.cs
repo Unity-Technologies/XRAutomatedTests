@@ -6,11 +6,7 @@ using System.Collections;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-#if UNITY_METRO
-using UnityEngine.XR.WSA;
-#endif
-
-internal class PerformanceTest : TestBaseSetup
+public class PerformanceTest : TestBaseSetup
 {
     int m_NonPerformantFrameCount;
     private int m_CubeCount = 0;
@@ -35,11 +31,6 @@ internal class PerformanceTest : TestBaseSetup
     {
         if (Time.deltaTime > k_FrameTimeMax)
             ++m_NonPerformantFrameCount;
-
-#if UNITY_METRO
-        if (m_TestingFocalPoint)
-            HolographicSettings.SetFocusPointForFrame(new Vector3(Random.value, Random.value, Random.value));
-#endif
     }
 
     [UnityTest]

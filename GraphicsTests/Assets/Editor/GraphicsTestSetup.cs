@@ -55,8 +55,6 @@ public class GraphicsTestSetup : IPrebuildSetup
         new EnablePlatformPrebuildStep().Setup();
         new UnityEditor.TestTools.Graphics.SetupGraphicsTestCases().Setup();
 
-        Directory.Delete(Application.persistentDataPath, true);
-
         EditorApplication.quitting += CopyImages;
     }
 

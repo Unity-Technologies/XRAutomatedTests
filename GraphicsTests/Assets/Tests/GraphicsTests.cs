@@ -21,6 +21,10 @@ public class GraphicsTests
         imageResultsPath = Resources.Load<TextAsset>("ResultsImagesDirectory")?.text;
         if (imageResultsPath == null)
             imageResultsPath = string.Empty;
+
+        // clean out any old screenshots
+        foreach (var png in Directory.EnumerateFiles(Application.persistentDataPath, "*.png"))
+            File.Delete(png);
     }
 
     [UnityTest]

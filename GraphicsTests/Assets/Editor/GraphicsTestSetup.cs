@@ -11,12 +11,13 @@ public static class TestConstants
     // default test results location is project root directory
     public static string TestResultsPath = "./";
     public static string ResultsImagesPath = "./ResultsImages";
-    public static string TestResultsFile = "TestResults.xml";
+
+    public static string FullResultsImagesPath { get => Path.Combine(TestResultsPath, ResultsImagesPath);}
 }
 
-public class GraphicsTestSetup : IPrebuildSetup
+public class GraphicsTestSetup
 {
-    public void Setup()
+    public static void Setup()
     {
         var args = System.Environment.GetCommandLineArgs();
 
@@ -24,32 +25,24 @@ public class GraphicsTestSetup : IPrebuildSetup
         {
             if (args[i] == "-testResults")
             {
-                TestConstants.TestResultsFile = Path.GetFileName(args[i + 1]);
                 TestConstants.TestResultsPath = Path.GetDirectoryName(args[i + 1]);
             }
-                
-
-            if (args[i] == "-imagesResultsPath")
-                TestConstants.ResultsImagesPath = args[i + 1];
         }
-
-        TestConstants.ResultsImagesPath = Path.Combine(TestConstants.TestResultsPath, TestConstants.ResultsImagesPath);
 
         // this is created to save image location in the test results at runtime so the test reporter creator can find them
         var imageDirectoryAsset = new TextAsset(TestConstants.ResultsImagesPath);
         AssetDatabase.CreateAsset(imageDirectoryAsset, "Assets/Resources/ResultsImagesDirectory.asset");
 
-        if (Directory.Exists(TestConstants.ResultsImagesPath))
+        if (Directory.Exists(TestConstants.FullResultsImagesPath))
         {
-            foreach (var png in Directory.EnumerateFiles(TestConstants.ResultsImagesPath, "*.png"))
+            foreach (var png in Directory.EnumerateFiles(TestConstants.FullResultsImagesPath, "*.png"))
             {
                 File.Delete(png);
-                File.Delete(TestConstants.TestResultsFile);
             }
         }
         else
         {
-            Directory.CreateDirectory(TestConstants.ResultsImagesPath);
+            Directory.CreateDirectory(TestConstants.FullResultsImagesPath);
         }
 
         new EnablePlatformPrebuildStep().Setup();
@@ -58,7 +51,7 @@ public class GraphicsTestSetup : IPrebuildSetup
         EditorApplication.quitting += CopyImages;
     }
 
-    private void CopyImages()
+    private static void CopyImages()
     {
 
         if (PlatformSettings.BuildTargetGroup == BuildTargetGroup.Android)
@@ -70,7 +63,7 @@ public class GraphicsTestSetup : IPrebuildSetup
             proc.StartInfo.RedirectStandardOutput = true;
             proc.StartInfo.UseShellExecute = false;
             proc.StartInfo.FileName = "adb.exe";
-            proc.StartInfo.Arguments = "pull " + fullPath + " " + TestConstants.ResultsImagesPath;
+            proc.StartInfo.Arguments = "pull " + fullPath + " " + TestConstants.FullResultsImagesPath;
             proc.Start();
 
             var output = new StringBuilder();
@@ -83,14 +76,14 @@ public class GraphicsTestSetup : IPrebuildSetup
             Debug.Log(output);
 
             // whole dir is copied since pull doesn't take wildcards so do this cleanup.
-            var files = Directory.GetFiles(TestConstants.ResultsImagesPath + "/files", "*.png");
+            var files = Directory.GetFiles(TestConstants.FullResultsImagesPath + "/files", "*.png");
 
             foreach (var moveFile in files)
             {
-                File.Move(moveFile, TestConstants.ResultsImagesPath + "/" + Path.GetFileName(moveFile));
+                File.Move(moveFile, TestConstants.FullResultsImagesPath + "/" + Path.GetFileName(moveFile));
             }
 
-            Directory.Delete(TestConstants.ResultsImagesPath + "/files", true);
+            Directory.Delete(TestConstants.FullResultsImagesPath + "/files", true);
         }
         else if (PlatformSettings.BuildTargetGroup == BuildTargetGroup.Standalone)
         {
@@ -98,11 +91,11 @@ public class GraphicsTestSetup : IPrebuildSetup
 
             foreach (var moveFile in files)
             {
-                File.Move(moveFile, TestConstants.ResultsImagesPath + "/" + Path.GetFileName(moveFile));
+                File.Move(moveFile, TestConstants.FullResultsImagesPath + "/" + Path.GetFileName(moveFile));
             }
         }
 
-        if (Directory.GetFiles(TestConstants.ResultsImagesPath).Length == 0)
-            Directory.Delete(TestConstants.ResultsImagesPath);
+        if (Directory.GetFiles(TestConstants.FullResultsImagesPath).Length == 0)
+            Directory.Delete(TestConstants.FullResultsImagesPath);
     }
 }

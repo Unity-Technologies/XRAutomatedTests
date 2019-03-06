@@ -28,7 +28,6 @@ public class GraphicsTests
     }
 
     [UnityTest]
-    [PrebuildSetup("GraphicsTestSetup")]
     [UseGraphicsTestCases]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {
@@ -52,5 +51,7 @@ public class GraphicsTests
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
         
         ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
+
+
     }
 }

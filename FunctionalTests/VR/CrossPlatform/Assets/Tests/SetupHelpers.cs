@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.SpatialTracking;
 
 public enum TestStageConfig
 {
@@ -23,12 +24,16 @@ public enum TestCubesConfig
 public class TestSetupHelpers : TestBaseSetup
 {
     private int m_CubeCount = 0;
+    
 
     private void CameraLightSetup()
     {
         m_Camera = new GameObject("Camera");
         m_Camera.AddComponent<Camera>();
+        m_Camera.AddComponent<TrackedPoseDriver>();
 
+        var trackedPoseDriver = m_Camera.GetComponent<TrackedPoseDriver>();
+        trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRDevice, TrackedPoseDriver.TrackedPose.Head);
 
         m_Light = new GameObject("Light");
         Light light = m_Light.AddComponent<Light>();

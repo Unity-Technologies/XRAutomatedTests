@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-#if UNITY_2017_2_OR_NEWER
+﻿using UnityEngine;
+#if UNITY_2017_2_OR_NEWER && ENABLE_VR
 using UnityEngine.XR;
-#else
+#elif ENABLE_VR
 using UnityEngine.VR;
 #endif
 
@@ -32,7 +30,7 @@ public class Performance : MonoBehaviour {
             m_FrameCount++;
 
             string output = "";
-#if UNITY_2017_2_OR_NEWER
+#if UNITY_2017_2_OR_NEWER && ENABLE_VR
 
 
             if(XRStats.TryGetGPUTimeLastFrame(out gpuLastFrameTime))

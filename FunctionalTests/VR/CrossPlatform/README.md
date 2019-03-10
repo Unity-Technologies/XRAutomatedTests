@@ -1,44 +1,43 @@
 # Cross Platform VR Automated Tests
 
-The purpose of this project is to run a common set of automated tests for the Unity APIs and features across the XR Platforms that Unity support.  This is not meant to be an exhaustive test across all of the XR Platforms, but should give a good idea of 
-the status of each platform and the Unity APIs.
-
+The purpose of this project is to run a common set of autoamted tests for the Unity APIs and features across the XR Platforms that Unity support.  This is not meant to be an exhaustive test across all of the XR Platforms, but should give a good idea of the status of each platform and the Unity APIs.
+***
 ## Platforms
 
-* Windows Standalone
-  * Oculus
-  * OpenVR
-  * MockHMD
-* MacOS Standalone
-  * OpenVR
-  * MockHMD
-* UWP
-  * Windows Mixed Reality
-* Android
-  * Oculus
-  * Daydream
-  * Cardboard
-* iOS
-  * Cardboard
-
+- Windows Standalone
+-- Oculus
+-- OpenVR
+-- MockHMD
+- MacOS Standalone
+-- OpenVR
+-- MockHMD
+- UWP
+-- Windows Mixed Reality
+- Android
+-- Oculus
+-- Daydream
+-- Cardboard
+- iOS
+-- Carboard
+***
 ## Tests
 
-* Audio
-  * Controls
-  * Spatialized Audio
-* Camera
-  * Gaze
-  * Configuration
-  * Screenshot
-  * Eye/Node Position
-* Graphics Configuration
-  * Coordinate System
-  * Rendering
-* Performance APIs
-* XR Settings APIs
-* XR Nodes
-* XR Smoke Tests
-
+- Audio
+-- Controls
+-- Spatialized Audio
+- Camera
+-- Gaze
+-- Configuration
+-- Screenshot
+-- Eye/Node Position
+- Graphics Configuration
+-- Coordinate System
+-- Rendering
+- Performance APIs
+- XR Settings APIs
+- XR Nodes
+- XR Smoke Tests
+***
 ## How to run
 
 ### Run from Command Line

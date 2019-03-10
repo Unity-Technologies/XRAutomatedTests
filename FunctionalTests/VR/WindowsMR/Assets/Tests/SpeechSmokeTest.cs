@@ -9,6 +9,13 @@ using System;
 using UnityEngine.Windows.Speech;
 #endif
 
+[UnityPlatform(include = new [] {
+    RuntimePlatform.MetroPlayerARM, 
+    RuntimePlatform.MetroPlayerX64,
+    RuntimePlatform.MetroPlayerX86, 
+    RuntimePlatform.WSAPlayerX64, 
+    RuntimePlatform.WSAPlayerARM, 
+    RuntimePlatform.WSAPlayerX86})]
 public class SpeechSmokeTest : TestBaseSetup
 {
 #if UNITY_METRO

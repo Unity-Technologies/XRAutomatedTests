@@ -17,8 +17,6 @@ using UnityEngine.XR;
     RuntimePlatform.WSAPlayerX64,
     RuntimePlatform.WSAPlayerX86
 })]
-
-[PrebuildSetup("EnablePlatformPrebuildStep")]
 public class TestBaseSetup
 {
     public TestSetupHelpers m_TestSetupHelpers;

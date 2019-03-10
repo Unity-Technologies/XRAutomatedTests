@@ -20,6 +20,7 @@ public class AudioChecks : TestBaseSetup
         m_TestSetupHelpers.m_Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
 
         m_AudioSource = m_TestSetupHelpers.m_Cube.GetComponent<AudioSource>();
+        m_TestSetupHelpers.m_Camera.AddComponent<AudioListener>();
     }
 
     [TearDown]
@@ -62,7 +63,7 @@ public class AudioChecks : TestBaseSetup
     }
 
     [UnityTest]
-    public IEnumerator AudioSpatlize()
+    public IEnumerator AudioSpatialize()
     {
         yield return null;
         m_AudioSource.spatialize = true;
@@ -75,11 +76,11 @@ public class AudioChecks : TestBaseSetup
 
         var blendAmount = 0f;
 
-        for (float i = 0f; i < 10f; ++i)
+        for (var i = 0f; i < 10f; ++i)
         {
             blendAmount = blendAmount + 0.1f;
             m_AudioSource.spatialBlend = blendAmount;
-            Debug.Log("Changing bland amount : " + blendAmount);
+            Debug.Log("Changing blend amount : " + blendAmount);
 
             yield return new WaitForSeconds(1f);
 
@@ -103,7 +104,7 @@ public class AudioChecks : TestBaseSetup
 
         var volumeAmount = 0f;
 
-        for (float i = 0f; i < 10f; ++i)
+        for (var i = 0f; i < 10f; ++i)
         {
             volumeAmount = volumeAmount + 0.1f;
             m_AudioSource.volume = volumeAmount;

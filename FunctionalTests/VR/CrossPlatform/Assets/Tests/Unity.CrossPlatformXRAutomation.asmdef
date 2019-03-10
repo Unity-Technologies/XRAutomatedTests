@@ -1,6 +1,8 @@
 {
     "name": "Unity.CrossPlatformXRAutomation",
-    "references": [],
+    "references": [
+        "GUID:7dba57cf4c7e949bc9a312f3160727ff"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],

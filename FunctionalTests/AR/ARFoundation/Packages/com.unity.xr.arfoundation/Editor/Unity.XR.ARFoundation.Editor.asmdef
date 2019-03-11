@@ -1,0 +1,11 @@
+{
+    "name": "Unity.XR.ARFoundation.Editor",
+    "references": [
+      "Unity.XR.ARFoundation",
+      "UnityEngine.SpatialTracking"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

@@ -36,7 +36,7 @@ internal class XRSmokeTest : TestBaseSetup
     }
     
     [UnityTest]
-    [Ignore("Inconsistent results for test.")]
+    //[Ignore("Inconsistent results for test.")]
     public IEnumerator CanDisableAndEnableXR()
     {
         yield return new MonoBehaviourTest<SwapXREnabled>();

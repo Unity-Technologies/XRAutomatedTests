@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+
+[UnityPlatform(exclude = new [] {RuntimePlatform.Android})]
 public class DllNativePluginTest : TestBaseSetup
 {
     private bool m_SceneObjectsLoaded = false;
     private bool m_RenderingImage = false;
 
-    private GameObject m_RenderPlain;
+    private GameObject m_RenderPlane;
     private GameObject m_BaseSphere;
 
     private Light m_SpotLight;
@@ -28,16 +30,13 @@ public class DllNativePluginTest : TestBaseSetup
     [SetUp]
     public void NativeDllTestSetUp()
     {
-        if (Application.platform != RuntimePlatform.Android)
-        {
-            CreateDllLoad();
-        }
+        CreateDllLoad();
     }
 
     [TearDown]
     public void NativeDllTestTearDown()
     {
-        Object.Destroy(m_RenderPlain);
+        Object.Destroy(m_RenderPlane);
         Object.Destroy(m_BaseSphere);
         Object.Destroy(m_SpotLight);
 
@@ -55,9 +54,9 @@ public class DllNativePluginTest : TestBaseSetup
 
     private void CreateDllLoad()
     {
-        m_RenderPlain = Object.Instantiate(Resources.Load("Prefabs/_PlaneThatCallsIntoPlugin", typeof(GameObject)) as GameObject);
-        m_SpotLight = Object.Instantiate(Resources.Load("Prefabs/Spotlight", typeof(Light)) as Light);
-        m_BaseSphere = Object.Instantiate(Resources.Load("Prefabs/Sphere", typeof(GameObject)) as GameObject);
+        m_RenderPlane = Object.Instantiate(Resources.Load<GameObject>("Prefabs/_PlaneThatCallsIntoPlugin"));
+        m_SpotLight = Object.Instantiate(Resources.Load<Light>("Prefabs/Spotlight"));
+        m_BaseSphere = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Sphere"));
 
         m_SceneObjectsLoaded = true;
     }
@@ -65,57 +64,35 @@ public class DllNativePluginTest : TestBaseSetup
     [Test]
     public void NativeDllSceneBuild()
     {
-        if(Application.platform != RuntimePlatform.Android)
-        {
-            Assert.IsNotNull(m_SceneObjectsLoaded, "Scene Objects was not created");
-        }
-        else
-        {
-            Assert.Ignore("Android is not supported at the moment");
-        }
-
+        Assert.IsTrue(m_SceneObjectsLoaded, "Scene Objects was not created");
     }
 
     [UnityTest]
     public IEnumerator NativeDllTest()
-    {
-        if (Application.platform != RuntimePlatform.Android)
-        {
-            yield return new WaitForSeconds(1);
-            m_RenderingImage = IsPlaneRendering();
-            Assert.IsTrue(m_RenderingImage, "Image rendering couldn't be found");
-        }
-        else
-        {
-            Assert.Ignore("Android is not supported at the moment");
-        }
+{
+        yield return new WaitForSeconds(1);
+        m_RenderingImage = IsPlaneRendering();
+        Assert.IsTrue(m_RenderingImage, "Image rendering couldn't be found");
     }
 
     [UnityTest]
     public IEnumerator RenderingFPSCheck()
     {
-        if (Application.platform != RuntimePlatform.Android)
-        {
-            yield return new WaitForSeconds(3f);
-            Assert.AreEqual(0, m_NonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
-        }
-        else
-        {
-            Assert.Ignore("Android is not supported at the moment");
-        }
+        yield return new WaitForSeconds(3f);
+        Assert.AreEqual(0, m_NonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
 
-    public bool IsPlaneRendering()
+    private bool IsPlaneRendering()
     {
         bool filter = false;
         bool textsize = false;
 
-        if(m_RenderPlain.GetComponent<Renderer>().material.mainTexture.filterMode == FilterMode.Point)
+        if(m_RenderPlane.GetComponent<Renderer>().material.mainTexture.filterMode == FilterMode.Point)
         {
             filter = true;
         }
 
-        if(m_RenderPlain.GetComponent<Renderer>().material.mainTexture.height == 256 && m_RenderPlain.GetComponent<Renderer>().material.mainTexture.width == 256)
+        if(m_RenderPlane.GetComponent<Renderer>().material.mainTexture.height == 256 && m_RenderPlane.GetComponent<Renderer>().material.mainTexture.width == 256)
         {
             textsize = true;
         }

@@ -1,7 +1,7 @@
 {
     "name": "Editor",
     "references": [
-        "GUID:c6bedd5ae7ab748e5b010e812f9d5d1b"
+        "Scripts"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

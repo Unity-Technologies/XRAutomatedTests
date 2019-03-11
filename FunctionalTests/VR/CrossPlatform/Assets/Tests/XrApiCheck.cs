@@ -5,15 +5,6 @@ using System.Collections;
 using UnityEngine.XR;
 using System;
 
-[UnityPlatform(include = new[]
-{
-    RuntimePlatform.WindowsEditor,
-    RuntimePlatform.WindowsPlayer,
-    RuntimePlatform.WSAPlayerARM,
-    RuntimePlatform.WSAPlayerX64,
-    RuntimePlatform.WSAPlayerX86
-})]
-
 public class XrApiCheck : TestBaseSetup
 {
     [Test]

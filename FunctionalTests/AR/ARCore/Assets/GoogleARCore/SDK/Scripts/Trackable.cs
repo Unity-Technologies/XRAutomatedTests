@@ -30,42 +30,30 @@ namespace GoogleARCore
     /// </summary>
     public abstract class Trackable
     {
-        //// @cond EXCLUDE_FROM_DOXYGEN
-
         /// <summary>
         /// A native handle for the ARCore trackable.
         /// </summary>
-        protected IntPtr m_TrackableNativeHandle = IntPtr.Zero;
+        internal IntPtr m_TrackableNativeHandle = IntPtr.Zero;
 
         /// <summary>
         /// The native api for ARCore.
         /// </summary>
-        protected NativeApi m_NativeApi;
+        internal NativeSession m_NativeSession;
 
-        /// <summary>
-        /// Constructs a new ARCore Trackable.
-        /// </summary>
-        protected Trackable()
+        internal Trackable()
         {
         }
 
-        /// <summary>
-        /// Constructs a new ARCore Trackable.
-        /// </summary>
-        /// <param name="trackableNativeHandle">The native handle.</param>
-        /// <param name="nativeApi">The native api.</param>
-        protected Trackable(IntPtr trackableNativeHandle, NativeApi nativeApi)
+        internal Trackable(IntPtr trackableNativeHandle, NativeSession nativeSession)
         {
             m_TrackableNativeHandle = trackableNativeHandle;
-            m_NativeApi = nativeApi;
+            m_NativeSession = nativeSession;
         }
 
         ~Trackable()
         {
-            m_NativeApi.Trackable.Release(m_TrackableNativeHandle);
+            m_NativeSession.TrackableApi.Release(m_TrackableNativeHandle);
         }
-
-        //// @endcond
 
         /// <summary>
         /// Gets the tracking state of for the Trackable in the current frame.
@@ -73,39 +61,71 @@ namespace GoogleARCore
         /// <returns>The tracking state of for the Trackable in the current frame.</returns>
         public virtual TrackingState TrackingState
         {
+            [SuppressMemoryAllocationError(IsWarning = true, Reason = "Requires further investigation.")]
             get
             {
-                return m_NativeApi.Trackable.GetTrackingState(m_TrackableNativeHandle);
+                if (_IsSessionDestroyed())
+                {
+                    // Trackables from another session are considered stopped.
+                    return TrackingState.Stopped;
+                }
+
+                return m_NativeSession.TrackableApi.GetTrackingState(m_TrackableNativeHandle);
             }
         }
 
         /// <summary>
         /// Creates an Anchor at the given <c>Pose</c> that is attached to the Trackable where semantics of the
-        /// attachment relationship are defined by the subcass of Trackable (e.g. TrackedPlane).   Note that the
+        /// attachment relationship are defined by the subcass of Trackable (e.g. DetectedPlane).   Note that the
         /// relative offset between the Pose of multiple Anchors attached to the same Trackable may change
         /// over time as ARCore refines its understanding of the world.
         /// </summary>
         /// <param name="pose">The Pose of the location to create the anchor.</param>
         /// <returns>An Anchor attached to the Trackable at <c>Pose</c>.</returns>
+        [SuppressMemoryAllocationError(Reason = "Could allocate a new Anchor object")]
         public virtual Anchor CreateAnchor(Pose pose)
         {
+            if (_IsSessionDestroyed())
+            {
+                Debug.LogError("CreateAnchor:: Trying to access a session that has already been destroyed.");
+                return null;
+            }
+
             IntPtr anchorHandle;
-            if (!m_NativeApi.Trackable.AcquireNewAnchor(m_TrackableNativeHandle, pose, out anchorHandle))
+            if (!m_NativeSession.TrackableApi.AcquireNewAnchor(m_TrackableNativeHandle, pose, out anchorHandle))
             {
                 Debug.Log("Failed to create anchor on trackable.");
                 return null;
             }
 
-            return Anchor.AnchorFactory(anchorHandle, m_NativeApi);
+            return Anchor.Factory(m_NativeSession, anchorHandle);
         }
 
         /// <summary>
         /// Gets all anchors attached to the Trackable.
         /// </summary>
         /// <param name="anchors">A list of anchors to be filled by the method.</param>
+        [SuppressMemoryAllocationError(Reason = "List could be resized.")]
         public virtual void GetAllAnchors(List<Anchor> anchors)
         {
-            m_NativeApi.Trackable.GetAnchors(m_TrackableNativeHandle, anchors);
+            if (_IsSessionDestroyed())
+            {
+                Debug.LogError("GetAllAnchors:: Trying to access a session that has already been destroyed.");
+                anchors.Clear();
+                return;
+            }
+
+            m_NativeSession.TrackableApi.GetAnchors(m_TrackableNativeHandle, anchors);
+        }
+
+        /// <summary>
+        /// Tells if the session was destroyed.
+        /// </summary>
+        /// <returns><c>true</c> if the session this Trackable belongs to was destroyed,
+        /// <c>false</c> otherwise.</returns>
+        protected bool _IsSessionDestroyed()
+        {
+            return m_NativeSession.IsDestroyed;
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using GoogleARCore;
 
 [UnityPlatform(include = new[] { RuntimePlatform.Android })]
-public class ARCoreSmokeTests : EnableARPrebuildStep
+public class ARCoreSmokeTests
 {
     [SetUp]
     public void SetupTest()
@@ -20,7 +20,7 @@ public class ARCoreSmokeTests : EnableARPrebuildStep
         // Make sure we're in the correct scene
         Assert.That(SceneManager.GetActiveScene().name == "SmokeTest");
 
-        var device = GameObject.Find("ARCoreDevice");
+        var device = GameObject.Find("ARCore Device");
 
         // Make sure the AR Core device exists in the scene
         Assert.IsNotNull(device);
@@ -31,9 +31,14 @@ public class ARCoreSmokeTests : EnableARPrebuildStep
         Assert.IsNotNull(session);
 
         // Wait a frame so we can give the AR session a chance to connect.
-        yield return null;
+        int framesWaited = 0;
+        while (Session.Status != SessionStatus.Tracking && framesWaited < 360)
+        {
+            framesWaited++;
+            yield return null;
+        }
 
         // Check to see that the session connected successfully
-        Assert.That(Session.ConnectionState == SessionConnectionState.Connected, "Connection State: {0}", Session.ConnectionState);
+        Assert.That(Session.Status == SessionStatus.Tracking, "Connection State: {0}", SessionStatus.Tracking);
     }
 }

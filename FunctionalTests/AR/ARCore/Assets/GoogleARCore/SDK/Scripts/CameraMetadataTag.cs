@@ -79,249 +79,249 @@ namespace GoogleARCore
         // Note that we only expose the keys that could be used in the camera metadata from the capture
         // result. The keys may only appear in CameraCharacteristics are not exposed here.
         ColorCorrectionMode = // Byte (Enum)
-            ColorCorrectionStart,
+                ColorCorrectionStart,
 
         ColorCorrectionTransform = // Rational[33]
-            ColorCorrectionStart + 1,
+                ColorCorrectionStart + 1,
 
         ColorCorrectionGains = // Float[4]
-            ColorCorrectionStart + 2,
+                ColorCorrectionStart + 2,
 
         ColorCorrectionAberrationMode = // Byte (Enum)
-            ColorCorrectionStart + 3,
+                ColorCorrectionStart + 3,
 
         ControlAeAntibandingMode = // Byte (Enum)
-            ControlStart,
+                ControlStart,
 
         ControlAeExposureCompensation = // Int32
-            ControlStart + 1,
+                ControlStart + 1,
 
         ControlAeLock = // Byte (Enum)
-            ControlStart + 2,
+                ControlStart + 2,
 
         ControlAeMode = // Byte (Enum)
-            ControlStart + 3,
+                ControlStart + 3,
 
         ControlAeRegions = // Int32[5areaCount]
-            ControlStart + 4,
+                ControlStart + 4,
 
         ControlAeTargetFpsRange = // Int32[2]
-            ControlStart + 5,
+                ControlStart + 5,
 
         ControlAePrecaptureTrigger = // Byte (Enum)
-            ControlStart + 6,
+                ControlStart + 6,
 
         ControlAfMode = // Byte (Enum)
-            ControlStart + 7,
+                ControlStart + 7,
 
         ControlAfRegions = // Int32[5areaCount]
-            ControlStart + 8,
+                ControlStart + 8,
 
         ControlAfTrigger = // Byte (Enum)
-            ControlStart + 9,
+                ControlStart + 9,
 
         ControlAwbLock = // Byte (Enum)
-            ControlStart + 10,
+                ControlStart + 10,
 
         ControlAwbMode = // Byte (Enum)
-            ControlStart + 11,
+                ControlStart + 11,
 
         ControlAwbRegions = // Int32[5areaCount]
-            ControlStart + 12,
+                ControlStart + 12,
 
         ControlCaptureIntent = // Byte (Enum)
-            ControlStart + 13,
+                ControlStart + 13,
 
         ControlEffectMode = // Byte (Enum)
-            ControlStart + 14,
+                ControlStart + 14,
 
         ControlMode = // Byte (Enum)
-            ControlStart + 15,
+                ControlStart + 15,
 
         ControlSceneMode = // Byte (Enum)
-            ControlStart + 16,
+                ControlStart + 16,
 
         ControlVideoStabilizationMode = // Byte (Enum)
-            ControlStart + 17,
+                ControlStart + 17,
 
         ControlAeState = // Byte (Enum)
-            ControlStart + 31,
+                ControlStart + 31,
 
         ControlAfState = // Byte (Enum)
-            ControlStart + 32,
+                ControlStart + 32,
 
         ControlAwbState = // Byte (Enum)
-            ControlStart + 34,
+                ControlStart + 34,
 
         ControlPostRawSensitivityBoost = // Int32
-            ControlStart + 40,
+                ControlStart + 40,
 
         EdgeMode = // Byte (Enum)
-            EdgeStart,
+                EdgeStart,
 
         FlashMode = // Byte (Enum)
-            FlashStart + 2,
+                FlashStart + 2,
 
         FlashState = // Byte (Enum)
-            FlashStart + 5,
+                FlashStart + 5,
 
         HotPixelMode = // Byte (Enum)
-            HotPixelStart,
+                HotPixelStart,
 
         JpegGpsCoordinates = // Double[3]
-            JpegStart,
+                JpegStart,
 
         JpegGpsProcessingMethod = // Byte
-            JpegStart + 1,
+                JpegStart + 1,
 
         JpegGpsTimestamp = // Int64
-            JpegStart + 2,
+                JpegStart + 2,
 
         JpegOrientation = // Int32
-            JpegStart + 3,
+                JpegStart + 3,
 
         JpegQuality = // Byte
-            JpegStart + 4,
+                JpegStart + 4,
 
         JpegThumbnailQuality = // Byte
-            JpegStart + 5,
+                JpegStart + 5,
 
         JpegThumbnailSize = // Int32[2]
-            JpegStart + 6,
+                JpegStart + 6,
 
         LensAperture = // Float
-            LensStart,
+                LensStart,
 
         LensFilterDensity = // Float
-            LensStart + 1,
+                LensStart + 1,
 
         LensFocalLength = // Float
-            LensStart + 2,
+                LensStart + 2,
 
         LensFocusDistance = // Float
-            LensStart + 3,
+                LensStart + 3,
 
         LensOpticalStabilizationMode = // Byte (Enum)
-            LensStart + 4,
+                LensStart + 4,
 
         LensPoseRotation = // Float[4]
-            LensStart + 6,
+                LensStart + 6,
 
         LensPoseTranslation = // Float[3]
-            LensStart + 7,
+                LensStart + 7,
 
         LensFocusRange = // Float[2]
-            LensStart + 8,
+                LensStart + 8,
 
         LensState = // Byte (Enum)
-            LensStart + 9,
+                LensStart + 9,
 
         LensIntrinsicCalibration = // Float[5]
-            LensStart + 10,
+                LensStart + 10,
 
         LensRadialDistortion = // Float[6]
-            LensStart + 11,
+                LensStart + 11,
 
         NoiseReductionMode = // Byte (Enum)
-            NoiseReductionStart,
+                NoiseReductionStart,
 
         RequestPipelineDepth = // Byte
-            RequestStart + 9,
+                RequestStart + 9,
 
         ScalerCropRegion = // Int32[4]
-            ScalerStart,
+                ScalerStart,
 
         SensorExposureTime = // Int64
-            SensorStart,
+                SensorStart,
 
         SensorFrameDuration = // Int64
-            SensorStart + 1,
+                SensorStart + 1,
 
         SensorSensitivity = // Int32
-            SensorStart + 2,
+                SensorStart + 2,
 
         SensorTimestamp = // Int64
-            SensorStart + 16,
+                SensorStart + 16,
 
         SensorNeutralColorPoint = // Rational[3]
-            SensorStart + 18,
+                SensorStart + 18,
 
         SensorNoiseProfile = // Double[2Cfa Channels]
-            SensorStart + 19,
+                SensorStart + 19,
 
         SensorGreenSplit = // Float
-            SensorStart + 22,
+                SensorStart + 22,
 
         SensorTestPatternData = // Int32[4]
-            SensorStart + 23,
+                SensorStart + 23,
 
         SensorTestPatternMode = // Int32 (Enum)
-            SensorStart + 24,
+                SensorStart + 24,
 
         SensorRollingShutterSkew = // Int64
-            SensorStart + 26,
+                SensorStart + 26,
 
         SensorDynamicBlackLevel = // Float[4]
-            SensorStart + 28,
+                SensorStart + 28,
 
         SensorDynamicWhiteLevel = // Int32
-            SensorStart + 29,
+                SensorStart + 29,
 
         ShadingMode = // Byte (Enum)
-            ShadingStart,
+                ShadingStart,
 
         StatisticsFaceDetectMode = // Byte (Enum)
-            StatisticsStart,
+                StatisticsStart,
 
         StatisticsHotPixelMapMode = // Byte (Enum)
-            StatisticsStart + 3,
+                StatisticsStart + 3,
 
         StatisticsFaceIds = // Int32[N]
-            StatisticsStart + 4,
+                StatisticsStart + 4,
 
         StatisticsFaceLandmarks = // Int32[N6]
-            StatisticsStart + 5,
+                StatisticsStart + 5,
 
         StatisticsFaceRectangles = // Int32[N4]
-            StatisticsStart + 6,
+                StatisticsStart + 6,
 
         StatisticsFaceScores = // Byte[N]
-            StatisticsStart + 7,
+                StatisticsStart + 7,
 
         StatisticsLensShadingMap = // Float[4nm]
-            StatisticsStart + 11,
+                StatisticsStart + 11,
 
         StatisticsSceneFlicker = // Byte (Enum)
-            StatisticsStart + 14,
+                StatisticsStart + 14,
 
         StatisticsHotPixelMap = // Int32[2n]
-            StatisticsStart + 15,
+                StatisticsStart + 15,
 
         StatisticsLensShadingMapMode = // Byte (Enum)
-            StatisticsStart + 16,
+                StatisticsStart + 16,
 
         TonemapCurveBlue = // Float[N2]
-            TonemapStart,
+                TonemapStart,
 
         TonemapCurveGreen = // Float[N2]
-            TonemapStart + 1,
+                TonemapStart + 1,
 
         TonemapCurveRed = // Float[N2]
-            TonemapStart + 2,
+                TonemapStart + 2,
 
         TonemapMode = // Byte (Enum)
-            TonemapStart + 3,
+                TonemapStart + 3,
 
         TonemapGamma = // Float
-            TonemapStart + 6,
+                TonemapStart + 6,
 
         TonemapPresetCurve = // Byte (Enum)
-            TonemapStart + 7,
+                TonemapStart + 7,
 
         BlackLevelLock = // Byte (Enum)
-            BlackLevelStart,
+                BlackLevelStart,
 
         SyncFrameNumber = // Int64 (Enum)
-            SyncStart,
+                SyncStart,
     }
 }

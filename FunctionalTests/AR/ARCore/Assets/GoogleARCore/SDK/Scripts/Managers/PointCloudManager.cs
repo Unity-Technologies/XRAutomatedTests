@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="PointCloudManager.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2019 Google Inc. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,61 +22,46 @@ namespace GoogleARCoreInternal
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using GoogleARCore;
     using UnityEngine;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-         Justification = "Internal")]
-    public class PointCloudManager
+    internal class PointCloudManager
     {
-        private NativeApi m_NativeApi;
+        private NativeSession m_NativeSession = null;
 
-        private IntPtr m_PointCloudHandle = IntPtr.Zero;
+        private float m_LastReleasedPointcloudTimestamp = 0.0f;
 
-        private long m_LastUpdateTimeStamp = -1;
-
-        public PointCloudManager(NativeApi nativeApi)
+        public PointCloudManager(NativeSession session)
         {
-            m_NativeApi = nativeApi;
+            m_NativeSession = session;
         }
 
-        public void UpdateFrame(IntPtr frameHandle)
+        public IntPtr PointCloudHandle { get; private set; }
+
+        public bool IsPointCloudNew
         {
-            if (m_PointCloudHandle != IntPtr.Zero)
+            get
             {
-                // After first frame, release previous frame's point cloud.
-                m_NativeApi.PointCloud.Release(m_PointCloudHandle);
+                return m_NativeSession.PointCloudApi.GetTimestamp(PointCloudHandle) !=
+                    m_LastReleasedPointcloudTimestamp;
+            }
+        }
+
+        public void OnUpdate()
+        {
+#if UNITY_EDITOR || UNITY_ANDROID
+            // After first frame, release previous frame's point cloud.
+            if (PointCloudHandle != IntPtr.Zero)
+            {
+                m_LastReleasedPointcloudTimestamp = m_NativeSession.PointCloudApi.GetTimestamp(PointCloudHandle);
+                m_NativeSession.PointCloudApi.Release(PointCloudHandle);
+                PointCloudHandle = IntPtr.Zero;
             }
 
-            m_PointCloudHandle = m_NativeApi.Frame.AcquirePointCloud(frameHandle);
-        }
-
-        public bool GetIsUpdatedThisFrame()
-        {
-            long currentTimestamp = m_NativeApi.PointCloud.GetTimestamp(m_PointCloudHandle);
-            if (m_LastUpdateTimeStamp != currentTimestamp)
-            {
-                m_LastUpdateTimeStamp = currentTimestamp;
-                return true;
-            }
-
-            return false;
-        }
-
-        public int GetPointCount()
-        {
-            return m_NativeApi.PointCloud.GetNumberOfPoints(m_PointCloudHandle);
-        }
-
-        public Vector4 GetPoint(int index)
-        {
-            return m_NativeApi.PointCloud.GetPoint(m_PointCloudHandle, index);
-        }
-
-        public void CopyPoints(List<Vector4> points)
-        {
-            m_NativeApi.PointCloud.CopyPoints(m_PointCloudHandle, points);
+            IntPtr pointCloudHandle;
+            m_NativeSession.FrameApi.TryAcquirePointCloudHandle(out pointCloudHandle);
+            PointCloudHandle = pointCloudHandle;
+#endif
         }
     }
 }

@@ -20,6 +20,7 @@
 
 namespace GoogleARCore
 {
+    using GoogleARCoreInternal;
     using UnityEngine;
     using UnityEngine.Rendering;
 
@@ -28,47 +29,42 @@ namespace GoogleARCore
     /// to be inline with those estimated by ARCore.
     /// </summary>
     [ExecuteInEditMode]
+    [HelpURL("https://developers.google.com/ar/reference/unity/class/GoogleARCore/EnvironmentalLight")]
     public class EnvironmentalLight : MonoBehaviour
     {
         /// <summary>
         /// Unity update method that sets global light estimation shader constant to match
         /// ARCore's calculated values.
         /// </summary>
+        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Requires further investigation.")]
         public void Update()
         {
-#if UNITY_EDITOR
-            // Set _GlobalLightEstimation to 1 in editor, if the value is not set, all materials
-            // using light estimation shaders will be black.
-            Shader.SetGlobalFloat("_GlobalLightEstimation", 1.0f);
-#else
+            if (Application.isEditor && (!Application.isPlaying ||
+                 !GoogleARCoreInternal.ARCoreProjectSettings.Instance.IsInstantPreviewEnabled))
+            {
+                // Set _GlobalColorCorrection to white in editor, if the value is not set, all materials
+                // using light estimation shaders will be black.
+                Shader.SetGlobalColor("_GlobalColorCorrection", Color.white);
+
+                // Set _GlobalLightEstimation for backward compatibility.
+                Shader.SetGlobalFloat("_GlobalLightEstimation", 1f);
+                return;
+            }
+
             if (Frame.LightEstimate.State != LightEstimateState.Valid)
             {
                 return;
             }
 
-            // Use the following function to compute color scale:
-            // * linear growth from (0.0, 0.0) to (1.0, LinearRampThreshold)
-            // * slow growth from (1.0, LinearRampThreshold)
-            const float linearRampThreshold = 0.8f;
-            const float middleGray = 0.18f;
-            const float inclination = 0.4f;
-
+            // Normalize pixel intensity by middle gray in gamma space.
+            const float middleGray = 0.466f;
             float normalizedIntensity = Frame.LightEstimate.PixelIntensity / middleGray;
-            float colorScale = 1.0f;
 
-            if (normalizedIntensity < 1.0f)
-            {
-                colorScale = normalizedIntensity * linearRampThreshold;
-            }
-            else
-            {
-                float b = (linearRampThreshold / inclination) - 1.0f;
-                float a = (b + 1.0f) / b * linearRampThreshold;
-                colorScale = a * (1.0f - (1.0f / ((b * normalizedIntensity) + 1.0f)));
-            }
+            // Apply color correction along with normalized pixel intensity in gamma space.
+            Shader.SetGlobalColor("_GlobalColorCorrection", Frame.LightEstimate.ColorCorrection * normalizedIntensity);
 
-            Shader.SetGlobalFloat("_GlobalLightEstimation", colorScale);
-#endif
+            // Set _GlobalLightEstimation for backward compatibility.
+            Shader.SetGlobalFloat("_GlobalLightEstimation", normalizedIntensity);
         }
     }
 }

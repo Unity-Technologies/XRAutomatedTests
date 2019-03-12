@@ -4,32 +4,10 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 [UnityPlatform(include = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer})]
-public class XRSDK_ARSmokeTest : IPrebuildSetup
+public class XRSDK_ARSmokeTest
 {
-    public void Setup()
-    {
-#if UNITY_EDITOR
-        // Android - ARCore Prebuild
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.Android, "com.unity.XRSDKARSmokeTest");
-        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-        PlayerSettings.SetMobileMTRendering(BuildTargetGroup.Android, false);
-        EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
-        EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
-
-
-        // iOS - ARKit Prebuild
-        PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.iOS, "com.unity.XRSDKARSmokeTest");
-        PlayerSettings.iOS.cameraUsageDescription = "Capture video feed for AR Background Rendering";
-        PlayerSettings.iOS.targetOSVersionString = "11.0";
-        EditorUserBuildSettings.iOSBuildConfigType = iOSBuildType.Debug;
-#endif
-    }
-
     [SetUp]
     public void SetupTest()
     {

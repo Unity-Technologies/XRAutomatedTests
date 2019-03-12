@@ -49,7 +49,7 @@ namespace GoogleARCoreInternal
         /// </summary>
         /// <value><c>true</c> if the task is incomplete, otherwise <c>false</c>.</value>
         [SuppressMessage("UnityRules.UnityStyleRules", "US1000:FieldsMustBeUpperCamelCase",
-             Justification = "Overridden method.")]
+         Justification = "Overridden method.")]
         public override bool keepWaiting
         {
             get

@@ -70,8 +70,6 @@ public class EnablePlatformPrebuildStep : IPrebuildSetup
 
         ConfigureSettings();
 
-        CopyOculusSignatureFilesToProject();
-
         PlatformSettings.SerializeToAsset();
     }
 

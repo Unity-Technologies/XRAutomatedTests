@@ -10,8 +10,8 @@ public class MyBuildPostprocessor
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
 	{
-		if (target == BuildTarget.iOS)
-			OnPostprocessBuildIOS(pathToBuiltProject);
+		//if (target == BuildTarget.iOS)
+		//	OnPostprocessBuildIOS(pathToBuiltProject);
 	}
 
 	private static void OnPostprocessBuildIOS(string pathToBuiltProject)

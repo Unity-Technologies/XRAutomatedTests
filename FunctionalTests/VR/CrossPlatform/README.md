@@ -45,6 +45,15 @@ The best way to run these tests are to run them from command line and configure 
 
 These are full defined here:
 [Unity Command Line Arguments](https://docs.unity3d.com/Manual/CommandLineArguments.html)
+
+Running these tests from Unity command line provides flexibilities for automations. However Unity command line only generate test results in XML mode given argument -testResults and plain text log file given argument -logfile. To make it easy to read and understand test results, a reporter can be used to parse test results and log file and generate an HTML report. 
+
+The test reporter and instructions can be find here:
+[Unity Test Runner Results Reporter](https://github.cds.internal.unity3d.com/unity/UnityTestRunnerResultsReporter)
+
+Executables can be find here:
+[Executables](https://github.cds.internal.unity3d.com/unity/xr.testresultreporters)
+
 #### Unity Command Line Args
 -testPlatform = StandaloneWindows64, Android, iOS, MacOS
 -buildTarget = StandaloneWindows64, Android, iOS, MacOS
@@ -57,8 +66,8 @@ These are case sensitive!
 -simulationMode - HoloLens, WindowsMR, Remoting
 -stereorenderingpath - MultiPass, SinglePass, SinglePassInstancing
 
-### Example Run
-[Path to Unity]\Unity.exe -runTests -automated -projectPath [Path to Test Results\TestResults.xml -logfile [Path to Unity Log\UnityLog.txt -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -enabledxrtarget=MockHMD -playergraphicsAPI=Direct3D11 -stereorenderingpath=MultiPass
+### Example Run Tests from Unity Command Line
+[Path to Unity]\Unity.exe -runTests -automated -projectPath [Path to Test Project] -testResults [Path to Test Results]\TestResults.xml -logfile [Path to Unity Log]\UnityLog.txt -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -enabledxrtarget=MockHMD -playergraphicsAPI=Direct3D11 -stereorenderingpath=MultiPass
 
 ### Run in Editor
 1. Open the Test Runner Window - Window -> General -> Test Runner

@@ -21,7 +21,7 @@ The tests can be executed using the follow methods:
   - Press the "Run All in Player" button to deploy the tests to the device
   - Results will be displayed in the Test Runner window
 - Command Line
-  - Sample Command Line command: Unity.exe -runTests -projectPath <projectpath> -testResults <path>\TestResults.xml -logfile <path>\UnityLog.txt -testPlatform Android -buildTarget Android -executeMethod Build.CommandLineSetup
+  - Sample Command Line command: Unity.exe -runTests -projectPath \<projectpath\> -testResults \<path\>\TestResults.xml -logfile \<path\>\UnityLog.txt -testPlatform Android -buildTarget Android -executeMethod Build.CommandLineSetup
   - Command Line Documentation: https://docs.unity3d.com/Manual/CommandLineArguments.html
 
 Known Issues:

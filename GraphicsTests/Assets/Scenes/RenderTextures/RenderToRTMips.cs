@@ -25,17 +25,14 @@ public class RenderToRTMips : MonoBehaviour
         rtManual.useMipMap = true;
         rtManual.autoGenerateMips = false;
         objManual.material.mainTexture = rtManual;
-        if (SystemInfo.supportsRenderToCubemap)
-        {
-            rtCube = new RenderTexture(64, 64, 16);
-            rtCube.dimension = TextureDimension.Cube;
-            objCube.material.SetTexture("_MainTex", rtCube);
-            rtCubeMip = new RenderTexture(64, 64, 0);
-            rtCubeMip.dimension = TextureDimension.Cube;
-            rtCubeMip.useMipMap = true;
-            rtCubeMip.autoGenerateMips = false;
-            objCubeMip.material.SetTexture("_MainTex", rtCubeMip);
-        }
+        rtCube = new RenderTexture(64, 64, 16);
+        rtCube.dimension = TextureDimension.Cube;
+        objCube.material.SetTexture("_MainTex", rtCube);
+        rtCubeMip = new RenderTexture(64, 64, 0);
+        rtCubeMip.dimension = TextureDimension.Cube;
+        rtCubeMip.useMipMap = true;
+        rtCubeMip.autoGenerateMips = false;
+        objCubeMip.material.SetTexture("_MainTex", rtCubeMip);
     }
 
     public void Update()
@@ -54,9 +51,6 @@ public class RenderToRTMips : MonoBehaviour
 
     private static void ClearCubeRT(RenderTexture cube)
     {
-        if (!SystemInfo.supportsRenderToCubemap)
-            return;
-
         // clear faces of a cubemap RT to different colors
         var mipCount = (int)Mathf.Log(cube.width, 2f);
         if (!cube.useMipMap)

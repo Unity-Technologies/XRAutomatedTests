@@ -23,8 +23,6 @@ namespace UnityEditor.TestTools.Graphics
                     return RuntimePlatform.OSXPlayer;
                 case BuildTarget.PS4:
                     return RuntimePlatform.PS4;
-                case BuildTarget.PSP2:
-                    return RuntimePlatform.PSP2;
                 case BuildTarget.Switch:
                     return RuntimePlatform.Switch;
                 case BuildTarget.WebGL:
@@ -60,8 +58,6 @@ namespace UnityEditor.TestTools.Graphics
                     return BuildTarget.StandaloneOSX;
                 case RuntimePlatform.PS4:
                     return BuildTarget.PS4;
-                case RuntimePlatform.PSP2:
-                    return BuildTarget.PSP2;
                 case RuntimePlatform.Switch:
                     return BuildTarget.Switch;
 #if !UNITY_2017_2_OR_NEWER

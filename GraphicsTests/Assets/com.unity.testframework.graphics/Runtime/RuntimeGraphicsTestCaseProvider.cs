@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Rendering;
 
 namespace UnityEngine.TestTools.Graphics
@@ -65,13 +66,16 @@ namespace UnityEngine.TestTools.Graphics
                 if (referenceImagesBundle == null)
                     Debug.Log("reference image asset bundle not found!");
 
-                using (var webRequest = new WWW(Application.streamingAssetsPath + "/SceneList.txt"))
+                using (var webRequest = UnityWebRequest.Get(Application.streamingAssetsPath + "/SceneList.txt"))
                 {
+                    webRequest.SendWebRequest();
+
                     while (!webRequest.isDone)
                     {
                         // wait for download
                     }
-                    scenePaths = webRequest.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+                    scenePaths = webRequest.downloadHandler.text.Split(new[] { "\r\n", "\r", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
                 }
             }
             else

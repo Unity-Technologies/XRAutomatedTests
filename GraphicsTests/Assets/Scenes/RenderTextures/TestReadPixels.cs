@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestReadPixels : MonoBehaviour
 {
@@ -7,9 +8,9 @@ public class TestReadPixels : MonoBehaviour
     private Texture2D tex3;
     private RenderTexture rt;
     private Camera cam;
-    public GUITexture @object;
-    public GUITexture object2;
-    public GUITexture object3;
+    public RawImage  @object;
+    public RawImage object2;
+    public RawImage object3;
     public Texture tex;
     public Shader shader;
     private Material mat;

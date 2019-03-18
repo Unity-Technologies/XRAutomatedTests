@@ -21,39 +21,34 @@ public class RenderToCubemap : MonoBehaviour
         // Set camera to use deferred lighting. This is not supported and Unity
         // should fallback to Forward with no errors happening.
         cam.renderingPath = RenderingPath.DeferredLighting;
-        if (SystemInfo.supportsRenderToCubemap)
+
+        rtex = new RenderTexture(128, 128, 16);
+        rtex.dimension = TextureDimension.Cube;
+        rtex.useMipMap = mips;
+        rtex.name = "____CubemapRT";
+        if (msaa)
         {
-            rtex = new RenderTexture(128, 128, 16);
-            rtex.dimension = TextureDimension.Cube;
-            rtex.useMipMap = mips;
-            rtex.name = "____CubemapRT";
-            if (msaa)
-            {
-                rtex.antiAliasing = 8;
-            }
-            // clear to black
-            var f = 0;
-            while (f < 6)
-            {
-                Graphics.SetRenderTarget(rtex, 0, (CubemapFace)f);
-                GL.Clear(false, true, Color.black);
-                ++f;
-            }
-            //cam.targetTexture = rtex;
-            //go.AddComponent("BlurEffect");
-            GetComponent<Renderer>().material.SetTexture("_Cube", rtex);
-            if (debugSphere)
-            {
-                debugSphere.material.SetTexture("_MainTex", rtex);
-            }
+            rtex.antiAliasing = 8;
+        }
+        // clear to black
+        var f = 0;
+        while (f < 6)
+        {
+            Graphics.SetRenderTarget(rtex, 0, (CubemapFace)f);
+            GL.Clear(false, true, Color.black);
+            ++f;
+        }
+        //cam.targetTexture = rtex;
+        //go.AddComponent("BlurEffect");
+        GetComponent<Renderer>().material.SetTexture("_Cube", rtex);
+        if (debugSphere)
+        {
+            debugSphere.material.SetTexture("_MainTex", rtex);
         }
     }
 
     public void Update()
     {
-        if (!SystemInfo.supportsRenderToCubemap)
-            return;
-
         // make this object itself not render into the cubemap
         var oldLayer = gameObject.layer;
         gameObject.layer = 2;

@@ -101,7 +101,7 @@ namespace UnityEditor.TestTools.Graphics
             // For each scene in the build settings, force build of the lightmaps if it has "DoLightmap" label.
             // Note that in the PreBuildSetup stage, TestRunner has already created a new scene with its testing monobehaviours
 
-            Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
+            // Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
 
             EditorBuildSettingsScene[] scenesWithDisabledScenes = EditorBuildSettings.scenes;
 
@@ -109,9 +109,9 @@ namespace UnityEditor.TestTools.Graphics
             {
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
                 
-                EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Additive);
-                Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
-                EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
+                var currentScene = EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Single);
+                //Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
+                //EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
 
                 var settings = GameObject.FindObjectOfType<PlatformConfigTestFilters>();
 
@@ -148,8 +148,8 @@ namespace UnityEditor.TestTools.Graphics
                     EditorSceneManagement.EditorSceneManager.SaveScene( currentScene );
                 }
 
-                EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
-                EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
+                // EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
+                // EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
 
             EditorBuildSettings.scenes = scenesWithDisabledScenes;

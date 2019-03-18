@@ -36,7 +36,7 @@ internal class XRSmokeTest : TestBaseSetup
     }
     
     [UnityTest]
-    //[Ignore("Inconsistent results for test.")]
+    [Ignore("Inconsistent results for test. For example, this doesn't work on GearVR.")]
     public IEnumerator CanDisableAndEnableXR()
     {
         yield return new MonoBehaviourTest<SwapXREnabled>();

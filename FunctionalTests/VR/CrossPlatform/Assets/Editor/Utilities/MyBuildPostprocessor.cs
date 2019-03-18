@@ -39,7 +39,7 @@ public class MyBuildPostprocessor
 
 		for(int i = 0 ; i < filesToCopy.Length ; ++i)
 		{
-			var srcPath = Path.Combine("../PluginSource/source", filesToCopy[i]);
+			var srcPath = Path.Combine("./PluginSource/source", filesToCopy[i]);
 			var dstLocalPath = "Libraries/" + filesToCopy[i];
 			var dstPath = Path.Combine(pathToBuiltProject, dstLocalPath);
 			File.Copy(srcPath, dstPath, true);

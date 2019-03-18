@@ -157,6 +157,11 @@ public class Build
         PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
         EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
         EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
+
+        if (PlatformSettings.BuildTarget == BuildTarget.iOS || PlatformSettings.BuildTarget == BuildTarget.Android)
+        {
+            EditorUserBuildSettings.development = true;
+        }
     }
 
     private static OptionSet DefineOptionSet()

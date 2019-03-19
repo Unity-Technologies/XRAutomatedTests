@@ -43,7 +43,7 @@ public class GraphicsTests
 
         Screen.SetResolution(testSettings.ImageComparisonSettings.TargetWidth, testSettings.ImageComparisonSettings.TargetHeight, false);
 
-        yield return null;
+        yield return new WaitForSeconds(1);
         yield return new WaitForEndOfFrame();
 
         var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);
@@ -51,7 +51,5 @@ public class GraphicsTests
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
         
         ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
-
-
     }
 }

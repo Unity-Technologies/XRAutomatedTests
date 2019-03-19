@@ -15,7 +15,7 @@ public static class TestConstants
     public static string FullResultsImagesPath { get => Path.Combine(TestResultsPath, ResultsImagesPath);}
 }
 
-public class GraphicsTestSetup
+public static class GraphicsTestSetup
 {
     public static void Setup()
     {

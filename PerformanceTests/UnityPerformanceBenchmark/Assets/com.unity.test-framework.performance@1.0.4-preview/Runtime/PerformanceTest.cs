@@ -72,6 +72,19 @@ namespace Unity.PerformanceTesting
             if (OnTestEnded != null) OnTestEnded();
             Active.LogOutput();
 
+            // For XR team peformance tests
+            // The large collection of samples collected seems to cause
+            // intermittent timeouts to the player connection. 
+            // We don't use these so reduing list count to 1
+            // as the perf test data service expects at least one sample I think
+            foreach (var sampleGroup in Active.SampleGroups)
+            {
+                if (sampleGroup.Samples.Count > 1)
+                {
+                    sampleGroup.Samples.RemoveRange(1,sampleGroup.Samples.Count - 1);
+                }
+            }
+
             TestContext.Out.WriteLine("##performancetestresult:" + JsonUtility.ToJson(Active));
             Active = null;
             GC.Collect();

@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/005-CoordConvO.unity
+    guid: 219056cd86d0f4404b997cf2ba0e27aa
+  - enabled: 1
+    path: Assets/Scenes/009-DisabledShadows-subset def.unity
+    guid: 015d6508dcc480e4e8394b7ad87ad603
+  - enabled: 1
+    path: Assets/Scenes/009-DisabledShadows-subset fwd.unity
+    guid: 72a31f116a9c04e4cbccd11c0b42c997
+  - enabled: 1
+    path: Assets/Scenes/013-ImmediateMode.unity
+    guid: 04192350597564a7c913b0d5e6cf6b85
+  - enabled: 1
+    path: Assets/Scenes/014-DynamicGeom.unity
+    guid: bb2f081f14093458194c34fd0ae95026
+  - enabled: 1
+    path: Assets/Scenes/036-BlendModesSep.unity
+    guid: 0a4ca3abbeca04507a862c48432a37be
+  - enabled: 1
+    path: Assets/Scenes/037-LightAlloc-Def.unity
+    guid: 4acc3d70b1345fa43a98e497df267ebb
+  - enabled: 1
+    path: Assets/Scenes/037-LightAlloc-Fwd.unity
+    guid: 82b8a020c7bd6446baccf6045d5e3b7e
+  - enabled: 1
+    path: Assets/Scenes/037-LightAlloc-VLit.unity
+    guid: e02d77e1b2cb0284aa21667eddd14222
+  - enabled: 1
+    path: Assets/Scenes/038-LightsAlpha-subset.unity
+    guid: 1f60839194cbb458aafb388ae63dfac6
+  - enabled: 1
+    path: Assets/Scenes/039-PixelLights.unity
+    guid: 3134a87fb15334859adfef922cfdf89f
+  - enabled: 1
+    path: Assets/Scenes/040-VertexLights.unity
+    guid: 368aab24b35c44880a38fdee6a08cf4a
+  - enabled: 1
+    path: Assets/Scenes/041-VertexLightsSpec.unity
+    guid: 5e44b4b3a0cba4fd4b07225e50706b80
+  - enabled: 1
+    path: Assets/Scenes/046-Projector.unity
+    guid: 87c466356f6c84547b6be17285501e15
+  - enabled: 0
+    path: Assets/Scenes/049-RenderTex.unity
+    guid: 01260763e38844df58764f2a016c8f85
+  - enabled: 1
+    path: Assets/Scenes/050-RenderToCubemap.unity
+    guid: 50fe32bcf705c42d0a839783debd9082
+  - enabled: 1
+    path: Assets/Scenes/051-RenderToStaticCube.unity
+    guid: a8fe9ea60708f47e68d92fd155e85ac5
+  - enabled: 1
+    path: Assets/Scenes/061-ShadDir-def.unity
+    guid: ac66cf9df54fd407ba065d23311cd6f4
+  - enabled: 1
+    path: Assets/Scenes/061-ShadDir-fwd.unity
+    guid: 9c5c26c0aee0bd54dabf6f463092eac8
+  - enabled: 1
+    path: Assets/Scenes/064-ShadDirSoft-def.unity
+    guid: fc00bbeb959cc3243ae6f08c86d17635
+  - enabled: 1
+    path: Assets/Scenes/064-ShadDirSoft-fwd.unity
+    guid: 2e84b8081fde34d0893e87e8220f2d99
+  - enabled: 1
+    path: Assets/Scenes/067-Shadows-def.unity
+    guid: 229230e98a948fa46aee0777c1c067ad
+  - enabled: 1
+    path: Assets/Scenes/067-Shadows-fwd.unity
+    guid: 8bbc3f4c3440c43d79f749b7fba50395
+  - enabled: 1
+    path: Assets/Scenes/068-ShadSoft-def.unity
+    guid: b5f846bae63465646babb5723aaf464e
+  - enabled: 1
+    path: Assets/Scenes/068-ShadSoft-fwd.unity
+    guid: 97cfb335a1e01476fa51bfd6ddd711d9
+  - enabled: 1
+    path: Assets/Scenes/071-TextureFormats.unity
+    guid: e9ade8494d4af4ed3be5076c20ac2ba4
+  - enabled: 1
+    path: Assets/Scenes/072-TextureFilters.unity
+    guid: 3bfc6491f115d42068cf42c6dce4ffb0
+  - enabled: 1
+    path: Assets/Scenes/082-TerrainSplatLit.unity
+    guid: aaf4b8f99821be444ac3a890e7cbcd1e
+  - enabled: 1
+    path: Assets/Scenes/087-TerrainTreeShadow.unity
+    guid: 3a52083607d064bbd9caa6e1ad585c3a
+  - enabled: 1
+    path: Assets/Scenes/099-ScaledShadows.unity
+    guid: 76754ea7c6e06474aaa11d75afdbdaaa
+  - enabled: 1
+    path: Assets/Scenes/103-CameraDepthNormalTexture.unity
+    guid: fc45e751d08710c429d8e4c7a432eb31
+  - enabled: 1
+    path: Assets/Scenes/106-LayerCullDistances-subset.unity
+    guid: 0a7ec1f53953f5f4190a412e22440ec5
+  - enabled: 1
+    path: Assets/Scenes/141-PointShadows.unity
+    guid: 49f5eeb29dd2e47c48aa6399e03ff7df
+  - enabled: 1
+    path: Assets/Scenes/142-DefFwdShadows-def.unity
+    guid: 5d08d158578d4af47bbc57b0579f59af
+  - enabled: 1
+    path: Assets/Scenes/142-DefFwdShadows-fwd.unity
+    guid: ae9c5af5d7dfa50428a163bd03f839f9
+  - enabled: 1
+    path: Assets/Scenes/143-LargeCoords.unity
+    guid: 26b4aa8c223428c4ead78909570e62be
+  - enabled: 1
+    path: Assets/Scenes/146-CookiesDef.unity
+    guid: cd1c2fb01ac89469a9512138d0d54b77
+  - enabled: 1
+    path: Assets/Scenes/148-StaticBatchedTrees.unity
+    guid: 92c9a91aa2c172b43b03664543b04bd1
+  - enabled: 1
+    path: Assets/Scenes/166-Terr30Trees.unity
+    guid: 3f2fdfb8d77404f56a7d92aecbaac76f
+  - enabled: 1
+    path: Assets/Scenes/167-TerrGrassFade.unity
+    guid: fc29464d958fc4caea3d3b2d4c5a77cf
+  - enabled: 1
+    path: Assets/Scenes/168-BlendStrips-def.unity
+    guid: b830a339b8834ca49985b34fd8b7041b
+  - enabled: 1
+    path: Assets/Scenes/168-BlendStrips-fwd.unity
+    guid: 6302b3b42dd3ef241aad49429fb172bb
+  - enabled: 1
+    path: Assets/Scenes/172-DynBatchVColors.unity
+    guid: 5eb65d4614aec4bec8447880f0a4405a
+  - enabled: 1
+    path: Assets/Scenes/186-DefClearFlags-subset.unity
+    guid: 9cf030fd88e7ed14ab678ebc34d89ab8
+  - enabled: 1
+    path: Assets/Scenes/189-DynBatchDepthTex-def.unity
+    guid: b7d5e7a54eb38a5419e41397f9831c79
+  - enabled: 1
+    path: Assets/Scenes/189-DynBatchDepthTex-fwd.unity
+    guid: 97106e8d41d7d42c58ae8744edec609a
+  - enabled: 1
+    path: Assets/Scenes/189-DynBatchDepthTex-vlit.unity
+    guid: 6d1e2558faf268145830b8c14c4a0e29
+  - enabled: 1
+    path: Assets/Scenes/195-ShadStableFit1-def.unity
+    guid: 1e7ec071401598e49b51499ed694f4e6
+  - enabled: 1
+    path: Assets/Scenes/195-ShadStableFit1-fwd.unity
+    guid: af1b298ba910b8e4dadf8e4a723d8320
+  - enabled: 1
+    path: Assets/Scenes/196-ShadStableFit2-def.unity
+    guid: 211ffb58fcee4ee4c89d0b811a61b414
+  - enabled: 1
+    path: Assets/Scenes/196-ShadStableFit2-fwd.unity
+    guid: a8937378cfc2253449b948866acdd70f
+  - enabled: 1
+    path: Assets/Scenes/197-ShadStableFit4-def.unity
+    guid: eb61d97774f3409418e764da1794ccf7
+  - enabled: 1
+    path: Assets/Scenes/197-ShadStableFit4-fwd.unity
+    guid: 69969597f776a9d4eb569413fe44a5f1
+  - enabled: 1
+    path: Assets/Scenes/198-ShadCloseFit1-def.unity
+    guid: 27b19aa6666abca46ba95e7021b1488f
+  - enabled: 1
+    path: Assets/Scenes/198-ShadCloseFit1-fwd.unity
+    guid: ae51e44066647f24e82c255356e5fbab
+  - enabled: 1
+    path: Assets/Scenes/199-ShadCloseFit2-def.unity
+    guid: 8b333d1bbda1c5844a309548e6b977a4
+  - enabled: 1
+    path: Assets/Scenes/199-ShadCloseFit2-fwd.unity
+    guid: 123c95855c5ebcf449c9edb22fa596ca
+  - enabled: 1
+    path: Assets/Scenes/200-ShadCloseFit4-def.unity
+    guid: 4564287066cb3c14b89847b055e58257
+  - enabled: 1
+    path: Assets/Scenes/200-ShadCloseFit4-fwd.unity
+    guid: 75bebab6e725c0643b3a6d2abf481148
+  - enabled: 1
+    path: Assets/Scenes/210-FxFXAA-A.unity
+    guid: 9c58d4fde57cf1d40a5cebfd3f6fc4cc
+  - enabled: 1
+    path: Assets/Scenes/210-FxFXAA-B.unity
+    guid: 2ded5941bf187c7448db98fcb06dc992
+  - enabled: 1
+    path: Assets/Scenes/211-FXAAII.unity
+    guid: 523e5102ce27295489d1655560b32749
+  - enabled: 1
+    path: Assets/Scenes/211-FXNFAA 1.unity
+    guid: 46affe40aa85dfc4789fc77173cbbc9a
+  - enabled: 1
+    path: Assets/Scenes/212-DLAA.unity
+    guid: 368ea96ede46c0648bcfb66bcac6c046
+  - enabled: 1
+    path: Assets/Scenes/212-SSAA.unity
+    guid: b6547f6fd62c7e742891feddb15b5062
+  - enabled: 1
+    path: Assets/Scenes/214-GrabMultiple-subset.unity
+    guid: 870208c307f4a47adaea08191f9c9bb2
+  - enabled: 1
+    path: Assets/Scenes/215-GrabShared-subset.unity
+    guid: 585cb351bcec244328a7d05ad6c3bebc
+  - enabled: 1
+    path: Assets/Scenes/216-TexScaleOffset.unity
+    guid: b5d6754d0e624484b82ffe60ed7f0d6f
+  - enabled: 1
+    path: Assets/Scenes/223-BakedLightingProbesVariousMats-def.unity
+    guid: 26cbfc05b375b414cbadc2c67676d9b2
+  - enabled: 1
+    path: Assets/Scenes/223-BakedLightingProbesVariousMats-fwd.unity
+    guid: 3fd21304c6e0c99409f489f5b61aeef3
+  - enabled: 1
+    path: Assets/Scenes/224-BakedLightingDirectionalLightmaps-def.unity
+    guid: 3828ccfd50442ff48a4c2071f50ce4d5
+  - enabled: 1
+    path: Assets/Scenes/224-BakedLightingDirectionalLightmaps-fwd.unity
+    guid: 5929f7950dc76e54a96e90b23efd7356
+  - enabled: 1
+    path: Assets/Scenes/224-BakedLightingDirectionalLightmaps-legdef.unity
+    guid: f2dc0b26a1038c548bc8ca76f419c482
+  - enabled: 1
+    path: Assets/Scenes/230-ShurikenColorSizeRotation-subset.unity
+    guid: 0ae1ac1aef7e9ef4c9045c19fffb0c2a
+  - enabled: 1
+    path: Assets/Scenes/234-StaticBatching.unity
+    guid: d774f499423fe482191e7cac408f1c8f
+  - enabled: 1
+    path: Assets/Scenes/241-RenderToCubeShadows.unity
+    guid: 0dad7a00955eb2348a36ef67482f3c12
+  - enabled: 1
+    path: Assets/Scenes/242-TextMeshCulling-subset.unity
+    guid: 4f01b71d525c92c49955ec5c951c6aeb
+  - enabled: 1
+    path: Assets/Scenes/GPUInstancing.unity
+    guid: fd52f6a945686f247be99d0efc7ed4e6
+  m_configObjects: {}

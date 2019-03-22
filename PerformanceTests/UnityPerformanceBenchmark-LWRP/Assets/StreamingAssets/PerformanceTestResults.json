@@ -1,0 +1,2975 @@
+{
+    "PlayerSystemInfo": {
+        "OperatingSystem": "Windows 10  (10.0.0) 64bit",
+        "DeviceModel": "System Product Name (System manufacturer)",
+        "DeviceName": "SEANSTOLBERGPC",
+        "ProcessorType": "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz",
+        "ProcessorCount": 8,
+        "GraphicsDeviceName": "NVIDIA GeForce GTX 1080",
+        "SystemMemorySize": 32706,
+        "XrModel": "Oculus Rift CV1",
+        "XrDevice": "Oculus"
+    },
+    "EditorVersion": {
+        "FullVersion": "2019.1.0b10 (991e595a40ba)",
+        "DateSeconds": 1553213325,
+        "Branch": "2019.1/staging",
+        "RevisionValue": 10034777
+    },
+    "BuildSettings": {
+        "Platform": "WindowsPlayer",
+        "BuildTarget": "StandaloneWindows64",
+        "DevelopmentPlayer": true,
+        "AndroidBuildSystem": "Gradle"
+    },
+    "ScreenSettings": {
+        "ScreenWidth": 3440,
+        "ScreenHeight": 1440,
+        "ScreenRefreshRate": 30,
+        "Fullscreen": false
+    },
+    "QualitySettings": {
+        "Vsync": 1,
+        "AntiAliasing": 4,
+        "ColorSpace": "Linear",
+        "AnisotropicFiltering": "ForceEnable",
+        "BlendWeights": "FourBones"
+    },
+    "PlayerSettings": {
+        "ScriptingBackend": "Mono2x",
+        "VrSupported": true,
+        "MtRendering": true,
+        "GraphicsJobs": false,
+        "GpuSkinning": false,
+        "GraphicsApi": "Direct3D11",
+        "Batchmode": "False",
+        "StereoRenderingPath": "SinglePass",
+        "RenderThreadingMode": "MultiThreaded",
+        "AndroidMinimumSdkVersion": "AndroidApiLevel24",
+        "AndroidTargetSdkVersion": "AndroidApiLevel24",
+        "EnabledXrTargets": [
+            "Oculus"
+        ],
+        "ScriptingRuntimeVersion": "Latest"
+    },
+    "TestSuite": "Playmode",
+    "StartTime": 1553282609319.6282,
+    "EndTime": 1553282609319.6282,
+    "Results": [
+        {
+            "TestName": "DynamicScene_RenderPerfTests.GpuInstacingMaterial",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282363609.661,
+            "EndTime": 1553282388771.6765,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        84830.265625
+                    ],
+                    "Min": 82.41520690917969,
+                    "Max": 84830.265625,
+                    "Median": 89.95571899414063,
+                    "Average": 183.96465208472277,
+                    "StandardDeviation": 2819.977481987153,
+                    "PercentileValue": 0.0,
+                    "Sum": 165936.11618041993,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.8063359893858433
+                    ],
+                    "Min": 1.5575039433315397,
+                    "Max": 3.0720001086592676,
+                    "Median": 1.9271679921075705,
+                    "Average": 1.9514126467731208,
+                    "StandardDeviation": 0.14836569868805914,
+                    "PercentileValue": 0.0,
+                    "Sum": 1760.1742073893547,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.213156394660473
+                    ],
+                    "Min": 10.026410222053528,
+                    "Max": 12.133683077991009,
+                    "Median": 11.116581037640572,
+                    "Average": 11.1114574738772,
+                    "StandardDeviation": 0.1685679842295544,
+                    "PercentileValue": 0.0,
+                    "Sum": 10022.534641437232,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000766
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.008176,
+                    "Median": 0.000511,
+                    "Average": 0.0006161441241685147,
+                    "StandardDeviation": 0.0003992473562993711,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5557620000000002,
+                    "Zeroes": 23,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.00025499999999999996
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.002555,
+                    "Median": 0.00025499999999999996,
+                    "Average": 0.00032040243902439254,
+                    "StandardDeviation": 0.0002044599151174577,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.28900300000000209,
+                    "Zeroes": 141,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        20.815454
+                    ],
+                    "Min": 0.952463,
+                    "Max": 23.010616,
+                    "Median": 21.373698,
+                    "Average": 21.32861821286034,
+                    "StandardDeviation": 0.7644380528451846,
+                    "PercentileValue": 0.0,
+                    "Sum": 19238.413628000024,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3.0
+                    ],
+                    "Min": 3.0,
+                    "Max": 3.0,
+                    "Median": 3.0,
+                    "Average": 3.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3627.0
+                    ],
+                    "Min": 3627.0,
+                    "Max": 3627.0,
+                    "Median": 3627.0,
+                    "Average": 3627.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3627.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1283.0
+                    ],
+                    "Min": 1283.0,
+                    "Max": 1283.0,
+                    "Median": 1283.0,
+                    "Average": 1283.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 1283.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10024.4546
+                    ],
+                    "Min": 10024.4546,
+                    "Max": 10024.4546,
+                    "Median": 10024.4546,
+                    "Average": 10024.4546,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10024.4546,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.RealtimeLighting_Directional",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282388776.5564,
+            "EndTime": 1553282413813.3958,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        247417.359375
+                    ],
+                    "Min": 81.84135437011719,
+                    "Max": 247417.359375,
+                    "Median": 89.98259735107422,
+                    "Average": 364.5211135237648,
+                    "StandardDeviation": 8235.094721011083,
+                    "PercentileValue": 0.0,
+                    "Sum": 328433.5232849121,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.9192639738321305
+                    ],
+                    "Min": 1.6960320062935353,
+                    "Max": 3.3874879591166979,
+                    "Median": 1.925888005644083,
+                    "Average": 1.9583778730288697,
+                    "StandardDeviation": 0.161115442654572,
+                    "PercentileValue": 0.0,
+                    "Sum": 1764.4984635990113,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.072637513279917
+                    ],
+                    "Min": 9.975056163966656,
+                    "Max": 12.218761257827282,
+                    "Median": 11.113259941339493,
+                    "Average": 11.11129638775108,
+                    "StandardDeviation": 0.16682339513142414,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.278045363724,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.003321,
+                    "Median": 0.000766,
+                    "Average": 0.0008203962264150967,
+                    "StandardDeviation": 0.0002782419868944992,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.7391770000000021,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001533
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.005876,
+                    "Median": 0.001277,
+                    "Average": 0.0013878368479467265,
+                    "StandardDeviation": 0.000507377854736348,
+                    "PercentileValue": 0.0,
+                    "Sum": 1.2504410000000006,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.581155
+                    ],
+                    "Min": 0.30582,
+                    "Max": 23.824859,
+                    "Median": 21.462864,
+                    "Average": 21.43154132519419,
+                    "StandardDeviation": 0.803536639760283,
+                    "PercentileValue": 0.0,
+                    "Sum": 38619.63746799993,
+                    "Zeroes": 0,
+                    "SampleCount": 1802
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3.0
+                    ],
+                    "Min": 3.0,
+                    "Max": 3.0,
+                    "Median": 3.0,
+                    "Average": 3.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        4692.0
+                    ],
+                    "Min": 4692.0,
+                    "Max": 4692.0,
+                    "Median": 4692.0,
+                    "Average": 4692.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4692.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1752.0
+                    ],
+                    "Min": 1752.0,
+                    "Max": 1752.0,
+                    "Median": 1752.0,
+                    "Average": 1752.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 1752.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10011.3726
+                    ],
+                    "Min": 10011.3726,
+                    "Max": 10011.3726,
+                    "Median": 10011.3726,
+                    "Average": 10011.3726,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.3726,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.RealtimeLighting_Point",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282413816.3235,
+            "EndTime": 1553282437857.5054,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        417776.15625
+                    ],
+                    "Min": 74.2157211303711,
+                    "Max": 417776.15625,
+                    "Median": 89.99915313720703,
+                    "Average": 553.6112455141531,
+                    "StandardDeviation": 13907.418288574489,
+                    "PercentileValue": 0.0,
+                    "Sum": 498803.732208252,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.4274560380727053
+                    ],
+                    "Min": 1.128448056988418,
+                    "Max": 3.4508800599724056,
+                    "Median": 1.3240319676697257,
+                    "Average": 1.3616206364749573,
+                    "StandardDeviation": 0.1839557354033054,
+                    "PercentileValue": 0.0,
+                    "Sum": 1226.8201934639364,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10.96430979669094
+                    ],
+                    "Min": 8.580598048865796,
+                    "Max": 13.474233448505402,
+                    "Median": 11.111215688288212,
+                    "Average": 11.111659074324152,
+                    "StandardDeviation": 0.2199025443330416,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.60482596606,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.005876,
+                    "Median": 0.000766,
+                    "Average": 0.0008663518312985618,
+                    "StandardDeviation": 0.00034435794212993987,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.7805830000000041,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.00025499999999999996
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.002044,
+                    "Median": 0.000766,
+                    "Average": 0.0006760743618202017,
+                    "StandardDeviation": 0.0003387506556140925,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.6091430000000017,
+                    "Zeroes": 34,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.578345
+                    ],
+                    "Min": 0.29509,
+                    "Max": 22.552269,
+                    "Median": 21.283766,
+                    "Average": 21.2107815327414,
+                    "StandardDeviation": 0.8128209639708911,
+                    "PercentileValue": 0.0,
+                    "Sum": 57332.742483,
+                    "Zeroes": 0,
+                    "SampleCount": 2703
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3.0
+                    ],
+                    "Min": 3.0,
+                    "Max": 3.0,
+                    "Median": 3.0,
+                    "Average": 3.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2064.0
+                    ],
+                    "Min": 2064.0,
+                    "Max": 2064.0,
+                    "Median": 2064.0,
+                    "Average": 2064.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 2064.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        768.0
+                    ],
+                    "Min": 768.0,
+                    "Max": 768.0,
+                    "Median": 768.0,
+                    "Average": 768.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 768.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10011.7178
+                    ],
+                    "Min": 10011.7178,
+                    "Max": 10011.7178,
+                    "Median": 10011.7178,
+                    "Average": 10011.7178,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.7178,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.RealtimeLighting_Spot",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282437862.384,
+            "EndTime": 1553282462902.6973,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        573455.9375
+                    ],
+                    "Min": 60.07126235961914,
+                    "Max": 573455.9375,
+                    "Median": 89.90818786621094,
+                    "Average": 727.1376220491197,
+                    "StandardDeviation": 19101.57542388328,
+                    "PercentileValue": 0.0,
+                    "Sum": 654423.8598442078,
+                    "Zeroes": 0,
+                    "SampleCount": 900
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.236864016391337
+                    ],
+                    "Min": 0.0,
+                    "Max": 9.55903995782137,
+                    "Median": 1.2994559947401286,
+                    "Average": 1.372921528139462,
+                    "StandardDeviation": 0.4325557876828961,
+                    "PercentileValue": 0.0,
+                    "Sum": 1235.629375325516,
+                    "Zeroes": 3,
+                    "SampleCount": 900
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.15158386528492
+                    ],
+                    "Min": 5.876246839761734,
+                    "Max": 16.646895557641984,
+                    "Median": 11.122457683086396,
+                    "Average": 11.123596004520854,
+                    "StandardDeviation": 0.4608836258399772,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.236404068768,
+                    "Zeroes": 0,
+                    "SampleCount": 900
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001277
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.008942,
+                    "Median": 0.000766,
+                    "Average": 0.0008488477777777796,
+                    "StandardDeviation": 0.00038681483101745193,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.7639630000000016,
+                    "Zeroes": 1,
+                    "SampleCount": 900
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.00025499999999999996
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.003577,
+                    "Median": 0.000511,
+                    "Average": 0.0006390466666666659,
+                    "StandardDeviation": 0.0003356318221570225,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5751419999999993,
+                    "Zeroes": 31,
+                    "SampleCount": 900
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.095981
+                    ],
+                    "Min": 0.464479,
+                    "Max": 32.151501,
+                    "Median": 21.277123,
+                    "Average": 21.26263623888888,
+                    "StandardDeviation": 1.2239955277587456,
+                    "PercentileValue": 0.0,
+                    "Sum": 76545.49045999996,
+                    "Zeroes": 0,
+                    "SampleCount": 3600
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3.0
+                    ],
+                    "Min": 3.0,
+                    "Max": 3.0,
+                    "Median": 3.0,
+                    "Average": 3.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3372.0
+                    ],
+                    "Min": 3372.0,
+                    "Max": 3372.0,
+                    "Median": 3372.0,
+                    "Average": 3372.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3372.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1180.0
+                    ],
+                    "Min": 1180.0,
+                    "Max": 1180.0,
+                    "Median": 1180.0,
+                    "Average": 1180.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 1180.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10011.8559
+                    ],
+                    "Min": 10011.8559,
+                    "Max": 10011.8559,
+                    "Median": 10011.8559,
+                    "Average": 10011.8559,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.8559,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.RenderTextureMaterial",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282462906.6016,
+            "EndTime": 1553282486957.5642,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        733475.9375
+                    ],
+                    "Min": 32.47565078735352,
+                    "Max": 733475.9375,
+                    "Median": 89.92057800292969,
+                    "Average": 905.8468218921156,
+                    "StandardDeviation": 24446.181366251167,
+                    "PercentileValue": 0.0,
+                    "Sum": 814356.292881012,
+                    "Zeroes": 0,
+                    "SampleCount": 899
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2.24937591701746
+                    ],
+                    "Min": 0.0,
+                    "Max": 28.7495031952858,
+                    "Median": 2.1523518953472378,
+                    "Average": 2.278726333125523,
+                    "StandardDeviation": 1.0854211385435686,
+                    "PercentileValue": 0.0,
+                    "Sum": 2048.5749734798446,
+                    "Zeroes": 5,
+                    "SampleCount": 899
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.033291928470137
+                    ],
+                    "Min": 4.368350841104984,
+                    "Max": 30.792299658060079,
+                    "Median": 11.12092472612858,
+                    "Average": 11.147323928491624,
+                    "StandardDeviation": 0.8420799453990356,
+                    "PercentileValue": 0.0,
+                    "Sum": 10021.44421171397,
+                    "Zeroes": 0,
+                    "SampleCount": 899
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000511
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.022994,
+                    "Median": 0.000511,
+                    "Average": 0.0005977397107897657,
+                    "StandardDeviation": 0.0007847665495969655,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5373679999999994,
+                    "Zeroes": 14,
+                    "SampleCount": 899
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.01022,
+                    "Median": 0.001022,
+                    "Average": 0.0011669766407119008,
+                    "StandardDeviation": 0.0004628770843619558,
+                    "PercentileValue": 0.0,
+                    "Sum": 1.0491119999999988,
+                    "Zeroes": 1,
+                    "SampleCount": 899
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.137115
+                    ],
+                    "Min": 0.326004,
+                    "Max": 84.38136999999999,
+                    "Median": 21.060213,
+                    "Average": 21.10298554505016,
+                    "StandardDeviation": 2.531825059192505,
+                    "PercentileValue": 0.0,
+                    "Sum": 94857.92002500048,
+                    "Zeroes": 0,
+                    "SampleCount": 4495
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        5.0
+                    ],
+                    "Min": 5.0,
+                    "Max": 5.0,
+                    "Median": 5.0,
+                    "Average": 5.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 5.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2715.0
+                    ],
+                    "Min": 2715.0,
+                    "Max": 2715.0,
+                    "Median": 2715.0,
+                    "Average": 2715.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 2715.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        977.0
+                    ],
+                    "Min": 977.0,
+                    "Max": 977.0,
+                    "Median": 977.0,
+                    "Average": 977.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 977.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10021.7255
+                    ],
+                    "Min": 10021.7255,
+                    "Max": 10021.7255,
+                    "Median": 10021.7255,
+                    "Average": 10021.7255,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10021.7255,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.SpiralFlame_RenderPerformance",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282486962.4434,
+            "EndTime": 1553282511025.9548,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        918599.125
+                    ],
+                    "Min": 74.88020324707031,
+                    "Max": 918599.125,
+                    "Median": 89.95157623291016,
+                    "Average": 1109.461662275545,
+                    "StandardDeviation": 30582.988824919103,
+                    "PercentileValue": 0.0,
+                    "Sum": 999624.957710266,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.777632045559585
+                    ],
+                    "Min": 1.483488013036549,
+                    "Max": 3.044160082936287,
+                    "Median": 1.772543997503817,
+                    "Average": 1.7949859468270502,
+                    "StandardDeviation": 0.14159869945587529,
+                    "PercentileValue": 0.0,
+                    "Sum": 1617.2823380911725,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.42546720802784
+                    ],
+                    "Min": 8.953101001679898,
+                    "Max": 13.35466466844082,
+                    "Median": 11.1176036298275,
+                    "Average": 11.111594999124288,
+                    "StandardDeviation": 0.20611661314066108,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.547094210982,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.00281,
+                    "Median": 0.001022,
+                    "Average": 0.001042437291897888,
+                    "StandardDeviation": 0.0002819447441299442,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.939235999999997,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000511
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.001533,
+                    "Median": 0.000511,
+                    "Average": 0.0004341842397336285,
+                    "StandardDeviation": 0.00026193762212981046,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.39119999999999929,
+                    "Zeroes": 111,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        20.913051
+                    ],
+                    "Min": 0.86202,
+                    "Max": 22.856556,
+                    "Median": 21.228836,
+                    "Average": 21.18119811542745,
+                    "StandardDeviation": 0.8188396221201743,
+                    "PercentileValue": 0.0,
+                    "Sum": 114505.55701200076,
+                    "Zeroes": 0,
+                    "SampleCount": 5406
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        47.0
+                    ],
+                    "Min": 47.0,
+                    "Max": 47.0,
+                    "Median": 47.0,
+                    "Average": 47.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 47.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        49572.0
+                    ],
+                    "Min": 49572.0,
+                    "Max": 49572.0,
+                    "Median": 49572.0,
+                    "Average": 49572.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 49572.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11315.0
+                    ],
+                    "Min": 11315.0,
+                    "Max": 11315.0,
+                    "Median": 11315.0,
+                    "Average": 11315.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 11315.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10014.3426
+                    ],
+                    "Min": 10014.3426,
+                    "Max": 10014.3426,
+                    "Median": 10014.3426,
+                    "Average": 10014.3426,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10014.3426,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.StandardMaterial",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282511032.7869,
+            "EndTime": 1553282536071.6736,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1042018.3125
+                    ],
+                    "Min": 82.69205474853516,
+                    "Max": 1042018.3125,
+                    "Median": 89.95157623291016,
+                    "Average": 1246.4388684982994,
+                    "StandardDeviation": 34692.395825029984,
+                    "PercentileValue": 0.0,
+                    "Sum": 1123041.4205169678,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2.215679967775941
+                    ],
+                    "Min": 0.0,
+                    "Max": 4.427776206284761,
+                    "Median": 2.03673611395061,
+                    "Average": 2.09626256845908,
+                    "StandardDeviation": 0.23263963391434137,
+                    "PercentileValue": 0.0,
+                    "Sum": 1888.7325741816312,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.536349542438984
+                    ],
+                    "Min": 10.081084445118905,
+                    "Max": 12.09306064993143,
+                    "Median": 11.11734751611948,
+                    "Average": 11.11200133381984,
+                    "StandardDeviation": 0.197938868097237,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.913201771677,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000766
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.002555,
+                    "Median": 0.000511,
+                    "Average": 0.0006363951165371805,
+                    "StandardDeviation": 0.0002633318094821462,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5733919999999997,
+                    "Zeroes": 17,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000511
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.003066,
+                    "Median": 0.000511,
+                    "Average": 0.0006111254162042177,
+                    "StandardDeviation": 0.00028549825369208597,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5506240000000001,
+                    "Zeroes": 25,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        20.268197
+                    ],
+                    "Min": 0.650475,
+                    "Max": 23.444181,
+                    "Median": 21.175183,
+                    "Average": 21.119561473917849,
+                    "StandardDeviation": 0.8015389883618904,
+                    "PercentileValue": 0.0,
+                    "Sum": 133201.0742159999,
+                    "Zeroes": 0,
+                    "SampleCount": 6307
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3.0
+                    ],
+                    "Min": 3.0,
+                    "Max": 3.0,
+                    "Median": 3.0,
+                    "Average": 3.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2502.0
+                    ],
+                    "Min": 2502.0,
+                    "Max": 2502.0,
+                    "Median": 2502.0,
+                    "Average": 2502.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 2502.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        896.0
+                    ],
+                    "Min": 896.0,
+                    "Max": 896.0,
+                    "Median": 896.0,
+                    "Average": 896.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 896.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10012.533
+                    ],
+                    "Min": 10012.533,
+                    "Max": 10012.533,
+                    "Median": 10012.533,
+                    "Average": 10012.533,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10012.533,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "DynamicScene_RenderPerfTests.TransparentMaterial",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282536078.0369,
+            "EndTime": 1553282560127.8777,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1227343.125
+                    ],
+                    "Min": 2.032646894454956,
+                    "Max": 1227343.125,
+                    "Median": 89.88134765625,
+                    "Average": 1543.7930997002743,
+                    "StandardDeviation": 42218.773470896784,
+                    "PercentileValue": 0.0,
+                    "Sum": 1302961.376147032,
+                    "Zeroes": 0,
+                    "SampleCount": 844
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.9230720354244114
+                    ],
+                    "Min": 0.0,
+                    "Max": 15.679456293582917,
+                    "Median": 2.070432063192129,
+                    "Average": 2.233767432190469,
+                    "StandardDeviation": 0.9436819284525636,
+                    "PercentileValue": 0.0,
+                    "Sum": 1885.299712768756,
+                    "Zeroes": 3,
+                    "SampleCount": 844
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.332213878631592
+                    ],
+                    "Min": 2.6335804723203184,
+                    "Max": 491.96934700012209,
+                    "Median": 11.126801371574402,
+                    "Average": 11.873756050379392,
+                    "StandardDeviation": 16.686808407299,
+                    "PercentileValue": 0.0,
+                    "Sum": 10021.450106520206,
+                    "Zeroes": 0,
+                    "SampleCount": 844
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000511
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.009709,
+                    "Median": 0.000511,
+                    "Average": 0.000677266587677726,
+                    "StandardDeviation": 0.0004280928900751619,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5716130000000007,
+                    "Zeroes": 14,
+                    "SampleCount": 844
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.002299,
+                    "Median": 0.000766,
+                    "Average": 0.0007041694312796214,
+                    "StandardDeviation": 0.00031356556109284045,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5943190000000005,
+                    "Zeroes": 19,
+                    "SampleCount": 844
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 1,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        20.753882
+                    ],
+                    "Min": 0.386044,
+                    "Max": 998.224607,
+                    "Median": 21.174672,
+                    "Average": 22.495523373222569,
+                    "StandardDeviation": 33.73813721149675,
+                    "PercentileValue": 0.0,
+                    "Sum": 151889.7738159988,
+                    "Zeroes": 0,
+                    "SampleCount": 6752
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        4.0
+                    ],
+                    "Min": 4.0,
+                    "Max": 4.0,
+                    "Median": 4.0,
+                    "Average": 4.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3075.0
+                    ],
+                    "Min": 3075.0,
+                    "Max": 3075.0,
+                    "Median": 3075.0,
+                    "Average": 3075.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 3075.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1148.0
+                    ],
+                    "Min": 1148.0,
+                    "Max": 1148.0,
+                    "Median": 1148.0,
+                    "Average": 1148.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 1148.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10021.7746
+                    ],
+                    "Min": 10021.7746,
+                    "Max": 10021.7746,
+                    "Median": 10021.7746,
+                    "Average": 10021.7746,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10021.7746,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "StaticScene_RenderPerformanceTests.BakedLighting",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282560178.6304,
+            "EndTime": 1553282585248.8416,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        3180386.25
+                    ],
+                    "Min": 54.85030746459961,
+                    "Max": 3180386.25,
+                    "Median": 89.95364379882813,
+                    "Average": 3619.900744498504,
+                    "StandardDeviation": 105892.2117848818,
+                    "PercentileValue": 0.0,
+                    "Sum": 3261530.570793152,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2.3562239948660137
+                    ],
+                    "Min": 0.0,
+                    "Max": 7.178048137575388,
+                    "Median": 1.330496044829488,
+                    "Average": 1.379280837178313,
+                    "StandardDeviation": 0.29232427690153969,
+                    "PercentileValue": 0.0,
+                    "Sum": 1242.73203429766,
+                    "Zeroes": 5,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        12.284421361982825
+                    ],
+                    "Min": 4.669827874749899,
+                    "Max": 18.231438472867013,
+                    "Median": 11.11683715134859,
+                    "Average": 11.115241587496922,
+                    "StandardDeviation": 0.4478606185777783,
+                    "PercentileValue": 0.0,
+                    "Sum": 10014.832670334728,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.004343,
+                    "Median": 0.000766,
+                    "Average": 0.0008626614872364073,
+                    "StandardDeviation": 0.00032918200801246886,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.777258000000003,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001022
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.001788,
+                    "Median": 0.000766,
+                    "Average": 0.0007259922308546073,
+                    "StandardDeviation": 0.0003263122656646732,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.6541190000000012,
+                    "Zeroes": 28,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        28.157442
+                    ],
+                    "Min": 0.543681,
+                    "Max": 36.472842,
+                    "Median": 21.271502,
+                    "Average": 21.24170618312984,
+                    "StandardDeviation": 1.1715810249397266,
+                    "PercentileValue": 0.0,
+                    "Sum": 19138.777270999984,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        12.0
+                    ],
+                    "Min": 12.0,
+                    "Max": 12.0,
+                    "Median": 12.0,
+                    "Average": 12.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 12.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        14934.0
+                    ],
+                    "Min": 14934.0,
+                    "Max": 14934.0,
+                    "Median": 14934.0,
+                    "Average": 14934.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 14934.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        4819.0
+                    ],
+                    "Min": 4819.0,
+                    "Max": 4819.0,
+                    "Median": 4819.0,
+                    "Average": 4819.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4819.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10015.675
+                    ],
+                    "Min": 10015.675,
+                    "Max": 10015.675,
+                    "Median": 10015.675,
+                    "Average": 10015.675,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10015.675,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "StaticScene_RenderPerformanceTests.EmptyScene",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282585255.673,
+            "EndTime": 1553282609315.725,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1525365.25
+                    ],
+                    "Min": 57.22649383544922,
+                    "Max": 1525365.25,
+                    "Median": 89.95777893066406,
+                    "Average": 1781.2793478447688,
+                    "StandardDeviation": 50757.941754579275,
+                    "PercentileValue": 0.0,
+                    "Sum": 1606713.9717559817,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.9932799730449916
+                    ],
+                    "Min": 0.0,
+                    "Max": 7.9849278554320339,
+                    "Median": 0.9994240244850516,
+                    "Average": 1.0542908741885016,
+                    "StandardDeviation": 0.3718048598583826,
+                    "PercentileValue": 0.0,
+                    "Sum": 950.9703685180284,
+                    "Zeroes": 6,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.14877313375473
+                    ],
+                    "Min": 4.590881522744894,
+                    "Max": 17.474424093961717,
+                    "Median": 11.116581037640572,
+                    "Average": 11.110959249856304,
+                    "StandardDeviation": 0.5424219357918302,
+                    "PercentileValue": 0.0,
+                    "Sum": 10022.085243370384,
+                    "Zeroes": 0,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000766
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.00281,
+                    "Median": 0.000511,
+                    "Average": 0.0005716662971175144,
+                    "StandardDeviation": 0.0002727117711983622,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.515642999999998,
+                    "Zeroes": 28,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.0
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.0,
+                    "Median": 0.0,
+                    "Average": 0.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.0,
+                    "Zeroes": 902,
+                    "SampleCount": 902
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.168029
+                    ],
+                    "Min": 0.191872,
+                    "Max": 38.141185,
+                    "Median": 21.546664,
+                    "Average": 21.47201099223946,
+                    "StandardDeviation": 1.267928487295687,
+                    "PercentileValue": 0.0,
+                    "Sum": 38735.50782999999,
+                    "Zeroes": 0,
+                    "SampleCount": 1804
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.0
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.0,
+                    "Median": 0.0,
+                    "Average": 0.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.0,
+                    "Zeroes": 1,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.0
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.0,
+                    "Median": 0.0,
+                    "Average": 0.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.0,
+                    "Zeroes": 1,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.0
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.0,
+                    "Median": 0.0,
+                    "Average": 0.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.0,
+                    "Zeroes": 1,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10022.2728
+                    ],
+                    "Min": 10022.2728,
+                    "Max": 10022.2728,
+                    "Median": 10022.2728,
+                    "Average": 10022.2728,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10022.2728,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        },
+        {
+            "TestName": "StaticScene_RenderPerformanceTests.SinglePrimitiveCube",
+            "TestCategories": [
+                "XR",
+                "Performance"
+            ],
+            "TestVersion": "5",
+            "StartTime": 1553282609319.6282,
+            "EndTime": 1553282633361.217,
+            "SampleGroups": [
+                {
+                    "Definition": {
+                        "Name": "FPS",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": true,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1706371.125
+                    ],
+                    "Min": 81.5616683959961,
+                    "Max": 1706371.125,
+                    "Median": 89.98259735107422,
+                    "Average": 1983.781750948924,
+                    "StandardDeviation": 56812.911460506,
+                    "PercentileValue": 0.0,
+                    "Sum": 1787387.3576049805,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "GpuTimeLastFrame",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.7708479426801205
+                    ],
+                    "Min": 1.5482880407944322,
+                    "Max": 3.0248321127146484,
+                    "Median": 1.80086400359869,
+                    "Average": 1.827233952400869,
+                    "StandardDeviation": 0.1476495319791978,
+                    "PercentileValue": 0.0,
+                    "Sum": 1646.337791113183,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "FrameTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        11.2491799518466
+                    ],
+                    "Min": 10.035096667706969,
+                    "Max": 12.260661460459233,
+                    "Median": 11.113259941339493,
+                    "Average": 11.111707551679786,
+                    "StandardDeviation": 0.18035456753516286,
+                    "PercentileValue": 0.0,
+                    "Sum": 10011.648504063489,
+                    "Zeroes": 0,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Camera.Render",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.000511
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.002044,
+                    "Median": 0.000511,
+                    "Average": 0.0005669156492785774,
+                    "StandardDeviation": 0.0002476538604915451,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.5107909999999982,
+                    "Zeroes": 20,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "Render.Mesh",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        0.001277
+                    ],
+                    "Min": 0.0,
+                    "Max": 0.00281,
+                    "Median": 0.001022,
+                    "Average": 0.0010002042175360704,
+                    "StandardDeviation": 0.0003703931355092558,
+                    "PercentileValue": 0.0,
+                    "Sum": 0.9011839999999994,
+                    "Zeroes": 1,
+                    "SampleCount": 901
+                },
+                {
+                    "Definition": {
+                        "Name": "XR.WaitForGPU",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        21.22066
+                    ],
+                    "Min": 0.41798,
+                    "Max": 24.351678,
+                    "Median": 21.55254,
+                    "Average": 21.501887841287418,
+                    "StandardDeviation": 0.8085746478138158,
+                    "PercentileValue": 0.0,
+                    "Sum": 58119.602834999874,
+                    "Zeroes": 0,
+                    "SampleCount": 2703
+                },
+                {
+                    "Definition": {
+                        "Name": "AppStartupTime",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        2085.0
+                    ],
+                    "Min": 2085.0,
+                    "Max": 2085.0,
+                    "Median": 2085.0,
+                    "Average": 2085.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 4170.0,
+                    "Zeroes": 0,
+                    "SampleCount": 2
+                },
+                {
+                    "Definition": {
+                        "Name": "ObjectCount",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        1.0
+                    ],
+                    "Min": 1.0,
+                    "Max": 1.0,
+                    "Median": 1.0,
+                    "Average": 1.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 1.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Triangles",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        36.0
+                    ],
+                    "Min": 36.0,
+                    "Max": 36.0,
+                    "Median": 36.0,
+                    "Average": 36.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 36.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Vertices",
+                        "SampleUnit": 8,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        24.0
+                    ],
+                    "Min": 24.0,
+                    "Max": 24.0,
+                    "Median": 24.0,
+                    "Average": 24.0,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 24.0,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                },
+                {
+                    "Definition": {
+                        "Name": "Time",
+                        "SampleUnit": 2,
+                        "AggregationType": 3,
+                        "Threshold": 0.15,
+                        "IncreaseIsBetter": false,
+                        "Percentile": 0.0,
+                        "FailOnBaseline": true
+                    },
+                    "Samples": [
+                        10012.0713
+                    ],
+                    "Min": 10012.0713,
+                    "Max": 10012.0713,
+                    "Median": 10012.0713,
+                    "Average": 10012.0713,
+                    "StandardDeviation": 0.0,
+                    "PercentileValue": 0.0,
+                    "Sum": 10012.0713,
+                    "Zeroes": 0,
+                    "SampleCount": 1
+                }
+            ]
+        }
+    ]
+}

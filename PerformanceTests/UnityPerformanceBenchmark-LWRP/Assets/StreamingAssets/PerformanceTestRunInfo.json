@@ -1,0 +1,59 @@
+{
+    "PlayerSystemInfo": {
+        "OperatingSystem": "",
+        "DeviceModel": "",
+        "DeviceName": "",
+        "ProcessorType": "",
+        "ProcessorCount": 0,
+        "GraphicsDeviceName": "",
+        "SystemMemorySize": 0,
+        "XrModel": "",
+        "XrDevice": ""
+    },
+    "EditorVersion": {
+        "FullVersion": "2019.1.0b10 (991e595a40ba)",
+        "DateSeconds": 1553213325,
+        "Branch": "2019.1/staging",
+        "RevisionValue": 10034777
+    },
+    "BuildSettings": {
+        "Platform": "",
+        "BuildTarget": "StandaloneWindows64",
+        "DevelopmentPlayer": true,
+        "AndroidBuildSystem": "Gradle"
+    },
+    "ScreenSettings": {
+        "ScreenWidth": 0,
+        "ScreenHeight": 0,
+        "ScreenRefreshRate": 0,
+        "Fullscreen": false
+    },
+    "QualitySettings": {
+        "Vsync": 0,
+        "AntiAliasing": 0,
+        "ColorSpace": "",
+        "AnisotropicFiltering": "",
+        "BlendWeights": ""
+    },
+    "PlayerSettings": {
+        "ScriptingBackend": "Mono2x",
+        "VrSupported": true,
+        "MtRendering": true,
+        "GraphicsJobs": false,
+        "GpuSkinning": false,
+        "GraphicsApi": "Direct3D11",
+        "Batchmode": "False",
+        "StereoRenderingPath": "SinglePass",
+        "RenderThreadingMode": "MultiThreaded",
+        "AndroidMinimumSdkVersion": "AndroidApiLevel24",
+        "AndroidTargetSdkVersion": "AndroidApiLevel24",
+        "EnabledXrTargets": [
+            "Oculus"
+        ],
+        "ScriptingRuntimeVersion": "Latest"
+    },
+    "TestSuite": "",
+    "StartTime": 1553282346830.6025,
+    "EndTime": 0.0,
+    "Results": []
+}

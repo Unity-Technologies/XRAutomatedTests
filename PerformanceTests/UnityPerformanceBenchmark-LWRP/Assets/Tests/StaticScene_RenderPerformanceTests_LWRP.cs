@@ -5,13 +5,15 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
 
 [Category("XR")]
+[Category("LWRP")]
 [Category("Performance")]
-public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
+public class StaticScene_RenderPerformanceTests_LWRP : RenderPerformanceTestsBase
 {
     private readonly string basicSceneName = "RenderPerformance";
     private readonly string bakedLightingTestSceneName = "BakedLighting";
@@ -34,9 +36,9 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator EmptyScene()
+    public IEnumerator EmptyScene_LWRP()
     {
         yield return CoolDown();
 
@@ -70,9 +72,9 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator BakedLighting()
+    public IEnumerator BakedLighting_LWRP()
     {
         yield return CoolDown();
 
@@ -106,9 +108,9 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator SinglePrimitiveCube()
+    public IEnumerator SinglePrimitiveCube_LWRP()
     {
         yield return CoolDown();
 

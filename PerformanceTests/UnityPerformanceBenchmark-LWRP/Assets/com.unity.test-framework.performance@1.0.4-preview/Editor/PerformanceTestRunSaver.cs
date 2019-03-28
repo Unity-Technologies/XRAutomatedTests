@@ -34,8 +34,8 @@ namespace Unity.PerformanceTesting.Editor
             try
             {
                 var resultWriter = new ResultsWriter();
-                string xmlPath = Path.Combine(Application.streamingAssetsPath, "TestResults.xml");
-                string jsonPath = Path.Combine(Application.streamingAssetsPath, "PerformanceTestResults.json");
+                string xmlPath = Path.Combine(Application.persistentDataPath, "TestResults.xml");
+                string jsonPath = Path.Combine(Application.persistentDataPath, "PerformanceTestResults.json");
                 resultWriter.WriteResultToFile(result, xmlPath);
                 var xmlParser = new TestResultXmlParser();
                 var run = xmlParser.GetPerformanceTestRunFromXml(xmlPath);

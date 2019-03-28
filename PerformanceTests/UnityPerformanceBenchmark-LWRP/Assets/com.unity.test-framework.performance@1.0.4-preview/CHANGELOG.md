@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.0.4] - 2019-2-18
+
+### remove unnecessary meta files
+
+## [1.0.3] - 2019-2-18
+
+### package.json update
+
+## [1.0.2] - 2019-2-18
+
+### package.json update
+
+## [1.0.1] - 2019-2-18
+
+### Updated Documentation to reflect breaking changes
+
+## [1.0.0] - 2019-2-15
+
+### Refactor attributes
+
+## [0.1.50] - 2019-1-15
+
+### Change results paths to persistent data
+
 ## [0.1.49] - 2018-12-4
 
 ### Revert changes to profiler and GC

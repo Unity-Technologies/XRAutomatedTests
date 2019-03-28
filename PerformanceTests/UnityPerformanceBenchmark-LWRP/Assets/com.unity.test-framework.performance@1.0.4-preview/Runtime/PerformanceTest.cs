@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using Unity.PerformanceTesting.Runtime;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
-using NUnit.Framework.Internal;
-using Unity.PerformanceTesting.Exceptions;
 using UnityEngine;
-using UnityEngine.Profiling;
 using UnityEngine.TestRunner.NUnitExtensions;
 
 namespace Unity.PerformanceTesting
@@ -30,7 +26,6 @@ namespace Unity.PerformanceTesting
         public delegate void Callback();
 
         public static Callback OnTestEnded;
-        internal bool Failed;
 
         public PerformanceTest()
         {
@@ -66,7 +61,7 @@ namespace Unity.PerformanceTesting
             return version;
         }
 
-        internal static void EndTest(Test test)
+        internal static void EndTest(ITest test)
         {
             if (test.IsSuite) return;
             if (test.FullName != Active.TestName) return;
@@ -76,6 +71,19 @@ namespace Unity.PerformanceTesting
             Active.EndTime = Utils.DateToInt(DateTime.Now);
             if (OnTestEnded != null) OnTestEnded();
             Active.LogOutput();
+
+            // For XR team peformance tests
+            // The large collection of samples collected seems to cause
+            // intermittent timeouts to the player connection. 
+            // We don't use these so reduing list count to 1
+            // as the perf test data service expects at least one sample I think
+            foreach (var sampleGroup in Active.SampleGroups)
+            {
+                if (sampleGroup.Samples.Count > 1)
+                {
+                    sampleGroup.Samples.RemoveRange(1,sampleGroup.Samples.Count - 1);
+                }
+            }
 
             TestContext.Out.WriteLine("##performancetestresult:" + JsonUtility.ToJson(Active));
             Active = null;
@@ -101,60 +109,6 @@ namespace Unity.PerformanceTesting
             }
 
             return null;
-        }
-
-        public static void Compare(SampleGroupDefinition group, SampleGroupDefinition group2, float percentage)
-        {
-            Compare(group.Name, group2.Name, percentage);
-        }
-
-        public static void Compare(string oldGroup, string newGroup, float percentage)
-        {
-            var group = Active.SampleGroups.Find(g => g.Definition.Name == oldGroup);
-            var group2 = Active.SampleGroups.Find(g => g.Definition.Name == newGroup);
-            if (group == null || group2 == null)
-            {
-                throw new PerformanceTestException("At leat one of the provided sample groups is null.");
-            }
-
-            if (group.Samples.Count == 0 || group2.Samples.Count == 0)
-            {
-                throw new PerformanceTestException("At least on of the provided sample groups has no values.");
-            }
-
-            CalculateStatisticalValue(group);
-            CalculateStatisticalValue(group2);
-
-            var from = GetAggregationValue(group);
-            var to = GetAggregationValue(group2);
-
-            var diff = (to - from) / from;
-
-            if (group.Definition.IncreaseIsBetter && group2.Definition.IncreaseIsBetter)
-            {
-                diff = diff * -1;
-            }
-            else if (group.Definition.IncreaseIsBetter || group2.Definition.IncreaseIsBetter)
-            {
-                throw new PerformanceTestException(
-                    string.Format(
-                        "Sample groups {0} and {1} have incompatible definitions. When comparing, sample groups should have a matching SampleGroupDefinition.IncreaseIsBetter value.",
-                        group.Definition.Name, group2.Definition.Name));
-            }
-
-            if (diff > percentage)
-            {
-                TestContext.Out.Write(
-                    "Test Failed with increase in time of {0:P2}\nOrigin {1:0.00} New {2:0.00} Allowed difference {3:P2}\n---\n\n",
-                    diff, from, to, percentage);
-                Active.Failed = true;
-            }
-            else
-            {
-                TestContext.Out.Write(
-                    "Test Passed with difference in time of {0:P2}\nOrigin {1:0.00} New {2:0.00} Allowed increase {3:P2}\n---\n\n",
-                    diff, from, to, percentage);
-            }
         }
 
         public void CalculateStatisticalValues()

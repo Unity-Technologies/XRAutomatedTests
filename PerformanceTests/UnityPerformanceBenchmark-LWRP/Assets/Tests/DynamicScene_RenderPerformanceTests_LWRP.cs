@@ -5,13 +5,15 @@ using System.Collections;
 using Unity.PerformanceTesting;
 using UnityEngine.SceneManagement;
 using NUnit.Framework;
+using UnityEngine.TestTools;
 #if ENABLE_VR
 using UnityEngine.XR;
 #endif
 
 [Category("XR")]
+[Category("LWRP")]
 [Category("Performance")]
-public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
+public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
 {
     private readonly string spiralSceneName = "PerformanceTest";
     private readonly string renderTextureMaterialTestSceneName = "RenderTexture_MaterialTest";
@@ -41,9 +43,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
     
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Directional()
+    public IEnumerator RealtimeLighting_Directional_LWRP()
     {
         yield return CoolDown();
 
@@ -77,9 +79,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Point()
+    public IEnumerator RealtimeLighting_Point_LWRP()
     {
         yield return CoolDown();
 
@@ -113,9 +115,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Spot()
+    public IEnumerator RealtimeLighting_Spot_LWRP()
     {
         yield return CoolDown();
 
@@ -149,9 +151,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator SpiralFlame_RenderPerformance()
+    public IEnumerator SpiralFlame_RenderPerformance_LWRP()
     {
         yield return CoolDown();
 
@@ -187,9 +189,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RenderTextureMaterial()
+    public IEnumerator RenderTextureMaterial_LWRP()
     {
         yield return CoolDown();
 
@@ -223,9 +225,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator TransparentMaterial()
+    public IEnumerator TransparentMaterial_LWRP()
     {
         yield return CoolDown();
 
@@ -259,9 +261,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator GpuInstacingMaterial()
+    public IEnumerator GpuInstacingMaterial_LWRP()
     {
         yield return CoolDown();
 
@@ -295,9 +297,9 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
     }
 
     [Version("5")]
-    [PerformanceUnityTest]
+    [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator StandardMaterial()
+    public IEnumerator StandardMaterial_LWRP()
     {
         yield return CoolDown();
 

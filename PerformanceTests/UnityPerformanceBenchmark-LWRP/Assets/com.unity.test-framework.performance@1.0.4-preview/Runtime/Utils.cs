@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Unity.PerformanceTesting.Exceptions;
-using UnityEditor;
 using UnityEngine;
 
 namespace Unity.PerformanceTesting.Runtime

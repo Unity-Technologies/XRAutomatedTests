@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
@@ -7,7 +6,6 @@ using System;
 using UnityEditor.IMGUI.Controls;
 using System.IO;
 using System.Linq;
-using Unity.PerformanceTesting;
 using Unity.PerformanceTesting.Runtime;
 
 namespace Unity.PerformanceTesting
@@ -117,7 +115,7 @@ namespace Unity.PerformanceTesting
 
         private void LoadData()
         {
-            string filePath = Path.Combine(Application.streamingAssetsPath, "PerformanceTestResults.json");
+            string filePath = Path.Combine(Application.persistentDataPath, "PerformanceTestResults.json");
             if (!File.Exists(filePath)) return;
 
             string json = File.ReadAllText(filePath);

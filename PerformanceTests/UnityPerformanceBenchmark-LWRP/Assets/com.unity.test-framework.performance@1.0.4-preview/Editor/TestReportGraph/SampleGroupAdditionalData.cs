@@ -1,6 +1,4 @@
-﻿using System;
-
-struct SampleGroupAdditionalData
+﻿struct SampleGroupAdditionalData
 {
     public float min;
     public float lowerQuartile;

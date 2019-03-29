@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.unity.configmanager": "file:D:/UnityRepos/xr.xrautomatedtests/com.unity.configmanager",
+    "com.unity.configmanager": "file:../../../com.unity.configmanager",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.postprocessing": "2.1.5",
@@ -8,7 +8,7 @@
     "com.unity.render-pipelines.lightweight": "5.2.3",
     "com.unity.shadergraph": "5.2.3",
     "com.unity.test-framework": "1.0.7",
-    "com.unity.testframework.graphics": "file:D:/UnityRepos/xr.xrautomatedtests/GraphicsTests/com.unity.testframework.graphics",
+    "com.unity.testframework.graphics": "file:../../com.unity.testframework.graphics",
     "com.unity.textmeshpro": "1.3.0",
     "com.unity.xr.legacyinputhelpers": "2.0.2",
     "com.unity.xr.oculus.standalone": "1.29.1",

@@ -42,5 +42,5 @@
     "com.unity.modules.xr": "1.0.0",
 	"com.unity.test-framework": "1.0.7"
   },
-  "registry": "https://packages.unity.com"
+  "registry": "https://staging-packages.unity.com"
 }

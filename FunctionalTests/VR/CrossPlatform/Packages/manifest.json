@@ -45,5 +45,6 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
     "com.unity.test-framework": "1.0.7"
-  }
+  },
+  "registry": "https://staging-packages.unity.com"
 }

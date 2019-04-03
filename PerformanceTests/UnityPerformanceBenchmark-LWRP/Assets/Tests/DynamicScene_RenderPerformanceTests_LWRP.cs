@@ -45,7 +45,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Directional_LWRP()
+    public IEnumerator RealtimeLighting_Directional()
     {
         yield return CoolDown();
 
@@ -81,7 +81,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Point_LWRP()
+    public IEnumerator RealtimeLighting_Point()
     {
         yield return CoolDown();
 
@@ -117,7 +117,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RealtimeLighting_Spot_LWRP()
+    public IEnumerator RealtimeLighting_Spot()
     {
         yield return CoolDown();
 
@@ -153,7 +153,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator SpiralFlame_RenderPerformance_LWRP()
+    public IEnumerator SpiralFlame_RenderPerformance()
     {
         yield return CoolDown();
 
@@ -191,7 +191,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator RenderTextureMaterial_LWRP()
+    public IEnumerator RenderTextureMaterial()
     {
         yield return CoolDown();
 
@@ -227,7 +227,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator TransparentMaterial_LWRP()
+    public IEnumerator TransparentMaterial()
     {
         yield return CoolDown();
 
@@ -263,7 +263,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator GpuInstacingMaterial_LWRP()
+    public IEnumerator GpuInstacingMaterial()
     {
         yield return CoolDown();
 
@@ -299,7 +299,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator StandardMaterial_LWRP()
+    public IEnumerator StandardMaterial()
     {
         yield return CoolDown();
 

@@ -38,7 +38,7 @@ public class StaticScene_RenderPerformanceTests_LWRP : RenderPerformanceTestsBas
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator EmptyScene_LWRP()
+    public IEnumerator EmptyScene()
     {
         yield return CoolDown();
 
@@ -74,7 +74,7 @@ public class StaticScene_RenderPerformanceTests_LWRP : RenderPerformanceTestsBas
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator BakedLighting_LWRP()
+    public IEnumerator BakedLighting()
     {
         yield return CoolDown();
 
@@ -110,7 +110,7 @@ public class StaticScene_RenderPerformanceTests_LWRP : RenderPerformanceTestsBas
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
-    public IEnumerator SinglePrimitiveCube_LWRP()
+    public IEnumerator SinglePrimitiveCube()
     {
         yield return CoolDown();
 

@@ -66,7 +66,7 @@ The [XRAutomatedTests](https://github.com/Unity-Technologies/XRAutomatedTests) p
 
 The command line option format to run the Unity Performance Benchmark Tests looks like this:
 
-`Unity.exe -runTests -batchmode -projectPath <Path To Performance Test Project> -testResults <Path To A Writable Location>\<Your Result File Name>.xml -testPlatform <An Officially Supported Unity Test Runner Platform> -buildTarget <SupportedUnity --buildTarget value> [-option…]`
+`Unity.exe -runTests -batchmode -projectPath <Path To Performance Test Project> -testResults <Path To A Writable Location>\<Your Result File Name>.xml -testPlatform <An Officially Supported Unity Test Runner Platform> -buildTarget <SupportedUnity --buildTarget value> [-option…] -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup `
 
 * See [supported Unity --buildTarget values here.](https://docs.unity3d.com/Manual/CommandLineArguments.html)
 * See [supported Unity Test Runner -testPlatform values](https://docs.unity3d.com/Manual/PlaymodeTestFramework.html) under the "Running from the command line" section
@@ -128,37 +128,37 @@ You can, however, launch the Unity Editor with the same commands _minus the `-ru
 
 **Example: No-XR Android with OpenGLES3 Graphics API, SingleThreaded rendering**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Android_OpenGLES3_SinglethreadedRendering.xml -testPlatform Android -buildTarget Android -playergraphicsapi=OpenGLES3 -mtRendering-`
+`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Android_OpenGLES3_SinglethreadedRendering.xml -testPlatform Android -buildTarget Android -playergraphicsapi=OpenGLES3 -mtRendering- -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup `
 
 **Example: XR Android with OpenGLES3, SingleThreaded rendering, GearVR SDK, SinglePass StereoRendering**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Android_OpenGLES3_SinglethreadedRendering.xml -testPlatform Android -buildTarget Android -playergraphicsapi=OpenGLES3 -mtRendering-  -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass`
+`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Android_OpenGLES3_SinglethreadedRendering.xml -testPlatform Android -buildTarget Android -playergraphicsapi=OpenGLES3 -mtRendering-  -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup`
 
 <a name="ios"></a>
 ### iOS
 
 **Example: No-XR iOS with OpenGLES3 Graphics API, SingleThreaded rendering**
 
-`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/iOS_OpenGLES3_SinglethreadedRendering.xml -testPlatform iOS -buildTarget iOS -playergraphicsapi=OpenGLES3 -mtRendering- -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID>`
+`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/iOS_OpenGLES3_SinglethreadedRendering.xml -testPlatform iOS -buildTarget iOS -playergraphicsapi=OpenGLES3 -mtRendering- -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID> -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup `
 
 **Example: XR iOS with OpenGLES3 Graphics API, SingleThreaded rendering, Google Cardboard SDK, SinglePass StereoRendering**
 
-`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/iOS_OpenGLES3_SinglethreadedRendering.xml -testPlatform iOS -buildTarget iOS -playergraphicsapi=OpenGLES3 -mtRendering- -enabledxrtargets=cardboard -stereoRenderingPath=SinglePass -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID>`
+`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/iOS_OpenGLES3_SinglethreadedRendering.xml -testPlatform iOS -buildTarget iOS -playergraphicsapi=OpenGLES3 -mtRendering- -enabledxrtargets=cardboard -stereoRenderingPath=SinglePass -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID> -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup`
 
 <a name="osx"></a>
 ### OSX
 
 **Example: OSX with Metal Graphics API, SingleThreaded rendering**
 
-`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/OSX_Metal_SinglethreadedRendering.xml -testPlatform StandaloneOSX -buildTarget OSXUniversal -playergraphicsapi=Metal -mtRendering- -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID>`
+`./Unity -runTests —batch mode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/OSX_Metal_SinglethreadedRendering.xml -testPlatform StandaloneOSX -buildTarget OSXUniversal -playergraphicsapi=Metal -mtRendering- -appleDeveloperTeamID=<yourAppleDeveloperTeamID> -iOSProvisioningProfileID=<yourIosProvisionProfileID> -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup`
 
 <a name="windows"></a>
 ### Windows
 
 **Example: No-XR Windows with D3D11 Graphics API, SingleThreaded rendering**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Windows_D3D11_SinglethreadedRendering.xml -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -mtRendering-`
+`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Windows_D3D11_SinglethreadedRendering.xml -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -mtRendering--executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup`
 
 **Example: XR Windows with D3D11 Graphics API, MultThreaded rendering, Oculus SDK, SinglePass StereoRendering**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Windows_D3D11_SinglethreadedRendering_Oculus_SinglePass.xml -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -mtRendering  -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass`
+`Unity.exe -runtTests -batchmode -projectPath <pathToYourPerformanceTestProject> -testResults <pathToYourPerfTestResultsDirectory>/Windows_D3D11_SinglethreadedRendering_Oculus_SinglePass.xml -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -mtRendering  -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup`

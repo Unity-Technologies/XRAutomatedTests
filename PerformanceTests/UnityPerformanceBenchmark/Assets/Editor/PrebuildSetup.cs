@@ -73,6 +73,11 @@ namespace Assets.Editor
             if (PlayerSettings.virtualRealitySupported)
             {
                 PlayerSettings.virtualRealitySupported = true;
+
+                UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
+                    EditorUserBuildSettings.selectedBuildTargetGroup,
+                    new string[]{});
+
                 UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                     EditorUserBuildSettings.selectedBuildTargetGroup,
                     enabledXrTargets.ToArray());

@@ -9,6 +9,8 @@ using Unity.PerformanceTesting.Runtime;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.TestTools;
+using System.Collections.Generic;
+using UnityEditor;
 
 [Category("Performance")]
 public class PlaymodeMetadataCollector : IPrebuildSetup

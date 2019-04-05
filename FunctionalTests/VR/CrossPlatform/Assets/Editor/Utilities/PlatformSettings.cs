@@ -18,7 +18,7 @@ public static class PlatformSettings
     public static bool mtRendering = true;
     public static bool graphicsJobs;
     public static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    public static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+    public static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
 
     public static string simulationMode;
 

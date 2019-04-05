@@ -141,6 +141,12 @@ public class Build
     {
         PlayerSettings.virtualRealitySupported = true;
 
+        // Remove any existing VR targets before we add any; helps to ensure the correct packages are loaded for
+        // each VR sdk when we set them below.
+        UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
+            EditorUserBuildSettings.selectedBuildTargetGroup,
+            new string[]{});
+
         UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
             PlatformSettings.BuildTargetGroup,
             PlatformSettings.enabledXrTargets);

@@ -20,7 +20,7 @@ namespace Assets.Editor
         private static ScriptingImplementation scriptingImplementation = ScriptingImplementation.IL2CPP;
         private static bool mtRendering = true;
         private static bool graphicsJobs = false;
-        private static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel26;
+        private static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel25;
         private static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
         private static string appleDeveloperTeamId;
         private static string iOsProvisioningProfileId;
@@ -73,6 +73,11 @@ namespace Assets.Editor
             if (PlayerSettings.virtualRealitySupported)
             {
                 PlayerSettings.virtualRealitySupported = true;
+
+                UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
+                    EditorUserBuildSettings.selectedBuildTargetGroup,
+                    new string[]{});
+
                 UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                     EditorUserBuildSettings.selectedBuildTargetGroup,
                     enabledXrTargets.ToArray());

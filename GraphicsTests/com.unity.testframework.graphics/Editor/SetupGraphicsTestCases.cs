@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.TestTools;
 using EditorSceneManagement = UnityEditor.SceneManagement;
 
 namespace UnityEditor.TestTools.Graphics
@@ -13,9 +12,9 @@ namespace UnityEditor.TestTools.Graphics
     /// player.
     /// Will also build Lightmaps for specially labelled scenes.
     /// </summary>
-    public class SetupGraphicsTestCases : IPrebuildSetup
+    public class SetupGraphicsTestCases
     {
-        static string bakeLabel = "TestRunnerBake";
+        const string bakeLabel = "TestRunnerBake";
 
         private static bool IsBuildingForEditorPlaymode
         {
@@ -30,7 +29,8 @@ namespace UnityEditor.TestTools.Graphics
             }
         }
 
-        public void Setup()
+        [MenuItem("Tests/BakeLightmaps")]
+        public static void Setup()
         {
             ColorSpace colorSpace;
             BuildTarget buildPlatform;
@@ -92,11 +92,6 @@ namespace UnityEditor.TestTools.Graphics
                         buildPlatform);
                 }
             }
-            
-            // For each scene in the build settings, force build of the lightmaps if it has "DoLightmap" label.
-            // Note that in the PreBuildSetup stage, TestRunner has already created a new scene with its testing monobehaviours
-
-            // Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
 
             EditorBuildSettingsScene[] scenesWithDisabledScenes = EditorBuildSettings.scenes;
 
@@ -105,8 +100,6 @@ namespace UnityEditor.TestTools.Graphics
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
                 
                 var currentScene = EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Single);
-                //Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
-                //EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
 
                 var settings = GameObject.FindObjectOfType<PlatformConfigTestFilters>();
 
@@ -130,9 +123,11 @@ namespace UnityEditor.TestTools.Graphics
                     }
                 }
 
-                var labels = new System.Collections.Generic.List<string>(AssetDatabase.GetLabels(sceneAsset));
+                var labels = new List<string>(AssetDatabase.GetLabels(sceneAsset));
                 if ( labels.Contains(bakeLabel) )
-                {   
+                {
+                    Debug.Log("backing lights for scene " + sceneAsset.name);
+
                     Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
 
                     Lightmapping.Bake();
@@ -140,11 +135,8 @@ namespace UnityEditor.TestTools.Graphics
                     // disk cache needs to be cleared to prevent bug 742012 where duplicate lights are double baked
                     Lightmapping.ClearDiskCache();
 
-                    EditorSceneManagement.EditorSceneManager.SaveScene( currentScene );
+                    EditorSceneManagement.EditorSceneManager.SaveScene(currentScene);
                 }
-
-                // EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
-                // EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
 
             EditorBuildSettings.scenes = scenesWithDisabledScenes;

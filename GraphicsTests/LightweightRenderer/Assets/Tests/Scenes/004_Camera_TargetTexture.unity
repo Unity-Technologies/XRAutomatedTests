@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 112000002, guid: c40554504d2504a44a6ff29317f16d61,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -650,7 +650,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 4e087ed77662f412284c8aaa82cccb06, type: 2}
   m_TargetDisplay: 0
-  m_TargetEye: 3
+  m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0

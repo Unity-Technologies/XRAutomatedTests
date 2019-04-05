@@ -7,6 +7,6 @@ public static class Setup
     {
         new EnablePlatformPrebuildStep().Setup();
         ImageHandlingSetup.Setup();
-        new SetupGraphicsTestCases().Setup();
+        SetupGraphicsTestCases.Setup();
     }
 }

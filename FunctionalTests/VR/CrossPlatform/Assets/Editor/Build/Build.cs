@@ -71,7 +71,7 @@ public class Build
 
         if (args.Length == unprocessedArgs.Count)
         {
-            switch (EditorUserBuildSettings.selectedBuildTargetGroup)    
+            switch (EditorUserBuildSettings.selectedBuildTargetGroup)
             {
                 case BuildTargetGroup.Standalone:
                     PlatformSettings.enabledXrTargets = new string[] { "MockHMD", "None" };
@@ -139,7 +139,15 @@ public class Build
     
     private static void ConfigureSettings()
     {
+        if (PlatformSettings.enabledXrTargets.FirstOrDefault() != "None")
+        {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(
+                PlatformSettings.BuildTargetGroup,
+                PlatformSettings.BuildTarget);
+        }
+
         PlayerSettings.virtualRealitySupported = true;
+
 
         // Remove any existing VR targets before we add any; helps to ensure the correct packages are loaded for
         // each VR sdk when we set them below.
@@ -148,15 +156,10 @@ public class Build
             new string[]{});
 
         UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-            PlatformSettings.BuildTargetGroup,
+            //PlatformSettings.BuildTargetGroup,
+            EditorUserBuildSettings.selectedBuildTargetGroup,
             PlatformSettings.enabledXrTargets);
-
-        if (PlatformSettings.enabledXrTargets.FirstOrDefault() != "None")
-        {
-            EditorUserBuildSettings.SwitchActiveBuildTarget(
-                PlatformSettings.BuildTargetGroup,
-                PlatformSettings.BuildTarget);
-        }
+        
 
         PlayerSettings.stereoRenderingPath = PlatformSettings.stereoRenderingPath;
 

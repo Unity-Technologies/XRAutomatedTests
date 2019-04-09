@@ -21,7 +21,7 @@ public class XRSDK_ARSmokeTest
         Assert.That(SceneManager.GetActiveScene().name == "ARScene");
 
         // Check for AR Session and the AR Session component
-        GameObject arSession = GameObject.Find("ARSession");
+        GameObject arSession = GameObject.Find("AR Session");
 
         Assert.IsNotNull(arSession);
 
@@ -30,7 +30,7 @@ public class XRSDK_ARSmokeTest
         Assert.IsNotNull(arSessionComponent);
 
         // Check for the AR Rig which controls the origin of the AR scene and the camera
-        GameObject arRig = GameObject.Find("ARRig");
+        GameObject arRig = GameObject.Find("AR Session Origin");
 
         Assert.IsNotNull(arRig);
 
@@ -40,13 +40,13 @@ public class XRSDK_ARSmokeTest
 
         // Wait up to 120 frames for ARSession state to change from Initializing to Running
         int framesWaited = 0;
-        while (ARSubsystemManager.sessionSubsystem.TrackingState != UnityEngine.Experimental.XR.TrackingState.Tracking && framesWaited < 240)
+        while (ARSession.state != ARSessionState.SessionTracking && framesWaited < 240)
         {
             framesWaited++;
             yield return null;
         }
 
-        Assert.That(ARSubsystemManager.sessionSubsystem.TrackingState == UnityEngine.Experimental.XR.TrackingState.Tracking, "Session State: {0}", ARSubsystemManager.sessionSubsystem.TrackingState);
+        Assert.That(ARSession.state == ARSessionState.SessionTracking, "Session State: {0}", ARSession.state);
 
         // Once the ARSession is running, the AR Background Renderer should become active and display the camera feed on the screen
         ARCameraBackground backgroundRenderer = arRig.GetComponentInChildren<ARCameraBackground>();

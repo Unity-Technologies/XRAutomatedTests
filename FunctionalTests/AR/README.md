@@ -29,5 +29,6 @@ Known Issues:
   - If the tests are run manually, camera permissions will need to be granted on the device before results can be reported
   - If the tests are run via command line, an editor script will give the camera permissions
 
+
 - Lack of AR Feature coverage
   - Unity is working on developing AR automation tests with more in depth coverage. New tests will be added to this repository as they are developed.

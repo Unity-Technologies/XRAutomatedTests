@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using GoogleARCore;
 
 [UnityPlatform(include = new[] { RuntimePlatform.Android })]
-public class ARCoreSmokeTests : EnableARPrebuildStep
+public class ARCoreSmokeTests
 {
     [SetUp]
     public void SetupTest()
@@ -39,6 +39,6 @@ public class ARCoreSmokeTests : EnableARPrebuildStep
         }
 
         // Check to see that the session connected successfully
-        Assert.That(Session.Status == SessionStatus.Tracking, "Connection State: {0}", Session.Status);
+        Assert.That(Session.Status == SessionStatus.Tracking, "Connection State: {0}", SessionStatus.Tracking);
     }
 }

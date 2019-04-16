@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 
-[UnityPlatform(include = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer})]
+[UnityPlatform(include = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
 public class XRSDK_ARSmokeTest
 {
     [SetUp]
@@ -40,15 +40,13 @@ public class XRSDK_ARSmokeTest
 
         // Wait up to 120 frames for ARSession state to change from Initializing to Running
         int framesWaited = 0;
-       
-        
-        while (ARSubsystemManager.systemState != ARSystemState.SessionTracking && framesWaited < 480)
+        while (ARSession.state != ARSessionState.SessionTracking && framesWaited < 240)
         {
             framesWaited++;
             yield return null;
         }
 
-        Assert.That(ARSubsystemManager.systemState == ARSystemState.SessionTracking, "Session State: {0}", ARSubsystemManager.systemState);
+        Assert.That(ARSession.state == ARSessionState.SessionTracking, "Session State: {0}", ARSession.state);
 
         // Once the ARSession is running, the AR Background Renderer should become active and display the camera feed on the screen
         ARCameraBackground backgroundRenderer = arRig.GetComponentInChildren<ARCameraBackground>();

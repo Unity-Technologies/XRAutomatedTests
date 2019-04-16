@@ -78,9 +78,16 @@ namespace Assets.Editor
                     EditorUserBuildSettings.selectedBuildTargetGroup,
                     new string[]{});
 
+                Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings
+                .selectedBuildTargetGroup))));
+
                 UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                     EditorUserBuildSettings.selectedBuildTargetGroup,
                     enabledXrTargets.ToArray());
+
+                Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings
+                .selectedBuildTargetGroup))));
+
                 PlayerSettings.stereoRenderingPath = stereoRenderingPath;
             }
 

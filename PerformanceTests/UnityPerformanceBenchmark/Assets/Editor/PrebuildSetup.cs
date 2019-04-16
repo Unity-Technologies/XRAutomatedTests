@@ -72,15 +72,6 @@ namespace Assets.Editor
             PlayerSettings.virtualRealitySupported = enabledXrTargets.Count > 0;
             if (PlayerSettings.virtualRealitySupported)
             {
-                PlayerSettings.virtualRealitySupported = true;
-
-                UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-                    EditorUserBuildSettings.selectedBuildTargetGroup,
-                    new string[]{});
-
-                Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings
-                .selectedBuildTargetGroup))));
-
                 UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                     EditorUserBuildSettings.selectedBuildTargetGroup,
                     enabledXrTargets.ToArray());

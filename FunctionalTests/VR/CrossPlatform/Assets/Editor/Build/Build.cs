@@ -141,17 +141,7 @@ public class Build
 
         if (PlayerSettings.virtualRealitySupported)
         {
-            // Remove any existing VR targets before we add any; helps to ensure the correct packages are loaded for
-            // each VR sdk when we set them below.
             UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-                EditorUserBuildSettings.selectedBuildTargetGroup,
-                new string[]{});
-
-            Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings
-                .selectedBuildTargetGroup))));
-
-            UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-                //PlatformSettings.BuildTargetGroup,
                 EditorUserBuildSettings.selectedBuildTargetGroup,
                 PlatformSettings.enabledXrTargets);
             Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings

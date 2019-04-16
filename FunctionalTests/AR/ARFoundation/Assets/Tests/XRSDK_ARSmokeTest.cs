@@ -40,13 +40,15 @@ public class XRSDK_ARSmokeTest
 
         // Wait up to 120 frames for ARSession state to change from Initializing to Running
         int framesWaited = 0;
-        while (ARSession.state != ARSessionState.SessionTracking && framesWaited < 240)
+       
+        
+        while (ARSubsystemManager.systemState != ARSystemState.SessionTracking && framesWaited < 480)
         {
             framesWaited++;
             yield return null;
         }
 
-        Assert.That(ARSession.state == ARSessionState.SessionTracking, "Session State: {0}", ARSession.state);
+        Assert.That(ARSubsystemManager.systemState == ARSystemState.SessionTracking, "Session State: {0}", ARSubsystemManager.systemState);
 
         // Once the ARSession is running, the AR Background Renderer should become active and display the camera feed on the screen
         ARCameraBackground backgroundRenderer = arRig.GetComponentInChildren<ARCameraBackground>();

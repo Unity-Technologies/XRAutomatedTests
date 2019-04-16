@@ -163,8 +163,8 @@ PlayerSettings:
     iPhone: com.unity3d.IntegrationTest
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 24
-  AndroidTargetSdkVersion: 24
+  AndroidMinSdkVersion: 25
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: nimt-trampolines=1024
   stripEngineCode: 0
@@ -381,9 +381,8 @@ PlayerSettings:
     m_Devices:
     - Oculus
   - m_BuildTarget: Android
-    m_Enabled: 1
-    m_Devices:
-    - cardboard
+    m_Enabled: 0
+    m_Devices: []
   - m_BuildTarget: iPhone
     m_Enabled: 1
     m_Devices:

@@ -1520,7 +1520,7 @@ GameObject:
   - component: {fileID: 614498296}
   m_Layer: 0
   m_Name: TestFilter
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1538,10 +1538,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Filters:
-  - ColorSpace: 0
-    BuildPlatform: 0
-    GraphicsDevice: 0
-    stereoModes: 000000000100000002000000
+  - ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    stereoModes: 
     Reason: view port rect scaling not supported in stereo rendering
 --- !u!4 &614498297
 Transform:

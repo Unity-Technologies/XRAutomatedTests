@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 264879672}
   m_Layer: 0
   m_Name: TestFilter
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,9 +393,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Filters:
   - ColorSpace: -1
-    BuildPlatform: 0
-    GraphicsDevice: 0
-    stereoModes: 000000000100000002000000
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    stereoModes: 
     Reason: split screen not supported by stereo rendering
 --- !u!4 &264879673
 Transform:
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 587.2374, y: 390.92258}
+  m_CellSize: {x: 633.29877, y: 362.56354}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

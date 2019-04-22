@@ -26,9 +26,9 @@ The tests can be executed using the follow methods:
 
 Known Issues:
 - Camera Permissions
-  - The first time either test is run, you will be required to manually allow the app access to the device's camera.
-  - Once camera permissions are granted, subsequent runs will not require this step
-  - Tests may fail on the first run, even if camera permission is granted.
+  - If the tests are run manually, camera permissions will need to be granted on the device before results can be reported
+  - If the tests are run via command line, an editor script will give the camera permissions
+
 
 - Lack of AR Feature coverage
   - Unity is working on developing AR automation tests with more in depth coverage. New tests will be added to this repository as they are developed.

@@ -41,7 +41,7 @@ The purpose of this project is to run a common set of automated tests for the Un
 ## How to run
 
 ### Run from Command Line
-The best way to run these tests are to run them from command line and configure them with the parameters defined below
+The best way to run these tests is from the command line and configure them with the parameters defined below.
 
 These are full defined here:
 [Unity Command Line Arguments](https://docs.unity3d.com/Manual/CommandLineArguments.html)

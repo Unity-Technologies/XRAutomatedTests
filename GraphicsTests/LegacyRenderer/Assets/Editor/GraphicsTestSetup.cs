@@ -46,7 +46,7 @@ public static class GraphicsTestSetup
         }
 
         new EnablePlatformPrebuildStep().Setup();
-        UnityEditor.TestTools.Graphics.SetupGraphicsTestCases.Setup();
+        new UnityEditor.TestTools.Graphics.SetupGraphicsTestCases().Setup();
 
         EditorApplication.quitting += CopyImages;
     }

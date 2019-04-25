@@ -176,6 +176,8 @@ public class Build
         {
             EditorUserBuildSettings.development = true;
         }
+
+        PlayerSettings.SetGraphicsAPIs(PlatformSettings.BuildTarget, new[] { PlatformSettings.playerGraphicsApi });
     }
 
     private static OptionSet DefineOptionSet()

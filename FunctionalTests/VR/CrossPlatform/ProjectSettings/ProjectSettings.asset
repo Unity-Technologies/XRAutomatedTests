@@ -371,22 +371,17 @@ PlayerSettings:
     m_Automatic: 1
   m_BuildTargetVRSettings:
   - m_BuildTarget: Android
-    m_Enabled: 1
-    m_Devices:
-    - daydream
-    - None
+    m_Enabled: 0
+    m_Devices: []
   - m_BuildTarget: Standalone
     m_Enabled: 0
     m_Devices: []
   - m_BuildTarget: Windows Store Apps
-    m_Enabled: 1
-    m_Devices:
-    - WindowsMR
-    - None
+    m_Enabled: 0
+    m_Devices: []
   - m_BuildTarget: iPhone
-    m_Enabled: 1
-    m_Devices:
-    - cardboard
+    m_Enabled: 0
+    m_Devices: []
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0

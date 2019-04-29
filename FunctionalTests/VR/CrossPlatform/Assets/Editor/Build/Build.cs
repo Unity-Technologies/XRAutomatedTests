@@ -1,6 +1,7 @@
 ﻿using NDesk.Options;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,6 +14,7 @@ public class Build
     private static string[] enabledXrTargets;
     private static string[] playerGraphicsApis;
     private static string[] stereoRenderingPaths;
+    private static readonly Regex customArgRegex = new Regex("-([^=]*)=", RegexOptions.Compiled);
 
     [MenuItem("Build/Build Project")]
     public static void BuildProject()
@@ -63,7 +65,9 @@ public class Build
     public static void CommandLineSetup()
     {
         var args = Environment.GetCommandLineArgs();
-        
+
+        EnsureOptionsLowerCased(args);
+
         var optionSet = DefineOptionSet();
         var unprocessedArgs = optionSet.Parse(args);
 
@@ -110,7 +114,18 @@ public class Build
         PlatformSettings.SerializeToAsset();
 
     }
-    
+
+    private static void EnsureOptionsLowerCased(string[] args)
+    {
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (customArgRegex.IsMatch(args[i]))
+            {
+                args[i] = customArgRegex.Replace(args[i], customArgRegex.Matches(args[i])[0].ToString().ToLower());
+            }
+        }
+    }
+
     public static void CommandLineBuild()
     {
         CommandLineSetup();

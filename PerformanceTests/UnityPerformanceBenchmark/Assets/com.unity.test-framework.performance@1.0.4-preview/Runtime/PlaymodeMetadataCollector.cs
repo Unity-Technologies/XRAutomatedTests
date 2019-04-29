@@ -9,6 +9,8 @@ using Unity.PerformanceTesting.Runtime;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.TestTools;
+using System.Collections.Generic;
+using UnityEditor;
 
 [Category("Performance")]
 public class PlaymodeMetadataCollector : IPrebuildSetup
@@ -192,6 +194,11 @@ public class PlaymodeMetadataCollector : IPrebuildSetup
         playerSettings.AndroidMinimumSdkVersion = UnityEditor.PlayerSettings.Android.minSdkVersion.ToString();
         playerSettings.AndroidTargetSdkVersion = UnityEditor.PlayerSettings.Android.targetSdkVersion.ToString();
         playerSettings.Batchmode = UnityEditorInternal.InternalEditorUtility.inBatchMode.ToString();
+        playerSettings.EnabledXrTargets = new List<string>(UnityEditor.PlayerSettings.GetVirtualRealitySDKs(EditorUserBuildSettings.selectedBuildTargetGroup));
+        playerSettings.EnabledXrTargets.Sort();
+        playerSettings.ScriptingBackend =
+            UnityEditor.PlayerSettings.GetScriptingBackend(EditorUserBuildSettings.selectedBuildTargetGroup).ToString();
+        playerSettings.ScriptingRuntimeVersion = UnityEditor.PlayerSettings.scriptingRuntimeVersion.ToString();
         return playerSettings;
         // Currently no API on 2018.1 
         //playerSettings.StaticBatching = TODO

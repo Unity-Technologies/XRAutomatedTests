@@ -184,7 +184,7 @@ public class CameraCheck : TestBaseSetup
             }
             else
             {
-                Texture2D tex = new Texture2D(2, 2);
+                var tex = new Texture2D(2, 2);
 
                 var texData = File.ReadAllBytes(m_FileName);
                 Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);

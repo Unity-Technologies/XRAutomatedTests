@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: f05b05015b179c3488e93a1facc5dffd, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  enabledXrTarget: WindowsMR
+  enabledXrTarget: Oculus
   playerGraphicsApi: 0
   stereoRenderingMode: 0
   mtRendering: 1
   graphicsJobs: 0
-  simulationMode: HoloLens
+  simulationMode: 

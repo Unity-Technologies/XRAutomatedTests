@@ -1,0 +1,32 @@
+fileFormatVersion: 1
+guid: 1c0d228165ea6c1449a1101241c60310
+TextureImporter:
+  importerVersion: 2
+  maxTextureSize: 256
+  textureFormat: 1
+  grayscaleToAlpha: 0
+  npotScale: 0
+  generateCubemap: 0
+  isReadable: 0
+  textureType: 5
+  mipmaps:
+    generation: 1
+    correctGamma: 0
+    border: 0
+    filter: 0
+    fadeout: 0
+    fadeoutStart: 2
+    fadeoutEnd: 3
+  bumpmap:
+    generation: 0
+    bumpyness: 0.25
+    filter: 0
+  textureSettings:
+    filterMode: 2
+    anisoLevel: 9
+    mipmapBias: 0
+    wrapMode: 0
+  buildTargetSettings:
+    iPhone:
+      maxTextureSize: 128
+      textureFormat: 1

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UseTextureSTWithoutTexture
+  m_Shader: {fileID: 4800000, guid: 39b82e50e680743f981d0ddde30d5671, type: 3}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _UnusedTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 57e020d5e89e349a7b1db77f3f80db54, type: 3}
+          m_Scale: {x: .800000012, y: .300000012}
+          m_Offset: {x: 0, y: .300000012}
+    m_Floats: {}
+    m_Colors: {}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

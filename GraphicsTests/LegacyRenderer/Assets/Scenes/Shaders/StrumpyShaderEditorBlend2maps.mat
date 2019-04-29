@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: StrumpyShaderEditorBlend2maps
+  m_Shader: {fileID: 4800000, guid: 22de85958cb1c4e0ea2603d136955590, type: 3}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _Diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 894ecea3849c1417180f79a5ca555a6a, type: 3}
+          m_Scale: {x: .300000012, y: .300000012}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Diffuse2
+        second:
+          m_Texture: {fileID: 2800000, guid: 57e020d5e89e349a7b1db77f3f80db54, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _blend
+        second:
+          m_Texture: {fileID: 2800000, guid: 2bb76fe60608ddc4d85253a1c283891c, type: 3}
+          m_Scale: {x: 2, y: 2}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _normal1
+        second:
+          m_Texture: {fileID: 2800000, guid: 4b8d081e9d114c7f1100f5ab44295342, type: 3}
+          m_Scale: {x: .300000012, y: .300000012}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _normal2
+        second:
+          m_Texture: {fileID: 2800000, guid: 248293ea5aa814673970690d6f0707f1, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats: {}
+    m_Colors:
+      data:
+        first:
+          name: _mainColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

@@ -43,7 +43,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 #endif
     }
 
-
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -80,6 +80,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(terrainTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -116,6 +117,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingDirectionalTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -152,6 +154,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(realTimeLightingPointLightTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -223,7 +226,8 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
         yield return SceneManager.UnloadSceneAsync(spiralSceneName);
     }
-
+    
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -260,6 +264,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(setTargetBufferMaterialTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -295,7 +300,8 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
         yield return SceneManager.UnloadSceneAsync(renderTextureMaterialTestSceneName);
     }
-
+    
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -331,7 +337,8 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
         yield return SceneManager.UnloadSceneAsync(stencilMaterialTestSceneName);
     }
-
+    
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -368,6 +375,7 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(transparentMaterialTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]
@@ -403,7 +411,8 @@ public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
 
         yield return SceneManager.UnloadSceneAsync(gpuInstancingMaterialTestSceneName);
     }
-
+    
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]

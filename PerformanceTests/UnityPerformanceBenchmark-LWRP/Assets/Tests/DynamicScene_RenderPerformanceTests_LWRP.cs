@@ -299,6 +299,7 @@ public class DynamicScene_RenderPerfTests_LWRP : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(gpuInstancingMaterialTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [UnityTest, Performance]
     [Timeout(120000)]

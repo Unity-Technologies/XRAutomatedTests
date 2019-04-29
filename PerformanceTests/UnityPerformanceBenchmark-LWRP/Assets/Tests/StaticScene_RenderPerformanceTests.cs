@@ -69,6 +69,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(basicSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]
@@ -105,6 +106,7 @@ public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
         yield return SceneManager.UnloadSceneAsync(bakedLightingTestSceneName);
     }
 
+    [Ignore("Disable for default run.")]
     [Version("5")]
     [PerformanceUnityTest]
     [Timeout(120000)]

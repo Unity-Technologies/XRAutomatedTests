@@ -1,10 +1,10 @@
 {
     "name": "Unity.CrossPlatformXRAutomation",
     "references": [
-        "UnityEngine.SpatialTracking"
-    ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
+        "UnityEngine.SpatialTracking",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Scripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [
@@ -18,8 +18,12 @@
     ],
     "allowUnsafeCode": false,
     "overrideReferences": true,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": []
 }

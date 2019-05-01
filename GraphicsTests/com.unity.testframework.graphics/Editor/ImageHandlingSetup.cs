@@ -49,8 +49,8 @@ public static class ImageHandlingSetup
     {
         if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
         {
-            // should find a better way to get this path
-            string fullPath = "/storage/self/primary/Android/data/" + PlayerSettings.applicationIdentifier + "/files/";
+            // should find a better way to get this path.  The test runner changes the bundle identifier to this.
+            string fullPath = "/storage/self/primary/Android/data/com.UnityTestRunner.UnityTestRunner/files/";
 
             var proc = new System.Diagnostics.Process();
             proc.StartInfo.RedirectStandardOutput = true;
@@ -80,7 +80,10 @@ public static class ImageHandlingSetup
         }
         else if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Standalone)
         {
-            var files = Directory.GetFiles(Application.persistentDataPath, "*.png");
+            var screenshots = Directory.GetParent(Application.persistentDataPath);
+
+            // the unity test framework changes the name of the product when it runs so update this value to reflect that
+            var files = Directory.GetFiles(Path.Combine(screenshots.FullName, "UnityTestFramework"), "*.png");
 
             foreach (var moveFile in files)
             {

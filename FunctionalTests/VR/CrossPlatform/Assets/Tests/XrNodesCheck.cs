@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 internal class XrNodes : TestBaseSetup
 {
-    private XRNodeState m_XrNodeState;
     private List<XRNodeState> m_NodeList;
 
     private bool m_TrackingNodes;
@@ -21,7 +20,6 @@ internal class XrNodes : TestBaseSetup
     public override void SetUp()
     {
         base.SetUp();
-        m_XrNodeState = new XRNodeState();
         m_NodeList = new List<XRNodeState>();
 
         InputTracking.trackingAcquired += InputTracking_trackingAcquired;

@@ -89,6 +89,8 @@ namespace UnityEditor.TestTools.ConfigManager
             PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
             EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
             EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
+
+            PlayerSettings.SetGraphicsAPIs(PlatformSettings.BuildTarget, new [] { PlatformSettings.playerGraphicsApi });
         }
 
         private void CopyOculusSignatureFilesToProject()

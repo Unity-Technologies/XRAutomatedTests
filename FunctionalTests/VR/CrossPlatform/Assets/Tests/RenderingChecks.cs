@@ -7,10 +7,10 @@ public class RenderingChecks : XrFunctionalTestBase
 {
     enum States
     {
-        MsaaAndHdr = 0,
-        Msaa,
-        Hdr,
-        NoMsaaAndNoHdr
+        MSAA_and_HDR = 0,
+        MSAA,
+        HDR,
+        No_MSAA_and_HDR
     }
 
     private States currentState;
@@ -25,7 +25,7 @@ public class RenderingChecks : XrFunctionalTestBase
     {
         base.SetUp();
         testMat = new Material(Resources.Load("Materials/YFlipColorMesh", typeof(Material)) as Material);
-        currentState = States.MsaaAndHdr;
+        currentState = States.MSAA_and_HDR;
 
         colorScreen = GameObject.CreatePrimitive(PrimitiveType.Quad);
         colorScreen.transform.position = new Vector3(0f, 0f, 1f);
@@ -74,17 +74,17 @@ public class RenderingChecks : XrFunctionalTestBase
     {
         switch (currentState)
         {
-            case States.MsaaAndHdr:
+            case States.MSAA_and_HDR:
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = true;
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = true;
                 Debug.Log("MSAA AND HDR");
                 break;
-            case States.Msaa:
+            case States.MSAA:
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = false;
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = true;
                 Debug.Log("MSAA");
                 break;
-            case States.Hdr:
+            case States.HDR:
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = true;
                 XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = false;
                 Debug.Log("HDR");

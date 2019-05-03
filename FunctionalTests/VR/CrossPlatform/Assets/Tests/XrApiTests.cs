@@ -22,7 +22,7 @@ public class XrApiTests : XrFunctionalTestBase
     }
 
     [UnityTest]
-    public IEnumerator VerifyXrDevice_isPresent()
+    public IEnumerator VerifyXrDevice_IsPresent()
     {
         Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
         yield return null;
@@ -39,7 +39,7 @@ public class XrApiTests : XrFunctionalTestBase
     }
 
     [UnityTest]
-    public IEnumerator VerifyXrSettings_isDeviceActive()
+    public IEnumerator VerifyXrSettings_IsDeviceActive()
     {
         Assert.IsTrue(XRSettings.isDeviceActive, "XR Device is not active");
         yield return null;

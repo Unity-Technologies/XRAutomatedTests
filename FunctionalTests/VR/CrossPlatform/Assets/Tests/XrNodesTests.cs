@@ -31,19 +31,7 @@ internal class XrNodesTests : XrFunctionalTestBase
         InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
         base.TearDown();
     }
-
-    [UnityTest]
-    public IEnumerator XrNodesTracking()
-    {
-        InputTracking.GetNodeStates(nodeList);
-        yield return SkipFrame();
-
-        foreach (var nodeState in nodeList)
-        {
-            Assert.IsTrue(nodeState.tracked, string.Format("Node with ID {0} of type {1} is not tracking", nodeState.uniqueID, nodeState.nodeType.ToString()));
-        }
-    }
-
+    
     [UnityTest]
     public IEnumerator XrNodesHeadTracking()
     {

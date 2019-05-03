@@ -32,9 +32,11 @@ public class XrApiTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyXRDevice_userPresence_isPresent()
     {
-        var expUserPresenceState = UserPresenceState.Present;
-        Assert.AreEqual(XRDevice.userPresence,expUserPresenceState, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", expUserPresenceState, XRDevice.userPresence));
-
+        if (Settings.EnabledXrTarget != "MockHMD")
+        {
+            var expUserPresenceState = UserPresenceState.Present;
+            Assert.AreEqual(XRDevice.userPresence, expUserPresenceState, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", expUserPresenceState, XRDevice.userPresence));
+        }
         yield return null;
     }
 

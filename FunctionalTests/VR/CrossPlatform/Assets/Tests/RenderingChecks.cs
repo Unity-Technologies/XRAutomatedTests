@@ -14,7 +14,6 @@ public class RenderingChecks : XrFunctionalTestBase
     }
 
     private States currentState;
-    private bool doVerification;
     private bool stopTest;
     private bool allTestsPassed = true;
 
@@ -73,8 +72,6 @@ public class RenderingChecks : XrFunctionalTestBase
 
     void DoTest()
     {
-        doVerification = true;
-
         switch (currentState)
         {
             case States.MsaaAndHdr:
@@ -115,13 +112,15 @@ public class RenderingChecks : XrFunctionalTestBase
         }
     }
 
-    bool IsYFlipCorrect(RenderTexture src)
+    bool IsYOrientationCorrect(RenderTexture src)
     {
         var originalActiveRenderTexture = RenderTexture.active;
 
         RenderTexture.active = src;
-        var tex = new Texture2D(src.width, src.height, TextureFormat.RGBA32, src.useMipMap, src.sRGB);
-        tex.name = "Y Flip Test Texture";
+        var tex = new Texture2D(src.width, src.height, TextureFormat.RGBA32, src.useMipMap, src.sRGB)
+        {
+            name = "Y Flip Test Texture"
+        };
         tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
         tex.Apply();
 
@@ -136,27 +135,12 @@ public class RenderingChecks : XrFunctionalTestBase
 
         // Texture coordinates start at lower left corner.  So (0,0) should be red.
         // https://docs.unity3d.com/ScriptReference/Texture2D.GetPixel.html
-        if (color == Color.red)
-        {
-            return true;
-        }
-
-        return false;
+        return color == Color.red;
     }
 
-    // TODO: How can we move this out of the test?
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
-        if (doVerification)
-        {
-            if (!IsYFlipCorrect(src))
-            {
-                Debug.LogError(string.Format("The texture is y-flipped incorrectly for camera mode {0}", System.Enum.GetName(typeof(States), currentState)));
-                allTestsPassed = false;
-            }
-            doVerification = false;
-        }
-
+        Assert.True(IsYOrientationCorrect(src), string.Format("The texture is y-flipped incorrectly for camera mode {0}", System.Enum.GetName(typeof(States), currentState)));
         Graphics.Blit(src, dst);
     }
 }

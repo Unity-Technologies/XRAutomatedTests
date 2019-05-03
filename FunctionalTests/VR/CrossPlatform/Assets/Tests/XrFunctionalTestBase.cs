@@ -20,7 +20,7 @@ public class XrFunctionalTestBase
 {
     protected XrFunctionalTestHelpers XrFunctionalTestHelpers;
     protected CurrentSettings Settings;
-    protected static int OneSecOfFramesWaitTime = 90;
+    protected static int OneSecOfFramesWaitTime = 1;
 
     public GameObject Camera;
     public GameObject Light;

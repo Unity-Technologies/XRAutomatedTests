@@ -24,28 +24,43 @@ public enum TestCubesConfig
 public class XrFunctionalTestHelpers
 {
     private int cubeCount;
-    public GameObject Light { get; private set; }
+ 
+    public GameObject Camera
+    {
+        get { return test.Camera; }
+        set { test.Camera = value; }
+    }
 
-    public GameObject Camera { get; private set; }
-    public GameObject Cube { get; private set; }
+    public GameObject Cube
+    {
+        get { return test.Cube; }
+        set { test.Cube = value; }
+    }
+
+    public GameObject Light
+    {
+        get { return test.Light; }
+        set { test.Light = value; }
+    }
+
+    private readonly XrFunctionalTestBase test;
 
     public XrFunctionalTestHelpers(XrFunctionalTestBase test)
     {
-        Camera = test.Camera;
-        Light = test.Light;
-        Cube = test.Cube;
+        this.test = test;
     }
 
     private void CameraLightSetup()
     {
         Camera = new GameObject("camera");
         Camera.AddComponent<Camera>();
+        Camera.AddComponent<TrackedPoseDriver>();
 
         var trackedPoseDriver = Camera.GetComponent<TrackedPoseDriver>();
         trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRDevice, TrackedPoseDriver.TrackedPose.Head);
 
-        this.Light = new GameObject("light");
-        var light = this.Light.AddComponent<Light>();
+        Light = new GameObject("light");
+        var light = Light.AddComponent<Light>();
         light.type = LightType.Directional;
     }
 

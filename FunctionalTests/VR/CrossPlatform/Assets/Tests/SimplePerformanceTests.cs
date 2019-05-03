@@ -13,8 +13,6 @@ public class SimplePerformanceTests : XrFunctionalTestBase
     // for when simulation tanks the frame rate a bit more than what we've seen)
     const float KFrameTimeMax = 1f / 52f;
 
-
-    // TODO can we move this out of the test class?
     public void Update()
     {
         if (Time.deltaTime > KFrameTimeMax)

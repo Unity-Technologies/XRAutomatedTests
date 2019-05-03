@@ -47,7 +47,6 @@ public class DllNativePluginTests : XrFunctionalTestBase
         base.TearDown();
     }
 
-    // TODO: can we move this out of test class
     public void Update()
     {
         if (Time.deltaTime > KFrameTimeMax)

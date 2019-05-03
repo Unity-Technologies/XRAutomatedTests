@@ -13,7 +13,6 @@ public class CameraTests : XrFunctionalTestBase
     private float startingZoomAmount;
     private Texture2D mobileTexture;
     
-    // TODO can we find a way to move this out of the test class?
     void Start()
     {
         startingZoomAmount = XRDevice.fovZoomFactor;
@@ -135,17 +134,16 @@ public class CameraTests : XrFunctionalTestBase
         }
     }
 
-    // TODO Add check for existance of screenshot file and ensure it's not 0 bytes or something
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(2 * OneSecOfFramesWaitTime);
 
         try
         {
             if (IsMobilePlatform())
             {
-                var cam = GameObject.Find("Camera");
+                var cam = XrFunctionalTestHelpers.Camera;
                 var width = cam.GetComponent<Camera>().scaledPixelWidth;
                 var height = cam.GetComponent<Camera>().scaledPixelHeight;
 

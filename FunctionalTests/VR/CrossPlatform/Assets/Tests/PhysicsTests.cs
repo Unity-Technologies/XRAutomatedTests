@@ -1,37 +1,34 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 
-public class PhysicsCheck : TestBaseSetup
+public class PhysicsTests : XrFunctionalTestBase
 {
-    private bool m_RaycastFired = false;
-    private float kDeviceSetupWait = 1f;
+    private bool raycastFired;
 
-    private Texture2D m_MobileTexture;
+    private Texture2D mobileTexture;
 
-    private List<XRNodeState> m_XrNodeList;
+    private List<XRNodeState> xrNodeList;
 
-    private Vector3 m_XrCenterNodePos;
-    private bool m_RaycastDirection;
+    private Vector3 xrCenterNodePos;
+    private bool raycastDirection;
 
     [SetUp]
     public override void SetUp()
     {
         base.SetUp();
 
-        m_XrNodeList = new List<XRNodeState>();
+        xrNodeList = new List<XRNodeState>();
 
         InputTracking.trackingAcquired += InputTracking_trackingAcquired;
         InputTracking.trackingLost += InputTracking_trackingLost;
         InputTracking.nodeAdded += InputTracking_nodeAdded;
         InputTracking.nodeRemoved += InputTracking_nodeRemoved;
 
-        m_RaycastFired = m_RaycastDirection = false;
+        raycastFired = raycastDirection = false;
     }
 
     [TearDown]
@@ -41,53 +38,53 @@ public class PhysicsCheck : TestBaseSetup
         InputTracking.trackingLost -= InputTracking_trackingLost;
         InputTracking.nodeAdded -= InputTracking_nodeAdded;
         InputTracking.nodeRemoved -= InputTracking_nodeRemoved;
-        m_RaycastFired = m_RaycastDirection = false;
+        raycastFired = raycastDirection = false;
         base.TearDown();
     }
 
     [UnityTest]
     public IEnumerator GazeCheck()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
-        InputTracking.GetNodeStates(m_XrNodeList);
-        yield return new WaitForSeconds(1f);
+        InputTracking.GetNodeStates(xrNodeList);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
         
-        if (m_XrNodeList.Count != 0)
+        if (xrNodeList.Count != 0)
         {
-            foreach (XRNodeState nodeState in m_XrNodeList)
+            foreach (XRNodeState nodeState in xrNodeList)
             {
                 if (nodeState.nodeType == XRNode.CenterEye)
                 {
-                    nodeState.TryGetPosition(out m_XrCenterNodePos);
+                    nodeState.TryGetPosition(out xrCenterNodePos);
                 }
             }
 
-            SkipFrame(100);
+            yield return SkipFrame(100);
 
-            Ray ray = new Ray(m_XrCenterNodePos, m_TestSetupHelpers.m_Camera.GetComponent<Camera>().transform.forward);
+            Ray ray = new Ray(xrCenterNodePos, XrFunctionalTestHelpers.Camera.GetComponent<Camera>().transform.forward);
             Physics.Raycast(ray, 10f);
             yield return null;
 
-            if (ray.origin == m_XrCenterNodePos)
+            if (ray.origin == xrCenterNodePos)
             {
-                m_RaycastFired = true;
+                raycastFired = true;
             }
 
             if (ray.direction != Vector3.zero)
             {
-                m_RaycastDirection = true;
+                raycastDirection = true;
             }
 
-            if (m_TestSetupHelpers.m_Cube != null)
+            if (XrFunctionalTestHelpers.Cube != null)
             {
-                GameObject.Destroy(m_TestSetupHelpers.m_Cube);
+                GameObject.Destroy(XrFunctionalTestHelpers.Cube);
             }
 
             if (Application.platform != RuntimePlatform.IPhonePlayer)
             {
-                Assert.IsTrue(m_RaycastFired, "Gaze ray failed to leave the cetner eye position");
-                Assert.IsTrue(m_RaycastDirection, "Gaze direction failed to travel!");
+                Assert.IsTrue(raycastFired, "Gaze ray failed to leave the cetner eye position");
+                Assert.IsTrue(raycastDirection, "Gaze direction failed to travel!");
             }
         }
         else
@@ -114,15 +111,6 @@ public class PhysicsCheck : TestBaseSetup
     private void InputTracking_trackingAcquired(XRNodeState obj)
     {
         Debug.Log("Tracking Acquire");
-    }
-
-    IEnumerator SkipFrame(int frames)
-    {
-        for (int f = 0; f < frames; f++)
-        {
-            yield return null;
-            Debug.Log("Skip Frame");
-        }
     }
 }
 

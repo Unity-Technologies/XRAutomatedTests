@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -10,41 +9,41 @@ public static class PlatformSettings
     public static BuildTargetGroup BuildTargetGroup => EditorUserBuildSettings.selectedBuildTargetGroup;
     public static BuildTarget BuildTarget => EditorUserBuildSettings.activeBuildTarget;
     
-    public static string [] enabledXrTargets;
-    public static GraphicsDeviceType playerGraphicsApi;
+    public static string [] EnabledXrTargets;
+    public static GraphicsDeviceType PlayerGraphicsApi;
 
-    public static StereoRenderingPath stereoRenderingPath;
+    public static StereoRenderingPath StereoRenderingPath;
 
-    public static bool mtRendering = true;
-    public static bool graphicsJobs;
-    public static AndroidSdkVersions minimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-    public static AndroidSdkVersions targetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
+    public static bool MtRendering = true;
+    public static bool GraphicsJobs;
+    public static AndroidSdkVersions MinimumAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+    public static AndroidSdkVersions TargetAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevelAuto;
 
-    public static string simulationMode;
+    public static string SimulationMode;
 
     public static void SerializeToAsset()
     {
         var settingsAsset = ScriptableObject.CreateInstance<CurrentSettings>();
 
-        settingsAsset.enabledXrTarget = enabledXrTargets.FirstOrDefault();
-        settingsAsset.playerGraphicsApi = playerGraphicsApi;
-        settingsAsset.stereoRenderingMode = GetXRStereoRenderingPathMapping(stereoRenderingPath);
-        settingsAsset.mtRendering = mtRendering;
-        settingsAsset.graphicsJobs = graphicsJobs;
-        if (simulationMode != String.Empty || simulationMode != null)
+        settingsAsset.EnabledXrTarget = EnabledXrTargets.FirstOrDefault();
+        settingsAsset.PlayerGraphicsApi = PlayerGraphicsApi;
+        settingsAsset.StereoRenderingMode = GetXrStereoRenderingPathMapping(StereoRenderingPath);
+        settingsAsset.MtRendering = MtRendering;
+        settingsAsset.GraphicsJobs = GraphicsJobs;
+        if (SimulationMode != string.Empty || SimulationMode != null)
         {
-            settingsAsset.simulationMode = simulationMode;
+            settingsAsset.SimulationMode = SimulationMode;
         }
         else
         {
-            settingsAsset.simulationMode = "None";
+            settingsAsset.SimulationMode = "None";
         }
 
         AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
         AssetDatabase.SaveAssets();
     }
 
-    private static XRSettings.StereoRenderingMode GetXRStereoRenderingPathMapping(StereoRenderingPath stereoRenderingPath)
+    private static XRSettings.StereoRenderingMode GetXrStereoRenderingPathMapping(StereoRenderingPath stereoRenderingPath)
     {
         switch (stereoRenderingPath)
         {

@@ -21,45 +21,54 @@ public enum TestCubesConfig
     TestMassCube
 }
 
-public class TestSetupHelpers : TestBaseSetup
+public class XrFunctionalTestHelpers
 {
-    private int m_CubeCount = 0;
-    
+    private int cubeCount;
+    public GameObject Light { get; private set; }
+
+    public GameObject Camera { get; private set; }
+    public GameObject Cube { get; private set; }
+
+    public XrFunctionalTestHelpers(XrFunctionalTestBase test)
+    {
+        Camera = test.Camera;
+        Light = test.Light;
+        Cube = test.Cube;
+    }
 
     private void CameraLightSetup()
     {
-        m_Camera = new GameObject("Camera");
-        m_Camera.AddComponent<Camera>();
-        m_Camera.AddComponent<TrackedPoseDriver>();
+        Camera = new GameObject("camera");
+        Camera.AddComponent<Camera>();
 
-        var trackedPoseDriver = m_Camera.GetComponent<TrackedPoseDriver>();
+        var trackedPoseDriver = Camera.GetComponent<TrackedPoseDriver>();
         trackedPoseDriver.SetPoseSource(TrackedPoseDriver.DeviceType.GenericXRDevice, TrackedPoseDriver.TrackedPose.Head);
 
-        m_Light = new GameObject("Light");
-        Light light = m_Light.AddComponent<Light>();
+        this.Light = new GameObject("light");
+        var light = this.Light.AddComponent<Light>();
         light.type = LightType.Directional;
     }
 
     private void TestCubeCreation()
     {
-        m_Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        m_Cube.transform.position = 5f * Vector3.forward;
+        Cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Cube.transform.position = 5f * Vector3.forward;
     }
 
     private void CreateMassFloorObjects()
     {
-        float x = -3.0f;
-        float y = -0.5f;
-        float zRow1 = 2.0f;
-        float zRow2 = 2.0f;
-        float zRow3 = 2.0f;
-        float zRow4 = 2.0f;
+        var x = -3.0f;
+        var y = -0.5f;
+        var zRow1 = 2.0f;
+        var zRow2 = 2.0f;
+        var zRow3 = 2.0f;
+        var zRow4 = 2.0f;
 
-        for (int i = 0; i < 20; i++)
+        for (var i = 0; i < 20; i++)
         {
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            m_CubeCount += 1;
-            obj.name = "TestCube " + m_CubeCount;
+            cubeCount += 1;
+            obj.name = "TestCube " + cubeCount;
             obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             obj.transform.localPosition = new Vector3(x, y, zRow1);
 
@@ -67,11 +76,11 @@ public class TestSetupHelpers : TestBaseSetup
             x = -2f;
         }
 
-        for (int i = 0; i < 20; i++)
+        for (var i = 0; i < 20; i++)
         {
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            m_CubeCount += 1;
-            obj.name = "TestCube " + m_CubeCount;
+            cubeCount += 1;
+            obj.name = "TestCube " + cubeCount;
             obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             obj.transform.localPosition = new Vector3(x, y, zRow2);
 
@@ -79,11 +88,11 @@ public class TestSetupHelpers : TestBaseSetup
             x = -1f;
         }
 
-        for (int i = 0; i < 20; i++)
+        for (var i = 0; i < 20; i++)
         {
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            m_CubeCount += 1;
-            obj.name = "TestCube " + m_CubeCount;
+            cubeCount += 1;
+            obj.name = "TestCube " + cubeCount;
             obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             obj.transform.localPosition = new Vector3(x, y, zRow3);
 
@@ -91,11 +100,11 @@ public class TestSetupHelpers : TestBaseSetup
             x = 0f;
         }
 
-        for (int i = 0; i < 20; i++)
+        for (var i = 0; i < 20; i++)
         {
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            m_CubeCount += 1;
-            obj.name = "TestCube " + m_CubeCount;
+            cubeCount += 1;
+            obj.name = "TestCube " + cubeCount;
             obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             obj.transform.localPosition = new Vector3(x, y, zRow4);
 
@@ -106,22 +115,23 @@ public class TestSetupHelpers : TestBaseSetup
 
     private void CreateMassObjects()
     {
-        float xRow1 = -0.5f;
-        float xRow2 = -0.5f;
-        float xRow3 = -0.5f;
-        float yRow1 = 0.2f;
-        float yRow2 = -0.2f;
-        float yRow3 = -0.01f;
-        float zRow1 = 2.5f;
-        float zRow2 = 2.3f;
+        var xRow1 = -0.5f;
+        var xRow2 = -0.5f;
+        var xRow3 = -0.5f;
+        var yRow1 = 0.2f;
+        var yRow2 = -0.2f;
+        var yRow3 = -0.01f;
+        var zRow1 = 2.5f;
+        var zRow2 = 2.3f;
 
-        for (int i = 0; i < 17; i++)
+        // TODO we should extract '17' here to be a constant and describe what it is
+        for (var i = 0; i < 17; i++)
         {
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            m_CubeCount += 1;
+            cubeCount += 1;
             obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             obj.transform.localPosition = new Vector3(xRow1, yRow1, zRow1);
-            obj.name = "TestCube " + m_CubeCount;
+            obj.name = "TestCube " + cubeCount;
 
             if (i < 5)
             {
@@ -143,9 +153,9 @@ public class TestSetupHelpers : TestBaseSetup
 
     private void CleanUpTestCubes()
     {
-        if (m_CubeCount > 0)
+        if (cubeCount > 0)
         {
-            for (int i = 0; i < m_CubeCount + 1; i++)
+            for (var i = 0; i < cubeCount + 1; i++)
             {
                 var obj = GameObject.Find("TestCube " + i);
                 Object.Destroy(obj);
@@ -160,8 +170,8 @@ public class TestSetupHelpers : TestBaseSetup
 
     private void CleanUpCameraLights()
     {
-        Object.Destroy(GameObject.Find("Camera"));
-        Object.Destroy(GameObject.Find("Light"));
+        Object.Destroy(GameObject.Find("camera"));
+        Object.Destroy(GameObject.Find("light"));
     }
 
 #if UNITY_EDITOR
@@ -176,9 +186,10 @@ public class TestSetupHelpers : TestBaseSetup
     }
 #endif
 
-    public void TestStageSetup(TestStageConfig TestConfiguration)
+    // TODO should singlepass be in here somewhere?
+    public void TestStageSetup(TestStageConfig testConfiguration)
     {
-        switch (TestConfiguration)
+        switch (testConfiguration)
         {
             case TestStageConfig.BaseStageSetup:
                 CameraLightSetup();
@@ -187,29 +198,23 @@ public class TestSetupHelpers : TestBaseSetup
             case TestStageConfig.CleanStage:
                 CleanUpCameraLights();
                 CleanUpTestCubes();
-#if UNITY_EDITOR
-                InsureInstancingRendering();
-#endif
                 break;
-
-            case TestStageConfig.Instancing:
 #if UNITY_EDITOR
+            case TestStageConfig.Instancing:
                 InsureInstancingRendering();
-#endif
                 break;
 
             case TestStageConfig.MultiPass:
-#if UNITY_EDITOR
                 InsureMultiPassRendering();
-#endif
                 break;
+#endif
         }
     }
 
 
-    public void TestCubeSetup(TestCubesConfig TestConfiguration)
+    public void TestCubeSetup(TestCubesConfig testConfiguration)
     {
-        switch (TestConfiguration)
+        switch (testConfiguration)
         {
             case TestCubesConfig.TestCube:
                 TestCubeCreation();

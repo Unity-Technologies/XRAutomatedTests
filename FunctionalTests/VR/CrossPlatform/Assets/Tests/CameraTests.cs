@@ -6,87 +6,79 @@ using System.Collections;
 using System;
 using System.IO;
 
-public class CameraCheck : TestBaseSetup
+public class CameraTests : XrFunctionalTestBase
 {
-    private bool m_RaycastHit = false;
-    private bool m_DidSaveScreenCapture = false;
-    private string m_FileName;
+    private string fileName;
 
-    private float m_StartingScale;
-    private float m_StartingZoomAmount;
-    private float m_StartingRenderScale;
-    private float kDeviceSetupWait = 1f;
+    private float startingZoomAmount;
+    private Texture2D mobileTexture;
     
-    private Texture2D m_MobileTexture;
-
+    // TODO can we find a way to move this out of the test class?
     void Start()
     {
-        m_StartingScale = XRSettings.eyeTextureResolutionScale;
-        m_StartingZoomAmount = XRDevice.fovZoomFactor;
-        m_StartingRenderScale = XRSettings.renderViewportScale;
+        startingZoomAmount = XRDevice.fovZoomFactor;
     }
 
     [SetUp]
     public override void SetUp()
     {
         base.SetUp();
-        m_TestSetupHelpers.TestCubeSetup(TestCubesConfig.TestCube);
+        XrFunctionalTestHelpers.TestCubeSetup(TestCubesConfig.TestCube);
     }
 
     [TearDown]
     public override void TearDown()
     {
-        m_RaycastHit = false;
-
         XRSettings.eyeTextureResolutionScale = 1f;
-        XRDevice.fovZoomFactor = m_StartingZoomAmount;
+        XRDevice.fovZoomFactor = startingZoomAmount;
         XRSettings.renderViewportScale = 1f;
 
         base.TearDown();
     }
 
 #if UNITY_EDITOR
+    // TODO Add bug number
     [Ignore("Known bug")]
     [UnityTest]
     public IEnumerator CameraCheckForMultiPass()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.MultiPass);
+        XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.MultiPass);
         Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
     }
 
+    // TODO Add bug number
     [Ignore("Known bug")]
     [UnityTest]
     public IEnumerator CameraCheckForInstancing()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
-        m_TestSetupHelpers.TestStageSetup(TestStageConfig.Instancing);
+        XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.Instancing);
         Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
     }
 #endif
 
     [UnityTest]
-    public IEnumerator CheckRefreshRate()
+    public IEnumerator VerifyRefreshRate()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
         var refreshRate = XRDevice.refreshRate;
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        if (IsMobilePlatform())
         {
             Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
-        }
-        if (Application.platform == RuntimePlatform.WindowsPlayer)
+        } else
         {
             Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
         }
     }
 
     [UnityTest]
-    public IEnumerator RenderViewportScale()
+    public IEnumerator VerifyAdjustRenderViewportScale()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
         XRSettings.renderViewportScale = 1f;
         Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
@@ -100,14 +92,14 @@ public class CameraCheck : TestBaseSetup
 
 
     [UnityTest]
-    public IEnumerator EyeTextureResolutionScale()
+    public IEnumerator VerifyAdjustEyeTextureResolutionScale()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
-        float scale = 0.1f;
-        float scaleCount = 0.1f;
+        var scale = 0.1f;
+        var scaleCount = 0.1f;
 
-        for (float i = 0.1f; i < 2; i++)
+        for (var i = 0.1f; i < 2; i++)
         {
             scale = scale + 0.1f;
             scaleCount = scaleCount + 0.1f;
@@ -116,20 +108,20 @@ public class CameraCheck : TestBaseSetup
 
             yield return null;
 
-            Debug.Log("EyeTextureResolutionScale = " + scale);
+            Debug.Log("VerifyAdjustEyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
     }
 
     [UnityTest]
-    public IEnumerator DeviceZoom()
+    public IEnumerator VerifyAdjustDeviceZoom()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
-        float zoomAmount = 0f;
-        float zoomCount = 0f;
+        var zoomAmount = 0f;
+        var zoomCount = 0f;
 
-        for (int i = 0; i < 2; i++)
+        for (var i = 0; i < 2; i++)
         {
             zoomAmount = zoomAmount + 1f;
             zoomCount = zoomCount + 1f;
@@ -143,51 +135,49 @@ public class CameraCheck : TestBaseSetup
         }
     }
 
+    // TODO Add check for existance of screenshot file and ensure it's not 0 bytes or something
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return new WaitForSeconds(kDeviceSetupWait);
+        yield return SkipFrame(OneSecOfFramesWaitTime);
 
         try
         {
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            if (IsMobilePlatform())
             {
                 var cam = GameObject.Find("Camera");
                 var width = cam.GetComponent<Camera>().scaledPixelWidth;
                 var height = cam.GetComponent<Camera>().scaledPixelHeight;
 
-                m_MobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                m_MobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
+                mobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                mobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
             else
             {
-                m_FileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
-                ScreenCapture.CaptureScreenshot(m_FileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
+                fileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+                ScreenCapture.CaptureScreenshot(fileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
             }
-
-            m_DidSaveScreenCapture = true;
         }
         catch (Exception e)
         {
             Debug.Log("Failed to get capture! : " + e);
-            m_DidSaveScreenCapture = false;
             Assert.Fail("Failed to get capture! : " + e);
         }
 
-        if (m_DidSaveScreenCapture && Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        if (IsMobilePlatform())
         {
-            yield return new WaitForSeconds(5);
+            yield return SkipFrame(5);
 
-            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            if (IsMobilePlatform())
             {
-                Assert.IsNotNull(m_MobileTexture, "Texture data is empty for mobile");
+                Assert.IsNotNull(mobileTexture, "Texture data is empty for mobile");
             }
             else
             {
                 var tex = new Texture2D(2, 2);
 
-                var texData = File.ReadAllBytes(m_FileName);
-                Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + m_FileName);
+                var texData = File.ReadAllBytes(fileName);
+                Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + fileName);
 
                 tex.LoadImage(texData);
 

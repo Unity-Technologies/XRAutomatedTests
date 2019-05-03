@@ -1,8 +1,5 @@
 ﻿using NDesk.Options;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -13,10 +10,7 @@ public class Build
     public static string Name = "test";
 
     private static string buildTarget;
-    private static string[] enabledXrTargets;
-    private static string[] playerGraphicsApis;
-    private static string[] stereoRenderingPaths;
-    private static readonly Regex customArgRegex = new Regex("-([^=]*)=", RegexOptions.Compiled);
+    private static readonly Regex CustomArgRegex = new Regex("-([^=]*)=", RegexOptions.Compiled);
 
     [MenuItem("Build/Build Project")]
     public static void BuildProject()
@@ -78,14 +72,14 @@ public class Build
             switch (EditorUserBuildSettings.selectedBuildTargetGroup)
             {
                 case BuildTargetGroup.Standalone:
-                    PlatformSettings.enabledXrTargets = new string[] { "MockHMD", "None" };
-                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
-                    PlatformSettings.playerGraphicsApi =
+                    PlatformSettings.EnabledXrTargets = new string[] { "MockHMD", "None" };
+                    PlatformSettings.StereoRenderingPath = StereoRenderingPath.SinglePass;
+                    PlatformSettings.PlayerGraphicsApi =
                         (EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows)
                             ? GraphicsDeviceType.Direct3D11
                             : GraphicsDeviceType.OpenGLCore;
-                    PlatformSettings.mtRendering = true;
-                    PlatformSettings.graphicsJobs = false;
+                    PlatformSettings.MtRendering = true;
+                    PlatformSettings.GraphicsJobs = false;
                     break;
                 case BuildTargetGroup.WSA:
                     // Configure WSA build
@@ -98,15 +92,15 @@ public class Build
                     EditorUserBuildSettings.allowDebugging = true;
 
                     PlayerSettings.SetScriptingBackend(BuildTargetGroup.WSA, ScriptingImplementation.IL2CPP);
-                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
+                    PlatformSettings.StereoRenderingPath = StereoRenderingPath.SinglePass;
 
-                    PlatformSettings.enabledXrTargets = new string[] { "None" };
+                    PlatformSettings.EnabledXrTargets = new string[] { "None" };
                     break;
                 case BuildTargetGroup.Android:
                 case BuildTargetGroup.iOS:
-                    PlatformSettings.enabledXrTargets = new string[] { "cardboard", "None" };
-                    PlatformSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
-                    PlatformSettings.playerGraphicsApi = GraphicsDeviceType.OpenGLES3;
+                    PlatformSettings.EnabledXrTargets = new string[] { "cardboard", "None" };
+                    PlatformSettings.StereoRenderingPath = StereoRenderingPath.SinglePass;
+                    PlatformSettings.PlayerGraphicsApi = GraphicsDeviceType.OpenGLES3;
                     break;
             }
         }
@@ -121,53 +115,30 @@ public class Build
     {
         for (int i = 0; i < args.Length; i++)
         {
-            if (customArgRegex.IsMatch(args[i]))
+            if (CustomArgRegex.IsMatch(args[i]))
             {
-                args[i] = customArgRegex.Replace(args[i], customArgRegex.Matches(args[i])[0].ToString().ToLower());
+                args[i] = CustomArgRegex.Replace(args[i], CustomArgRegex.Matches(args[i])[0].ToString().ToLower());
             }
         }
-    }
-
-    public static void CommandLineBuild()
-    {
-        CommandLineSetup();
-        
-        foreach (var vrsdk in enabledXrTargets)
-        {
-            foreach (var stereoRenderingPath in stereoRenderingPaths)
-            {
-                foreach (var graphicDevice in playerGraphicsApis)
-                {
-
-                    UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
-                                                                            EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                                            new[] { vrsdk });
-                    PlayerSettings.stereoRenderingPath = TryParse<StereoRenderingPath>(stereoRenderingPath);
-                    PlayerSettings.SetGraphicsAPIs(EditorUserBuildSettings.activeBuildTarget, new [] { TryParse<GraphicsDeviceType>(graphicDevice) });
-                    Name = $"/{EditorUserBuildSettings.activeBuildTarget}/{vrsdk}/{stereoRenderingPath}-{graphicDevice}";
-                    BuildProject();
-                }
-            }
-        }
-
     }
     
     private static void ConfigureSettings()
     {
-        PlayerSettings.virtualRealitySupported = PlatformSettings.enabledXrTargets.Length > 0;
+        PlayerSettings.virtualRealitySupported = PlatformSettings.EnabledXrTargets.Length > 0;
 
         if (PlayerSettings.virtualRealitySupported)
         {
             UnityEditorInternal.VR.VREditor.SetVREnabledDevicesOnTargetGroup(
                 EditorUserBuildSettings.selectedBuildTargetGroup,
-                PlatformSettings.enabledXrTargets);
+                PlatformSettings.EnabledXrTargets);
             Debug.Log(string.Format("VR Enabled Devices on Target Group: {0}",string.Join(", ",UnityEditorInternal.VR.VREditor.GetVREnabledDevicesOnTargetGroup(EditorUserBuildSettings
                 .selectedBuildTargetGroup))));
 
-            PlayerSettings.stereoRenderingPath = PlatformSettings.stereoRenderingPath;
+            PlayerSettings.stereoRenderingPath = PlatformSettings.StereoRenderingPath;
         }
        
-        PlayerSettings.Android.minSdkVersion = PlatformSettings.minimumAndroidSdkVersion;
+        PlayerSettings.Android.minSdkVersion = PlatformSettings.MinimumAndroidSdkVersion;
+
         EditorUserBuildSettings.androidBuildType = AndroidBuildType.Development;
         EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
 
@@ -176,7 +147,7 @@ public class Build
             EditorUserBuildSettings.development = true;
         }
 
-        PlayerSettings.SetGraphicsAPIs(PlatformSettings.BuildTarget, new[] { PlatformSettings.playerGraphicsApi });
+        PlayerSettings.SetGraphicsAPIs(PlatformSettings.BuildTarget, new[] { PlatformSettings.PlayerGraphicsApi });
     }
 
     private static OptionSet DefineOptionSet()
@@ -186,17 +157,17 @@ public class Build
             {
                 "enabledxrtarget=",
                 "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
-                xrTarget => PlatformSettings.enabledXrTargets = new string[] {xrTarget, "None"}
+                xrTarget => PlatformSettings.EnabledXrTargets = new string[] {xrTarget, "None"}
             },
 
             {
                 "playergraphicsapi=", "Graphics API based on GraphicsDeviceType.",
-                graphicsDeviceType => PlatformSettings.playerGraphicsApi =
+                graphicsDeviceType => PlatformSettings.PlayerGraphicsApi =
                     TryParse<GraphicsDeviceType>(graphicsDeviceType)
             },
             {
                 "stereorenderingpath=", "Stereo rendering path to enable. SinglePass is default",
-                stereoRenderingPath => PlatformSettings.stereoRenderingPath =
+                stereoRenderingPath => PlatformSettings.StereoRenderingPath =
                     TryParse<StereoRenderingPath>(stereoRenderingPath)
             },
             {
@@ -205,8 +176,8 @@ public class Build
                 {
                     if (gfxMultithreaded.ToLower() == "true")
                     {
-                        PlatformSettings.mtRendering = true;
-                        PlatformSettings.graphicsJobs = false;
+                        PlatformSettings.MtRendering = true;
+                        PlatformSettings.GraphicsJobs = false;
                     }
                 }
             },
@@ -216,19 +187,19 @@ public class Build
                 {
                     if (gfxJobs.ToLower() == "true")
                     {
-                        PlatformSettings.mtRendering = false;
-                        PlatformSettings.graphicsJobs = true;
+                        PlatformSettings.MtRendering = false;
+                        PlatformSettings.GraphicsJobs = true;
                     }
                 }
             },
             {
                 "minimumandroidsdkversion=", "Minimum Android SDK Version to use.",
-                minAndroidSdkVersion => PlatformSettings.minimumAndroidSdkVersion =
+                minAndroidSdkVersion => PlatformSettings.MinimumAndroidSdkVersion =
                     TryParse<AndroidSdkVersions>(minAndroidSdkVersion)
             },
             {
                 "targetandroidsdkversion=", "Target Android SDK Version to use.",
-                targetAndroidSdkVersion => PlatformSettings.targetAndroidSdkVersion =
+                targetAndroidSdkVersion => PlatformSettings.TargetAndroidSdkVersion =
                     TryParse<AndroidSdkVersions>(targetAndroidSdkVersion)
             }
         };
@@ -247,10 +218,5 @@ public class Build
         }
         
         return thisType;
-    }
-        
-    private static string[] ParseMultipleArgs(string args)
-    {
-    return args.Split(';');
     }
 }

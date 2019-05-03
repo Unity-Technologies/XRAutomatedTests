@@ -3,22 +3,22 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-public class RenderingChecks : TestBaseSetup
+public class RenderingChecks : XrFunctionalTestBase
 {
     enum States
     {
-        MSAA_AND_HDR = 0,
-        MSAA,
-        HDR,
-        NO_MSAA_AND_NO_HDR
+        MsaaAndHdr = 0,
+        Msaa,
+        Hdr,
+        NoMsaaAndNoHdr
     }
 
     private States currentState;
-    private bool doVerification = false;
-    private bool stopTest = false;
+    private bool doVerification;
+    private bool stopTest;
     private bool allTestsPassed = true;
 
-    private GameObject colorScreen = null;
+    private GameObject colorScreen;
     private Material testMat;
 
     [SetUp]
@@ -26,7 +26,7 @@ public class RenderingChecks : TestBaseSetup
     {
         base.SetUp();
         testMat = new Material(Resources.Load("Materials/YFlipColorMesh", typeof(Material)) as Material);
-        currentState = States.MSAA_AND_HDR;
+        currentState = States.MsaaAndHdr;
 
         colorScreen = GameObject.CreatePrimitive(PrimitiveType.Quad);
         colorScreen.transform.position = new Vector3(0f, 0f, 1f);
@@ -41,12 +41,33 @@ public class RenderingChecks : TestBaseSetup
     }
 
     [UnityTest]
-    public IEnumerator CheckYWorldCoordinate()
+    [Description("Regression test against fogbugz issue https://fogbugz.unity3d.com/f/cases/1145324/ - particle systems crash mobile XR.")]
+    public IEnumerator ParticleSmokeTest()
+    {
+        Camera = new GameObject();
+        Camera.AddComponent<Camera>();
+        Camera.tag = "MainCamera";
+
+        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        go.transform.position = new Vector3(0, 0, 10);
+        ParticleSystem particles = go.AddComponent<ParticleSystem>();
+        go.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Materials/Particle");
+        Assert.IsNotNull(go.GetComponent<ParticleSystemRenderer>().material);
+        particles.Play();
+
+        // 100 frames ~= 1 or 2 seconds
+        for (int i = 0; i < 100; i++)
+            yield return null;
+    }
+
+    // TODO We need to refactor this so that we have a clear arrange/act/assert
+    [UnityTest]
+    public IEnumerator VerifyYWorldCoordinate()
     {
         while (!stopTest)
         {
             DoTest();
-            yield return new WaitForSeconds(2.0f);
+            yield return SkipFrame(2 * OneSecOfFramesWaitTime);
         }
     }
 
@@ -54,29 +75,28 @@ public class RenderingChecks : TestBaseSetup
     {
         doVerification = true;
 
-        if (currentState == States.MSAA_AND_HDR)
+        switch (currentState)
         {
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowHDR = true;
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowMSAA = true;
-            Debug.Log("MSAA AND HDR");
-        }
-        else if (currentState == States.MSAA)
-        {
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowHDR = false;
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowMSAA = true;
-            Debug.Log("MSAA");
-        }
-        else if (currentState == States.HDR)
-        {
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowHDR = true;
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowMSAA = false;
-            Debug.Log("HDR");
-        }
-        else
-        {
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowHDR = false;
-            m_TestSetupHelpers.m_Camera.GetComponent<Camera>().allowMSAA = false;
-            Debug.Log("NO MSAA and NO HDR");
+            case States.MsaaAndHdr:
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = true;
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = true;
+                Debug.Log("MSAA AND HDR");
+                break;
+            case States.Msaa:
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = false;
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = true;
+                Debug.Log("MSAA");
+                break;
+            case States.Hdr:
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = true;
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = false;
+                Debug.Log("HDR");
+                break;
+            default:
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowHDR = false;
+                XrFunctionalTestHelpers.Camera.GetComponent<Camera>().allowMSAA = false;
+                Debug.Log("NO MSAA and NO HDR");
+                break;
         }
 
         currentState = currentState + 1;
@@ -97,19 +117,19 @@ public class RenderingChecks : TestBaseSetup
 
     bool IsYFlipCorrect(RenderTexture src)
     {
-        RenderTexture originalActiveRenderTexture = RenderTexture.active;
+        var originalActiveRenderTexture = RenderTexture.active;
 
         RenderTexture.active = src;
-        Texture2D tex = new Texture2D(src.width, src.height, TextureFormat.RGBA32, src.useMipMap, src.sRGB);
+        var tex = new Texture2D(src.width, src.height, TextureFormat.RGBA32, src.useMipMap, src.sRGB);
         tex.name = "Y Flip Test Texture";
         tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
         tex.Apply();
 
         // We shouldn't sample directly from (0,0) because chances are that will overlap
         // the occlusion mesh.  Therefore we should try to sample closer to the center bottom of the texture.
-        float x = src.width * 0.5f;
-        float y = src.height * 0.3f;
-        Color color = tex.GetPixel((int)x, (int)y);
+        var x = src.width * 0.5f;
+        var y = src.height * 0.3f;
+        var color = tex.GetPixel((int)x, (int)y);
         tex = null;
 
         RenderTexture.active = originalActiveRenderTexture;
@@ -124,6 +144,7 @@ public class RenderingChecks : TestBaseSetup
         return false;
     }
 
+    // TODO: How can we move this out of the test?
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
         if (doVerification)

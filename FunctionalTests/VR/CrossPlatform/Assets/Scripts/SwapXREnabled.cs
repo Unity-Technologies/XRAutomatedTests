@@ -1,19 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework.Constraints;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 
-public class SwapXREnabled : MonoBehaviour, IMonoBehaviourTest {
+public class SwapXrEnabled : MonoBehaviour, IMonoBehaviourTest {
 
-	public bool IsTestFinished => _isTestFinished;
+	public bool IsTestFinished => isTestFinished;
 	
-	private const string NONE = "";
+	private const string None = "";
 
-	private bool _isTestFinished = false;
+	private bool isTestFinished;
 
 	private CurrentSettings settings;
 	
@@ -22,16 +19,16 @@ public class SwapXREnabled : MonoBehaviour, IMonoBehaviourTest {
 	void Start ()
 	{
 		settings = Resources.Load<CurrentSettings>("settings");
-		StartCoroutine(DisableXR());
+		StartCoroutine(DisableXr());
 	}
 	
 
-	IEnumerator DisableXR()
+	IEnumerator DisableXr()
 	{
-		Assert.IsTrue(XRSettings.loadedDeviceName == settings.enabledXrTarget);
+		Assert.IsTrue(XRSettings.loadedDeviceName == settings.EnabledXrTarget);
 		Assert.IsTrue(XRSettings.enabled);
 		
-		XRSettings.LoadDeviceByName(NONE);
+		XRSettings.LoadDeviceByName(None);
 
 		yield return null;
 		
@@ -41,15 +38,15 @@ public class SwapXREnabled : MonoBehaviour, IMonoBehaviourTest {
 		Assert.IsTrue(XRSettings.loadedDeviceName == string.Empty, $"Loaded Device = {XRSettings.loadedDeviceName}");
 		Assert.IsFalse(XRSettings.enabled);
 		
-		StartCoroutine(EnableXR());
+		StartCoroutine(EnableXr());
 	}
 
-	IEnumerator EnableXR()
+	IEnumerator EnableXr()
 	{
 		Assert.IsTrue(XRSettings.loadedDeviceName == string.Empty, $"Loaded Device = {XRSettings.loadedDeviceName}");
 		Assert.IsFalse(XRSettings.enabled);
 		
-		XRSettings.LoadDeviceByName(settings.enabledXrTarget);
+		XRSettings.LoadDeviceByName(settings.EnabledXrTarget);
 		
 		yield return null;
 
@@ -60,9 +57,9 @@ public class SwapXREnabled : MonoBehaviour, IMonoBehaviourTest {
 		Debug.Log($"Loaded Device = {XRSettings.loadedDeviceName}");
 		Debug.Log($"XR Enabled = {XRSettings.enabled}");
 		
-		Assert.IsTrue(XRSettings.loadedDeviceName == settings.enabledXrTarget, $"Loaded Device = {XRSettings.loadedDeviceName}");
+		Assert.IsTrue(XRSettings.loadedDeviceName == settings.EnabledXrTarget, $"Loaded Device = {XRSettings.loadedDeviceName}");
 		Assert.IsTrue(XRSettings.enabled);
 
-		_isTestFinished = true;
+	    isTestFinished = true;
 	}
 }

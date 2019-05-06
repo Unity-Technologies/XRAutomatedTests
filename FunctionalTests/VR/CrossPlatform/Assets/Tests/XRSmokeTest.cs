@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
-using UnityEngine.UI;
 using UnityEngine.XR;
 using Assert = UnityEngine.Assertions.Assert;
 

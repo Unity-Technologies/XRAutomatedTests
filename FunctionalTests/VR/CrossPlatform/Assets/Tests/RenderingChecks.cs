@@ -56,7 +56,7 @@ public class RenderingChecks : XrFunctionalTestBase
 
         // 100 frames ~= 1 or 2 seconds
         for (int i = 0; i < 100; i++)
-            yield return null;
+            yield return SkipFrame(DefaultFrameSkipCount);
     }
 
     // TODO We need to refactor this so that we have a clear arrange/act/assert
@@ -66,7 +66,7 @@ public class RenderingChecks : XrFunctionalTestBase
         while (!stopTest)
         {
             DoTest();
-            yield return SkipFrame(2 * OneSecOfFramesWaitTime);
+            yield return SkipFrame(2);
         }
     }
 

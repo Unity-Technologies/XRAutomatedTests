@@ -10,7 +10,7 @@ public class EyeCameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyEyesParallelWithHead()
     {
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         Assert.IsTrue(EyesParallelWithHead(), "Eyes are not parallel with the head");
     }

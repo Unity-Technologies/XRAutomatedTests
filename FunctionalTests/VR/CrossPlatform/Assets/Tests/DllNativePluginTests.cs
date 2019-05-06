@@ -64,11 +64,10 @@ public class DllNativePluginTests : XrFunctionalTestBase
         sceneObjectsLoaded = true;
     }
 
-    [UnityTest]
-    public IEnumerator VerifySceneObjectsLoaded()
+    [Test]
+    public void VerifySceneObjectsLoaded()
     {
         Assert.IsTrue(sceneObjectsLoaded, "Scene Objects was not created");
-        yield return null;
     }
 
     [UnityTest]
@@ -82,7 +81,7 @@ public class DllNativePluginTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyRenderingFps()
     {
-        yield return SkipFrame(2 * OneSecOfFramesWaitTime);
+        yield return SkipFrame(2);
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
 
@@ -96,6 +95,7 @@ public class DllNativePluginTests : XrFunctionalTestBase
             filter = true;
         }
 
+        // TODO pull these magic numbers (256) into readonly vars with description
         if(renderPlane.GetComponent<Renderer>().material.mainTexture.height == 256 && renderPlane.GetComponent<Renderer>().material.mainTexture.width == 256)
         {
             textsize = true;

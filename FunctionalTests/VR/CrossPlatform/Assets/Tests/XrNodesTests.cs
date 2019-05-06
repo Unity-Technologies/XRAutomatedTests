@@ -36,7 +36,7 @@ internal class XrNodesTests : XrFunctionalTestBase
     public IEnumerator XrNodesHeadTracking()
     {
         InputTracking.GetNodeStates(nodeList);
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         var headNodes = nodeList.Where(n => n.nodeType == XRNode.Head);
         Assert.True(headNodes.Any(), "Failed to find XRNode.Head node type.");
@@ -47,7 +47,7 @@ internal class XrNodesTests : XrFunctionalTestBase
     public IEnumerator XrNodesEyeTracking()
     {
         InputTracking.GetNodeStates(nodeList);
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         // Verify left eye node
         var leftEyeNodes = nodeList.Where(n => n.nodeType == XRNode.LeftEye);

@@ -23,7 +23,7 @@ public class SimplePerformanceTests : XrFunctionalTestBase
     public IEnumerator SimpleFpsTest()
     {
         XrFunctionalTestHelpers.TestCubeSetup(TestCubesConfig.TestCube);
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
@@ -32,7 +32,7 @@ public class SimplePerformanceTests : XrFunctionalTestBase
     public IEnumerator SimpleFpsTestWithFocalPoint()
     {
         XrFunctionalTestHelpers.TestCubeSetup(TestCubesConfig.TestCube);
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
@@ -42,7 +42,7 @@ public class SimplePerformanceTests : XrFunctionalTestBase
     {
         XrFunctionalTestHelpers.TestCubeSetup(TestCubesConfig.PerformanceMassObjects);
 
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
@@ -52,7 +52,7 @@ public class SimplePerformanceTests : XrFunctionalTestBase
     {
         XrFunctionalTestHelpers.TestCubeSetup(TestCubesConfig.PerformanceMassFloorObjects);
 
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }

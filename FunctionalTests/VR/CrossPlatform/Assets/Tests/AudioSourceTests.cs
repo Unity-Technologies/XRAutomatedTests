@@ -8,7 +8,7 @@ public class AudioSourceTests : XrFunctionalTestBase
 {
     private AudioSource audioSource;
 
-    private readonly int audioPlaySkipFrameCountWait = 2 * OneSecOfFramesWaitTime;
+    private readonly int audioPlaySkipFrameCountWait = 2;
     private readonly float audioTolerance = .01f;
 
     [SetUp]
@@ -34,7 +34,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_Play()
     {
         // Act
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         audioSource.Play();
         yield return SkipFrame(audioPlaySkipFrameCountWait);
@@ -47,7 +47,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_Pause()
     {
         // Arrange
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         audioSource.Play();
         yield return SkipFrame(audioPlaySkipFrameCountWait);
@@ -64,7 +64,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_UnPause()
     {
         // Arrange
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         audioSource.Play();
         yield return SkipFrame(audioPlaySkipFrameCountWait);
@@ -84,14 +84,14 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_Stop()
     {
         // Arrange
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         audioSource.Play();
         yield return SkipFrame(audioPlaySkipFrameCountWait);
 
         // Act
         audioSource.Stop();
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         // Assert
         Assert.AreEqual(audioSource.isPlaying, false, "Audio failed to stop");
@@ -101,7 +101,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_Adjust_SpatialBlend()
     {
         // Arrange
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
         audioSource.spatialize = true;
         Debug.Log("Enabling Spatialized Audio");
 
@@ -129,7 +129,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     public IEnumerator VerifyAudioSource_Adjust_Volume()
     {
         // Arrange
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         audioSource.Play();
         Debug.Log("Starting Audio");
@@ -137,7 +137,7 @@ public class AudioSourceTests : XrFunctionalTestBase
         audioSource.volume = 0f;
         Assert.AreEqual(0f, audioSource.volume, "Volume was not set to 0;");
 
-        yield return null;
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         var volumeAmount = 0f;
 

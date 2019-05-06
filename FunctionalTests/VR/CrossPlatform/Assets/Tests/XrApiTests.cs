@@ -6,79 +6,107 @@ using UnityEngine.XR;
 
 public class XrApiTests : XrFunctionalTestBase
 {
-    [UnityTest]
-    public IEnumerator VerifyApplication_IsMobilePlatform()
+    [UnityPlatform(include = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
+    [Test]
+    public void VerifyApplication_IsMobilePlatform()
     {
-        if (IsMobilePlatform())
-        {
-            Assert.IsTrue(Application.isMobilePlatform, "SDK returned as a non mobile platform ");
-        }
-        else
-        {
-            Assert.IsFalse(Application.isMobilePlatform, "SDK returned as a mobile platform");
-        }
-
-        yield return null;
+        Assert.IsTrue(Application.isMobilePlatform, "SDK returned as a non mobile platform ");
     }
 
-    [UnityTest]
-    public IEnumerator VerifyXrDevice_IsPresent()
+    [Test]
+    public void VerifyXrDevice_IsPresent()
     {
         Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
-        yield return null;
     }
 
-    [UnityPlatform(exclude = new[] { RuntimePlatform.Android })]
-    [UnityTest]
-    public IEnumerator VerifyXRDevice_userPresence_isPresent()
+    [UnityPlatform(exclude = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
+    [Test]
+    public void VerifyXRDevice_userPresence_isPresent()
     {
         if (Settings.EnabledXrTarget != "MockHMD")
         {
             var expUserPresenceState = UserPresenceState.Present;
             Assert.AreEqual(XRDevice.userPresence, expUserPresenceState, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", expUserPresenceState, XRDevice.userPresence));
         }
-        yield return null;
     }
 
-    [UnityTest]
-    public IEnumerator VerifyXrSettings_IsDeviceActive()
+    [Test]
+    public void VerifyXrSettings_IsDeviceActive()
     {
         Assert.IsTrue(XRSettings.isDeviceActive, "XR Device is not active");
-        yield return null;
     }
 
-    [UnityTest]
-    public IEnumerator VerifyXrSettings_LoadedDeviceName()
+    [Test]
+    public void VerifyXrSettings_LoadedDeviceName()
     {
-        yield return null;
         Assert.AreEqual(
             Settings.EnabledXrTarget, 
             XRSettings.loadedDeviceName,
             string.Format("Expected {0}, but is {1}.", Settings.EnabledXrTarget, XRSettings.loadedDeviceName));
     }
 
-    [UnityTest]
-    public IEnumerator VerifyXrModelNotEmpty()
+    [Test]
+    public void VerifyXrModelNotEmpty()
     {
-        var model = XRDevice.model;
-        Assert.IsNotEmpty(model, "Model is empty");
-        yield return null;
+        Assert.IsNotEmpty(XRDevice.model, "Model is empty");
     }
 
-    [UnityTest]
-    public IEnumerator VerifyXrDevice_NativePtr_IsNotEmpty()
+    [Test]
+    public void VerifyXrDevice_NativePtr_IsNotEmpty()
     {
         var ptr = XRDevice.GetNativePtr().ToString();
         Assert.IsNotEmpty(ptr, "Native Ptr is empty");
-        yield return null;
     }
 
-    [UnityTest]
-    public IEnumerator VerifyRefreshRateGreaterThan0()
+    [Test]
+    public void VerifyRefreshRateGreaterThan0()
     {
-        var refreshRate = XRDevice.refreshRate;
-        Assert.AreNotEqual(refreshRate, 0, "Refresh is 0; should be greater than 0.");
-        yield return null;
+        Assert.AreNotEqual(XRDevice.refreshRate, 0, "Refresh is 0; should be greater than 0.");
+    }
+
+    [Test]
+    public void VerifyXrSettings_EyeTextureHeight_GreaterThan0()
+    {
+        Assert.IsTrue(XRSettings.eyeTextureHeight > 0f);
+    }
+
+    [Test]
+    public void VerifyXrSettings_EyeTextureWidth_GreaterThan0()
+    {
+        Assert.IsTrue(XRSettings.eyeTextureWidth > 0f);
+    }
+
+    [Test]
+    public void VerifyXrSettings_EyeTextureResolutionScale_GreaterThan0()
+    {
+        Assert.IsTrue(XRSettings.eyeTextureResolutionScale > 0f);
+    }
+
+    [Test]
+    public void VerifyXrSettings_RenderViewportScale_GreaterThan0()
+    {
+        Assert.IsTrue(XRSettings.renderViewportScale > 0f);
+    }
+
+    [Test]
+    public void VerifyXrSettings_UseOcclusionMesh()
+    {
+        Assert.IsTrue(XRSettings.useOcclusionMesh);
+    }
+#if !UNITY_EDITOR
+    [Test]
+    public void XrApVerifyXrSettings_StereoRenderingMode()
+    {
+
+        Assert.IsTrue(XRSettings.stereoRenderingMode.ToString().Contains(Settings.StereoRenderingMode.ToString()), $"{XRSettings.stereoRenderingMode} != {Settings.StereoRenderingMode}");
+    }
+#endif
+
+    [UnityTest]
+    [Ignore("Inconsistent results for test. For example, this doesn't work on GearVR.")]
+    public IEnumerator CanDisableAndEnableXr()
+    {
+        yield return new MonoBehaviourTest<SwapXrEnabled>();
     }
 }
 

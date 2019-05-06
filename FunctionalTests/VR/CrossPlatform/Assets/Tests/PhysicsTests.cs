@@ -45,10 +45,10 @@ public class PhysicsTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator GazeCheck()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         InputTracking.GetNodeStates(xrNodeList);
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
         
         if (xrNodeList.Count != 0)
         {
@@ -64,7 +64,7 @@ public class PhysicsTests : XrFunctionalTestBase
 
             Ray ray = new Ray(xrCenterNodePos, XrFunctionalTestHelpers.Camera.GetComponent<Camera>().transform.forward);
             Physics.Raycast(ray, 10f);
-            yield return null;
+            yield return SkipFrame(DefaultFrameSkipCount);
 
             if (ray.origin == xrCenterNodePos)
             {

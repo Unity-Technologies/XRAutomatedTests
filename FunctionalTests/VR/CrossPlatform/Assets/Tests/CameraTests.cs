@@ -41,7 +41,7 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator CameraCheckForMultiPass()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.MultiPass);
         Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
@@ -52,7 +52,7 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator CameraCheckForInstancing()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.Instancing);
         Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
@@ -62,7 +62,7 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyRefreshRate()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         var refreshRate = XRDevice.refreshRate;
         if (IsMobilePlatform())
@@ -77,7 +77,7 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyAdjustRenderViewportScale()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         XRSettings.renderViewportScale = 1f;
         Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
@@ -93,29 +93,31 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyAdjustEyeTextureResolutionScale()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         var scale = 0.1f;
-        var scaleCount = 0.1f;
+        var scaleIncrement = 0.1f;
+        var scaleLimit = 2f;
 
-        for (var i = 0.1f; i < 2; i++)
+        do 
         {
-            scale = scale + 0.1f;
-            scaleCount = scaleCount + 0.1f;
+            
+            scale = scale + scaleIncrement;
 
             XRSettings.eyeTextureResolutionScale = scale;
 
-            yield return null;
+            yield return SkipFrame(DefaultFrameSkipCount);
 
             Debug.Log("VerifyAdjustEyeTextureResolutionScale = " + scale);
-            Assert.AreEqual(scaleCount, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
+            Assert.AreEqual(scale, XRSettings.eyeTextureResolutionScale, "Eye texture resolution scale is not being respected");
         }
+        while (scale < scaleLimit) ;
     }
 
     [UnityTest]
     public IEnumerator VerifyAdjustDeviceZoom()
     {
-        yield return SkipFrame(OneSecOfFramesWaitTime);
+        yield return SkipFrame(DefaultFrameSkipCount);
 
         var zoomAmount = 0f;
         var zoomCount = 0f;
@@ -127,7 +129,7 @@ public class CameraTests : XrFunctionalTestBase
 
             XRDevice.fovZoomFactor = zoomAmount;
 
-            yield return null;
+            yield return SkipFrame(DefaultFrameSkipCount);
 
             Debug.Log("fovZoomFactor = " + zoomAmount);
             Assert.AreEqual(zoomCount, XRDevice.fovZoomFactor, "Zoom Factor is not being respected");
@@ -137,7 +139,7 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator TakeScreenShot()
     {
-        yield return SkipFrame(2 * OneSecOfFramesWaitTime);
+        yield return SkipFrame(2);
 
         try
         {

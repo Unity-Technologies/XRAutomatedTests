@@ -44,16 +44,8 @@ public class Build
             case BuildTarget.PS4:
                 break;
         }
-
-        if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.WSAPlayer)
-        {
-            HoloToolkit.Unity.HoloToolkitCommands.BuildSLNAndAPPX(path + $"{Name}");
-        }
-        else
-        {
             // Build player.
             BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, path + $"{Name}" + $"{extension}", EditorUserBuildSettings.activeBuildTarget, BuildOptions.None);
-        }
     }
     
     

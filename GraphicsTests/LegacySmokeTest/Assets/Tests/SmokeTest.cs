@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.TestTools.Graphics;
-using UnityEngine.XR;
 
 public class SmokeTest
 {
@@ -34,7 +33,6 @@ public class SmokeTest
             {
                 Console.WriteLine("Exception thrown while attempting to delete file {0}: {1}", png, e);
             }
-
         }
 
         var pngFiles = Directory.EnumerateFiles(Application.persistentDataPath, "*.png");
@@ -55,7 +53,7 @@ public class SmokeTest
     {
         SceneManager.LoadScene(testCase.ScenePath);
 
-        yield return null;
+        yield return SkipFrame(1);
 
         var testSettings = GameObject.FindObjectOfType<GraphicsTestSettings>();
 
@@ -63,8 +61,8 @@ public class SmokeTest
 
         Screen.SetResolution(testSettings.ImageComparisonSettings.TargetWidth, testSettings.ImageComparisonSettings.TargetHeight, false);
 
-        // need a frame to update the resolution
-        yield return new WaitForSeconds(1);
+        // need some time to update the resolution.  Oculus desktop seems to need over a second for some reason.
+        yield return SkipFrame(100);
         yield return new WaitForEndOfFrame();
 
         var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);
@@ -72,5 +70,15 @@ public class SmokeTest
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
         ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
+    }
+
+    protected IEnumerator SkipFrame(int frames)
+    {
+        Debug.Log(("Skipping {0} frames.", frames));
+
+        for (int f = 0; f < frames; f++)
+        {
+            yield return null;
+        }
     }
 }

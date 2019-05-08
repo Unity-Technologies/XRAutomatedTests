@@ -6,7 +6,8 @@ namespace UnityEngine.TestTools.Graphics
 
         void Awake()
         {
-            XR.XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
+            foreach (var cam in GameObject.FindObjectsOfType<Camera>())
+                XR.XRDevice.DisableAutoXRCameraTracking(cam, true);
         }
     }
 }

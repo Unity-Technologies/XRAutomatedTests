@@ -24,3 +24,5 @@
 build/*
 TwoStickShooter/Pure/Library/AnnotationManager
 *.rsp
+
+*.user

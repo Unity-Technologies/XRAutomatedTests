@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
@@ -7,8 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.TestTools.Graphics;
 using UnityEngine.XR;
-using UnityEditor;
-
 
 public class GraphicsTests
 {

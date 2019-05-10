@@ -40,7 +40,7 @@ public class GraphicsTests
 
         Screen.SetResolution(testSettings.ImageComparisonSettings.TargetWidth, testSettings.ImageComparisonSettings.TargetHeight, false);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         yield return new WaitForEndOfFrame();
 
         var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);

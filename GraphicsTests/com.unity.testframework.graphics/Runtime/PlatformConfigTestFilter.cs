@@ -11,6 +11,7 @@ public struct PlatformConfigTestFilter
     public ColorSpace ColorSpace;
     public BuildTarget BuildPlatform;
     public GraphicsDeviceType GraphicsDevice;
+    public string XrSdk;
     public StereoRenderingPath[] stereoModes;
     public string Reason;
 }

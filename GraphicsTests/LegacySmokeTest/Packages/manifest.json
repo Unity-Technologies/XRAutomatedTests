@@ -2,8 +2,6 @@
   "dependencies": {
     "com.unity.configmanager": "file:../../../com.unity.configmanager",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.ide.visualstudio": "1.0.5",
-    "com.unity.ide.vscode": "1.0.4",
     "com.unity.render-pipelines.lightweight": "5.2.3",
     "com.unity.testframework.graphics": "file:../../com.unity.testframework.graphics",
     "com.unity.xr.legacyinputhelpers": "2.0.2",

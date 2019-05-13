@@ -1,8 +1,6 @@
 {
     "name": "Unity.CrossPlatformXRAutomation",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
         "Scripts"
     ],
     "includePlatforms": [],

@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 2127980666
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 995c4e8191aa6873341f0710d27421ab
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f19fbf085e00d23fbc8d6cf7b345590b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OpenVR/SmokeTest.png
+Dependencies: []

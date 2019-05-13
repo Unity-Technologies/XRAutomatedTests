@@ -1,7 +1,6 @@
 {
     "name": "Unity.CrossPlatformXRAutomation",
     "references": [
-        "UnityEngine.SpatialTracking",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Scripts"

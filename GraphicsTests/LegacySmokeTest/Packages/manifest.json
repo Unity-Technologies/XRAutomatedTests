@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.unity.configmanager": "file:../../../com.unity.configmanager",
-    "com.unity.ext.nunit": "1.0.0",
     "com.unity.render-pipelines.lightweight": "5.2.3",
     "com.unity.testframework.graphics": "file:../../com.unity.testframework.graphics",
     "com.unity.xr.legacyinputhelpers": "2.0.2",

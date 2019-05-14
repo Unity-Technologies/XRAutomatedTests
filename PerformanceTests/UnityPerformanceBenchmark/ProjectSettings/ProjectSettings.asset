@@ -46,7 +46,7 @@ PlayerSettings:
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
-  m_StereoRenderingPath: 1
+  m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_StackTraceTypes: 010000000200000002000000020000000200000001000000
@@ -157,8 +157,8 @@ PlayerSettings:
     iPhone: com.unity3d.IntegrationTest
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 24
-  AndroidTargetSdkVersion: 24
+  AndroidMinSdkVersion: 25
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: nimt-trampolines=1024
   stripEngineCode: 0
@@ -356,7 +356,7 @@ PlayerSettings:
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
-    m_APIs: 0b00000008000000
+    m_APIs: 0b000000
     m_Automatic: 0
   - m_BuildTarget: WindowsStandaloneSupport
     m_APIs: 02000000
@@ -373,9 +373,8 @@ PlayerSettings:
     m_Devices:
     - Oculus
   - m_BuildTarget: iPhone
-    m_Enabled: 1
-    m_Devices:
-    - daydream
+    m_Enabled: 0
+    m_Devices: []
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
@@ -618,7 +617,7 @@ PlayerSettings:
   scriptingDefineSymbols: {}
   platformArchitecture: {}
   scriptingBackend:
-    Android: 1
+    Android: 0
     Standalone: 0
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}

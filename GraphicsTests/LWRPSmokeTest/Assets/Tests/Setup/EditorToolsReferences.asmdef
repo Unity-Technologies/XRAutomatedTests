@@ -1,12 +1,13 @@
 {
-    "name": "Tests",
+    "name": "EditorToolsReferences",
     "references": [
-        "UnityEngine.TestTools.Graphics"
+        "ConfigManager",
+        "UnityEditor.TestTools.Graphics"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
     ],
-    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

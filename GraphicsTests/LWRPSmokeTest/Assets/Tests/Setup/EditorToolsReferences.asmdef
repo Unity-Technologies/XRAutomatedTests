@@ -1,0 +1,17 @@
+{
+    "name": "EditorToolsReferences",
+    "references": [
+        "ConfigManager",
+        "UnityEditor.TestTools.Graphics"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

@@ -34,7 +34,9 @@ public class GraphicsTests
 
         yield return new WaitUntil(() => asyncLoad.isDone);
 
-        if(check)
+        // this pause is here on the first scene load to mitigate an Oculus issue
+        // where screenshots would be black for the first couple scenes without it. Bug 1154476.
+        if (check)
         {
             yield return new WaitForSeconds(1);
             check = false;
@@ -47,7 +49,9 @@ public class GraphicsTests
         Assert.IsNotNull(testSettings, "No test settings script found, not a valid test");
 
         Screen.SetResolution(testSettings.ImageComparisonSettings.TargetWidth, testSettings.ImageComparisonSettings.TargetHeight, false);
-        
+
+        // need a frame to let the resolution change.
+        yield return null;
         yield return new WaitForEndOfFrame();
 
         var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);

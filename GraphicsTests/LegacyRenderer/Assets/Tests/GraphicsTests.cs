@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
@@ -7,11 +6,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.TestTools.Graphics;
 using UnityEngine.XR;
-using UnityEditor;
-
 
 public class GraphicsTests
 {
+    bool check = true;
+
     private string imageResultsPath;
 
     [OneTimeSetUp()]
@@ -31,9 +30,15 @@ public class GraphicsTests
     [UseGraphicsTestCases]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {
-        SceneManager.LoadScene(testCase.ScenePath);
+        var asyncLoad = SceneManager.LoadSceneAsync(testCase.ScenePath);
 
-        yield return null;
+        yield return new WaitUntil(() => asyncLoad.isDone);
+
+        if(check)
+        {
+            yield return new WaitForSeconds(1);
+            check = false;
+        }
         
         XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
 
@@ -42,8 +47,7 @@ public class GraphicsTests
         Assert.IsNotNull(testSettings, "No test settings script found, not a valid test");
 
         Screen.SetResolution(testSettings.ImageComparisonSettings.TargetWidth, testSettings.ImageComparisonSettings.TargetHeight, false);
-
-        yield return new WaitForSeconds(1);
+        
         yield return new WaitForEndOfFrame();
 
         var screenShot = new Texture2D(0, 0, TextureFormat.RGBA32, false);
@@ -51,5 +55,15 @@ public class GraphicsTests
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
         
         ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
+    }
+
+    protected IEnumerator SkipFrame(int frames)
+    {
+        Debug.Log(string.Format("Skipping {0} frames.", frames));
+
+        for (int f = 0; f < frames; f++)
+        {
+            yield return null;
+        }
     }
 }

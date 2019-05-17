@@ -114,7 +114,8 @@ namespace UnityEditor.TestTools.Graphics
                             if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
                                 (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
                                 (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized) &&
-                                (filter.stereoModes == null || filter.stereoModes.Length == 0|| filter.stereoModes.Contains(stereoPath)))
+                                (filter.stereoModes == null || filter.stereoModes.Length == 0 || filter.stereoModes.Contains(stereoPath)) &&
+                                (filter.XrSdk == vrSDK.First() || filter.XrSdk == null))
                             {
                                 scenesWithDisabledScenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
                                 Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));

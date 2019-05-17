@@ -1,11 +1,8 @@
 {
     "name": "Editor",
     "references": [
-        "UnityEditor.TestTools.Graphics",
-        "Tests"
-    ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
+        "GUID:e8f18ea8b55ba734389b276b6cdcb21d",
+        "GUID:e18141520846dcc44b725b2f74e91229"
     ],
     "includePlatforms": [
         "Editor"
@@ -13,7 +10,10 @@
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
-    "precompiledReferences": [],
+    "precompiledReferences": [
+        ""
+    ],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": []
 }

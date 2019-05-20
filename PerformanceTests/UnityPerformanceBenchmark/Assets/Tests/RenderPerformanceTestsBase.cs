@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
 
-//[PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
 public abstract class RenderPerformanceTestsBase
 {
     private int previousTargetFrameRate;
@@ -16,8 +14,6 @@ public abstract class RenderPerformanceTestsBase
 #endif
 
     protected readonly float SettleTime = 10f;
-
-    
     protected readonly string CoolDownSceneName = "cool_down";
 
     protected ExistingMonobehaviourTest<T> SetupPerfTest<T>() where T : RenderPerformanceMonoBehaviourTestBase

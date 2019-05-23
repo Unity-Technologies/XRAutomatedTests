@@ -13,27 +13,27 @@ public class StaticRenderPerformanceMonoBehaviourTest : RenderPerformanceMonoBeh
 
     protected override SampleGroupDefinition GpuTimeLastFrameSg
     {
-        get { return new SampleGroupDefinition(GpuTimeLastFrameName, SampleUnit.Millisecond, AggregationType.Median); }
+        get { return new SampleGroupDefinition(GpuTimeLastFrameName); }
     }
 #if UNITY_ANDROID || UNITY_IOS
     protected override SampleGroupDefinition CurrentBatterySg
     {
-        get { return new SampleGroupDefinition("CurrentBattery", SampleUnit.None, AggregationType.Median); }
+        get { return new SampleGroupDefinition("CurrentBattery", SampleUnit.None); }
     }
 
     protected override SampleGroupDefinition BatteryTempSg
     {
-        get { return new SampleGroupDefinition("BatteryTemp", SampleUnit.None, AggregationType.Median); }
+        get { return new SampleGroupDefinition("BatteryTemp", SampleUnit.None); }
     }
 
     protected override SampleGroupDefinition CpuScoreSg
     {
-        get { return new SampleGroupDefinition("CpuScore", SampleUnit.Millisecond, AggregationType.Median); }
+        get { return new SampleGroupDefinition("CpuScore"); }
     }
 
     protected override SampleGroupDefinition MemScoreSg
     {
-        get { return new SampleGroupDefinition("MemScore", SampleUnit.Byte, AggregationType.Median); }
+        get { return new SampleGroupDefinition("MemScore", SampleUnit.Byte); }
     }
 #endif
 }

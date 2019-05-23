@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
 
-//[PrebuildSetup(typeof(RenderPerformancePrebuildStep))]
 public abstract class RenderPerformanceTestsBase
 {
     private int previousTargetFrameRate;

@@ -80,7 +80,10 @@ public static class ImageHandlingSetup
         }
         else if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.Standalone)
         {
-            var files = Directory.GetFiles(Application.persistentDataPath, "*.png");
+            var screenshots = Directory.GetParent(Application.persistentDataPath);
+
+            // the unity test framework changes the name of the product when it runs so update this value to reflect that
+            var files = Directory.GetFiles(Path.Combine(screenshots.FullName, "UnityTestFramework"), "*.png");
 
             foreach (var moveFile in files)
             {

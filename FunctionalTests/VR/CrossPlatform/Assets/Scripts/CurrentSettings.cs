@@ -1,19 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.XR;
 
 public class CurrentSettings : ScriptableObject 
 {
-    public string enabledXrTarget;
-    public GraphicsDeviceType playerGraphicsApi;
+    public string EnabledXrTarget;
+    public GraphicsDeviceType PlayerGraphicsApi;
 
-    public XRSettings.StereoRenderingMode stereoRenderingMode;
+    public XRSettings.StereoRenderingMode StereoRenderingMode;
     
-    public bool mtRendering = true;
-    public bool graphicsJobs;
+    public bool MtRendering = true;
+    public bool GraphicsJobs;
 
-    public string simulationMode;
+    public string SimulationMode;
 }

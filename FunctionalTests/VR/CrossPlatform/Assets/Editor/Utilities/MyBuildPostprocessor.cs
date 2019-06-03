@@ -23,7 +23,7 @@ public class MyBuildPostprocessor
 
 		UnityEditor.iOS.Xcode.PBXProject proj = new UnityEditor.iOS.Xcode.PBXProject();
 		proj.ReadFromString(File.ReadAllText(projPath));
-		string target = proj.TargetGuidByName("Unity-iPhone");
+		string target = proj.GetUnityFrameworkTargetGuid();
 
 		Directory.CreateDirectory(Path.Combine(pathToBuiltProject, "Libraries/Unity"));
 

@@ -1,16 +1,16 @@
 # XR Graphics Tests
 
-*GraphicsTests/LWRPSmokeTest - single simple scene that uses the lightweight scriptable render pipeline.
-*GraphicsTests/LegacyRenderer - handful of tests from the legacy renderer test project in the Unity repo that runs on Katana.  Tests were chosen pretty loosely from the first half of the tests in that project.  There are about 80 tests total in this suite.
-*GraphicsTests/LegacySmokeTest - single simple scene that uses the legacy renderer.
-*GraphicsTests/LightweightRenderer - this is a copy of the test project from the scriptable render pipeline repository.  Some tests filtered out due to multiple view ports not being supported.  Hope to just run these tests out of the SRP repo in the future.
+* GraphicsTests/LWRPSmokeTest - single simple scene that uses the lightweight scriptable render pipeline.
+* GraphicsTests/LegacyRenderer - handful of tests from the legacy renderer test project in the Unity repo that runs on Katana.  Tests were chosen pretty loosely from the first half of the tests in that project.  There are about 80 tests total in this suite.
+* GraphicsTests/LegacySmokeTest - single simple scene that uses the legacy renderer.
+* GraphicsTests/LightweightRenderer - this is a copy of the test project from the scriptable render pipeline repository.  Some tests filtered out due to multiple view ports not being supported.  Hope to just run these tests out of the SRP repo in the future.
 
-##Graphics Test Framework Overview
+## Graphics Test Framework Overview
 All of the graphics test projects use the Graphics Test Framework which is a collection of scripts that generate Unity Test Framework tests during setup.  When a Unity test is decorated with the UseGraphicsTestCases attribute the framework will search through the build settings for scenes, open the scene and check if it needs to filter the scene out and whether to bake lightmaps, does the appropriate action and then generates a test.  A GraphicsTestCase object is passed in to the test which contains specific information for each test when it is run.  This contains the scene name and reference image location so they can be referenced in the test.
 
 See the [Graphics Test Framework Readme](https://github.com/Unity-Technologies/com.unity.testframework.graphics/blob/master/README.md) for more information on the framework.
 
-##Running Tests locally
+## Running Tests locally
 
 Most of the test projects use a setup method to configure the player settings passed in through the cmd line and needs to be called using the -executeMethod parameter.  Most graphics test projects use a method called Setup.SetupAll to initiate this.
 
@@ -35,7 +35,7 @@ You can also open Unity using the cmd line but not include the runTests and auto
 
 Some projects have the setup method exposed in the "Tests" custom menu item which will generate the test case list according to your build settings and rerun light mapping.
 
-##Creating new tests
+## Creating new tests
 To create a new test in an existing test project:
 
 1. Create a new scene and set up what you want to test.
@@ -48,7 +48,7 @@ This component will also disable vr tracking to make sure the camera doesn't mov
 1. Copy the reference image to the appropriate Assets/ReferenceImages directory.  SetupGraphicsTestCases.Setup will need to be called again before the test run to add the image file to the reference image asset bundle.
 Now when run the test should pass.
 
-##Common Issues
+## Common Issues
 * All screenshots are black - usually because the HMD went to sleep.
 * You can turn off the sleep in OpenVR using SteamVR → hamburger menu → Settings → Developer → uncheck "Pause rendering when headset is idle"
 * Oculus you can set two registry keys to always have it on.  In HKEY_CURRENT_USER\Software\Oculus VR, LLC\Oculus add a AllowScreenBurnIn=1 (Binary) and ProximityState=1 (DWORD)

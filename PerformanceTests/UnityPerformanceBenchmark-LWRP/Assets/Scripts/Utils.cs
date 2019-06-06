@@ -6,10 +6,10 @@ using System;
 public class Utils 
 {
 
-#if UNITY_IOS && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    static extern float GetBatteryTempiOS();
-#endif
+//#if UNITY_IOS && !UNITY_EDITOR
+//    [DllImport("__Internal")]
+//    static extern float GetBatteryTempiOS();
+//#endif
 
   const int baselineBestOfCountPerIter     = 3;
 
@@ -218,7 +218,8 @@ public class Utils
      float temp = intent.Call<int>("getIntExtra", "temperature", 0) / 10.0f; // temp now
         return temp;
 #elif UNITY_IOS && !UNITY_EDITOR
-        return GetBatteryTempiOS();
+        //return GetBatteryTempiOS();
+        retrun 0f;
 #else
         return 0f;
 #endif

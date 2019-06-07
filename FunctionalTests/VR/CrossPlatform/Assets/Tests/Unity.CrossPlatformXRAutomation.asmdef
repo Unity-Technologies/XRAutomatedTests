@@ -3,13 +3,10 @@
     "references": [
         "Scripts"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [
         "LinuxStandalone64",
-        "Lumin",
         "PS4",
         "Switch",
         "tvOS",
@@ -17,8 +14,10 @@
         "XboxOne"
     ],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
+    "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": []
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ]
 }

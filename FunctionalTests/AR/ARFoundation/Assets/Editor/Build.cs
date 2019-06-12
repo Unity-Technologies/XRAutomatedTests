@@ -32,8 +32,14 @@ public class Build
         var processInfo = new ProcessStartInfo("cmd.exe", @"/k adb install .\assets\dummy.apk");
         processInfo.CreateNoWindow = true;
         processInfo.UseShellExecute = false;
+        processInfo.RedirectStandardOutput = true;
 
-        var process = Process.Start(processInfo);
+        var process = new Process();
+        process.StartInfo = processInfo;
+        process.OutputDataReceived += (sender, args) => UnityEngine.Debug.Log(args.Data);
+
+        process.Start();
+        process.BeginOutputReadLine();
 
         process.WaitForExit();
         process.Close();

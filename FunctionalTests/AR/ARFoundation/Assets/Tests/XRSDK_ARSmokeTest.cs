@@ -21,7 +21,7 @@ public class XRSDK_ARSmokeTest
         Assert.That(SceneManager.GetActiveScene().name == "ARScene");
 
         // Check for AR Session and the AR Session component
-        GameObject arSession = GameObject.Find("ARSession");
+        GameObject arSession = GameObject.Find("AR Session");
 
         Assert.IsNotNull(arSession);
 
@@ -30,7 +30,7 @@ public class XRSDK_ARSmokeTest
         Assert.IsNotNull(arSessionComponent);
 
         // Check for the AR Rig which controls the origin of the AR scene and the camera
-        GameObject arRig = GameObject.Find("ARRig");
+        GameObject arRig = GameObject.Find("AR Session Origin");
 
         Assert.IsNotNull(arRig);
 

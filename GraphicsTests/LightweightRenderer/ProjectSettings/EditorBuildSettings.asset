@@ -72,9 +72,6 @@ EditorBuildSettings:
     path: Assets/Tests/Scenes/027_PostProcessing.unity
     guid: 3ca3376bc2cd549fa9a8b28d5f8acc97
   - enabled: 1
-    path: Assets/Tests/Scenes/028_PostProcessing_Custom.unity
-    guid: e563e287471b641a88f8cfdb13746b1a
-  - enabled: 1
     path: Assets/Tests/Scenes/029_Particles.unity
     guid: 65d99b408a8134214906126ccdea532f
   - enabled: 1

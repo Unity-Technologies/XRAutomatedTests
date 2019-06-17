@@ -96,9 +96,6 @@ EditorBuildSettings:
     path: Assets/Tests/Scenes/036_Lighting_Scene_DirectionalBakedDirectional.unity
     guid: 7a8ef7ce062f0465b9e493dd5730cecb
   - enabled: 1
-    path: Assets/Tests/Scenes/037_Particles_Standard.unity
-    guid: 67bc76c89479b264aa4a5c176433ec3a
-  - enabled: 1
     path: Assets/Tests/Scenes/040_UpgradeScene.unity
     guid: 5b50bbd7a4d4f4f49b5a50ebed1ba42c
   - enabled: 1

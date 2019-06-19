@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.IO;
 using NUnit.Framework;
+using UnityEditor.TestTools.Graphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -26,6 +27,7 @@ public class GraphicsTests
 
     [UnityTest]
     [UseGraphicsTestCases]
+    [PrebuildSetup(typeof(SetupGraphicsTestCases))]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {
         SceneManager.LoadScene(testCase.ScenePath);

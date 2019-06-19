@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using EditorSceneManagement = UnityEditor.SceneManagement;
+using UnityEngine.TestTools;
 
 namespace UnityEditor.TestTools.Graphics
 {
@@ -12,7 +13,7 @@ namespace UnityEditor.TestTools.Graphics
     /// player.
     /// Will also build Lightmaps for specially labelled scenes.
     /// </summary>
-    public class SetupGraphicsTestCases
+    public class SetupGraphicsTestCases : IPrebuildSetup
     {
         const string bakeLabel = "TestRunnerBake";
 
@@ -28,9 +29,8 @@ namespace UnityEditor.TestTools.Graphics
                 return (bool)isRunningField.GetValue(null);
             }
         }
-
-        [MenuItem("Tests/BakeLightmaps")]
-        public static void Setup()
+        
+        public void Setup()
         {
             ColorSpace colorSpace;
             BuildTarget buildPlatform;

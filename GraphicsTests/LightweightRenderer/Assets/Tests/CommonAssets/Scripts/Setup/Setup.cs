@@ -1,5 +1,4 @@
-﻿using UnityEditor.TestTools.Graphics;
-using UnityEditor.TestTools.ConfigManager;
+﻿using UnityEditor.TestTools.ConfigManager;
 
 public static class Setup
 {
@@ -7,6 +6,5 @@ public static class Setup
     {
         new EnablePlatformPrebuildStep().Setup();
         ImageHandlingSetup.Setup();
-        SetupGraphicsTestCases.Setup();
     }
 }

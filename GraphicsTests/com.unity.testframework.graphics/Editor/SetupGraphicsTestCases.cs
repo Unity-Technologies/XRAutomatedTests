@@ -138,6 +138,8 @@ namespace UnityEditor.TestTools.Graphics
                 var labels = new List<string>(AssetDatabase.GetLabels(sceneAsset));
                 if (labels.Contains(bakeLabel) && scene.enabled)
                 {
+                    EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
+
                     Debug.Log("baking lights for scene " + sceneAsset.name);
 
                     Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;

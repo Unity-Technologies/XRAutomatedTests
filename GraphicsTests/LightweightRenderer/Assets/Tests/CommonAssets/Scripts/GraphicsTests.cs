@@ -26,6 +26,7 @@ public class GraphicsTests
 
     [UnityTest]
     [UseGraphicsTestCases]
+    [PrebuildSetup("TestSetup")]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {
         SceneManager.LoadScene(testCase.ScenePath);

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 using EditorSceneManagement = UnityEditor.SceneManagement;
+using UnityEngine.TestTools;
 
 namespace UnityEditor.TestTools.Graphics
 {
@@ -12,7 +13,7 @@ namespace UnityEditor.TestTools.Graphics
     /// player.
     /// Will also build Lightmaps for specially labelled scenes.
     /// </summary>
-    public class SetupGraphicsTestCases
+    public class SetupGraphicsTestCases : IPrebuildSetup
     {
         const string bakeLabel = "TestRunnerBake";
 
@@ -28,9 +29,8 @@ namespace UnityEditor.TestTools.Graphics
                 return (bool)isRunningField.GetValue(null);
             }
         }
-
-        [MenuItem("Tests/BakeLightmaps")]
-        public static void Setup()
+        
+        public void Setup()
         {
             ColorSpace colorSpace;
             BuildTarget buildPlatform;
@@ -38,7 +38,6 @@ namespace UnityEditor.TestTools.Graphics
             GraphicsDeviceType[] graphicsDevices;
             StereoRenderingPath stereoPath;
             string[] vrSDK;
-            
 
             // Figure out if we're preparing to run in Editor playmode, or if we're building to run outside the Editor
             if (IsBuildingForEditorPlaymode)
@@ -93,40 +92,54 @@ namespace UnityEditor.TestTools.Graphics
                 }
             }
 
-            EditorBuildSettingsScene[] scenesWithDisabledScenes = EditorBuildSettings.scenes;
+            // For each scene in the build settings, force build of the lightmaps if it has "DoLightmap" label.
+            // Note that in the PreBuildSetup stage, TestRunner has already created a new scene with its testing monobehaviours
 
-            foreach ( EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+            UnityEngine.SceneManagement.Scene trScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(0);
+
+            var buildSettingsScenes = EditorBuildSettings.scenes;
+
+            foreach ( EditorBuildSettingsScene scene in buildSettingsScenes)
             {
+                // enable all scenes and let the filters disable them as needed
+                scene.enabled = true;
+
                 SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(scene.path);
                 
-                var currentScene = EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Single);
+                EditorSceneManagement.EditorSceneManager.OpenScene(scene.path, EditorSceneManagement.OpenSceneMode.Additive);
 
-                var settings = GameObject.FindObjectOfType<PlatformConfigTestFilters>();
+                UnityEngine.SceneManagement.Scene currentScene = EditorSceneManagement.EditorSceneManager.GetSceneAt(1);
 
-                if (settings != null)
+                var configs = GameObject.FindObjectOfType<PlatformConfigTestFilters>();
+
+                if (configs != null)
                 {
-                    var configs = settings.GetComponent<PlatformConfigTestFilters>();
-
-                    if (configs != null)
+                    foreach (var filter in configs.Filters)
                     {
-                        foreach (var filter in configs.Filters)
+                        if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
+                            (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
+                            (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized))
                         {
-                            if ((filter.BuildPlatform == buildPlatform || filter.BuildPlatform == BuildTarget.NoTarget) &&
-                                (filter.GraphicsDevice == graphicsDevices.First() || filter.GraphicsDevice == GraphicsDeviceType.Null) &&
-                                (filter.ColorSpace == colorSpace || filter.ColorSpace == ColorSpace.Uninitialized) &&
-                                (filter.stereoModes == null || filter.stereoModes.Length == 0 || filter.stereoModes.Contains(stereoPath)) &&
-                                (filter.XrSdk == vrSDK.First() || filter.XrSdk == null))
-                            {
-                                scenesWithDisabledScenes.First(s => s.path.Contains(currentScene.name)).enabled = false;
-                                Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));
-                            }
+                            // if VR is enabled then the VR specific filters need to match the settings too
+                            // otherwise the filter doesn't match in that mode and move on to next filter
+                            if (PlayerSettings.virtualRealitySupported == true &&
+                                !((filter.stereoModes == null ||
+                                filter.stereoModes.Length == 0 ||
+                                filter.stereoModes.Contains(PlayerSettings.stereoRenderingPath)) &&
+                                (filter.XrSdk == vrSDK.First() || string.IsNullOrEmpty(filter.XrSdk))))
+                                continue;
+
+                            scene.enabled = false;
+                            Debug.Log(string.Format("Removed scene {0} from build settings because {1}", currentScene.name, filter.Reason));
                         }
                     }
                 }
-
+                
                 var labels = new List<string>(AssetDatabase.GetLabels(sceneAsset));
-                if (labels.Contains(bakeLabel))
+                if (labels.Contains(bakeLabel) && scene.enabled)
                 {
+                    EditorSceneManagement.EditorSceneManager.SetActiveScene(currentScene);
+
                     Debug.Log("baking lights for scene " + sceneAsset.name);
 
                     Lightmapping.giWorkflowMode = Lightmapping.GIWorkflowMode.OnDemand;
@@ -138,9 +151,13 @@ namespace UnityEditor.TestTools.Graphics
 
                     EditorSceneManagement.EditorSceneManager.SaveScene(currentScene);
                 }
+
+                EditorSceneManagement.EditorSceneManager.SetActiveScene(trScene);
+
+                EditorSceneManagement.EditorSceneManager.CloseScene(currentScene, true);
             }
 
-            EditorBuildSettings.scenes = scenesWithDisabledScenes;
+            EditorBuildSettings.scenes = buildSettingsScenes;
 
             if (!IsBuildingForEditorPlaymode)
                 new CreateSceneListFileFromBuildSettings().Setup();

@@ -27,6 +27,7 @@ public class GraphicsTests
     }
 
     [UnityTest]
+    [PrebuildSetup("TestSetup")]
     [UseGraphicsTestCases]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {

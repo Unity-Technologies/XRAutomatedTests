@@ -25,6 +25,7 @@ public class SmokeTest
     }
 
     [UnityTest]
+    [PrebuildSetup("TestSetup")]
     [UseGraphicsTestCases]
     public IEnumerator Test1(GraphicsTestCase testCase)
     {

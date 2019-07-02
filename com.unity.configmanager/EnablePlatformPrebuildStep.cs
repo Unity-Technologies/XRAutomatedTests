@@ -67,9 +67,9 @@ namespace UnityEditor.TestTools.ConfigManager
                     PlatformSettings.stereoRenderingPath = PlayerSettings.stereoRenderingPath;
             }
 
-            ConfigureSettings();
-
             PlatformSettings.SerializeToAsset();
+
+            ConfigureSettings();
         }
 
         private static void ConfigureSettings()

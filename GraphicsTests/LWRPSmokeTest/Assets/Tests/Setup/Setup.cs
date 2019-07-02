@@ -6,8 +6,8 @@ public class TestSetup : IPrebuildSetup
 {
     public void Setup()
     {
-        new EnablePlatformPrebuildStep().Setup();
         ImageHandlingSetup.Setup();
+        new SetupGraphicsTestCases().Setup();
     }
 }
 
@@ -15,6 +15,6 @@ public static class Setup
 {
     public static void SetupAll()
     {
-        new SetupGraphicsTestCases().Setup();
+        new EnablePlatformPrebuildStep().Setup();
     }
 }

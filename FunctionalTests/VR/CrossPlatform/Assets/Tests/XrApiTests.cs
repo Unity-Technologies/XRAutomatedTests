@@ -101,13 +101,6 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(XRSettings.stereoRenderingMode.ToString().Contains(Settings.StereoRenderingMode.ToString()), $"{XRSettings.stereoRenderingMode} != {Settings.StereoRenderingMode}");
     }
 #endif
-
-    [UnityTest]
-    [Ignore("Inconsistent results for test. For example, this doesn't work on GearVR.")]
-    public IEnumerator CanDisableAndEnableXr()
-    {
-        yield return new MonoBehaviourTest<SwapXrEnabled>();
-    }
 }
 
 

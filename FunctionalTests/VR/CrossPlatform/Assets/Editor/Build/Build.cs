@@ -34,12 +34,9 @@ public class Build
             case BuildTarget.Android:
                 extension = ".apk";
                 break;
-            case BuildTarget.StandaloneLinux:
-                break;
             case BuildTarget.WSAPlayer:
                 break;
             case BuildTarget.StandaloneLinux64:
-            case BuildTarget.StandaloneLinuxUniversal:
                 break;
             case BuildTarget.PS4:
                 break;
@@ -149,7 +146,7 @@ public class Build
             {
                 "enabledxrtarget=",
                 "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
-                xrTarget => PlatformSettings.EnabledXrTargets = new string[] {xrTarget, "None"}
+                xrTarget => PlatformSettings.EnabledXrTargets = new string[] {xrTarget}
             },
 
             {

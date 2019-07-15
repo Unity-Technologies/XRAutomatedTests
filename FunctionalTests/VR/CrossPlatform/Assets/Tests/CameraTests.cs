@@ -35,30 +35,6 @@ public class CameraTests : XrFunctionalTestBase
         base.TearDown();
     }
 
-#if UNITY_EDITOR
-    // TODO Add bug number
-    [Ignore("Known bug")]
-    [UnityTest]
-    public IEnumerator CameraCheckForMultiPass()
-    {
-        yield return SkipFrame(DefaultFrameSkipCount);
-
-        XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.MultiPass);
-        Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Multi pass");
-    }
-
-    // TODO Add bug number
-    [Ignore("Known bug")]
-    [UnityTest]
-    public IEnumerator CameraCheckForInstancing()
-    {
-        yield return SkipFrame(DefaultFrameSkipCount);
-
-        XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.Instancing);
-        Assert.AreEqual(XRSettings.stereoRenderingMode, UnityEditor.PlayerSettings.stereoRenderingPath, "Expected StereoRenderingPath to be Instancing");
-    }
-#endif
-
     [UnityTest]
     public IEnumerator VerifyRefreshRate()
     {

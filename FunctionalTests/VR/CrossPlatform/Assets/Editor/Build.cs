@@ -144,6 +144,11 @@ public class Build
         return new OptionSet()
         {
             {
+                "simulationmode=",
+                "Enable Simulation modes for Windows MR in Editor. Values: \r\n\"HoloLens\"\r\n\"WindowsMR\"\r\n\"Remoting\"",
+                simMode => PlatformSettings.SimulationMode = simMode
+            },
+            {
                 "enabledxrtarget=",
                 "XR target to enable in player settings. Values: \r\n\"Oculus\"\r\n\"OpenVR\"\r\n\"cardboard\"\r\n\"daydream\"\r\n\"MockHMD\"",
                 xrTarget => PlatformSettings.EnabledXrTargets = new string[] {xrTarget}

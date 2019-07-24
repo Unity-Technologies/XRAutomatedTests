@@ -30,14 +30,7 @@ public static class PlatformSettings
         settingsAsset.StereoRenderingMode = GetXrStereoRenderingPathMapping(StereoRenderingPath);
         settingsAsset.MtRendering = MtRendering;
         settingsAsset.GraphicsJobs = GraphicsJobs;
-        if (SimulationMode != string.Empty || SimulationMode != null)
-        {
-            settingsAsset.SimulationMode = SimulationMode;
-        }
-        else
-        {
-            settingsAsset.SimulationMode = "None";
-        }
+        settingsAsset.SimulationMode = SimulationMode;
 
         AssetDatabase.CreateAsset(settingsAsset, "Assets/Resources/settings.asset");
         AssetDatabase.SaveAssets();

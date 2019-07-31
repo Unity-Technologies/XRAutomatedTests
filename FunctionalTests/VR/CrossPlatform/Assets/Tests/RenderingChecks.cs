@@ -53,10 +53,7 @@ public class RenderingChecks : XrFunctionalTestBase
         go.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Materials/Particle");
         Assert.IsNotNull(go.GetComponent<ParticleSystemRenderer>().material);
         particles.Play();
-
-        // 100 frames ~= 1 or 2 seconds
-        for (int i = 0; i < 100; i++)
-            yield return SkipFrame(DefaultFrameSkipCount);
+        yield return SkipFrame(100);
     }
 
     // TODO We need to refactor this so that we have a clear arrange/act/assert

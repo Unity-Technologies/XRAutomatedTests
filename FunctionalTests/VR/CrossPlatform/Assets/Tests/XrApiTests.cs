@@ -1,21 +1,26 @@
 ﻿using System.Collections;
+using System.Text;
 using UnityEngine;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Commands;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 
 public class XrApiTests : XrFunctionalTestBase
 {
-    [UnityPlatform(include = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
+
+#if PLATFORM_IOS || PLATFORM_ANDROID
     [Test]
     public void VerifyApplication_IsMobilePlatform()
     {
         Assert.IsTrue(Application.isMobilePlatform, "SDK returned as a non mobile platform ");
     }
+#endif
 
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
+        AssertNotUsingEmulation();
         Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
     }
 
@@ -23,9 +28,21 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
     {
-        if (Settings.EnabledXrTarget != "MockHMD")
+        var expUserPresenceState = UserPresenceState.Present;
+        var mockHmd = "MockHMD";
+
+        if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
         {
-            var expUserPresenceState = UserPresenceState.Present;
+            string reasonString;
+            if (Settings.EnabledXrTarget == mockHmd)
+                reasonString = string.Format("EnabledXrTarget == {0}", mockHmd);
+            else
+                reasonString = string.Format("Test is running in the Editor");
+
+            Assert.Ignore("{0}: UserPresenceState.Present will always be false. Ignoring", reasonString);
+        }
+        else
+        {
             Assert.AreEqual(XRDevice.userPresence, expUserPresenceState, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", expUserPresenceState, XRDevice.userPresence));
         }
     }
@@ -33,6 +50,7 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXrSettings_IsDeviceActive()
     {
+        AssertNotUsingEmulation();
         Assert.IsTrue(XRSettings.isDeviceActive, "XR Device is not active");
     }
 
@@ -48,6 +66,7 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXrModelNotEmpty()
     {
+        AssertNotUsingEmulation();
         Assert.IsNotEmpty(XRDevice.model, "Model is empty");
     }
 
@@ -61,6 +80,7 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyRefreshRateGreaterThan0()
     {
+        AssertNotUsingEmulation();
         Assert.AreNotEqual(XRDevice.refreshRate, 0, "Refresh is 0; should be greater than 0.");
     }
 

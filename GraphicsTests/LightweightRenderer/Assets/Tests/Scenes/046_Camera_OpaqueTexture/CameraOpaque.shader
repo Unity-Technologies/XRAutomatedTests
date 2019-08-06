@@ -18,8 +18,8 @@
 			#pragma fragment frag
 			// make fog work
 			#pragma multi_compile_fog
-			
-			#include "Packages/com.unity.render-pipelines.lightweight/ShaderLibrary/Core.hlsl"
+
+			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
 			struct appdata
 			{
@@ -36,7 +36,7 @@
 
 			TEXTURE2D(_CameraOpaqueTexture);
 			SAMPLER(sampler_CameraOpaqueTexture_linear_clamp);
-			
+
 			v2f vert (appdata v)
 			{
 				v2f o;
@@ -45,7 +45,7 @@
 				o.screenUV = ComputeScreenPos(o.vertex);
 				return o;
 			}
-			
+
 			half4 frag (v2f i) : SV_Target
 			{
 				// sample the texture

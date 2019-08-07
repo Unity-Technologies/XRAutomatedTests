@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-  m_LightingDataAsset: {fileID: 112000000, guid: c1e3921e553ae4bdea5bd3521abb96e2,
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 112000002, guid: c1e3921e553ae4bdea5bd3521abb96e2,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -2471,12 +2472,8 @@ MonoBehaviour:
   m_ShowToolkit: 0
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles:
-  - assemblyQualifiedName: InvertOpaque, LWGraphicsTests, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  m_BeforeStackBundles:
-  - assemblyQualifiedName: HalfToneOpaque, LWGraphicsTests, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
   m_AfterStackBundles: []
 --- !u!114 &1853319973
 MonoBehaviour:

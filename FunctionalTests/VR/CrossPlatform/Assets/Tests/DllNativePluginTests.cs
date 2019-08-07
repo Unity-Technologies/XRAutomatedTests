@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+﻿#if !UNITY_ANDROID
+using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 
-[UnityPlatform(exclude = new [] {RuntimePlatform.Android})]
 public class DllNativePluginTests : XrFunctionalTestBase
 {
     private bool sceneObjectsLoaded;
@@ -104,3 +104,4 @@ public class DllNativePluginTests : XrFunctionalTestBase
         return filter && textsize;
     }
 }
+#endif

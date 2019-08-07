@@ -62,21 +62,22 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyRefreshRate()
     {
+        AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
         var refreshRate = XRDevice.refreshRate;
-        if (IsMobilePlatform())
-        {
-            Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
-        } else
-        {
-            Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
-        }
+
+#if PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR)
+        Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
+#else
+        Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
+#endif
     }
 
     [UnityTest]
     public IEnumerator VerifyAdjustRenderViewportScale()
     {
+        AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
         XRSettings.renderViewportScale = 1f;
@@ -143,20 +144,18 @@ public class CameraTests : XrFunctionalTestBase
 
         try
         {
-            if (IsMobilePlatform())
-            {
-                var cam = XrFunctionalTestHelpers.Camera;
-                var width = cam.GetComponent<Camera>().scaledPixelWidth;
-                var height = cam.GetComponent<Camera>().scaledPixelHeight;
+#if PLATFORM_IOS || PLATFORM_ANDROID
+            var cam = XrFunctionalTestHelpers.Camera;
+            var width = cam.GetComponent<Camera>().scaledPixelWidth;
+            var height = cam.GetComponent<Camera>().scaledPixelHeight;
 
-                mobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                mobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
-            }
-            else
-            {
-                fileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
-                ScreenCapture.CaptureScreenshot(fileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
-            }
+            mobileTexture  = new Texture2D(width, height, TextureFormat.RGBA32, false);
+            mobileTexture = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
+
+#else
+            fileName = Application.temporaryCachePath + "/ScreenShotTest.jpg";
+            ScreenCapture.CaptureScreenshot(fileName, ScreenCapture.StereoScreenCaptureMode.BothEyes);
+#endif
         }
         catch (Exception e)
         {
@@ -164,25 +163,21 @@ public class CameraTests : XrFunctionalTestBase
             Assert.Fail("Failed to get capture! : " + e);
         }
 
-        if (IsMobilePlatform())
-        {
-            yield return SkipFrame(5);
+        yield return SkipFrame(5);
 
-            if (IsMobilePlatform())
-            {
-                Assert.IsNotNull(mobileTexture, "Texture data is empty for mobile");
-            }
-            else
-            {
-                var tex = new Texture2D(2, 2);
+#if PLATFORM_IOS || PLATFORM_ANDROID
 
-                var texData = File.ReadAllBytes(fileName);
-                Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + fileName);
 
-                tex.LoadImage(texData);
+        Assert.IsNotNull(mobileTexture, "Texture data is empty for mobile");
+#else
+        var tex = new Texture2D(2, 2);
 
-                Assert.IsNotNull(tex, "Texture Data is empty");
-            }
-        }
+        var texData = File.ReadAllBytes(fileName);
+        Debug.Log("Screen Shot Success!" + Environment.NewLine + "File Name = " + fileName);
+
+        tex.LoadImage(texData);
+
+        Assert.IsNotNull(tex, "Texture Data is empty");
+#endif
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "Unity.CrossPlatformXRAutomation",
+    "name": "Unity.CrossPlatform.XRAutomation",
     "references": [
         "Scripts"
     ],
@@ -14,7 +14,7 @@
         "XboxOne"
     ],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
+    "overrideReferences": true,
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [

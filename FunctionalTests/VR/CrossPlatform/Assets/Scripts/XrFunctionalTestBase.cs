@@ -1,22 +1,8 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
-[UnityPlatform(include = new[]
-{
-    RuntimePlatform.WindowsEditor,
-    RuntimePlatform.WindowsPlayer,
-    RuntimePlatform.Android,
-    RuntimePlatform.IPhonePlayer,
-    RuntimePlatform.OSXEditor,
-    RuntimePlatform.OSXPlayer,
-    RuntimePlatform.Lumin,
-    RuntimePlatform.WSAPlayerARM,
-    RuntimePlatform.WSAPlayerX64,
-    RuntimePlatform.WSAPlayerX86
-})]
-public class XrFunctionalTestBase
+public abstract class XrFunctionalTestBase
 {
     protected XrFunctionalTestHelpers XrFunctionalTestHelpers;
     protected CurrentSettings Settings;
@@ -51,12 +37,20 @@ public class XrFunctionalTestBase
         return Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
     }
 
+    protected void AssertNotUsingEmulation()
+    {
+        if (Settings.SimulationMode != string.Empty)
+        {
+            Assert.Ignore("This test cannot run in emulation mode. Skipping.");
+        }
+    }
+
     protected IEnumerator SkipFrame(int frames)
     {
+        Debug.Log(string.Format("Skipping {0} frames.", frames));
         for (int f = 0; f < frames; f++)
         {
             yield return null;
-            Debug.Log("Skip Frame");
         }
     }
 

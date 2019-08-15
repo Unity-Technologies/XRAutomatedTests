@@ -79,15 +79,43 @@ public class CameraTests : XrFunctionalTestBase
     {
         AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
+        var tolerance = .005;
 
-        XRSettings.renderViewportScale = 1f;
-        Assert.AreEqual(1f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
+        // Arrange
+        var expRenderViewPortScale = 1f;
+        // Act
+        XRSettings.renderViewportScale = expRenderViewPortScale;
+        // Assert
+        var actRenderViewPortScale = XRSettings.renderViewportScale;
+        Assert.AreEqual(
+            expRenderViewPortScale, 
+            actRenderViewPortScale,
+            tolerance,
+            string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale, actRenderViewPortScale));
 
-        XRSettings.renderViewportScale = 0.7f;
-        Assert.AreEqual(0.7f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
+        // Arrange
+        expRenderViewPortScale = 0.7f;
+        // Act
+        XRSettings.renderViewportScale = expRenderViewPortScale;
+        // Assert
+        actRenderViewPortScale = XRSettings.renderViewportScale;
+        Assert.AreEqual(
+            expRenderViewPortScale, 
+            actRenderViewPortScale, 
+            tolerance,
+            string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale, actRenderViewPortScale));
 
-        XRSettings.renderViewportScale = 0.5f;
-        Assert.AreEqual(0.5f, XRSettings.renderViewportScale, "Render viewport scale is not being respected");
+        // Arrange
+        expRenderViewPortScale = 0.5f;
+        // Act
+        XRSettings.renderViewportScale = expRenderViewPortScale;
+        // Assert
+        actRenderViewPortScale = XRSettings.renderViewportScale;
+        Assert.AreEqual(
+            expRenderViewPortScale, 
+            actRenderViewPortScale, 
+            tolerance,
+            string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale, actRenderViewPortScale));
     }
 
 

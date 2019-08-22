@@ -10,43 +10,6 @@ using UnityEngine.TestTools.Graphics;
 
 public class SmokeTest
 {
-    private string imageResultsPath;
-
-    [OneTimeSetUp()]
-    public void CreateResultsDirectoryAsset()
-    {
-        // this asset should be created in the prebuild setup, the value comes from the -testResults cmdline parameter
-        imageResultsPath = Resources.Load<TextAsset>("ResultsImagesDirectory")?.text;
-        if (imageResultsPath == null)
-        {
-            imageResultsPath = string.Empty;
-        }
-
-        // clean out any old screenshots
-        foreach (var png in Directory.EnumerateFiles(Application.persistentDataPath, "*.png"))
-        {
-            try
-            {
-                File.Delete(png);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception thrown while attempting to delete file {0}: {1}", png, e);
-            }
-        }
-
-        var pngFiles = Directory.EnumerateFiles(Application.persistentDataPath, "*.png");
-        if (Directory.EnumerateFiles(Application.persistentDataPath, "*.png").Any())
-        {
-            foreach (var pngFile in pngFiles)
-            {
-                Console.WriteLine("Failed to delete png file {0}", pngFile);
-            }
-
-            throw new Exception("Failed to complete cleanup of png files in test setup.");
-        }
-    }
-
     [UnityTest]
     [PrebuildSetup("TestSetup")]
     [UseGraphicsTestCases]
@@ -70,7 +33,7 @@ public class SmokeTest
 
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
-        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
+        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
     }
 
     protected IEnumerator SkipFrame(int frames)

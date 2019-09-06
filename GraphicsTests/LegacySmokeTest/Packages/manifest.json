@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#ryanhy-integrate-with-gfx-tests",
+    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#seans-oculus-xr-sdk-work",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.test-framework": "1.0.17",
+    "com.unity.test-framework": "1.1.1",
     "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
-    "com.unity.xr.oculus": "1.0.0",
+    "com.unity.xr.management": "3.0.3",
+    "com.unity.xr.oculus": "1.0.2",
+    "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -38,17 +40,22 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "testables": [
     "com.unity.testframework.graphics"
   ],
   "lock": {
     "com.unity.cli-config-manager": {
-      "revision": "ryanhy-integrate-with-gfx-tests",
-      "hash": "4e6990e9542de95f8e0537d91e8f5624b9aedce7"
+      "revision": "seans-oculus-xr-sdk-work",
+      "hash": "2541319aa21ee40e55a6b739c39dfe282d30b446"
     },
     "com.unity.testframework.graphics": {
       "revision": "HEAD",
       "hash": "056c1f1740adef659e501d6670f2d97252ed6508"
+    },
+    "com.unity.xr.test.prepare": {
+      "revision": "HEAD",
+      "hash": "4faa15c3d5229d42763a85b1a2f752374fb7b53e"
     }
   }
 }

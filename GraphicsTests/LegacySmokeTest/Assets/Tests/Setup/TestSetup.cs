@@ -6,7 +6,7 @@ public class TestSetup : IPrebuildSetup
 {
     public void Setup()
     {
-        new PrebuildSettingsConfigurator().ConfigureFromCmdlineArgs();
+        new CliConfigManager().ConfigureFromCmdlineArgs();
         SetupGraphicsTestCases.Setup();
     }
 }

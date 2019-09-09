@@ -41,19 +41,5 @@
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "testables": [
     "com.unity.testframework.graphics"
-  ],
-  "lock": {
-    "com.unity.cli-config-manager": {
-      "revision": "seans-oculus-xr-sdk-work",
-      "hash": "2541319aa21ee40e55a6b739c39dfe282d30b446"
-    },
-    "com.unity.testframework.graphics": {
-      "revision": "HEAD",
-      "hash": "056c1f1740adef659e501d6670f2d97252ed6508"
-    },
-    "com.unity.xr.test.prepare": {
-      "revision": "HEAD",
-      "hash": "4faa15c3d5229d42763a85b1a2f752374fb7b53e"
-    }
-  }
+  ]
 }

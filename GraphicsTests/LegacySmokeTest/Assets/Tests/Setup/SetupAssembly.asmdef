@@ -1,11 +1,11 @@
 {
     "name": "SetupAssembly",
     "references": [
-        "GUID:e18141520846dcc44b725b2f74e91229",
-        "GUID:27619889b8ba8c24980f49ee34dbb44a",
-        "GUID:0acc523941302664db1f4e527237feb3",
-        "GUID:175af4716b66b964cac15af9e01f6ad1",
-        "GUID:9c4b751e28b8ad64ca2d5359a7b5cf2a"
+        "UnityEditor.TestTools.Graphics",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "com.unity.xr.test.prepare",
+        "com.unity.cli-config-manager"
     ],
     "includePlatforms": [
         "Editor"

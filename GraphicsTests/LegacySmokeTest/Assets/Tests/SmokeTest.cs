@@ -33,7 +33,24 @@ public class SmokeTest
 
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
-        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
+        try
+        {
+            ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
+        }
+        catch (AssertionException)
+        {
+            // test setup sets the results images directory to the testResults/ResultImages directory
+            var testName = TestContext.CurrentContext.Test.Name;
+            var actualImageName = "./ResultsImages/" + testName + ".png";
+            var diffImageName = "./ResultsImages/" + testName + ".diff.png";
+            var expectedImageName = "./ResultsImages/" + testName + ".expected.png";
+
+            TestContext.CurrentContext.Test.Properties.Set("DiffImage", diffImageName);
+            TestContext.CurrentContext.Test.Properties.Set("Image", actualImageName);
+            TestContext.CurrentContext.Test.Properties.Set("ExpectedImage", expectedImageName);
+
+            throw;
+        }
     }
 
     protected IEnumerator SkipFrame(int frames)

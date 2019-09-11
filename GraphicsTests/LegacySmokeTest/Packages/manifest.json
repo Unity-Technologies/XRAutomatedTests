@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#seans-oculus-xr-sdk-work",
+    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.test-framework": "1.1.1",
-    "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git#results-dir-parameter",
+    "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
-    "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git",
+    "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git#trunk",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

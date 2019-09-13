@@ -1,8 +1,9 @@
 {
     "name": "Editor",
     "references": [
-        "GUID:e8f18ea8b55ba734389b276b6cdcb21d",
-        "GUID:e18141520846dcc44b725b2f74e91229"
+        "GUID:e18141520846dcc44b725b2f74e91229",
+        "GUID:7e3515cc318f8184fa26d5d98c079aff",
+        "GUID:8b6fec493a881fd45b5c70790718e717"
     ],
     "includePlatforms": [
         "Editor"
@@ -15,5 +16,6 @@
     ],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

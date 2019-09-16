@@ -4,9 +4,7 @@
         "UnityEngine.SpatialTracking",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Scripts",
-        "Unity.XR.WindowsMR",
-        "Unity.WindowsMRAutomation"
+        "Scripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [
@@ -27,5 +25,6 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

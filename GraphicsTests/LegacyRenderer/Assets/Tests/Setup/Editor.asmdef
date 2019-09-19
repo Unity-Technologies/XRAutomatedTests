@@ -1,9 +1,9 @@
 {
     "name": "Editor",
     "references": [
-        "GUID:e18141520846dcc44b725b2f74e91229",
-        "GUID:7e3515cc318f8184fa26d5d98c079aff",
-        "GUID:8b6fec493a881fd45b5c70790718e717"
+        "UnityEditor.TestTools.Graphics",
+        "com.unity.cli-config-manager",
+        "com.unity.xr.test.prepare"
     ],
     "includePlatforms": [
         "Editor"

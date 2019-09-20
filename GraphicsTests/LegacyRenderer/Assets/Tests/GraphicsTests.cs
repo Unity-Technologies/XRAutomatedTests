@@ -8,6 +8,14 @@ using UnityEngine.XR;
 
 public class GraphicsTests
 {
+    [OneTimeSetUp]
+    public void DisableHeadTracking()
+    {
+        var go = new GameObject("DisableVRCamTracking", new System.Type[] { typeof(DisableXRCameraTracking) });
+        GameObject.Instantiate(go);
+        Object.DontDestroyOnLoad(go);
+    }
+
     bool check = true;
 
     [UnityTest]
@@ -26,8 +34,6 @@ public class GraphicsTests
             yield return new WaitForSeconds(1);
             check = false;
         }
-        
-        XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
 
         var testSettings = GameObject.FindObjectOfType<GraphicsTestSettings>();
 

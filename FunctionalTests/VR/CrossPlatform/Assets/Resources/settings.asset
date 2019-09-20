@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05b05015b179c3488e93a1facc5dffd, type: 3}
+  m_Script: {fileID: 11500000, guid: f22337b37bffe984b93bbe465fc07b37, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  StereoRenderingMode: 1
+  EnabledXrTarget: Oculus
+  PlayerGraphicsApi: Direct3D11
+  StereoRenderingMode: SinglePass
+  StereoRenderingModeDesktop: MultiPass
+  StereoRenderingModeAndroid: MultiPass
   MtRendering: 1
   GraphicsJobs: 0
   SimulationMode: 

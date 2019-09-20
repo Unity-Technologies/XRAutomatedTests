@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "com.unity.2d.sprite": "1.0.0",
+    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.visualstudio": "1.0.7",
-    "com.unity.ide.vscode": "1.0.6",
-    "com.unity.package-manager-ui": "2.2.0",
-    "com.unity.test-framework": "1.0.12",
-    "com.unity.textmeshpro": "2.0.0",
-    "com.unity.xr.legacyinputhelpers": "2.0.2",
-    "com.unity.xr.oculus.standalone": "1.29.1",
+    "com.unity.ide.vscode": "1.1.0",
+    "com.unity.test-framework": "1.1.1",
+    "com.unity.xr.legacyinputhelpers": "2.0.6",
+    "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git#trunk",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -41,5 +40,5 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "registry": "https://staging-packages.unity.com"
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

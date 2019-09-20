@@ -25,7 +25,7 @@ public class EyeCameraTests : XrFunctionalTestBase
     {
         bool eyesParallelWithHead;
 
-        var camera = XrFunctionalTestHelpers.Camera.GetComponent<Camera>();
+        var camera = Camera.GetComponent<Camera>();
         var left = camera.GetStereoViewMatrix(UnityEngine.Camera.StereoscopicEye.Left);
         var right = camera.GetStereoViewMatrix(UnityEngine.Camera.StereoscopicEye.Right);
 
@@ -33,7 +33,7 @@ public class EyeCameraTests : XrFunctionalTestBase
         var rightEyePos = right.inverse.MultiplyPoint(Vector3.zero);
 
         var eyesDelta = (rightEyePos - leftEyePos).normalized;
-        var rightDir = XrFunctionalTestHelpers.Camera.transform.right;
+        var rightDir = Camera.transform.right;
         var angle = Vector3.Angle(eyesDelta, rightDir);
 
         if (AnglesApproximatelyEqual(angle, 0f))

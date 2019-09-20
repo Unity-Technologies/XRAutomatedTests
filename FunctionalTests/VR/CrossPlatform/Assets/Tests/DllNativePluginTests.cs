@@ -1,6 +1,7 @@
 ﻿#if !UNITY_ANDROID
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -59,8 +60,6 @@ public class DllNativePluginTests : XrFunctionalTestBase
         spotLight = Object.Instantiate(Resources.Load<Light>("Prefabs/Spotlight"));
         baseSphere = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Sphere"));
 
-        // TODO I don't think this is the way we want to do this. Shouldn't we be trying to find these objects in the scene
-        // before we determine if they are loaded?
         sceneObjectsLoaded = true;
     }
 
@@ -77,7 +76,6 @@ public class DllNativePluginTests : XrFunctionalTestBase
         Assert.IsTrue(IsPlaneRendering(), "Image rendering couldn't be found");
     }
 
-    // TODO: what is this test checking?
     [UnityTest]
     public IEnumerator VerifyRenderingFps()
     {
@@ -90,13 +88,13 @@ public class DllNativePluginTests : XrFunctionalTestBase
         var filter = false;
         var textsize = false;
 
-        if(renderPlane.GetComponent<Renderer>().material.mainTexture.filterMode == FilterMode.Point)
+        var renderer = renderPlane.GetComponent<Renderer>();
+        if (renderer.material.mainTexture.filterMode == FilterMode.Point)
         {
             filter = true;
         }
 
-        // TODO pull these magic numbers (256) into readonly vars with description
-        if(renderPlane.GetComponent<Renderer>().material.mainTexture.height == 256 && renderPlane.GetComponent<Renderer>().material.mainTexture.width == 256)
+        if(renderer.material.mainTexture.height == 256 && renderer.material.mainTexture.width == 256)
         {
             textsize = true;
         }

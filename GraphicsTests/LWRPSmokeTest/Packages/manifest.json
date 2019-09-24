@@ -11,6 +11,7 @@
     "com.unity.xr.legacyinputhelpers": "2.0.6",
     "com.unity.xr.oculus.standalone": "1.38.2",
     "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git#trunk",
+    "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

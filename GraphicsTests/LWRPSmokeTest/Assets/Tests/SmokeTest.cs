@@ -9,21 +9,6 @@ using UnityEngine.XR;
 
 public class SmokeTest
 {
-    private string imageResultsPath;
-
-    [OneTimeSetUp()]
-    public void CreateResultsDirectoryAsset()
-    {
-        // this asset should be created in the prebuild setup, the value comes from a cmdline parameter
-        imageResultsPath = Resources.Load<TextAsset>("ResultsImagesDirectory")?.text;
-        if (imageResultsPath == null)
-            imageResultsPath = string.Empty;
-
-        // clean out any old screenshots
-        foreach (var png in Directory.EnumerateFiles(Application.persistentDataPath, "*.png"))
-            File.Delete(png);
-    }
-
     [UnityTest]
     [PrebuildSetup("TestSetup")]
     [UseGraphicsTestCases]
@@ -32,8 +17,6 @@ public class SmokeTest
         SceneManager.LoadScene(testCase.ScenePath);
 
         yield return null;
-
-        XRDevice.DisableAutoXRCameraTracking(Camera.main, true);
 
         var testSettings = GameObject.FindObjectOfType<GraphicsTestSettings>();
 
@@ -48,6 +31,28 @@ public class SmokeTest
 
         screenShot = ScreenCapture.CaptureScreenshotAsTexture(ScreenCapture.StereoScreenCaptureMode.BothEyes);
 
-        ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings, imageResultsPath);
+        try
+        {
+            ImageAssert.AreEqual(testCase.ReferenceImage, screenShot, testSettings.ImageComparisonSettings);
+        }
+        catch (AssertionException e)
+        {
+            // test setup sets the results images directory to the testResults/ResultImages directory
+            var testName = TestContext.CurrentContext.Test.Name;
+            var actualImageName = "./ResultsImages/" + testName + ".png";
+            TestContext.CurrentContext.Test.Properties.Set("Image", actualImageName);
+
+            // If the exception says there was a null reference image then there isn't a diff or expected images
+            if (!e.Message.Contains("But was:  null"))
+            {
+                var diffImageName = "./ResultsImages/" + testName + ".diff.png";
+                TestContext.CurrentContext.Test.Properties.Set("DiffImage", diffImageName);
+
+                var expectedImageName = "./ResultsImages/" + testName + ".expected.png";
+                TestContext.CurrentContext.Test.Properties.Set("ExpectedImage", expectedImageName);
+            }
+
+            throw;
+        }
     }
 }

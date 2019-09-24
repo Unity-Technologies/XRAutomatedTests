@@ -1,0 +1,358 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3b5ed0f7c62da479d0e2b9470fa1e0, type: 3}
+  m_Name: TestCaseFilters
+  m_EditorClassIdentifier: 
+  filters:
+  - FilteredScene: {fileID: 102900000, guid: 01260763e38844df58764f2a016c8f85, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: scene isn't rendering correctly, not sure why
+  - FilteredScene: {fileID: 102900000, guid: 015d6508dcc480e4e8394b7ad87ad603, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 015d6508dcc480e4e8394b7ad87ad603, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 4acc3d70b1345fa43a98e497df267ebb, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 4acc3d70b1345fa43a98e497df267ebb, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: ac66cf9df54fd407ba065d23311cd6f4, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: ac66cf9df54fd407ba065d23311cd6f4, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: fc00bbeb959cc3243ae6f08c86d17635, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: fc00bbeb959cc3243ae6f08c86d17635, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 229230e98a948fa46aee0777c1c067ad, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 229230e98a948fa46aee0777c1c067ad, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: b5f846bae63465646babb5723aaf464e, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: b5f846bae63465646babb5723aaf464e, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 49f5eeb29dd2e47c48aa6399e03ff7df, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 49f5eeb29dd2e47c48aa6399e03ff7df, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 5d08d158578d4af47bbc57b0579f59af, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 5d08d158578d4af47bbc57b0579f59af, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: cd1c2fb01ac89469a9512138d0d54b77, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: cd1c2fb01ac89469a9512138d0d54b77, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: b830a339b8834ca49985b34fd8b7041b, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: b830a339b8834ca49985b34fd8b7041b, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 9cf030fd88e7ed14ab678ebc34d89ab8, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 9cf030fd88e7ed14ab678ebc34d89ab8, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: b7d5e7a54eb38a5419e41397f9831c79, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: b7d5e7a54eb38a5419e41397f9831c79, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 1e7ec071401598e49b51499ed694f4e6, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 1e7ec071401598e49b51499ed694f4e6, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 211ffb58fcee4ee4c89d0b811a61b414, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 211ffb58fcee4ee4c89d0b811a61b414, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: eb61d97774f3409418e764da1794ccf7, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: eb61d97774f3409418e764da1794ccf7, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 27b19aa6666abca46ba95e7021b1488f, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 27b19aa6666abca46ba95e7021b1488f, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 8b333d1bbda1c5844a309548e6b977a4, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 8b333d1bbda1c5844a309548e6b977a4, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 4564287066cb3c14b89847b055e58257, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 4564287066cb3c14b89847b055e58257, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 9c58d4fde57cf1d40a5cebfd3f6fc4cc, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: 2ded5941bf187c7448db98fcb06dc992, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: 523e5102ce27295489d1655560b32749, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: 46affe40aa85dfc4789fc77173cbbc9a, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: 368ea96ede46c0648bcfb66bcac6c046, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: b6547f6fd62c7e742891feddb15b5062, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 6
+    Reason: Legacy shader doesn't support anything but multipass
+  - FilteredScene: {fileID: 102900000, guid: 26cbfc05b375b414cbadc2c67676d9b2, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 26cbfc05b375b414cbadc2c67676d9b2, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: 3828ccfd50442ff48a4c2071f50ce4d5, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: 3828ccfd50442ff48a4c2071f50ce4d5, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android
+  - FilteredScene: {fileID: 102900000, guid: f2dc0b26a1038c548bc8ca76f419c482, type: 3}
+    ColorSpace: -1
+    BuildPlatform: -2
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 4
+    Reason: deferred rendering not supported in stereo instancing
+  - FilteredScene: {fileID: 102900000, guid: f2dc0b26a1038c548bc8ca76f419c482, type: 3}
+    ColorSpace: -1
+    BuildPlatform: 13
+    GraphicsDevice: 4
+    XrSdk: 
+    StereoModes: 0
+    Reason: deferred doesn't work on Android

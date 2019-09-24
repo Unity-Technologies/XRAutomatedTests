@@ -1,8 +1,9 @@
 {
     "name": "Editor",
     "references": [
-        "GUID:e8f18ea8b55ba734389b276b6cdcb21d",
-        "GUID:e18141520846dcc44b725b2f74e91229"
+        "UnityEditor.TestTools.Graphics",
+        "com.unity.cli-config-manager",
+        "com.unity.xr.test.prepare"
     ],
     "includePlatforms": [
         "Editor"
@@ -15,5 +16,6 @@
     ],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -37,6 +37,7 @@ public class CameraTests : XrFunctionalTestBase
         base.TearDown();
     }
 
+    [Ignore("Not working in XR SDK.")]
     [UnityTest]
     public IEnumerator VerifyRefreshRate()
     {
@@ -121,6 +122,7 @@ public class CameraTests : XrFunctionalTestBase
         while (scale < scaleLimit) ;
     }
 
+    [Ignore("Not working in XR SDK.")]
     [UnityTest]
     public IEnumerator VerifyAdjustDeviceZoom()
     {

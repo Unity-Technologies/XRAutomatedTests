@@ -16,8 +16,8 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsFalse(Application.isMobilePlatform, "Exptect Application.isMobilePlatform == false, but is true ");
 #endif
     }
-
-
+    
+    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
@@ -25,6 +25,7 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
     }
 
+    [Ignore("Not working in XR SDK.")]
     [UnityPlatform(exclude = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
@@ -58,6 +59,7 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsNotEmpty(XRSettings.loadedDeviceName, $"Expected {XRSettings.loadedDeviceName} to be a non-empty string, but it is empty.");
     }
 
+    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyXrModelNotEmpty()
     {
@@ -72,6 +74,7 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsNotEmpty(ptr, "Native Ptr is empty");
     }
 
+    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyRefreshRateGreaterThan0()
     {
@@ -103,6 +106,7 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(XRSettings.renderViewportScale > 0f);
     }
 
+    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyXrSettings_UseOcclusionMesh()
     {

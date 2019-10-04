@@ -12,7 +12,8 @@ using UnityEngine.XR;
 
 [Category("XR")]
 [Category("Performance")]
-public class DynamicScene_RenderPerfTests : RenderPerformanceTestsBase
+[Category("XRSDK")]
+public class DynamicScene_RenderPerfTests_XRSDK : RenderPerformanceTestsBase
 {
     private readonly string spiralSceneName = "PerformanceTest";
 

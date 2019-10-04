@@ -12,7 +12,8 @@ using UnityEngine.XR;
 
 [Category("XR")]
 [Category("Performance")]
-public class StaticScene_RenderPerformanceTests : RenderPerformanceTestsBase
+[Category("XRSDK")]
+public class StaticScene_RenderPerformanceTests_XRSDK : RenderPerformanceTestsBase
 {
     private readonly string basicSceneName = "RenderPerformance";
     

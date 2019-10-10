@@ -116,9 +116,9 @@ Prebuild executables for the Unity Test Runner Result Reporter can be found here
 
 `Unity.exe -runTests -automated -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform -testPlatform Android -buildTarget Android -enabledxrtarget=Oculus -playergraphicsAPI=OpenGLES3 -stereorenderingpath=MultiPass -scriptingbackend=mono -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
 
-**Example: From an OSX dev machine, run Google Cardboard using built-in VR with Metal, MultiPass rendering, Mono scripting backend**
+**Example: From an OSX dev machine, run Android Google Cardboard using built-in VR with OpenGLES3, MultiPass rendering, Mono scripting backend**
 
-`Unity -runTests -automated -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform -testPlatform Android -buildTarget Android -enabledxrtarget=cardboard -playergraphicsAPI=Metal -stereorenderingpath=MultiPass -scriptingbackend=mono -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
+`Unity -runTests -automated -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform -testPlatform Android -buildTarget Android -enabledxrtarget=cardboard -playergraphicsAPI=OpenGLES3 -stereorenderingpath=MultiPass -scriptingbackend=mono -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
 
 **Example: From a Windows dev machine, run Oculus Quest/Go/GearVR using Oculus XRSDK VR with OpenGLES3, Multiview rendering, IL2CPP scripting backend**
 

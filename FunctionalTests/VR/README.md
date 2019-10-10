@@ -61,9 +61,13 @@ Unity.exe command line options are command line options defined by the Unity.exe
 The full list of these options can be found here: [Unity Command Line Arguments](https://docs.unity3d.com/Manual/CommandLineArguments.html), but a few important ones we'll be using while running our tests from the command line:
 
 `-projectPath <full path to Unity Project>`
+
 `-buildTarget <target platform e.g. Android, StandaloneWindows64, WindowsStoreApps>`
+
 `-executeMethod <Fully qualified static editor method name>`
+
 `-logfile <Path and filename where you want to write the Unity log>`
+
 
 #### Unity Test Framework command line options
 Unity Test Framework (UTF) command line options are command line options defined by UTF.
@@ -71,9 +75,13 @@ Unity Test Framework (UTF) command line options are command line options defined
 The full list of these options can be found here: [UTF Command Line Options] (https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/reference-command-line.html), but a few important ones we'll be using while running our tests from the command line:
 
 `-runTests // instructs the UTF to run any tests it finds in your projects after the project opens and builds the project`
+
 `-automated // provides addition ##utp log messages from the Unity Test Protocol logging system in the Unity log`
+
 `-testPlatform <test target platform e.g. Android, StandaloneWindows64, playmode (to run tests in the editor in playmode>`
+
 `-testResults <path and *.xml file name you want to write the test results to>`
+
 
 #### com.unity.cli-config-manager command line options
 The com.unity.cli-config-manager command line options are custom command line options available to further customize the player and build configuration for your test project.
@@ -81,10 +89,15 @@ The com.unity.cli-config-manager command line options are custom command line op
 The full list of these options can be found here: [com.unity.cli-config-manager package](https://github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager/blob/trunk/README.md), but a few important ones we'll be using while running our tests from the command line:
 
 `-enabledxrtarget=<XrTargetToEnable>`
+
 `-scriptingbackend=<ScriptingBackend>`
+
 `-playergraphicsapi=<GraphicsApi>`
+
 `-stereorenderingpath=<StereoRenderingPath>`
+
 `-simulationmode=<SimulationMode> // only relevant for WindowMR`
+
 
 Running UTF tests from Unity command line provides flexibility for test automation. However, please be aware that when running tests from the command line using `-runTests` in combination with the `-testResults`, the test results will be generated in an XML format. If you'd like to generate an easy-to-read and understand test results HTML report from this .xml file, use the UnityTestRunnerResultsReporter to do so.
 

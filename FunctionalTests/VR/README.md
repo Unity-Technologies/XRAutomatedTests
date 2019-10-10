@@ -1,7 +1,17 @@
 # Cross Platform VR Automated Tests
-
+##### Table of Contents   
+<a href="#intro">Intro</a><br>
+<a href="#description">Test Projects with Descriptions</a><br>
+<a href="#testsummary">Tests Summary</a><br>
+<a href="#howtorun">How To Run</a><br>
+&nbsp;<a href="#runineditor">Run in Editor</a><br>
+&nbsp;<a href="#runfromcommandline">Run from Command Line</a><br>
+&nbsp;<a href="#usage">Usage Examples</a><br>
+<a name="intro"></a>
+# Intro
 The purpose of the CrossPlatform test projects is to run a common set of automated tests for the Unity APIs and features across the XR Platforms that Unity support.  This is not meant to be an exhaustive test across all of the XR Platforms, but should give a good idea of the status of each platform and the Unity APIs.
 
+<a name="description"></a>
 ## Test Projects with Descriptions
 | Project Name | Description | Supported Platform | Tested 3rd Party SDK |
 |--------------|-------------|--------------------|----------------------|
@@ -11,26 +21,8 @@ The purpose of the CrossPlatform test projects is to run a common set of automat
 | CrossPlatformSmokeTest_XRSDK|Subset of Oculus XRSDK Functional Tests|StandaloneWindows, Android|Oculus XRSDK|
 | CrossPlatform_MockHmdXRSDK|MockHMD XRSDK Functional Tests|StandaloneWindows, Android|MockHMD XRSDK|
 
-
-## Platforms
-- Windows Standalone
-  - Oculus
-  - OpenVR
-  - MockHMD
-- MacOS Standalone
-  - OpenVR
-  - MockHMD
-- UWP
-  - Windows Mixed Reality
-- Android
-  - Oculus
-  - Daydream
-  - Cardboard
-- iOS
-  - Carboard
-
-## Tests
-
+<a name="testsummary"></a>
+## Tests Summary
 - Audio
   - Controls
   - Spatialized Audio
@@ -46,14 +38,17 @@ The purpose of the CrossPlatform test projects is to run a common set of automat
   - XR Settings APIs
   - XR Nodes
 
+<a name="howtorun"></a>
 ## How to run
 
+<a name="runineditor"></a>
 ### Run in Editor
 1. Open the test project in Unity
 2. Open the Test Runner Window - Window -> General -> Test Runner
 3. Select the PlayMode Tab
 4. Click Run All to run in the Editor PlayMode or Run all in Player to run in the currently selected Build Target
 
+<a name="runfromcommandline"></a>
 ### Run from Command Line
 To run the CrossPlatform tests from the command line, we'll use a combination of
 1. Unity.exe command line options, 

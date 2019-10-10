@@ -113,19 +113,17 @@ Prebuild executables for the Unity Test Runner Result Reporter can be found here
 
 **Example: From a Windows dev machine, run Android using MockHMD XRSDK VR with OpenGLES3, Multiview rendering, IL2CPP scripting backend**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_MockHmdXRSDK -testPlatform Android -buildTarget Android -playergraphicsapi=Direct3D11 -enabledxrtargets=MockHmdXRSDK -stereoRenderingPath=Multiview -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
+`Unity.exe -runtTests -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_MockHmdXRSDK -testPlatform Android -buildTarget Android -playergraphicsapi=Direct3D11 -enabledxrtargets=MockHmdXRSDK -stereoRenderingPath=Multiview -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
 
 ### Windows
 **Example: From a Windows dev machine, run Oculus Rift using built-in VR with D3D11, SinglePass rendering, IL2CPP scripting backend**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
+`Unity.exe -runtTests -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=Oculus -stereoRenderingPath=SinglePass -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
 
 **Example: From a Windows dev machine, run Oculus Rift using XRSDK VR with D3D11, SinglePassInstanced rendering, IL2CPP scripting backend**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_XRSDK -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=OculusXRSDK -stereoRenderingPath=SinglePassInstanced -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
+`Unity.exe -runtTests -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_XRSDK -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=OculusXRSDK -stereoRenderingPath=SinglePassInstanced -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
 
 **Example: From a Windows dev machine, run Windows Player using MockHMD XRSDK VR with D3D11, SinglePassInstanced rendering, IL2CPP scripting backend**
 
-`Unity.exe -runtTests -batchmode -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_MockHmdXRSDK -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=MockHmdXRSDK -stereoRenderingPath=Instancing -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`
-
-
+`Unity.exe -runtTests -projectPath <pathToYourXrAutomatedTestsRepository>\FunctionalTests\VR\CrossPlatform_MockHmdXRSDK -testPlatform StandaloneWindows64 -buildTarget StandaloneWindows64 -playergraphicsapi=Direct3D11 -enabledxrtargets=MockHmdXRSDK -stereoRenderingPath=Instancing -scriptingbackend=IL2CPP -executeMethod Assets.Editor.Build.CommandLineSetup -testResults <pathWhereYouWantYourResultsToBeWritten>\TestResults.xml -logfile <pathWhereYouWantYourUnityLogToBeWritten>\UnityLog.txt`

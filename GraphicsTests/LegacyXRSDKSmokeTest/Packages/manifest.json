@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#name-xrsdk-loader",
+    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.test-framework": "1.1.3",
-    "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git#xrsdk-support",
+    "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
     "com.unity.xr.oculus": "1.0.3-preview",
     "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git#trunk",

@@ -43,23 +43,5 @@
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "testables": [
     "com.unity.testframework.graphics"
-  ],
-  "lock": {
-    "com.unity.cli-config-manager": {
-      "revision": "name-xrsdk-loader",
-      "hash": "45776642ce7e085e38003c2d78cdc35a3156eee8"
-    },
-    "com.unity.testframework.graphics": {
-      "revision": "xrsdk-support",
-      "hash": "96fab1bfd3b78ff26a683b1b3077fd1a70e2ab3f"
-    },
-    "com.unity.xr.test.prepare": {
-      "revision": "trunk",
-      "hash": "4faa15c3d5229d42763a85b1a2f752374fb7b53e"
-    },
-    "com.unity.xr.tests.runtimesettings": {
-      "revision": "HEAD",
-      "hash": "e96ed443d89fd5851b839ddb8640d3f27a5341f2"
-    }
-  }
+  ]
 }

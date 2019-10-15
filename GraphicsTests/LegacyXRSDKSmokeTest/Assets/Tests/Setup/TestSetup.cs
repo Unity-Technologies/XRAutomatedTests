@@ -24,6 +24,9 @@ public class ActualImageSetup : IPrebuildSetup
         {
             if (args[i] == "-testResults")
             {
+                if (string.IsNullOrEmpty(args[i + 1]))
+                    break;
+
                 imageResultsSaveDir = Path.Combine(Path.GetDirectoryName(args[i + 1]), "ResultsImages");
                 break;
             }

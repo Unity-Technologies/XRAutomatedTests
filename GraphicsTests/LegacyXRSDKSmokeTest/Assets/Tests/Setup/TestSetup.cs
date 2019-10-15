@@ -1,24 +1,24 @@
-﻿using UnityEditor.TestTools.Graphics;
-using UnityEngine.TestTools;
-using com.unity.cliconfigmanager;
+﻿using com.unity.cliconfigmanager;
 using System.IO;
+using System;
 using UnityEditor;
+using UnityEditor.TestTools.Graphics;
+using UnityEngine.TestTools;
 
-public class TestSetup
+public class TestSetup : IPrebuildSetup
 {
-    [MenuItem("Tests/Configure Settings")]
-    public static void ConfigureSettings()
-    {
-        new CliConfigManager().ConfigureFromCmdlineArgs();
-    }
-}
+    string imageResultsSaveDir = "";
 
-public class ActualImageSetup : IPrebuildSetup
-{
     public void Setup()
     {
-        string imageResultsSaveDir = "";
-        var args = System.Environment.GetCommandLineArgs();
+        SetupActualImagePath();
+        ConfigureSettings();
+        SetupGraphicsTestCases.Setup(imageResultsPath: imageResultsSaveDir);
+    }
+
+    private void SetupActualImagePath()
+    {
+        var args = Environment.GetCommandLineArgs();
 
         for (int i = 0; i < args.Length - 1; i++)
         {
@@ -31,7 +31,11 @@ public class ActualImageSetup : IPrebuildSetup
                 break;
             }
         }
+    }
 
-        SetupGraphicsTestCases.Setup(imageResultsPath: imageResultsSaveDir);
+    [MenuItem("Tests/Configure Settings")]
+    public static void ConfigureSettings()
+    {
+        new CliConfigManager().ConfigureFromCmdlineArgs();
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine.TestTools.Graphics;
 public class SmokeTest
 {
     [UnityTest]
-    [PrebuildSetup("ActualImageSetup")]
+    [PrebuildSetup("TestSetup")]
     [UseGraphicsTestCases]
     public IEnumerator TestAllScenes(GraphicsTestCase testCase)
     {

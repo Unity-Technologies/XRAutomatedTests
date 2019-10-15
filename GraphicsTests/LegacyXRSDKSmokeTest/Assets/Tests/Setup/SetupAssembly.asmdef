@@ -1,0 +1,25 @@
+{
+    "name": "SetupAssembly",
+    "references": [
+        "UnityEditor.TestTools.Graphics",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "com.unity.xr.test.prepare",
+        "com.unity.cli-config-manager"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

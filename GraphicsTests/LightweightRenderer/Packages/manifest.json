@@ -1,19 +1,14 @@
 {
   "dependencies": {
-    "com.unity.configmanager": "file:../../../com.unity.configmanager",
+    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.ide.rider": "1.1.0",
-    "com.unity.ide.visualstudio": "1.0.10",
-    "com.unity.ide.vscode": "1.0.7",
-    "com.unity.postprocessing": "2.1.7",
     "com.unity.render-pipelines.core": "7.0.1",
     "com.unity.render-pipelines.universal": "7.0.1",
     "com.unity.shadergraph": "7.0.1",
-    "com.unity.test-framework": "1.0.17",
-    "com.unity.testframework.graphics": "file:../../com.unity.testframework.graphics",
-    "com.unity.textmeshpro": "2.0.1",
-    "com.unity.xr.legacyinputhelpers": "2.0.4",
-    "com.unity.xr.oculus.standalone": "1.38.1",
+    "com.unity.test-framework": "1.1.4",
+    "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git",
+    "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git#trunk",
+    "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -46,6 +41,8 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+  "disableProjectUpdate": true,
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "testables": [
     "com.unity.testframework.graphics"
   ]

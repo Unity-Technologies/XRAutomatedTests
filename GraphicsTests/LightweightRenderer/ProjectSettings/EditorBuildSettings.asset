@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Tests/Scenes/002_Camera_Clip.unity
     guid: 4be459bb4af62441893ba57ce669de7f
   - enabled: 1
-    path: Assets/Tests/Scenes/003_Camera_Ortho.unity
-    guid: f8c4973533e7b4ca58d3b2255e7384d6
-  - enabled: 1
     path: Assets/Tests/Scenes/004_Camera_TargetTexture.unity
     guid: c678e78e9c06d44789d69ac8df08d375
   - enabled: 1
@@ -29,15 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tests/Scenes/012_PBS_EnvironmentBRDF_Spheres.unity
     guid: fddcdd964deca1d42b2952f32f67f694
-  - enabled: 1
-    path: Assets/Tests/Scenes/013_CameraMulti_Splitscreen.unity
-    guid: 061267518b02f411c9c75f6b52f6d333
-  - enabled: 1
-    path: Assets/Tests/Scenes/014_CameraMulti_MiniMap.unity
-    guid: 9225c2f5b8cf84f6bbe7cd83a8c22426
-  - enabled: 1
-    path: Assets/Tests/Scenes/015_CameraMulti_FPSCam.unity
-    guid: 9d2d9ca35103040838283b3c356c0250
   - enabled: 1
     path: Assets/Tests/Scenes/016_Lighting_Scene_Directional.unity
     guid: 54170d1ce2ca64699a0d82056387d56f

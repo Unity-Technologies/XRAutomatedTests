@@ -4,10 +4,11 @@
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.collab-proxy": "1.2.16",
-    "com.unity.test-framework": "1.1.1",
+    "com.unity.test-framework": "1.1.3",
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.2",
+    "com.unity.timeline": "1.2.3",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
+    "com.unity.xr.test-framework.performance": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test-framework.performance.git",
     "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git#trunk",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -41,5 +42,8 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+  "testables": [
+    "com.unity.xr.test-framework.performance"
+  ],
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

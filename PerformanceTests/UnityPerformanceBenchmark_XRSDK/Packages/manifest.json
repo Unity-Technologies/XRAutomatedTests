@@ -10,6 +10,7 @@
     "com.unity.xr.legacyinputhelpers": "2.0.6",
     "com.unity.xr.management": "3.0.3",
     "com.unity.xr.oculus": "1.0.2",
+    "com.unity.xr.test-framework.performance": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test-framework.performance.git",
     "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git#trunk",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -43,5 +44,7 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+   "testables": [
+    "com.unity.xr.test-framework.performance"],
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

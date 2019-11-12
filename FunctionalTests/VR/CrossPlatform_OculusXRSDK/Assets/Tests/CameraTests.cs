@@ -12,14 +12,8 @@ public class CameraTests : XrFunctionalTestBase
 {
     private string fileName;
 
-    private float startingZoomAmount;
     private Texture2D mobileTexture;
     
-    void Start()
-    {
-        startingZoomAmount = XRDevice.fovZoomFactor;
-    }
-
     [SetUp]
     public override void SetUp()
     {
@@ -31,7 +25,7 @@ public class CameraTests : XrFunctionalTestBase
     public override void TearDown()
     {
         XRSettings.eyeTextureResolutionScale = 1f;
-        XRDevice.fovZoomFactor = startingZoomAmount;
+        XRDevice.fovZoomFactor = 1f;
         XRSettings.renderViewportScale = 1f;
 
         base.TearDown();
@@ -122,7 +116,6 @@ public class CameraTests : XrFunctionalTestBase
         while (scale < scaleLimit) ;
     }
 
-    [Ignore("Not working in XR SDK.")]
     [UnityTest]
     public IEnumerator VerifyAdjustDeviceZoom()
     {

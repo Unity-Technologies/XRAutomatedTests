@@ -7,12 +7,12 @@
     "com.unity.ext.nunit": "1.0.0",
     "com.unity.ide.rider": "1.1.0",
     "com.unity.ide.visualstudio": "1.0.10",
-    "com.unity.ide.vscode": "1.1.0",
+    "com.unity.ide.vscode": "1.1.2",
     "com.unity.multiplayer-hlapi": "1.0.4",
-    "com.unity.test-framework": "1.1.1",
+    "com.unity.test-framework": "1.1.5",
     "com.unity.testframework.graphics": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.testframework.graphics.git",
     "com.unity.textmeshpro": "2.0.1",
-    "com.unity.timeline": "1.2.2",
+    "com.unity.timeline": "1.2.3",
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.legacyinputhelpers": "2.0.2",
     "com.unity.xr.test.prepare": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.prepare.git#trunk",
@@ -51,5 +51,6 @@
   },
   "testables": [
     "com.unity.testframework.graphics"
-  ]
+  ],
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

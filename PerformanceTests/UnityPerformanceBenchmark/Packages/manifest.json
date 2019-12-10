@@ -39,6 +39,5 @@
   },
   "testables": [
     "com.unity.test-framework.performance"
-  ],
-  "registry": "https://packages.unity.com"
+  ]
 }

@@ -1,7 +1,0 @@
-{
-    "name": "com.unity.configmanager",
-    "displayName": "Automation Config Manager",
-    "version": "1.0.0",
-    "unity": "2018.3",
-    "description": "Provides methods to configure build settings from a command line launch of Unity."
-}

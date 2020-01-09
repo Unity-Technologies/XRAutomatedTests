@@ -1,4 +1,5 @@
 {
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "dependencies": {
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
@@ -12,10 +13,11 @@
     "com.unity.test-framework": "1.1.5",
     "com.unity.textmeshpro": "3.0.0-preview.1",
     "com.unity.ugui": "1.0.0",
-    "com.unity.xr.arcore": "3.1.0-preview.2",
-    "com.unity.xr.arfoundation": "3.1.0-preview.3",
-    "com.unity.xr.arkit": "3.1.0-preview.2",
-    "com.unity.xr.arkit-face-tracking": "3.1.0-preview.2",
+    "com.unity.xr.arcore": "3.0.1",
+    "com.unity.xr.arfoundation": "3.0.1",
+    "com.unity.xr.arkit": "3.0.1",
+    "com.unity.xr.arkit-face-tracking": "3.0.1",
+    "com.unity.xr.arsubsystems": "3.0.0",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",

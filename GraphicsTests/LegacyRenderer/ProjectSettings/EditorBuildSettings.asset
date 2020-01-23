@@ -9,14 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/005-CoordConvO.unity
     guid: 219056cd86d0f4404b997cf2ba0e27aa
   - enabled: 1
-    path: Assets/Scenes/009-DisabledShadows-subset def.unity
+    path: Assets/Scenes/009-DisabledShadows-subset-def.unity
     guid: 015d6508dcc480e4e8394b7ad87ad603
   - enabled: 1
-    path: Assets/Scenes/009-DisabledShadows-subset fwd.unity
+    path: Assets/Scenes/009-DisabledShadows-subset-fwd.unity
     guid: 72a31f116a9c04e4cbccd11c0b42c997
-  - enabled: 1
-    path: Assets/Scenes/013-ImmediateMode.unity
-    guid: 04192350597564a7c913b0d5e6cf6b85
   - enabled: 1
     path: Assets/Scenes/014-DynamicGeom.unity
     guid: bb2f081f14093458194c34fd0ae95026
@@ -33,9 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/037-LightAlloc-VLit.unity
     guid: e02d77e1b2cb0284aa21667eddd14222
   - enabled: 1
-    path: Assets/Scenes/038-LightsAlpha-subset.unity
-    guid: 1f60839194cbb458aafb388ae63dfac6
-  - enabled: 1
     path: Assets/Scenes/039-PixelLights.unity
     guid: 3134a87fb15334859adfef922cfdf89f
   - enabled: 1
@@ -50,12 +44,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/049-RenderTex.unity
     guid: 01260763e38844df58764f2a016c8f85
-  - enabled: 1
-    path: Assets/Scenes/050-RenderToCubemap.unity
-    guid: 50fe32bcf705c42d0a839783debd9082
-  - enabled: 1
-    path: Assets/Scenes/051-RenderToStaticCube.unity
-    guid: a8fe9ea60708f47e68d92fd155e85ac5
   - enabled: 1
     path: Assets/Scenes/061-ShadDir-def.unity
     guid: ac66cf9df54fd407ba065d23311cd6f4
@@ -96,9 +84,6 @@ EditorBuildSettings:
     path: Assets/Scenes/099-ScaledShadows.unity
     guid: 76754ea7c6e06474aaa11d75afdbdaaa
   - enabled: 1
-    path: Assets/Scenes/103-CameraDepthNormalTexture.unity
-    guid: fc45e751d08710c429d8e4c7a432eb31
-  - enabled: 1
     path: Assets/Scenes/106-LayerCullDistances-subset.unity
     guid: 0a7ec1f53953f5f4190a412e22440ec5
   - enabled: 1
@@ -122,9 +107,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/166-Terr30Trees.unity
     guid: 3f2fdfb8d77404f56a7d92aecbaac76f
-  - enabled: 1
-    path: Assets/Scenes/167-TerrGrassFade.unity
-    guid: fc29464d958fc4caea3d3b2d4c5a77cf
   - enabled: 1
     path: Assets/Scenes/168-BlendStrips-def.unity
     guid: b830a339b8834ca49985b34fd8b7041b
@@ -227,9 +209,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/234-StaticBatching.unity
     guid: d774f499423fe482191e7cac408f1c8f
-  - enabled: 1
-    path: Assets/Scenes/241-RenderToCubeShadows.unity
-    guid: 0dad7a00955eb2348a36ef67482f3c12
   - enabled: 1
     path: Assets/Scenes/242-TextMeshCulling-subset.unity
     guid: 4f01b71d525c92c49955ec5c951c6aeb

@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
+using UnityEngine.XR.Management;
 
 public class XrApiTests : XrFunctionalTestBase
 {
-
-
     [Test]
     public void VerifyApplication_IsMobilePlatform()
     {
@@ -17,12 +17,14 @@ public class XrApiTests : XrFunctionalTestBase
 #endif
     }
     
-    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
+        List<XRDisplaySubsystem> displays = new List<XRDisplaySubsystem>();
+        SubsystemManager.GetInstances(displays);
+
         AssertNotUsingEmulation();
-        Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
+        Assert.IsTrue(displays.Count > 0, "XR Device is not present");
     }
 
     [Ignore("Not working in XR SDK.")]
@@ -59,12 +61,11 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsNotEmpty(XRSettings.loadedDeviceName, $"Expected {XRSettings.loadedDeviceName} to be a non-empty string, but it is empty.");
     }
 
-    [Ignore("Not working in XR SDK.")]
     [Test]
-    public void VerifyXrModelNotEmpty()
+    public void VerifyXrModelSupported()
     {
         AssertNotUsingEmulation();
-        Assert.IsNotEmpty(XRDevice.model, $"Expected {XRDevice.model} to be a non-empty string, but it is empty.");
+        Assert.IsFalse(SystemInfo.unsupportedIdentifier.Equals(SystemInfo.deviceModel), $"Expected {SystemInfo.deviceModel} to be a supported device but it is not.");
     }
 
     [Test]
@@ -74,7 +75,6 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsNotEmpty(ptr, "Native Ptr is empty");
     }
 
-    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyRefreshRateGreaterThan0()
     {
@@ -106,7 +106,6 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(XRSettings.renderViewportScale > 0f);
     }
 
-    [Ignore("Not working in XR SDK.")]
     [Test]
     public void VerifyXrSettings_UseOcclusionMesh()
     {

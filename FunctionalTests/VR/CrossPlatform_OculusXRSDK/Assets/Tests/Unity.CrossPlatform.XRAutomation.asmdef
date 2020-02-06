@@ -4,7 +4,8 @@
         "UnityEngine.SpatialTracking",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "com.unity.xr.tests.runtimesettings"
+        "com.unity.xr.tests.runtimesettings",
+        "Unity.XR.Management"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

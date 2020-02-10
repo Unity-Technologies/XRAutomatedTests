@@ -40,7 +40,6 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "lock": {
     "com.unity.cli-config-manager": {
       "revision": "trunk",

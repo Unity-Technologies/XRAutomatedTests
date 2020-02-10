@@ -42,7 +42,6 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "disableProjectUpdate": true,
-  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "testables": [
     "com.unity.testframework.graphics"
   ]

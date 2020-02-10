@@ -44,6 +44,5 @@
   },
   "testables": [
     "com.unity.xr.test-framework.performance"
-  ],
-  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
+  ]
 }

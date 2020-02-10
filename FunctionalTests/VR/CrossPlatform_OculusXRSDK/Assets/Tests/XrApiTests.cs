@@ -27,12 +27,14 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(displays.Count > 0, "XR Device is not present");
     }
 
-    [Ignore("Not working in XR SDK.")]
     [UnityPlatform(exclude = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
     {
+        XRGeneralSettings xrGeneralSettings = XRGeneralSettings.Instance;
+        XRInputSubsystem inputs = xrGeneralSettings.Manager.activeLoader.GetLoadedSubsystem<XRInputSubsystem>();
         var expUserPresenceState = UserPresenceState.Present;
+
         var mockHmd = "MockHMD";
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
@@ -43,7 +45,25 @@ public class XrApiTests : XrFunctionalTestBase
         }
         else
         {
-            Assert.AreEqual(XRDevice.userPresence, expUserPresenceState, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", expUserPresenceState, XRDevice.userPresence));
+            List<InputDevice> devices = new List<InputDevice>();
+            var userPresenceState = UserPresenceState.Unknown;
+            inputs.TryGetInputDevices(devices);
+            foreach( var device in devices )
+            {
+                if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted)
+                {
+                    var userPresence = new InputFeatureUsage<bool>("UserPresence");
+                    if( device.TryGetFeatureValue(userPresence, out bool value) == true )
+                    {
+                        userPresenceState = value == true ? UserPresenceState.Present : UserPresenceState.NotPresent;
+                    }
+                    else if(userPresenceState != UserPresenceState.Present)
+                    {
+                        userPresenceState = UserPresenceState.Unsupported;
+                    }
+                }
+            }
+            Assert.AreEqual(userPresenceState, expUserPresenceState, string.Format("Not mobile platform. Expected userPresenceState to be {0}, but is {1}.", expUserPresenceState, userPresenceState));
         }
     }
 

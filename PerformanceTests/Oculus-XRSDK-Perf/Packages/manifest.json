@@ -1,5 +1,4 @@
 {
-  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "dependencies": {
     "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.ide.visualstudio": "2.0.0",

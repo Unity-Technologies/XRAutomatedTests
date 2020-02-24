@@ -557,11 +557,7 @@ namespace NDesk.Options
             }
         }
 
-        protected override void InsertItem(int index, Option item)
-        {
-            base.InsertItem(index, item);
-            AddImpl(item);
-        }
+        
 
         protected override void RemoveItem(int index)
         {
@@ -601,6 +597,12 @@ namespace NDesk.Options
                     Dictionary.Remove(name);
                 throw;
             }
+        }
+	
+	protected override void InsertItem(int index, Option item)
+        {
+            base.InsertItem(index, item);
+            AddImpl(item);
         }
 
         public new OptionSet Add(Option option)

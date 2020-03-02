@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
+  m_Name: settings
+  m_EditorClassIdentifier: 
+  EnabledXrTarget: OculusXRSDK
+  PlayerGraphicsApi: OpenGLES3
+  StereoRenderingMode: 
+  StereoRenderingModeDesktop: MultiPass
+  StereoRenderingModeAndroid: MultiPass
+  MtRendering: 1
+  GraphicsJobs: 0
+  SimulationMode: 
+  ColorSpace: Gamma
+  PluginVersion: 
+  XrsdkRevision: com.unity.xr.oculus|1.2.5-preview.1|7059b7172da3faec53ff68ac503db8f0c9f4b2b1|2020-02-27T01:13:57|1.2.x
+  XrManagementRevision: com.unity.xr.management|3.2.0-preview.3|4d1d6df8323b14a71ce16db552b4a29079953ac3
+  DeviceRuntimeVersion: 
+  Username: seans

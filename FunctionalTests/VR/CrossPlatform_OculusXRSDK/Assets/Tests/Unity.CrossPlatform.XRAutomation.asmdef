@@ -1,0 +1,23 @@
+{
+    "name": "Unity.CrossPlatform.XRAutomation",
+    "references": [
+        "UnityEngine.SpatialTracking",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "com.unity.xr.tests.runtimesettings",
+        "Unity.XR.Management"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

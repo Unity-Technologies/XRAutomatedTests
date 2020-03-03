@@ -98,6 +98,13 @@ public class Build
         
         PlatformSettings.SerializeToAsset();
 
+        if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.WSA)
+        {
+            if (PlatformSettings.SimulationMode == "HoloLens")
+                WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(true);
+            else
+                WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(false);
+        }
     }
 
     private static void EnsureOptionsLowerCased(string[] args)

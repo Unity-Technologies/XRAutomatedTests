@@ -1,7 +1,8 @@
 {
     "name": "Editor",
     "references": [
-        "Scripts"
+        "Scripts",
+        "Unity.WindowsMRAutomation"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

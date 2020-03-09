@@ -2,7 +2,7 @@
 
 Here we provide XR automated test projects for both AR and VR functional testing.
 - AR
--- Including test projects for ARCore, ARFoundation, ARMock
+-- Including test projects for ARCore, ARFoundation
 - VR
 -- Including test projects for CrossPlatform and Windows Mixed Reality
 

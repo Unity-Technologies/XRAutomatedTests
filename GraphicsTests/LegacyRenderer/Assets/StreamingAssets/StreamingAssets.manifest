@@ -1,7 +1,0 @@
-ManifestFileVersion: 0
-CRC: 1250349577
-AssetBundleManifest:
-  AssetBundleInfos:
-    Info_0:
-      Name: referenceimages-gamma-android-opengles3
-      Dependencies: {}

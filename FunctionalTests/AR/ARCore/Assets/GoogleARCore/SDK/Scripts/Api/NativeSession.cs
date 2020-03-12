@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="NativeSession.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ namespace GoogleARCoreInternal
             AugmentedImageDatabaseApi = new AugmentedImageDatabaseApi(this);
             CameraApi = new CameraApi(this);
             CameraConfigApi = new CameraConfigApi(this);
+            CameraConfigFilterApi = new CameraConfigFilterApi(this);
             CameraConfigListApi = new CameraConfigListApi(this);
             CameraMetadataApi = new CameraMetadataApi(this);
             FrameApi = new FrameApi(this);
@@ -108,6 +109,8 @@ namespace GoogleARCoreInternal
 
         public CameraConfigApi CameraConfigApi { get; private set; }
 
+        public CameraConfigFilterApi CameraConfigFilterApi { get; private set; }
+
         public CameraConfigListApi CameraConfigListApi { get; private set; }
 
         public CameraMetadataApi CameraMetadataApi { get; private set; }
@@ -141,7 +144,8 @@ namespace GoogleARCoreInternal
             return m_TrackableManager.TrackableFactory(nativeHandle);
         }
 
-        public void GetTrackables<T>(List<T> trackables, TrackableQueryFilter filter) where T : Trackable
+        public void GetTrackables<T>(List<T> trackables, TrackableQueryFilter filter)
+            where T : Trackable
         {
             m_TrackableManager.GetTrackables<T>(trackables, filter);
         }

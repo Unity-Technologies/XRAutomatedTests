@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ARCoreIOSLifecycleManager.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ namespace GoogleARCoreInternal
     using System.Reflection;
     using System.Runtime.InteropServices;
     using GoogleARCore;
+    using GoogleARCoreInternal.CrossPlatform;
     using UnityEngine;
 
     internal class ARCoreIOSLifecycleManager : ILifecycleManager
@@ -45,10 +46,16 @@ namespace GoogleARCoreInternal
 
         private IntPtr m_RealArKitSessionHandle = IntPtr.Zero;
 
+        public event Action UpdateSessionFeatures;
+
         public event Action EarlyUpdate;
 
         public event Action<bool> OnSessionSetEnabled;
+
+        public event Action<IntPtr, IntPtr> OnSetConfiguration;
 #pragma warning restore 67, 414
+
+        public event Action OnResetInstance;
 
         public static ARCoreIOSLifecycleManager Instance
         {
@@ -58,7 +65,8 @@ namespace GoogleARCoreInternal
                 {
                     s_Instance = new ARCoreIOSLifecycleManager();
                     s_Instance._Initialize();
-                    s_Instance.m_CloudServicesApiKey = (Resources.Load(k_CloudServicesApiKeyPath) as TextAsset).text;
+                    s_Instance.m_CloudServicesApiKey =
+                        (Resources.Load(k_CloudServicesApiKeyPath) as TextAsset).text;
 #if ARCORE_IOS_SUPPORT
                     UnityEngine.XR.iOS.UnityARSessionNativeInterface.ARFrameUpdatedEvent +=
                         s_Instance._OnARKitFrameUpdated;
@@ -81,7 +89,8 @@ namespace GoogleARCoreInternal
 
         public AsyncTask<ApkAvailabilityStatus> CheckApkAvailability()
         {
-            return new AsyncTask<ApkAvailabilityStatus>(ApkAvailabilityStatus.UnsupportedDeviceNotCapable);
+            return new AsyncTask<ApkAvailabilityStatus>(
+                ApkAvailabilityStatus.UnsupportedDeviceNotCapable);
         }
 
         public AsyncTask<ApkInstallationStatus> RequestApkInstallation(bool userRequested)
@@ -103,10 +112,12 @@ namespace GoogleARCoreInternal
             m_RealArKitSessionHandle = _GetSessionHandleFromArkitPlugin();
             SessionComponent = sessionComponent;
 
-            var status = ExternApi.ArSession_create(m_CloudServicesApiKey, null, ref m_SessionHandle);
+            var status =
+                ExternApi.ArSession_create(m_CloudServicesApiKey, null, ref m_SessionHandle);
             if (status != ApiArStatus.Success)
             {
-                Debug.LogErrorFormat("Could not create a cross platform ARCore session ({0}).", status);
+                Debug.LogErrorFormat(
+                    "Could not create a cross platform ARCore session ({0}).", status);
                 return;
             }
 
@@ -143,7 +154,25 @@ namespace GoogleARCoreInternal
                 m_SessionHandle = IntPtr.Zero;
             }
 
+            if (NativeSession != null)
+            {
+                NativeSession.MarkDestroyed();
+            }
+
             _Initialize();
+        }
+
+        /// <summary>
+        /// Force reset the singleton instance to null. Should only be used in Unit Test.
+        /// </summary>
+        internal static void ResetInstance()
+        {
+            if (s_Instance != null && s_Instance.OnResetInstance != null)
+            {
+                s_Instance.OnResetInstance();
+            }
+
+            s_Instance = null;
         }
 
 #if ARCORE_IOS_SUPPORT
@@ -157,8 +186,10 @@ namespace GoogleARCoreInternal
 
             if (m_SessionEnabled)
             {
-                m_FrameHandle = ExternApi.ARCoreARKitIntegration_getCurrentFrame(m_RealArKitSessionHandle);
-                ExternApi.ArSession_updateAndAcquireArFrame(m_SessionHandle, m_FrameHandle, ref m_FrameHandle);
+                m_FrameHandle =
+                    ExternApi.ARCoreARKitIntegration_getCurrentFrame(m_RealArKitSessionHandle);
+                ExternApi.ArSession_updateAndAcquireArFrame(
+                    m_SessionHandle, m_FrameHandle, ref m_FrameHandle);
             }
 
             if (NativeSession != null)
@@ -185,10 +216,13 @@ namespace GoogleARCoreInternal
         {
             IntPtr result = IntPtr.Zero;
 #if ARCORE_IOS_SUPPORT
-            var m_session = UnityEngine.XR.iOS.UnityARSessionNativeInterface.GetARSessionNativeInterface();
-            var sessionField = m_session.GetType().GetField("m_NativeARSession", BindingFlags.NonPublic | BindingFlags.Instance);
+            var m_session =
+                UnityEngine.XR.iOS.UnityARSessionNativeInterface.GetARSessionNativeInterface();
+            var sessionField = m_session.GetType().GetField(
+                "m_NativeARSession", BindingFlags.NonPublic | BindingFlags.Instance);
             var val = sessionField.GetValue(m_session);
-            result = ExternApi.ARCoreARKitIntegration_castUnitySessionToARKitSession((System.IntPtr)val);
+            result =
+                ExternApi.ARCoreARKitIntegration_castUnitySessionToARKitSession((System.IntPtr)val);
 #endif
             return result;
         }
@@ -201,20 +235,22 @@ namespace GoogleARCoreInternal
                 IntPtr sessionToCast);
 
             [DllImport(ApiConstants.ARCoreARKitIntegrationApi)]
-            public static extern IntPtr ARCoreARKitIntegration_getCurrentFrame(IntPtr arkitSessionHandle);
+            public static extern IntPtr ARCoreARKitIntegration_getCurrentFrame(
+                IntPtr arkitSessionHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern ApiArStatus ArSession_create(string apiKey, string bundleIdentifier,
-                ref IntPtr sessionHandle);
+            public static extern ApiArStatus ArSession_create(
+                string apiKey, string bundleIdentifier, ref IntPtr sessionHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArSession_destroy(IntPtr session);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern ApiArStatus ArSession_updateAndAcquireArFrame(IntPtr sessionHandle,
-                IntPtr arkitFrameHandle, ref IntPtr arFrame);
+            public static extern ApiArStatus ArSession_updateAndAcquireArFrame(
+                IntPtr sessionHandle, IntPtr arkitFrameHandle, ref IntPtr arFrame);
 #else
-            public static IntPtr ARCoreARKitIntegration_castUnitySessionToARKitSession(IntPtr sessionToCast)
+            public static IntPtr ARCoreARKitIntegration_castUnitySessionToARKitSession(
+                IntPtr sessionToCast)
             {
                 return IntPtr.Zero;
             }

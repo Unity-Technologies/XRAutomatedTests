@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="AugmentedImage.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -121,6 +121,18 @@ namespace GoogleARCore
             get
             {
                 return m_NativeSession.AugmentedImageApi.GetExtentZ(m_TrackableNativeHandle);
+            }
+        }
+
+        /// <summary>
+        /// Gets the current method being used to track this Augmented Image.
+        /// </summary>
+        /// <value>The current tracking method being used.</value>
+        public AugmentedImageTrackingMethod TrackingMethod
+        {
+            get
+            {
+                return m_NativeSession.AugmentedImageApi.GetTrackingMethod(m_TrackableNativeHandle);
             }
         }
     }

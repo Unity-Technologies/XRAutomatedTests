@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="CameraMetadataTag.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@
 
 namespace GoogleARCore
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// This enum follows the layout of NdkCameraMetadataTags.
     /// The values in the file are used for requesting / marshaling camera image's metadata.
@@ -27,6 +29,9 @@ namespace GoogleARCore
     /// NdkCameraMetadataTags.h for documentation:
     /// https://developer.android.com/ndk/reference/ndk_camera_metadata_tags_8h.html .
     /// </summary>
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules",
+                     "SA1602:EnumerationItemsMustBeDocumented",
+     Justification = "NdkCameraMetadataTags.")]
     public enum CameraMetadataTag
     {
         SectionColorCorrection = 0,
@@ -76,8 +81,8 @@ namespace GoogleARCore
         SyncStart = SectionSync << 16,
         DepthStart = SectionDepth << 16,
 
-        // Note that we only expose the keys that could be used in the camera metadata from the capture
-        // result. The keys may only appear in CameraCharacteristics are not exposed here.
+        // Note that we only expose the keys that could be used in the camera metadata from the
+        // capture result. The keys may only appear in CameraCharacteristics are not exposed here.
         ColorCorrectionMode = // Byte (Enum)
                 ColorCorrectionStart,
 

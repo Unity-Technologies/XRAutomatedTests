@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="PointApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -63,11 +63,12 @@ namespace GoogleARCoreInternal
         {
 #pragma warning disable 626
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPoint_getPose(IntPtr session, IntPtr point, IntPtr out_pose);
+            public static extern void ArPoint_getPose(
+                IntPtr session, IntPtr point, IntPtr out_pose);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPoint_getOrientationMode(IntPtr session, IntPtr point,
-                ref ApiFeaturePointOrientationMode orientationMode);
+            public static extern void ArPoint_getOrientationMode(
+                IntPtr session, IntPtr point, ref ApiFeaturePointOrientationMode orientationMode);
 #pragma warning restore 626
         }
     }

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="RequiredOptionalPreprocessBuild.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ namespace GoogleARCoreInternal
             var isARCoreRequired = ARCoreProjectSettings.Instance.IsARCoreRequired;
 
             Debug.LogFormat(
-                "Building \"{0}\" app. Use 'Edit > Project Settings > ARCore' to adjust ARCore settings.\n" +
+                "Building \"{0}\" app. Use 'Edit > Project Settings > ARCore' to adjust " +
+                "ARCore SDK for Unity settings.\n" +
                 "See {1} for more information.",
                 isARCoreRequired ? "AR Required" : "AR Optional",
                 "https://developers.google.com/ar/develop/unity/enable-arcore");

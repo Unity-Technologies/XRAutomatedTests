@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="CameraApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -51,6 +51,13 @@ namespace GoogleARCoreInternal
 
         public LostTrackingReason GetLostTrackingReason(IntPtr cameraHandle)
         {
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("determine tracking failure " +
+                    "reasons");
+                return LostTrackingReason.None;
+            }
+
             ApiTrackingFailureReason apiTrackingFailureReason = ApiTrackingFailureReason.None;
             ExternApi.ArCamera_getTrackingFailureReason(m_NativeSession.SessionHandle,
                 cameraHandle, ref apiTrackingFailureReason);
@@ -83,12 +90,21 @@ namespace GoogleARCoreInternal
         public CameraIntrinsics GetTextureIntrinsics(IntPtr cameraHandle)
         {
             IntPtr cameraIntrinsicsHandle = IntPtr.Zero;
-            ExternApi.ArCameraIntrinsics_create(m_NativeSession.SessionHandle, ref cameraIntrinsicsHandle);
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access GPU texture intrinsics");
+                return new CameraIntrinsics();
+            }
+
+            ExternApi.ArCameraIntrinsics_create(
+                m_NativeSession.SessionHandle, ref cameraIntrinsicsHandle);
 
             ExternApi.ArCamera_getTextureIntrinsics(
                 m_NativeSession.SessionHandle, cameraHandle, cameraIntrinsicsHandle);
 
-            CameraIntrinsics textureIntrinsics = _GetCameraIntrinsicsFromHandle(cameraIntrinsicsHandle);
+            CameraIntrinsics textureIntrinsics =
+                _GetCameraIntrinsicsFromHandle(cameraIntrinsicsHandle);
             ExternApi.ArCameraIntrinsics_destroy(cameraIntrinsicsHandle);
 
             return textureIntrinsics;
@@ -97,12 +113,21 @@ namespace GoogleARCoreInternal
         public CameraIntrinsics GetImageIntrinsics(IntPtr cameraHandle)
         {
             IntPtr cameraIntrinsicsHandle = IntPtr.Zero;
-            ExternApi.ArCameraIntrinsics_create(m_NativeSession.SessionHandle, ref cameraIntrinsicsHandle);
 
-            ExternApi.ArCamera_getImageIntrinsics(m_NativeSession.SessionHandle, cameraHandle,
-                                                  cameraIntrinsicsHandle);
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access CPU image intrinsics");
+                return new CameraIntrinsics();
+            }
 
-            CameraIntrinsics textureIntrinsics = _GetCameraIntrinsicsFromHandle(cameraIntrinsicsHandle);
+            ExternApi.ArCameraIntrinsics_create(
+                m_NativeSession.SessionHandle, ref cameraIntrinsicsHandle);
+
+            ExternApi.ArCamera_getImageIntrinsics(
+                m_NativeSession.SessionHandle, cameraHandle, cameraIntrinsicsHandle);
+
+            CameraIntrinsics textureIntrinsics =
+                _GetCameraIntrinsicsFromHandle(cameraIntrinsicsHandle);
             ExternApi.ArCameraIntrinsics_destroy(cameraIntrinsicsHandle);
 
             return textureIntrinsics;
@@ -120,25 +145,28 @@ namespace GoogleARCoreInternal
             int width, height;
             width = height = 0;
 
-            ExternApi.ArCameraIntrinsics_getFocalLength(m_NativeSession.SessionHandle, intrinsicsHandle,
-                ref fx, ref fy);
-            ExternApi.ArCameraIntrinsics_getPrincipalPoint(m_NativeSession.SessionHandle, intrinsicsHandle,
-                ref px, ref py);
-            ExternApi.ArCameraIntrinsics_getImageDimensions(m_NativeSession.SessionHandle, intrinsicsHandle,
-                ref width, ref height);
+            ExternApi.ArCameraIntrinsics_getFocalLength(
+                m_NativeSession.SessionHandle, intrinsicsHandle, ref fx, ref fy);
+            ExternApi.ArCameraIntrinsics_getPrincipalPoint(
+                m_NativeSession.SessionHandle, intrinsicsHandle, ref px, ref py);
+            ExternApi.ArCameraIntrinsics_getImageDimensions(
+                m_NativeSession.SessionHandle, intrinsicsHandle, ref width, ref height);
 
-            return new CameraIntrinsics(new Vector2(fx, fy), new Vector2(px, py), new Vector2Int(width, height));
+            return new CameraIntrinsics(
+                new Vector2(fx, fy), new Vector2(px, py), new Vector2Int(width, height));
         }
 
         private struct ExternApi
         {
 #pragma warning disable 626
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCamera_getTrackingState(IntPtr sessionHandle, IntPtr cameraHandle,
+            public static extern void ArCamera_getTrackingState(
+                IntPtr sessionHandle, IntPtr cameraHandle,
                 ref ApiTrackingState outTrackingState);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCamera_getTrackingFailureReason(IntPtr sessionHandle, IntPtr cameraHandle,
+            public static extern void ArCamera_getTrackingFailureReason(
+                IntPtr sessionHandle, IntPtr cameraHandle,
                 ref ApiTrackingFailureReason outTrackingState);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
@@ -146,26 +174,28 @@ namespace GoogleARCoreInternal
                 IntPtr sessionHandle, IntPtr cameraHandle, IntPtr outPose);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCamera_getProjectionMatrix(IntPtr sessionHandle, IntPtr cameraHandle,
-                float near, float far, ref Matrix4x4 outMatrix);
+            public static extern void ArCamera_getProjectionMatrix(
+                IntPtr sessionHandle, IntPtr cameraHandle, float near, float far,
+                ref Matrix4x4 outMatrix);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCamera_getTextureIntrinsics(IntPtr sessionHandle, IntPtr cameraHandle,
-                IntPtr outCameraIntrinsics);
+            public static extern void ArCamera_getTextureIntrinsics(
+                IntPtr sessionHandle, IntPtr cameraHandle, IntPtr outCameraIntrinsics);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCamera_getImageIntrinsics(IntPtr sessionHandle, IntPtr cameraHandle,
-                IntPtr outCameraIntrinsics);
+            public static extern void ArCamera_getImageIntrinsics(
+                IntPtr sessionHandle, IntPtr cameraHandle, IntPtr outCameraIntrinsics);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArCamera_release(IntPtr cameraHandle);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCameraIntrinsics_create(IntPtr sessionHandle, ref IntPtr outCameraIntrinsics);
+            public static extern void ArCameraIntrinsics_create(
+                IntPtr sessionHandle, ref IntPtr outCameraIntrinsics);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArCameraIntrinsics_getFocalLength(IntPtr sessionHandle, IntPtr intrinsicsHandle,
-                ref float outFx, ref float outFy);
+            public static extern void ArCameraIntrinsics_getFocalLength(
+                IntPtr sessionHandle, IntPtr intrinsicsHandle, ref float outFx, ref float outFy);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArCameraIntrinsics_getPrincipalPoint(

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="CameraConfigListApi.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,8 @@ namespace GoogleARCoreInternal
         public IntPtr Create()
         {
             IntPtr cameraConfigListHandle = IntPtr.Zero;
-            ExternApi.ArCameraConfigList_create(m_NativeSession.SessionHandle, ref cameraConfigListHandle);
+            ExternApi.ArCameraConfigList_create(
+                m_NativeSession.SessionHandle, ref cameraConfigListHandle);
             return cameraConfigListHandle;
         }
 
@@ -57,14 +58,15 @@ namespace GoogleARCoreInternal
         public int GetSize(IntPtr cameraConfigListHandle)
         {
             int size = 0;
-            ExternApi.ArCameraConfigList_getSize(m_NativeSession.SessionHandle, cameraConfigListHandle, ref size);
+            ExternApi.ArCameraConfigList_getSize(
+                m_NativeSession.SessionHandle, cameraConfigListHandle, ref size);
             return size;
         }
 
         public void GetItemAt(IntPtr cameraConfigListHandle, int index, IntPtr cameraConfigHandle)
         {
-            ExternApi.ArCameraConfigList_getItem(m_NativeSession.SessionHandle, cameraConfigListHandle,
-                                                 index, cameraConfigHandle);
+            ExternApi.ArCameraConfigList_getItem(
+                m_NativeSession.SessionHandle, cameraConfigListHandle, index, cameraConfigHandle);
         }
 
         private struct ExternApi

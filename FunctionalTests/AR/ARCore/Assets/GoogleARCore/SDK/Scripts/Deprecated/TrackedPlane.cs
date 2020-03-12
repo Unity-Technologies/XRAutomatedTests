@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="TrackedPlane.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,9 @@ namespace GoogleARCore
     /// <summary>
     /// Deprecated version of DetectedPlane.
     /// </summary>
-    [System.Obsolete("This class has been renamed to DetectedPlane. See https://github.com/google-ar/arcore-unity-sdk/releases/tag/v1.2.0")]
+    [System.Obsolete(
+        "This class has been renamed to DetectedPlane. See " +
+        "https://github.com/google-ar/arcore-unity-sdk/releases/tag/v1.2.0")]
     public class TrackedPlane : DetectedPlane
     {
         /// <summary>
@@ -40,8 +42,8 @@ namespace GoogleARCore
         }
 
         /// <summary>
-        /// Gets a reference to the plane subsuming this plane, if any.  If not null, only the subsuming plane should be
-        /// considered valid for rendering.
+        /// Gets a reference to the plane subsuming this plane, if any.  If not null, only the
+        /// subsuming plane should be considered valid for rendering.
         /// </summary>
         public new TrackedPlane SubsumedBy
         {

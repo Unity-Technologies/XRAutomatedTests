@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ImageApi.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,8 +33,9 @@ namespace GoogleARCoreInternal
 
     internal class ImageApi
     {
-        public void GetImageBuffer(IntPtr imageHandle, out int width, out int height, out IntPtr yPlane,
-            out IntPtr uPlane, out IntPtr vPlane, out int yRowStride, out int uvPixelStride, out int uvRowStride)
+        public void GetImageBuffer(
+            IntPtr imageHandle, out int width, out int height, out IntPtr yPlane, out IntPtr uPlane,
+            out IntPtr vPlane, out int yRowStride, out int uvPixelStride, out int uvRowStride)
         {
             IntPtr ndkImageHandle = IntPtr.Zero;
             ExternApi.ArImage_getNdkImage(imageHandle, ref ndkImageHandle);
@@ -90,14 +91,16 @@ namespace GoogleARCoreInternal
             public static extern int AImage_getHeight(IntPtr ndkImageHandle, ref int height);
 
             [AndroidImport(ApiConstants.MediaNdk)]
-            public static extern int AImage_getPlaneData(IntPtr imageHandle, int planeIdx, ref IntPtr data,
-                ref int dataLength);
+            public static extern int AImage_getPlaneData(
+                IntPtr imageHandle, int planeIdx, ref IntPtr data, ref int dataLength);
 
             [AndroidImport(ApiConstants.MediaNdk)]
-            public static extern int AImage_getPlanePixelStride(IntPtr imageHandle, int planeIdx, ref int pixelStride);
+            public static extern int AImage_getPlanePixelStride(
+                IntPtr imageHandle, int planeIdx, ref int pixelStride);
 
             [AndroidImport(ApiConstants.MediaNdk)]
-            public static extern int AImage_getPlaneRowStride(IntPtr imageHandle, int planeIdx, ref int rowStride);
+            public static extern int AImage_getPlaneRowStride(
+                IntPtr imageHandle, int planeIdx, ref int rowStride);
 #pragma warning restore 626
         }
     }

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="AugmentedImageApi.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@ namespace GoogleARCoreInternal
         public Pose GetCenterPose(IntPtr augmentedImageHandle)
         {
             IntPtr poseHandle = m_NativeSession.PoseApi.Create();
-            ExternApi.ArAugmentedImage_getCenterPose(m_NativeSession.SessionHandle, augmentedImageHandle,
-                poseHandle);
+            ExternApi.ArAugmentedImage_getCenterPose(
+                m_NativeSession.SessionHandle, augmentedImageHandle, poseHandle);
             Pose result = m_NativeSession.PoseApi.ExtractPoseValue(poseHandle);
             m_NativeSession.PoseApi.Destroy(poseHandle);
             return result;
@@ -66,27 +66,35 @@ namespace GoogleARCoreInternal
         public float GetExtentX(IntPtr augmentedImageHandle)
         {
             float outExtentX = 0f;
-            ExternApi.ArAugmentedImage_getExtentX(m_NativeSession.SessionHandle, augmentedImageHandle,
-                ref outExtentX);
+            ExternApi.ArAugmentedImage_getExtentX(
+                m_NativeSession.SessionHandle, augmentedImageHandle, ref outExtentX);
             return outExtentX;
         }
 
         public float GetExtentZ(IntPtr augmentedImageHandle)
         {
             float outExtentZ = 0f;
-            ExternApi.ArAugmentedImage_getExtentZ(m_NativeSession.SessionHandle, augmentedImageHandle,
-                ref outExtentZ);
+            ExternApi.ArAugmentedImage_getExtentZ(
+                m_NativeSession.SessionHandle, augmentedImageHandle, ref outExtentZ);
             return outExtentZ;
         }
 
         public string GetName(IntPtr augmentedImageHandle)
         {
             IntPtr outName = IntPtr.Zero;
-            ExternApi.ArAugmentedImage_acquireName(m_NativeSession.SessionHandle, augmentedImageHandle,
-                ref outName);
+            ExternApi.ArAugmentedImage_acquireName(
+                m_NativeSession.SessionHandle, augmentedImageHandle, ref outName);
             string name = Marshal.PtrToStringAnsi(outName);
             ExternApi.ArString_release(outName);
             return name;
+        }
+
+        public AugmentedImageTrackingMethod GetTrackingMethod(IntPtr augmentedImageHandle)
+        {
+            AugmentedImageTrackingMethod trackingMethod = AugmentedImageTrackingMethod.NotTracking;
+            ExternApi.ArAugmentedImage_getTrackingMethod(
+                m_NativeSession.SessionHandle, augmentedImageHandle, ref trackingMethod);
+            return trackingMethod;
         }
 
         private struct ExternApi
@@ -111,6 +119,10 @@ namespace GoogleARCoreInternal
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArAugmentedImage_acquireName(IntPtr sessionHandle,
                 IntPtr augmentedImageHandle, ref IntPtr outName);
+
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArAugmentedImage_getTrackingMethod(IntPtr sessionHandle,
+                IntPtr augmentedImageHandle, ref AugmentedImageTrackingMethod trackingMethod);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArString_release(IntPtr str);

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ApiCloudAnchorState.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,12 +27,11 @@ namespace GoogleARCoreInternal.CrossPlatform
         Success = 2,
         ErrorInternal = -1,
         ErrorNotAuthorized = -2,
-        ErrorServiceUnavailable = -3,
         ErrorResourceExhausted = -4,
         ErrorHostingDatasetProcessingFailed = -5,
         ErrorResolveingCloudIdNotFound = -6,
-        ErrorResolvingLocalizationNoMatch = -7,
         ErrorResolvingSDKTooOld = -8,
         ErrorResolvingSDKTooNew = -9,
+        ErrorHostingServiceUnavailable = -10,
     }
 }

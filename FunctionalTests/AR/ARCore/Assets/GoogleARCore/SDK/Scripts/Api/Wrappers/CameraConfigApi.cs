@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="CameraConfigApi.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,6 +45,13 @@ namespace GoogleARCoreInternal
         public IntPtr Create()
         {
             IntPtr cameraConfigHandle = IntPtr.Zero;
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("create ARCamera config");
+                return cameraConfigHandle;
+            }
+
             ExternApi.ArCameraConfig_create(m_NativeSession.SessionHandle, ref cameraConfigHandle);
             return cameraConfigHandle;
         }
@@ -59,7 +66,14 @@ namespace GoogleARCoreInternal
             width = 0;
             height = 0;
 
-            ExternApi.ArCameraConfig_getImageDimensions(m_NativeSession.SessionHandle, cameraConfigHandle, ref width, ref height);
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access ARCamera image dimensions");
+                return;
+            }
+
+            ExternApi.ArCameraConfig_getImageDimensions(
+                m_NativeSession.SessionHandle, cameraConfigHandle, ref width, ref height);
         }
 
         public void GetTextureDimensions(IntPtr cameraConfigHandle, out int width, out int height)
@@ -67,7 +81,61 @@ namespace GoogleARCoreInternal
             width = 0;
             height = 0;
 
-            ExternApi.ArCameraConfig_getTextureDimensions(m_NativeSession.SessionHandle, cameraConfigHandle, ref width, ref height);
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage(
+                    "access ARCamera texture dimensions");
+                return;
+            }
+
+            ExternApi.ArCameraConfig_getTextureDimensions(
+                m_NativeSession.SessionHandle, cameraConfigHandle, ref width, ref height);
+        }
+
+        public ApiCameraConfigFacingDirection GetFacingDirection(IntPtr cameraConfigHandle)
+        {
+            ApiCameraConfigFacingDirection direction = ApiCameraConfigFacingDirection.Back;
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access ARCamera facing direction");
+                return direction;
+            }
+
+            ExternApi.ArCameraConfig_getFacingDirection(
+                m_NativeSession.SessionHandle, cameraConfigHandle, ref direction);
+
+            return direction;
+        }
+
+        public void GetFpsRange(IntPtr cameraConfigHandle, out int minFps, out int maxFps)
+        {
+            minFps = 0;
+            maxFps = 0;
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access ARCamera FpsRange");
+                return;
+            }
+
+            ExternApi.ArCameraConfig_getFpsRange(
+                m_NativeSession.SessionHandle, cameraConfigHandle, ref minFps, ref maxFps);
+        }
+
+        public CameraConfigDepthSensorUsages GetDepthSensorUsage(IntPtr cameraConfigHandle)
+        {
+            int depthSensorUsage = (int)CameraConfigDepthSensorUsages.DoNotUse;
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access ARCamera DepthSensorUsage");
+                return (CameraConfigDepthSensorUsages)depthSensorUsage;
+            }
+
+            ExternApi.ArCameraConfig_getDepthSensorUsage(
+                m_NativeSession.SessionHandle, cameraConfigHandle, ref depthSensorUsage);
+            return (CameraConfigDepthSensorUsages)depthSensorUsage;
         }
 
         private struct ExternApi
@@ -91,6 +159,19 @@ namespace GoogleARCoreInternal
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArCameraConfig_getTextureHeight(IntPtr sessionHandle,
                 IntPtr cameraConfigHandle, ref int height);
+
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArCameraConfig_getFacingDirection(
+                IntPtr sessionHandle, IntPtr cameraConfigHandle,
+                ref ApiCameraConfigFacingDirection facingDirection);
+
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArCameraConfig_getFpsRange(
+                IntPtr sessionHandle, IntPtr cameraConfigHandle, ref int minFps, ref int maxFps);
+
+            [AndroidImport(ApiConstants.ARCoreNativeApi)]
+            public static extern void ArCameraConfig_getDepthSensorUsage(
+                IntPtr sessionHandle, IntPtr cameraConfigHandle, ref int depthSensorUsage);
 #pragma warning restore 626
         }
     }

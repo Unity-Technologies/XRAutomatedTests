@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="FrameApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@ namespace GoogleARCoreInternal
     {
         private NativeSession m_NativeSession;
 
+        private float[,] m_AmbientSH = new float[9, 3];
+
         public FrameApi(NativeSession nativeSession)
         {
             m_NativeSession = nativeSession;
@@ -51,16 +53,16 @@ namespace GoogleARCoreInternal
         public long GetTimestamp()
         {
             long timestamp = 0;
-            ExternApi.ArFrame_getTimestamp(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
-                ref timestamp);
+            ExternApi.ArFrame_getTimestamp(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle, ref timestamp);
             return timestamp;
         }
 
         public IntPtr AcquireCamera()
         {
             IntPtr cameraHandle = IntPtr.Zero;
-            ExternApi.ArFrame_acquireCamera(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
-                ref cameraHandle);
+            ExternApi.ArFrame_acquireCamera(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle, ref cameraHandle);
             return cameraHandle;
         }
 
@@ -98,7 +100,8 @@ namespace GoogleARCoreInternal
                 m_NativeSession.FrameHandle, ref imageMetadataHandle);
             if (status != ApiArStatus.Success)
             {
-                Debug.LogErrorFormat("Failed to aquire camera image metadata with status {0}", status);
+                Debug.LogErrorFormat(
+                    "Failed to aquire camera image metadata with status {0}", status);
                 return false;
             }
 
@@ -108,22 +111,54 @@ namespace GoogleARCoreInternal
         public LightEstimate GetLightEstimate()
         {
             IntPtr lightEstimateHandle = m_NativeSession.LightEstimateApi.Create();
-            ExternApi.ArFrame_getLightEstimate(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
-                lightEstimateHandle);
+            ExternApi.ArFrame_getLightEstimate(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle, lightEstimateHandle);
 
-            LightEstimateState state = m_NativeSession.LightEstimateApi.GetState(lightEstimateHandle);
-            Color colorCorrection = m_NativeSession.LightEstimateApi.GetColorCorrection(lightEstimateHandle);
+            LightEstimateState state =
+                m_NativeSession.LightEstimateApi.GetState(lightEstimateHandle);
+            Color colorCorrection =
+                m_NativeSession.LightEstimateApi.GetColorCorrection(lightEstimateHandle);
+            long timestamp = m_NativeSession.LightEstimateApi.GetTimestamp(
+                m_NativeSession.SessionHandle, lightEstimateHandle);
+
+            Quaternion mainLightRotation = Quaternion.identity;
+            Color mainLightColor = Color.black;
+            m_NativeSession.LightEstimateApi.GetMainDirectionalLight(
+                m_NativeSession.SessionHandle, lightEstimateHandle,
+                out mainLightRotation, out mainLightColor);
+            m_NativeSession.LightEstimateApi.GetAmbientSH(m_NativeSession.SessionHandle,
+                lightEstimateHandle, m_AmbientSH);
 
             m_NativeSession.LightEstimateApi.Destroy(lightEstimateHandle);
-
             return new LightEstimate(state, colorCorrection.a,
-                new Color(colorCorrection.r, colorCorrection.g, colorCorrection.b, 1f));
+                new Color(colorCorrection.r, colorCorrection.g, colorCorrection.b, 1f),
+                mainLightRotation, mainLightColor, m_AmbientSH, timestamp);
+        }
+
+        public Cubemap GetReflectionCubemap()
+        {
+            IntPtr lightEstimateHandle = m_NativeSession.LightEstimateApi.Create();
+            ExternApi.ArFrame_getLightEstimate(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle, lightEstimateHandle);
+            LightEstimateState state =
+                m_NativeSession.LightEstimateApi.GetState(lightEstimateHandle);
+            if (state != LightEstimateState.Valid)
+            {
+                return null;
+            }
+
+            Cubemap cubemap = m_NativeSession.LightEstimateApi.GetReflectionCubemap(
+                m_NativeSession.SessionHandle, lightEstimateHandle);
+            m_NativeSession.LightEstimateApi.Destroy(lightEstimateHandle);
+
+            return cubemap;
         }
 
         public void TransformDisplayUvCoords(ref ApiDisplayUvCoords uv)
         {
             ApiDisplayUvCoords uvOut = new ApiDisplayUvCoords();
-            ExternApi.ArFrame_transformDisplayUvCoords(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
+            ExternApi.ArFrame_transformDisplayUvCoords(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
                 ApiDisplayUvCoords.NumFloats, ref uv, ref uvOut);
 
             uv = uvOut;
@@ -133,8 +168,10 @@ namespace GoogleARCoreInternal
             DisplayUvCoordinateType outputType)
         {
             Vector2 uvOut = new Vector2(uv.x, uv.y);
-            ExternApi.ArFrame_transformCoordinates2d(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
-                inputType.ToApiCoordinates2dType(), 1, ref uv, outputType.ToApiCoordinates2dType(), ref uvOut);
+            ExternApi.ArFrame_transformCoordinates2d(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
+                inputType.ToApiCoordinates2dType(), 1, ref uv, outputType.ToApiCoordinates2dType(),
+                ref uvOut);
 
             uv = uvOut;
         }
@@ -142,17 +179,20 @@ namespace GoogleARCoreInternal
         public void GetUpdatedTrackables(List<Trackable> trackables)
         {
             IntPtr listHandle = m_NativeSession.TrackableListApi.Create();
-            ExternApi.ArFrame_getUpdatedTrackables(m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
+            ExternApi.ArFrame_getUpdatedTrackables(
+                m_NativeSession.SessionHandle, m_NativeSession.FrameHandle,
                 ApiTrackableType.BaseTrackable, listHandle);
 
             trackables.Clear();
             int count = m_NativeSession.TrackableListApi.GetCount(listHandle);
             for (int i = 0; i < count; i++)
             {
-                IntPtr trackableHandle = m_NativeSession.TrackableListApi.AcquireItem(listHandle, i);
+                IntPtr trackableHandle =
+                    m_NativeSession.TrackableListApi.AcquireItem(listHandle, i);
 
                 // TODO:: Remove conditional when b/75291352 is fixed.
-                ApiTrackableType trackableType = m_NativeSession.TrackableApi.GetType(trackableHandle);
+                ApiTrackableType trackableType =
+                    m_NativeSession.TrackableApi.GetType(trackableHandle);
                 if ((int)trackableType == 0x41520105)
                 {
                     m_NativeSession.TrackableApi.Release(trackableHandle);
@@ -184,37 +224,47 @@ namespace GoogleARCoreInternal
 
 #pragma warning disable 626
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArFrame_acquireCamera(IntPtr sessionHandle, IntPtr frameHandle,
-                ref IntPtr cameraHandle);
+            public static extern void ArFrame_acquireCamera(
+                IntPtr sessionHandle, IntPtr frameHandle, ref IntPtr cameraHandle);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern ApiArStatus ArFrame_acquireCameraImage(IntPtr sessionHandle, IntPtr frameHandle,
-                ref IntPtr imageHandle);
+            public static extern ApiArStatus ArFrame_acquireCameraImage(
+                IntPtr sessionHandle, IntPtr frameHandle, ref IntPtr imageHandle);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern ApiArStatus ArFrame_acquirePointCloud(IntPtr sessionHandle, IntPtr frameHandle,
-                ref IntPtr pointCloudHandle);
+            public static extern ApiArStatus ArFrame_acquirePointCloud(
+                IntPtr sessionHandle, IntPtr frameHandle, ref IntPtr pointCloudHandle);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArFrame_transformDisplayUvCoords(IntPtr session, IntPtr frame,
-                int numElements, ref ApiDisplayUvCoords uvsIn, ref ApiDisplayUvCoords uvsOut);
+            public static extern void ArFrame_transformDisplayUvCoords(
+                IntPtr session,
+                IntPtr frame,
+                int numElements,
+                ref ApiDisplayUvCoords uvsIn,
+                ref ApiDisplayUvCoords uvsOut);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArFrame_transformCoordinates2d(IntPtr session, IntPtr frame,
-                ApiCoordinates2dType inputType, int numVertices, ref Vector2 uvsIn,
-                ApiCoordinates2dType outputType, ref Vector2 uvsOut);
+            public static extern void ArFrame_transformCoordinates2d(
+                IntPtr session,
+                IntPtr frame,
+                ApiCoordinates2dType inputType,
+                int numVertices,
+                ref Vector2 uvsIn,
+                ApiCoordinates2dType outputType,
+                ref Vector2 uvsOut);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArFrame_getUpdatedTrackables(IntPtr sessionHandle, IntPtr frameHandle,
-                ApiTrackableType filterType, IntPtr outTrackableList);
+            public static extern void ArFrame_getUpdatedTrackables(
+                IntPtr sessionHandle, IntPtr frameHandle, ApiTrackableType filterType,
+                IntPtr outTrackableList);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArFrame_getLightEstimate(IntPtr sessionHandle, IntPtr frameHandle,
-                IntPtr lightEstimateHandle);
+            public static extern void ArFrame_getLightEstimate(
+                IntPtr sessionHandle, IntPtr frameHandle, IntPtr lightEstimateHandle);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern ApiArStatus ArFrame_acquireImageMetadata(IntPtr sessionHandle, IntPtr frameHandle,
-                ref IntPtr outMetadata);
+            public static extern ApiArStatus ArFrame_acquireImageMetadata(
+                IntPtr sessionHandle, IntPtr frameHandle, ref IntPtr outMetadata);
 #pragma warning restore 626
         }
     }

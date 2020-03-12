@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="DisplayUvCoordinateTypeExtension.cs" company="Google">
 //
-// Copyright 2019 Google Inc. All Rights Reserved.
+// Copyright 2019 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ namespace GoogleARCore
 
     internal static class DisplayUvCoordinateTypeExtension
     {
-        public static ApiCoordinates2dType ToApiCoordinates2dType(this DisplayUvCoordinateType coordinateType)
+        public static ApiCoordinates2dType ToApiCoordinates2dType(
+            this DisplayUvCoordinateType coordinateType)
         {
             switch (coordinateType)
             {

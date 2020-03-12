@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="FeaturePoint.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,7 +36,8 @@ namespace GoogleARCore
         /// </summary>
         /// <param name="nativeHandle">A handle to the native ARCore API Trackable.</param>
         /// <param name="nativeApi">The ARCore native api.</param>
-        internal FeaturePoint(IntPtr nativeHandle, NativeSession nativeApi) : base(nativeHandle, nativeApi)
+        internal FeaturePoint(IntPtr nativeHandle, NativeSession nativeApi) :
+            base(nativeHandle, nativeApi)
         {
         }
 
@@ -49,7 +50,8 @@ namespace GoogleARCore
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError("Pose:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError(
+                        "Pose:: Trying to access a session that has already been destroyed.");
                     return new Pose();
                 }
 
@@ -62,12 +64,15 @@ namespace GoogleARCore
         /// </summary>
         public FeaturePointOrientationMode OrientationMode
         {
-            [SuppressMemoryAllocationError(IsWarning = true, Reason = "Requires further investigation.")]
+            [SuppressMemoryAllocationError(
+                IsWarning = true, Reason = "Requires further investigation.")]
             get
             {
                 if (_IsSessionDestroyed())
                 {
-                    Debug.LogError("OrientationMode:: Trying to access a session that has already been destroyed.");
+                    Debug.LogError(
+                        "OrientationMode:: Trying to access a session that has already been " +
+                        "destroyed.");
                     return FeaturePointOrientationMode.Identity;
                 }
 

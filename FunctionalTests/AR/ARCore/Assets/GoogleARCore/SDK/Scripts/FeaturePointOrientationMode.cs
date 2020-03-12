@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="FeaturePointOrientationMode.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,11 +21,22 @@
 namespace GoogleARCore
 {
     /// <summary>
-    /// The orientation mode for a FeaturePoint.
+    /// The orientation mode of the feature point.
     /// </summary>
     public enum FeaturePointOrientationMode
     {
+        /// <summary>
+        /// The orientation of the feature point is initialized to identity but may
+        /// adjust slightly over time.
+        /// </summary>
         Identity = 0,
+
+        /// <summary>
+        /// The orientation of the feature point will follow the behavior that X+ is perpendicular
+        /// to the cast ray and parallel to the physical surface centered around the hit test,
+        /// Y+ points along the estimated surface normal, and Z+ points roughly toward
+        /// the user's device.
+        /// </summary>
         SurfaceNormal = 1,
     }
 }

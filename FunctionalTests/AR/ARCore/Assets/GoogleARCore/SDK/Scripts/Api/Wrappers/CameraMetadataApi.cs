@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="CameraMetadataApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,17 +60,20 @@ namespace GoogleARCoreInternal
 
             resultList.Clear();
             NdkCameraMetadata entry = new NdkCameraMetadata();
-            NdkCameraStatus status = ExternApi.ACameraMetadata_getConstEntry(ndkMetadataHandle, tag, ref entry);
+            NdkCameraStatus status =
+                ExternApi.ACameraMetadata_getConstEntry(ndkMetadataHandle, tag, ref entry);
             if (status != NdkCameraStatus.Ok)
             {
-                ARDebug.LogErrorFormat("ACameraMetadata_getConstEntry error with native camera error code: {0}",
+                ARDebug.LogErrorFormat(
+                    "ACameraMetadata_getConstEntry error with native camera error code: {0}",
                     status);
                 return false;
             }
 
             if (entry.Count > k_MaximumTagCountForWarning && !m_WarningTags.Contains((int)tag))
             {
-                Debug.LogWarningFormat("TryGetValues for tag {0} has {1} values. Accessing tags with a large " +
+                Debug.LogWarningFormat(
+                    "TryGetValues for tag {0} has {1} values. Accessing tags with a large " +
                     "number of values may impede performance.", tag, entry.Count);
                 m_WarningTags.Add((int)tag);
             }
@@ -110,9 +113,12 @@ namespace GoogleARCoreInternal
                         resultList.Add(new CameraMetadataValue(doubleValue));
                         break;
                     case NdkCameraMetadataType.Rational:
-                        CameraMetadataRational rationalValue = (CameraMetadataRational)Marshal.PtrToStructure(
-                            MarshalingHelper.GetPtrToUnmanagedArrayElement<CameraMetadataRational>(entry.Value, i),
-                            typeof(CameraMetadataRational));
+                        CameraMetadataRational rationalValue =
+                            (CameraMetadataRational)Marshal.PtrToStructure(
+                                MarshalingHelper
+                                .GetPtrToUnmanagedArrayElement<CameraMetadataRational>(
+                                    entry.Value, i),
+                                typeof(CameraMetadataRational));
                         resultList.Add(new CameraMetadataValue(rationalValue));
                         break;
                     default:
@@ -123,18 +129,28 @@ namespace GoogleARCoreInternal
             return true;
         }
 
-        public bool GetAllCameraMetadataTags(IntPtr cameraMetadataHandle, List<CameraMetadataTag> resultList)
+        public bool GetAllCameraMetadataTags(
+            IntPtr cameraMetadataHandle, List<CameraMetadataTag> resultList)
         {
             IntPtr ndkMetadataHandle = IntPtr.Zero;
+
+            if (InstantPreviewManager.IsProvidingPlatform)
+            {
+                InstantPreviewManager.LogLimitedSupportMessage("access camera metadata tags");
+                return false;
+            }
+
             ExternApi.ArImageMetadata_getNdkCameraMetadata(m_NativeSession.SessionHandle,
                 cameraMetadataHandle, ref ndkMetadataHandle);
 
             IntPtr tagsHandle = IntPtr.Zero;
             int tagsCount = 0;
-            NdkCameraStatus status = ExternApi.ACameraMetadata_getAllTags(ndkMetadataHandle, ref tagsCount, ref tagsHandle);
+            NdkCameraStatus status = ExternApi.ACameraMetadata_getAllTags(
+                ndkMetadataHandle, ref tagsCount, ref tagsHandle);
             if (status != NdkCameraStatus.Ok)
             {
-                ARDebug.LogErrorFormat("ACameraMetadata_getAllTags error with native camera error code: {0}",
+                ARDebug.LogErrorFormat(
+                    "ACameraMetadata_getAllTags error with native camera error code: {0}",
                     status);
                 return false;
             }
@@ -153,19 +169,19 @@ namespace GoogleARCoreInternal
         {
 #pragma warning disable 626
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArImageMetadata_getNdkCameraMetadata(IntPtr session, IntPtr image_metadata,
-                ref IntPtr out_ndk_metadata);
+            public static extern void ArImageMetadata_getNdkCameraMetadata(
+                IntPtr session, IntPtr image_metadata, ref IntPtr out_ndk_metadata);
 
             [AndroidImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArImageMetadata_release(IntPtr metadata);
 
             [AndroidImport(ApiConstants.NdkCameraApi)]
-            public static extern NdkCameraStatus ACameraMetadata_getConstEntry(IntPtr ndkCameraMetadata,
-                CameraMetadataTag tag, ref NdkCameraMetadata entry);
+            public static extern NdkCameraStatus ACameraMetadata_getConstEntry(
+                IntPtr ndkCameraMetadata, CameraMetadataTag tag, ref NdkCameraMetadata entry);
 
             [AndroidImport(ApiConstants.NdkCameraApi)]
-            public static extern NdkCameraStatus ACameraMetadata_getAllTags(IntPtr ndkCameraMetadata,
-                ref int numEntries, ref IntPtr tags);
+            public static extern NdkCameraStatus ACameraMetadata_getAllTags(
+                IntPtr ndkCameraMetadata, ref int numEntries, ref IntPtr tags);
 #pragma warning restore 626
         }
     }

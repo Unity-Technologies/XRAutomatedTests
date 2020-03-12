@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="AnchorApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@ namespace GoogleARCoreInternal
             m_NativeSession = nativeSession;
         }
 
+        public static void Release(IntPtr anchorHandle)
+        {
+            ExternApi.ArAnchor_release(anchorHandle);
+        }
+
         public Pose GetPose(IntPtr anchorHandle)
         {
             var poseHandle = m_NativeSession.PoseApi.Create();
@@ -55,14 +60,16 @@ namespace GoogleARCoreInternal
         public ApiCloudAnchorState GetCloudAnchorState(IntPtr anchorHandle)
         {
             ApiCloudAnchorState cloudState = ApiCloudAnchorState.None;
-            ExternApi.ArAnchor_getCloudAnchorState(m_NativeSession.SessionHandle, anchorHandle, ref cloudState);
+            ExternApi.ArAnchor_getCloudAnchorState(
+                m_NativeSession.SessionHandle, anchorHandle, ref cloudState);
             return cloudState;
         }
 
         public string GetCloudAnchorId(IntPtr anchorHandle)
         {
             IntPtr cloudIdHandle = IntPtr.Zero;
-            ExternApi.ArAnchor_acquireCloudAnchorId(m_NativeSession.SessionHandle, anchorHandle, ref cloudIdHandle);
+            ExternApi.ArAnchor_acquireCloudAnchorId(
+                m_NativeSession.SessionHandle, anchorHandle, ref cloudIdHandle);
 
             var result = Marshal.PtrToStringAnsi(cloudIdHandle);
             ExternApi.ArString_release(cloudIdHandle);
@@ -77,11 +84,6 @@ namespace GoogleARCoreInternal
             }
         }
 
-        public void Release(IntPtr anchorHandle)
-        {
-            ExternApi.ArAnchor_release(anchorHandle);
-        }
-
         public IntPtr CreateList()
         {
             IntPtr listHandle = IntPtr.Zero;
@@ -92,15 +94,16 @@ namespace GoogleARCoreInternal
         public int GetListSize(IntPtr anchorListHandle)
         {
             int size = 0;
-            ExternApi.ArAnchorList_getSize(m_NativeSession.SessionHandle, anchorListHandle, ref size);
+            ExternApi.ArAnchorList_getSize(
+                m_NativeSession.SessionHandle, anchorListHandle, ref size);
             return size;
         }
 
         public IntPtr AcquireListItem(IntPtr anchorListHandle, int index)
         {
             IntPtr anchorHandle = IntPtr.Zero;
-            ExternApi.ArAnchorList_acquireItem(m_NativeSession.SessionHandle, anchorListHandle, index,
-                ref anchorHandle);
+            ExternApi.ArAnchorList_acquireItem(
+                m_NativeSession.SessionHandle, anchorListHandle, index, ref anchorHandle);
             return anchorHandle;
         }
 
@@ -112,19 +115,20 @@ namespace GoogleARCoreInternal
         private struct ExternApi
         {
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchor_getPose(IntPtr sessionHandle, IntPtr anchorHandle, IntPtr poseHandle);
+            public static extern void ArAnchor_getPose(
+                IntPtr sessionHandle, IntPtr anchorHandle, IntPtr poseHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchor_getTrackingState(IntPtr sessionHandle, IntPtr anchorHandle,
-                ref ApiTrackingState trackingState);
+            public static extern void ArAnchor_getTrackingState(
+                IntPtr sessionHandle, IntPtr anchorHandle, ref ApiTrackingState trackingState);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchor_getCloudAnchorState(IntPtr sessionHandle,
-                IntPtr anchorHandle, ref ApiCloudAnchorState state);
+            public static extern void ArAnchor_getCloudAnchorState(
+                IntPtr sessionHandle, IntPtr anchorHandle, ref ApiCloudAnchorState state);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchor_acquireCloudAnchorId(IntPtr sessionHandle,
-                IntPtr anchorHandle, ref IntPtr hostingIdHandle);
+            public static extern void ArAnchor_acquireCloudAnchorId(
+                IntPtr sessionHandle, IntPtr anchorHandle, ref IntPtr hostingIdHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArAnchor_release(IntPtr anchorHandle);
@@ -136,16 +140,19 @@ namespace GoogleARCoreInternal
             public static extern void ArString_release(IntPtr stringHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchorList_create(IntPtr sessionHandle, ref IntPtr outputAnchorListHandle);
+            public static extern void ArAnchorList_create(
+                IntPtr sessionHandle, ref IntPtr outputAnchorListHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArAnchorList_destroy(IntPtr anchorListHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchorList_getSize(IntPtr sessionHandle, IntPtr anchorListHandle, ref int outputSize);
+            public static extern void ArAnchorList_getSize(
+                IntPtr sessionHandle, IntPtr anchorListHandle, ref int outputSize);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArAnchorList_acquireItem(IntPtr sessionHandle, IntPtr anchorListHandle,  int index,
+            public static extern void ArAnchorList_acquireItem(
+                IntPtr sessionHandle, IntPtr anchorListHandle, int index,
                 ref IntPtr outputAnchorHandle);
         }
     }

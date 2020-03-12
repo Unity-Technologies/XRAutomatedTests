@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="AugmentedImageVisualizer.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -73,10 +73,14 @@ namespace GoogleARCore.Examples.AugmentedImage
 
             float halfWidth = Image.ExtentX / 2;
             float halfHeight = Image.ExtentZ / 2;
-            FrameLowerLeft.transform.localPosition = (halfWidth * Vector3.left) + (halfHeight * Vector3.back);
-            FrameLowerRight.transform.localPosition = (halfWidth * Vector3.right) + (halfHeight * Vector3.back);
-            FrameUpperLeft.transform.localPosition = (halfWidth * Vector3.left) + (halfHeight * Vector3.forward);
-            FrameUpperRight.transform.localPosition = (halfWidth * Vector3.right) + (halfHeight * Vector3.forward);
+            FrameLowerLeft.transform.localPosition =
+                (halfWidth * Vector3.left) + (halfHeight * Vector3.back);
+            FrameLowerRight.transform.localPosition =
+                (halfWidth * Vector3.right) + (halfHeight * Vector3.back);
+            FrameUpperLeft.transform.localPosition =
+                (halfWidth * Vector3.left) + (halfHeight * Vector3.forward);
+            FrameUpperRight.transform.localPosition =
+                (halfWidth * Vector3.right) + (halfHeight * Vector3.forward);
 
             FrameLowerLeft.SetActive(true);
             FrameLowerRight.SetActive(true);

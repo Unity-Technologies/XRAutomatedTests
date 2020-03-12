@@ -1,4 +1,4 @@
-﻿Shader "ARCore/ARBackground"
+Shader "ARCore/ARBackground"
 {
     Properties {
         _MainTex ("Main Texture", 2D) = "white" {}
@@ -18,14 +18,22 @@
 
             #pragma only_renderers gles3 gles
 
-            #ifdef SHADER_API_GLES3
-            #extension GL_OES_EGL_image_external_essl3 : require
-            #else
-            #extension GL_OES_EGL_image_external : require
-            #endif
+            // #ifdef SHADER_API_GLES3 cannot take effect because
+            // #extension is processed before any Unity defined symbols.
+            // Use "enable" instead of "require" here, so it only gives a
+            // warning but not compile error when the implementation does not
+            // support the extension.
+            #extension GL_OES_EGL_image_external_essl3 : enable
+            #extension GL_OES_EGL_image_external : enable
 
             uniform vec4 _UvTopLeftRight;
             uniform vec4 _UvBottomLeftRight;
+
+            // Use the same method in UnityCG.cginc to convert from gamma to linear space in glsl.
+            vec3 GammaToLinearSpace(vec3 color)
+            {
+                return color * (color * (color * 0.305306011 + 0.682171111) + 0.012522878);
+            }
 
             #ifdef VERTEX
 
@@ -55,13 +63,13 @@
             void main()
             {
                 vec3 mainTexColor;
-                
+
                 #ifdef SHADER_API_GLES3
                 mainTexColor = texture(_MainTex, textureCoord).rgb;
                 #else
                 mainTexColor = textureExternal(_MainTex, textureCoord).rgb;
                 #endif
-                
+
                 if (_Brightness < 1.0)
                 {
                     mainTexColor = mainTexColor * _Brightness;
@@ -74,9 +82,9 @@
                         vec4 transitionColor = vec4(0.0);
                         if (uvCoordTex.x >= 0.0 && uvCoordTex.x <= 1.0 && uvCoordTex.y >= 0.0 && uvCoordTex.y <= 1.0)
                         {
-                            transitionColor = texture(_TransitionIconTex, uvCoordTex);
+                            transitionColor = texture2D(_TransitionIconTex, uvCoordTex);
                         }
-                        
+
                         if (transitionColor.a > 0.0)
                         {
                             mainTexColor = mix(transitionColor.rgb, mainTexColor, _Brightness);
@@ -84,6 +92,10 @@
                     }
                 }
 
+#ifndef UNITY_COLORSPACE_GAMMA
+
+                mainTexColor = GammaToLinearSpace(mainTexColor);
+#endif
                 gl_FragColor = vec4(mainTexColor, 1.0);
             }
 

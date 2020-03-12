@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="XPSession.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,11 +33,13 @@ namespace GoogleARCore.CrossPlatform
     public static class XPSession
     {
         /// <summary>
-        /// Attempts to asynchronously host a new cloud anchor.
+        /// Attempts to asynchronously host a new Cloud Anchor.
         /// </summary>
         /// <param name="anchor">The anchor to host.</param>
-        /// <returns>A task that will complete when the attempt to host a new cloud anchor has finished.
-        /// The result will be a <c>CloudAnchorResult</c> associated with the operation.</returns>
+        /// <returns>
+        /// A task that will complete when the attempt to host a new Cloud Anchor has finished.
+        /// The result will be a <see cref="CloudAnchorResult"/> associated with the operation.
+        /// </returns>
         public static AsyncTask<CloudAnchorResult> CreateCloudAnchor(Anchor anchor)
         {
             return CloudServiceManager.Instance.CreateCloudAnchor(anchor);
@@ -45,12 +47,15 @@ namespace GoogleARCore.CrossPlatform
 
 #if ARCORE_IOS_SUPPORT
         /// <summary>
-        /// Attempts to asynchronously host a new cloud anchor.
+        /// Attempts to asynchronously host a new Cloud Anchor.
         /// </summary>
         /// <param name="anchor">The anchor to host.</param>
-        /// <returns>A task that will complete when the attempt to host a new cloud anchor has finished.
-        /// The result will be a <c>CloudAnchorResult</c> associated with the operation.</returns>
-        public static AsyncTask<CloudAnchorResult> CreateCloudAnchor(UnityARUserAnchorComponent anchor)
+        /// <returns>
+        /// A task that will complete when the attempt to host a new Cloud Anchor has finished.
+        /// The result will be a <see cref="CloudAnchorResult"/> associated with the operation.
+        /// </returns>
+        public static AsyncTask<CloudAnchorResult> CreateCloudAnchor(
+            UnityARUserAnchorComponent anchor)
         {
             return CloudServiceManager.Instance.CreateCloudAnchor(
                 new Pose(anchor.transform.position, anchor.transform.rotation));
@@ -58,14 +63,37 @@ namespace GoogleARCore.CrossPlatform
 #endif
 
         /// <summary>
-        /// Attempts to asynchronous resolve a cloud anchor.
+        /// Attempts to asynchronously resolve a Cloud Anchor. 1 wait for a call to
+        /// resolve a Cloud Anchor to complete before initiating another call. A session can have
+        /// up to 20 Cloud Anchors and pending AsyncTasks at a given time.
+        /// The task will continue to retry in the background indefinitely,
+        /// until it is successfully resolved, cancelled, or reaches a terminal error state.
         /// </summary>
-        /// <param name="cloudAnchorId">The id of the cloud anchor to resolve.</param>
-        /// <returns>A task that will complete when the attempt to host a new cloud anchor has finished.
-        /// The result will be a <c>CloudAnchorResult</c> associated with the operation.</returns>
+        /// <param name="cloudAnchorId">The id of the Cloud Anchor to resolve.</param>
+        /// <returns>
+        /// A task that will complete when the attempt to resolve a Cloud Anchor has finished.
+        /// The result will be a <see cref="CloudAnchorResult"/> associated with the operation.
+        /// </returns>
         public static AsyncTask<CloudAnchorResult> ResolveCloudAnchor(string cloudAnchorId)
         {
             return CloudServiceManager.Instance.ResolveCloudAnchor(cloudAnchorId);
+        }
+
+        /// <summary>
+        /// Attempts to cancel a pending AsyncTask&lt;CloudAnchorResult&gt; initiated by a call to
+        /// <see cref="ResolveCloudAnchor(string)"/>.
+        /// Any pending AsyncTasks associated with the given <paramref name="cloudAnchorId"/>
+        /// will complete with result:
+        /// <see cref="CloudServiceResponse"/>.<c>ErrorRequestCancelled</c> and the
+        /// <see cref="CloudAnchorResult.Anchor"/> will be null.
+        /// If no operation is pending for the given <paramref name="cloudAnchorId"/>,
+        /// this call does not take effect and a warning message will be logged.
+        /// </summary>
+        /// <param name="cloudAnchorId">The id of the Cloud Anchor that is being watched or
+        /// resolved.</param>
+        public static void CancelCloudAnchorAsyncTask(string cloudAnchorId)
+        {
+            CloudServiceManager.Instance.CancelCloudAnchorAsyncTask(cloudAnchorId);
         }
     }
 }

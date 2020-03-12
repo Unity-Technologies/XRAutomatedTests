@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ARCoreIOSSupportHelper.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,12 +35,14 @@ namespace GoogleARCoreInternal
         {
             if (arcoreIOSEnabled)
             {
-                Debug.Log("Enabling ARCore iOS Support. Note that you will need to add ARKit Unity SDK to " +
-                          "your project to make ARCore work on iOS.");
+                Debug.Log(
+                    "Enabling Google ARCore SDK for Unity iOS Support. " +
+                    "Note that you will need to add ARKit Unity SDK " +
+                    "to your project to make ARCore work on iOS.");
             }
             else
             {
-                Debug.Log("Disabling ARCore iOS Support.");
+                Debug.Log("Disabling ARCore iOS support.");
             }
 
             _UpdateIOSScriptingDefineSymbols(arcoreIOSEnabled);
@@ -50,20 +52,24 @@ namespace GoogleARCoreInternal
 
         private static void _UpdateIOSScriptingDefineSymbols(bool arcoreIOSEnabled)
         {
-            string iOSScriptingDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
+            string iOSScriptingDefineSymbols =
+                PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
             bool iOSSupportDefined = iOSScriptingDefineSymbols.Contains("ARCORE_IOS_SUPPORT");
 
             if (arcoreIOSEnabled && !iOSSupportDefined)
             {
-                Debug.Log("Adding ARCORE_IOS_SUPPORT Define Symbol.");
+                Debug.Log("Adding ARCORE_IOS_SUPPORT define symbol.");
                 iOSScriptingDefineSymbols += ";ARCORE_IOS_SUPPORT";
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS, iOSScriptingDefineSymbols);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                    BuildTargetGroup.iOS, iOSScriptingDefineSymbols);
             }
             else if (!arcoreIOSEnabled && iOSSupportDefined)
             {
-                Debug.Log("Removing ARCORE_IOS_SUPPORT Define Symbol.");
-                iOSScriptingDefineSymbols = iOSScriptingDefineSymbols.Replace("ARCORE_IOS_SUPPORT", string.Empty);
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS, iOSScriptingDefineSymbols);
+                Debug.Log("Removing ARCORE_IOS_SUPPORT define symbol.");
+                iOSScriptingDefineSymbols =
+                    iOSScriptingDefineSymbols.Replace("ARCORE_IOS_SUPPORT", string.Empty);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                    BuildTargetGroup.iOS, iOSScriptingDefineSymbols);
             }
         }
 
@@ -73,9 +79,10 @@ namespace GoogleARCoreInternal
             string arcoreEditorPath = Path.Combine(currentDirectory,
               AssetDatabase.GUIDToAssetPath(k_ARCoreEditorFolderGuid));
 
-            string iOSPodDependencyTemplatePath = Path.Combine(arcoreEditorPath,
-                                                               k_ARCoreIOSDependencyFileName + ".template");
-            string iOSPodDependencyXMLPath = Path.Combine(arcoreEditorPath, k_ARCoreIOSDependencyFileName + ".xml");
+            string iOSPodDependencyTemplatePath =
+                Path.Combine(arcoreEditorPath, k_ARCoreIOSDependencyFileName + ".template");
+            string iOSPodDependencyXMLPath =
+                Path.Combine(arcoreEditorPath, k_ARCoreIOSDependencyFileName + ".xml");
 
             if (arcoreIOSEnabled && !File.Exists(iOSPodDependencyXMLPath))
             {
@@ -83,7 +90,8 @@ namespace GoogleARCoreInternal
 
                 if (!File.Exists(iOSPodDependencyTemplatePath))
                 {
-                    Debug.LogError("Failed to enable ARCore iOS dependency xml. Template file is missing.");
+                    Debug.LogError(
+                        "Failed to enable ARCore iOS dependency xml. Template file is missing.");
                     return;
                 }
 

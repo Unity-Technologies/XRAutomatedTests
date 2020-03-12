@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="PoseApi.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -62,14 +62,15 @@ namespace GoogleARCoreInternal
         private struct ExternApi
         {
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPose_create(IntPtr session, ref ApiPoseData rawPose, ref IntPtr poseHandle);
+            public static extern void ArPose_create(
+                IntPtr session, ref ApiPoseData rawPose, ref IntPtr poseHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
             public static extern void ArPose_destroy(IntPtr poseHandle);
 
             [DllImport(ApiConstants.ARCoreNativeApi)]
-            public static extern void ArPose_getPoseRaw(IntPtr sessionHandle, IntPtr poseHandle,
-                ref ApiPoseData rawPose);
+            public static extern void ArPose_getPoseRaw(
+                IntPtr sessionHandle, IntPtr poseHandle, ref ApiPoseData rawPose);
         }
     }
 }

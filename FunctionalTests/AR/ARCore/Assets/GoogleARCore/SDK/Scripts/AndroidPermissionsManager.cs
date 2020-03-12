@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="AndroidPermissionsManager.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace GoogleARCore
     /// <summary>
     /// Manages Android permissions for the Unity application.
     /// </summary>
-    public class AndroidPermissionsManager : AndroidJavaProxy
+    public class AndroidPermissionsManager : AndroidJavaProxy, IAndroidPermissionsCheck
     {
         private static AndroidPermissionsManager s_Instance;
         private static AndroidJavaObject s_Activity;
@@ -39,7 +39,8 @@ namespace GoogleARCore
         /// <summary>
         /// Constructs a new AndroidPermissionsManager.
         /// </summary>
-        public AndroidPermissionsManager() : base("com.unity3d.plugin.UnityAndroidPermissions$IPermissionRequestResult")
+        public AndroidPermissionsManager() : base(
+            "com.unity3d.plugin.UnityAndroidPermissions$IPermissionRequestResult")
         {
         }
 
@@ -52,31 +53,38 @@ namespace GoogleARCore
         /// android.permission.CAMERA).</param>
         /// <returns><c>true</c> if <c>permissionName</c> is granted to the application, otherwise
         /// <c>false</c>.</returns>
-        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Allocates new objects the first time is called")]
+        [SuppressMemoryAllocationError(
+            IsWarning = true, Reason = "Allocates new objects the first time is called")]
         public static bool IsPermissionGranted(string permissionName)
         {
-            if (Application.isEditor)
+            if (Application.platform != RuntimePlatform.Android)
             {
                 return true;
             }
 
-            return GetPermissionsService().Call<bool>("IsPermissionGranted", GetUnityActivity(), permissionName);
+            return GetPermissionsService().Call<bool>(
+                "IsPermissionGranted", GetUnityActivity(), permissionName);
         }
 
         /// <summary>
         /// Requests an Android permission from the user.
         /// </summary>
-        /// <param name="permissionName">The permission to be requested (e.g. android.permission.CAMERA).</param>
-        /// <returns>An asynchronous task the completes when the user has accepted/rejected the requested permission
-        /// and yields a {@link AndroidPermissionsRequestResult} that summarizes the result.  If this method is called
-        /// when another permissions request is pending <c>null</c> will be returned instead.</returns>
-        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Allocates new objects the first time is called")]
-        public static AsyncTask<AndroidPermissionsRequestResult> RequestPermission(string permissionName)
+        /// <param name="permissionName">The permission to be requested (e.g.
+        /// android.permission.CAMERA).</param>
+        /// <returns>An asynchronous task that completes when the user has accepted or rejected the
+        /// requested permission and yields a <see cref="AndroidPermissionsRequestResult"/> that
+        /// summarizes the result. If this method is called when another permissions request is
+        /// pending, <c>null</c> will be returned instead.</returns>
+        [SuppressMemoryAllocationError(
+            IsWarning = true, Reason = "Allocates new objects the first time is called")]
+        public static AsyncTask<AndroidPermissionsRequestResult> RequestPermission(
+            string permissionName)
         {
             if (AndroidPermissionsManager.IsPermissionGranted(permissionName))
             {
-                return new AsyncTask<AndroidPermissionsRequestResult>(new AndroidPermissionsRequestResult(
-                    new string[] { permissionName }, new bool[] { true }));
+                return new AsyncTask<AndroidPermissionsRequestResult>(
+                    new AndroidPermissionsRequestResult(
+                        new string[] { permissionName }, new bool[] { true }));
             }
 
             if (s_CurrentRequest != null)
@@ -87,9 +95,25 @@ namespace GoogleARCore
 
             GetPermissionsService().Call("RequestPermissionAsync", GetUnityActivity(),
                 new[] { permissionName }, GetInstance());
-            s_CurrentRequest = new AsyncTask<AndroidPermissionsRequestResult>(out s_OnPermissionsRequestFinished);
+            s_CurrentRequest =
+                new AsyncTask<AndroidPermissionsRequestResult>(out s_OnPermissionsRequestFinished);
 
             return s_CurrentRequest;
+        }
+
+         /// <summary>
+        /// Requests an Android permission from the user.
+        /// </summary>
+        /// <param name="permissionName">The permission to be requested (e.g.
+        /// android.permission.CAMERA).</param>
+        /// <returns>An asynchronous task that completes when the user has accepted or rejected the
+        /// requested permission and yields a <see cref="AndroidPermissionsRequestResult"/> that
+        /// summarizes the result. If this method is called when another permissions request is
+        /// pending, <c>null</c> will be returned instead.</returns>
+        public AsyncTask<AndroidPermissionsRequestResult> RequestAndroidPermission(
+            string permissionName)
+        {
+            return RequestPermission(permissionName);
         }
 
         /// @cond EXCLUDE_FROM_DOXYGEN
@@ -97,7 +121,8 @@ namespace GoogleARCore
         /// Callback fired when a permission is granted.
         /// </summary>
         /// <param name="permissionName">The name of the permission that was granted.</param>
-        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Implements java object interface.")]
+        [SuppressMemoryAllocationError(
+            IsWarning = true, Reason = "Implements java object interface.")]
         public virtual void OnPermissionGranted(string permissionName)
         {
             _OnPermissionResult(permissionName, true);
@@ -110,7 +135,8 @@ namespace GoogleARCore
         /// Callback fired when a permission is denied.
         /// </summary>
         /// <param name="permissionName">The name of the permission that was denied.</param>
-        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Implements java object interface.")]
+        [SuppressMemoryAllocationError(
+            IsWarning = true, Reason = "Implements java object interface.")]
         public virtual void OnPermissionDenied(string permissionName)
         {
             _OnPermissionResult(permissionName, false);
@@ -120,14 +146,16 @@ namespace GoogleARCore
 
         /// @cond EXCLUDE_FROM_DOXYGEN
         /// <summary>
-        /// Callback fired on an Android activity result (unused part of UnityAndroidPermissions interface).
+        /// Callback fired on an Android activity result (unused part of UnityAndroidPermissions
+        /// interface).
         /// </summary>
-        [SuppressMemoryAllocationError(IsWarning = true, Reason = "Implements java object interface.")]
+        [SuppressMemoryAllocationError(
+            IsWarning = true, Reason = "Implements java object interface.")]
         public virtual void OnActivityResult()
         {
         }
 
-        private static AndroidPermissionsManager GetInstance()
+        internal static AndroidPermissionsManager GetInstance()
         {
             if (s_Instance == null)
             {
@@ -141,7 +169,8 @@ namespace GoogleARCore
         {
             if (s_Activity == null)
             {
-                AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                AndroidJavaClass unityPlayer =
+                    new AndroidJavaClass("com.unity3d.player.UnityPlayer");
                 s_Activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             }
 
@@ -152,7 +181,8 @@ namespace GoogleARCore
         {
             if (s_PermissionService == null)
             {
-                s_PermissionService = new AndroidJavaObject("com.unity3d.plugin.UnityAndroidPermissions");
+                s_PermissionService =
+                    new AndroidJavaObject("com.unity3d.plugin.UnityAndroidPermissions");
             }
 
             return s_PermissionService;
@@ -169,7 +199,8 @@ namespace GoogleARCore
         {
             if (s_OnPermissionsRequestFinished == null)
             {
-                Debug.LogErrorFormat("AndroidPermissionsManager received an unexpected permissions result {0}",
+                Debug.LogErrorFormat(
+                    "AndroidPermissionsManager received an unexpected permissions result {0}",
                     permissionName);
                 return;
             }

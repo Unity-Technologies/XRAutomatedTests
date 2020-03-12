@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="TrackedPoint.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,7 +25,9 @@ namespace GoogleARCore
     /// <summary>
     /// Deprecated version of FeaturePoint.
     /// </summary>
-    [System.Obsolete("This class has been renamed to FeaturePoint. See https://github.com/google-ar/arcore-unity-sdk/releases/tag/v1.2.0")]
+    [System.Obsolete(
+        "This class has been renamed to FeaturePoint. See " +
+        "https://github.com/google-ar/arcore-unity-sdk/releases/tag/v1.2.0")]
     public class TrackedPoint : FeaturePoint
     {
         /// <summary>
@@ -33,7 +35,8 @@ namespace GoogleARCore
         /// </summary>
         /// <param name="nativeHandle">A handle to the native ARCore API Trackable.</param>
         /// <param name="nativeApi">The ARCore native api.</param>
-        internal TrackedPoint(IntPtr nativeHandle, NativeSession nativeApi) : base(nativeHandle, nativeApi)
+        internal TrackedPoint(IntPtr nativeHandle, NativeSession nativeApi) :
+            base(nativeHandle, nativeApi)
         {
         }
 

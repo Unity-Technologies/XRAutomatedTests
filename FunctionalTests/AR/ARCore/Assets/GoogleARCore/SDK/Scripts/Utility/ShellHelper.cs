@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="ShellHelper.cs" company="Google">
 //
-// Copyright 2018 Google Inc. All Rights Reserved.
+// Copyright 2018 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,13 @@
 
 namespace GoogleARCoreInternal
 {
+    using System.IO;
     using System.Text;
+    using UnityEngine;
+
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
     /// <summary>
     /// Misc helper methods for running shell commands.
@@ -34,7 +40,8 @@ namespace GoogleARCoreInternal
         /// <param name="arguments">Command line arguments, space delimited.</param>
         /// <param name="output">Filled out with the result as printed to stdout.</param>
         /// <param name="error">Filled out with the result as printed to stderr.</param>
-        public static void RunCommand(string fileName, string arguments, out string output, out string error)
+        public static void RunCommand(
+            string fileName, string arguments, out string output, out string error)
         {
             using (var process = new System.Diagnostics.Process())
             {
@@ -60,6 +67,50 @@ namespace GoogleARCoreInternal
                 output = outputBuilder.ToString().Trim();
                 error = errorBuilder.ToString().Trim();
             }
+        }
+
+        /// <summary>
+        /// Gets the path to adb in the Android SDK defined in the Unity Editor preferences.
+        /// </summary>
+        /// <remarks>
+        /// This function only works while in the Unity editor and returns null otherwise.
+        /// </remarks>
+        /// <returns> String that contains the path to adb that the Unity editor uses. </returns>
+        public static string GetAdbPath()
+        {
+            string sdkRoot = null;
+#if UNITY_EDITOR
+            // Gets adb path and starts instant preview server.
+            sdkRoot = EditorPrefs.GetString("AndroidSdkRoot");
+#endif // UNITY_EDITOR
+
+            if (string.IsNullOrEmpty(sdkRoot))
+            {
+                return null;
+            }
+
+            // Gets adb path from known directory.
+            var adbPath = Path.Combine(Path.GetFullPath(sdkRoot),
+                                       Path.Combine("platform-tools", GetAdbFileName()));
+
+            return adbPath;
+        }
+
+        /// <summary>
+        /// Returns adb's executable name based on platform.
+        /// On macOS this function will return "adb" and on Windows it will return "adb.exe".
+        /// </summary>
+        /// <returns> Returns adb's executable name based on platform.
+        public static string GetAdbFileName()
+        {
+            var adbName = "adb";
+
+            if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+                adbName = Path.ChangeExtension(adbName, "exe");
+            }
+
+            return adbName;
         }
     }
 }

@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="LifecycleManager.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,6 +45,26 @@ namespace GoogleARCoreInternal
                 }
 
                 return s_Instance;
+            }
+        }
+
+        /// <summary>
+        /// Force reset the singleton instance to null. Should only be used in Unit Test.
+        /// </summary>
+        internal static void ResetInstance()
+        {
+            if (s_Instance != null)
+            {
+                if (Application.platform == RuntimePlatform.IPhonePlayer)
+                {
+                    ARCoreIOSLifecycleManager.ResetInstance();
+                }
+                else
+                {
+                    ARCoreAndroidLifecycleManager.ResetInstance();
+                }
+
+                s_Instance = null;
             }
         }
     }

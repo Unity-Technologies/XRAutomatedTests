@@ -1,7 +1,7 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="InstantPreviewInput.cs" company="Google">
 //
-// Copyright 2017 Google Inc. All Rights Reserved.
+// Copyright 2017 Google LLC. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,6 +59,7 @@ namespace GoogleARCore
         {
             get
             {
+                NativeApi.UnityGotTouches();
                 return s_Touches;
             }
         }
@@ -159,7 +160,7 @@ namespace GoogleARCore
         /// </summary>
         public static void Update()
         {
-            if (!Application.isEditor)
+            if (!InstantPreviewManager.IsProvidingPlatform)
             {
                 return;
             }
@@ -189,7 +190,8 @@ namespace GoogleARCore
             for (var i = 0; i < nativeTouchCount; ++i)
             {
                 var source = new IntPtr(nativeTouchesPtr.ToInt64() + (i * structSize));
-                NativeTouch nativeTouch = (NativeTouch)Marshal.PtrToStructure(source, typeof(NativeTouch));
+                NativeTouch nativeTouch =
+                    (NativeTouch)Marshal.PtrToStructure(source, typeof(NativeTouch));
 
                 var newTouch = new Touch()
                 {
@@ -197,9 +199,11 @@ namespace GoogleARCore
                     phase = nativeTouch.Phase,
                     pressure = nativeTouch.Pressure,
 
-                    // NativeTouch values are normalized and must be converted to screen coordinates.
+                    // NativeTouch values are normalized and must be converted to screen
+                    // coordinates.
                     // Note that the Unity's screen coordinate (0, 0) starts from bottom left.
-                    position = new Vector2(Screen.width * nativeTouch.X, Screen.height * (1f - nativeTouch.Y)),
+                    position = new Vector2(
+                        Screen.width * nativeTouch.X, Screen.height * (1f - nativeTouch.Y)),
                 };
 
                 var index = s_TouchList.FindIndex(touch => touch.fingerId == newTouch.fingerId);
@@ -235,6 +239,9 @@ namespace GoogleARCore
         {
             [DllImport(InstantPreviewManager.InstantPreviewNativeApi)]
             public static extern void GetTouches(out IntPtr touches, out int count);
+
+            [DllImport(InstantPreviewManager.InstantPreviewNativeApi)]
+            public static extern void UnityGotTouches();
         }
     }
 }

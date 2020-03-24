@@ -1,9 +1,0 @@
-{
-    "name": "Unity.PerformanceTesting",
-    "references": [],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": []
-}

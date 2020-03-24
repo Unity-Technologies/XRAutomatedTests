@@ -1,4 +1,4 @@
-[submodule "FunctionalTests/VR/CrossPlatform/Assets/WindowsMR"]
-	path = FunctionalTests/VR/CrossPlatform/Assets/WindowsMR
+[submodule "FunctionalTests/VR/CrossPlatform_BuiltInVR/Assets/WindowsMR"]
+	path = FunctionalTests/VR/CrossPlatform_BuiltInVR/Assets/WindowsMR
 	url = git@github.cds.internal.unity3d.com:unity/xr.xrautomatedtests.windowsmr.emulation.git
 	branch = 2019.3

@@ -1,17 +1,16 @@
 {
   "dependencies": {
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.cli-config-manager": "https://github.com/Unity-Technologies/com.unity.cli-config-manager.git#trunk",
-    "com.unity.ide.visualstudio": "2.0.0",
+    "com.unity.collab-proxy": "1.2.16",
     "com.unity.ide.vscode": "1.1.4",
-    "com.unity.test-framework": "1.1.11",
-    "com.unity.xr.legacyinputhelpers": "2.0.4",
-    "com.unity.xr.management": "3.0.6",
+    "com.unity.test-framework": "1.1.1",
+    "com.unity.xr.legacyinputhelpers": "2.0.6",
+    "com.unity.xr.management": "3.0.3",
     "com.unity.xr.oculus": "1.1.5",
-    "com.unity.xr.oculusperformanceutility": "https://github.com/Unity-Technologies/com.unity.xr.oculusperformanceutility.git",
-    "com.unity.xr.test-framework.performance": "https://github.com/Unity-Technologies/com.unity.xr.test-framework.performance.git",
     "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
-    "xr.sdk.oculus.performancetests": "https://github.com/Unity-Technologies/xr.sdk.oculus.performancetests.git",
     "com.unity.modules.ai": "1.0.0",
+    "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
@@ -42,11 +41,5 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "testables": [
-    "xr.sdk.oculus.performancetests",
-    "com.unity.xr.test-framework.performance",
-    "com.unity.xr.oculusperformanceutility"
-  ],
   "disableProjectUpdate": true
-  }
 }

@@ -39,5 +39,15 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "disableProjectUpdate": true
+  "disableProjectUpdate": true,
+  "lock": {
+    "com.unity.cli-config-manager": {
+      "revision": "trunk",
+      "hash": "2aee684b735a136a9a6e5f99d80e207f935582b6"
+    },
+    "com.unity.xr.tests.runtimesettings": {
+      "revision": "trunk",
+      "hash": "83768fa0718b3897f79c35e67ceec9f8f88bd975"
+    }
+  }
 }

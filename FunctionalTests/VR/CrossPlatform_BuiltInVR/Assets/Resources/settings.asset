@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  EnabledXrTarget: Oculus
-  PlayerGraphicsApi: OpenGLES3
-  StereoRenderingMode: SinglePass
+  EnabledXrTarget: WindowsMR
+  PlayerGraphicsApi: Direct3D11
+  StereoRenderingMode: SinglePassInstanced
   StereoRenderingModeDesktop: 
   StereoRenderingModeAndroid: 
   MtRendering: 1
   GraphicsJobs: 0
-  SimulationMode: 
+  SimulationMode: HoloLens
   ColorSpace: Gamma
   PluginVersion: 
   XrsdkRevision: 
   XrManagementRevision: 
   DeviceRuntimeVersion: 
-  Username: seans
+  Username: antone.franich
+  RenderPipeline: renderpipeline|BuiltInRenderer

@@ -153,7 +153,7 @@ PlayerSettings:
       protectedContext: 0
       v2Signing: 1
     enable360StereoCapture: 0
-  isWsaHolographicRemotingEnabled: 0
+  isWsaHolographicRemotingEnabled: 1
   enableFrameTimingStats: 0
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
@@ -419,8 +419,9 @@ PlayerSettings:
     m_Enabled: 0
     m_Devices: []
   - m_BuildTarget: Windows Store Apps
-    m_Enabled: 0
-    m_Devices: []
+    m_Enabled: 1
+    m_Devices:
+    - WindowsMR
   - m_BuildTarget: iPhone
     m_Enabled: 0
     m_Devices: []

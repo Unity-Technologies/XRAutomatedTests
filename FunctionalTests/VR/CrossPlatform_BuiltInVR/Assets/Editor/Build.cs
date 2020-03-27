@@ -36,7 +36,7 @@ namespace Assets.Editor
                 MatchCollection matches = regex.Matches(cmdLine[i]);
                 foreach (Match match in matches)
                 {
-                    return match.Groups[0].Value.ToLower();
+                    return match.Groups[1].Value.ToLower();
                 }
                     
             }

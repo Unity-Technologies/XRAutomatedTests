@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: settings
   m_EditorClassIdentifier: 
   EnabledXrTarget: OculusXRSDK
-  PlayerGraphicsApi: OpenGLES3
+  PlayerGraphicsApi: Vulkan
   StereoRenderingMode: 
   StereoRenderingModeDesktop: MultiPass
   StereoRenderingModeAndroid: Multiview
@@ -22,8 +22,10 @@ MonoBehaviour:
   SimulationMode: 
   ColorSpace: Linear
   PluginVersion: OculusPluginVersion|1.41.0
-  XrsdkRevision: com.unity.xr.oculus|1.1.5|4c119ef0b1d72f95ddfcc64669372ce5b41893b6|2020-01-08T15:10:09|1.1.x
-  XrManagementRevision: com.unity.xr.management|3.0.6|a62b2f2d210898ad2b462b1f6e5e753efc4ff0ca
-  DeviceRuntimeVersion: deviceruntimeversion|oculus/vr_monterey/monterey:7.1.1/NGI77B/456680.26060.0:user/release-keys
+  XrsdkRevision: XrSdkName|com.unity.xr.oculus|XrSdkVersion|1.1.5|XrSdkRevision|4c119ef0b1d72f95ddfcc64669372ce5b41893b6|XrSdkRevisionDate|2020-01-08T15:10:09|XrSdkBranch|1.1.x
+  XrManagementRevision: XrManagementPackageName|com.unity.xr.management|XrManagementVersion|3.0.6|XrManagementRevision|a62b2f2d210898ad2b462b1f6e5e753efc4ff0ca
+  DeviceRuntimeVersion: deviceruntimeversion|oculus/vr_monterey/monterey:7.1.1/NGI77B/507240.20940.0:user/release-keys
   Username: seans
   RenderPipeline: renderpipeline|UniversalRenderPipelineAsset
+  AntiAliasing: 4
+  FfrLevel: ffrlevel|0

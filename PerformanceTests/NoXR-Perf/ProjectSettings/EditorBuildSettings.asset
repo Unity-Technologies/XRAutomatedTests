@@ -6,25 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/cool_down.unity
+    path: Packages/xr.sdk.oculus.performancetests/cool_down.unity
     guid: 794febef3d158dd4b9687c8193a1df31
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitInstancedSphere.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitInstancedSphere.unity
     guid: 1230546d030b44d4a94cf5b23d4a6120
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitNonInstancedSphere.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitNonInstancedSphere.unity
     guid: 11b3a32f1a0ba7846a2a1426d4e81347
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitNonInstancedSphereWithFrustumCulling.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/ObjectCountStressTests/LitNonInstancedSphereWithFrustumCulling.unity
     guid: 1672207337d674f49a34955fc304a2bd
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/StatsTests/EmptyScene.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/StatsTests/EmptyScene.unity
     guid: 1bb11eed44bd0654eab7be626a6c9b04
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/StatsTests/SimpleSceneWithLitCube.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/StatsTests/SimpleSceneWithLitCube.unity
     guid: 914d59e5a50c370489e398b329e9cb34
   - enabled: 1
-    path: Assets/xr.sdk.oculus.performancetests/Scenes/StatsTests/SimpleSceneWithManyLitCubes.unity
+    path: Packages/xr.sdk.oculus.performancetests/Scenes/StatsTests/SimpleSceneWithManyLitCubes.unity
     guid: 323b9d543d569f04a80a4f810da24d6f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: -1726787082364259576, guid: 5a9aad67183bd7e4abd72cdb069616a3,

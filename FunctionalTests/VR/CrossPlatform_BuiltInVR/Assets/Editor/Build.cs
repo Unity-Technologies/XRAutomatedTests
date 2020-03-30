@@ -14,22 +14,21 @@ namespace Assets.Editor
             
             //Special check that will setup the Windows Holographic Emulation window prior to running any tests.
             #if UNITY_WSA
-            if (EditorUserBuildSettings.selectedBuildTargetGroup == BuildTargetGroup.WSA)
-            {
-                //Ideally we would just access simulationMode in cliConfigManager.PlatformSettings.
-                //Unfortunately that isn't publicly exposed at the moment, so we'll just use regex to quickly determine the SimulationMode.
-                string SimulationMode = getSimulationMode();
-                Debug.Log("Regex thinks the simulation mode is SimulationMode="+SimulationMode);
-                if (SimulationMode == "hololens")
-                    WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(true);
-                else
-                    WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(false);
-            }
+            //Ideally we would just access simulationMode in cliConfigManager.PlatformSettings.
+            //Unfortunately that isn't publicly exposed at the moment, so we'll just use regex to quickly determine the SimulationMode.
+            string SimulationMode = getSimulationMode();
+            Debug.Log("Regex thinks the simulation mode is SimulationMode="+SimulationMode);
+            if (SimulationMode == "hololens")
+                WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(true);
+            else
+                WindowsMRFunctionTestBase.SetupHolographicEmulationWindow(false);
+            
 		    #endif
         }
-
         //Use Regex to determine the Simulation Mode that was passed as a command line arguement.
         //Default to not activating the emulation window if we can't determine.
+
+        #if UNITY_WSA
         private static string getSimulationMode()
         {
 
@@ -47,6 +46,7 @@ namespace Assets.Editor
 
             return "";
         }
+        #endif
     }
 }
 

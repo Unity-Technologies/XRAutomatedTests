@@ -25,10 +25,10 @@ namespace Assets.Editor
             
 		    #endif
         }
-        //Use Regex to determine the Simulation Mode that was passed as a command line arguement.
-        //Default to not activating the emulation window if we can't determine.
 
         #if UNITY_WSA
+        //Use Regex to determine the Simulation Mode that was passed as a command line arguement.
+        //Default to not activating the emulation window if we can't determine.
         private static string getSimulationMode()
         {
 

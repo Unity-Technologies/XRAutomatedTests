@@ -1,0 +1,19 @@
+{
+    "name": "Editor",
+    "references": [
+        "com.unity.cli-config-manager",
+        "Unity.WindowsMRAutomation",
+        "Scripts"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

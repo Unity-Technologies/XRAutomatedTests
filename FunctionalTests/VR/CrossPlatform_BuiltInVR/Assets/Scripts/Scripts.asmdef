@@ -1,0 +1,20 @@
+{
+    "name": "Scripts",
+    "references": [
+        "UnityEngine.SpatialTracking",
+        "com.unity.xr.tests.runtimesettings"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

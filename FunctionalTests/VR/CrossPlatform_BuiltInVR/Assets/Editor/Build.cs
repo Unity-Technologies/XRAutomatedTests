@@ -1,4 +1,8 @@
 ﻿using com.unity.cliconfigmanager;
+using UnityEngine;
+using UnityEditor;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Assets.Editor
 {

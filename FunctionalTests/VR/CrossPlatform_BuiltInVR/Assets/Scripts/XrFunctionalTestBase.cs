@@ -31,7 +31,9 @@ public abstract class XrFunctionalTestBase
     public virtual void TearDown()
     {
 		if(XrFunctionalTestHelpers != null)
+		{
 			XrFunctionalTestHelpers.TestStageSetup(TestStageConfig.CleanStage);
+		}
     }
 
     protected bool IsMobilePlatform()

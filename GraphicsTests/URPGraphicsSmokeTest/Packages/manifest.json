@@ -7,7 +7,7 @@
     "com.unity.render-pipelines.core": "7.2.1",
     "com.unity.render-pipelines.universal": "7.2.1",
     "com.unity.shadergraph": "7.2.1",
-    "com.unity.test-framework": "1.1.11",
+    "com.unity.test-framework": "1.1.13",
     "com.unity.testframework.graphics": "7.1.5-preview",
     "com.unity.xr.legacyinputhelpers": "1.3.11",
     "com.unity.xr.oculus": "1.2.0",

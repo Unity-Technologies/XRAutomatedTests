@@ -3,7 +3,7 @@
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.cli-config-manager": "https://github.com/Unity-Technologies/com.unity.cli-config-manager.git#trunk",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.test-framework": "1.1.11",
+    "com.unity.test-framework": "1.1.13",
     "com.unity.testframework.graphics": "7.1.5-preview",
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.ugui": "1.0.0",

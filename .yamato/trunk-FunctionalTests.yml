@@ -1,0 +1,7 @@
+trunk_FunctionalTests:
+  name: trunk_FunctionalTests
+  variables:
+    unityVERSION: trunk
+  dependencies:
+    - path: .yamato/trunk-Functional-MockHMDTests.yml#trunk_Functional_MockHMDTests
+      rerun: always

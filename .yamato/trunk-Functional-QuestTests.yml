@@ -1,0 +1,39 @@
+trunk_Functional_QuestTests:
+  name: trunk_Functional_QuestTests
+  variables:
+    unityVERSION: trunk
+  dependencies:
+    - path: .yamato/trunk-Functional-QuestTests.yml#trunk_XrPlaymode_Quest_MultiPass
+      rerun: always
+
+2019.3_URPGraphicsTests_OculusQuest_OpenGLES3_Linear_Multipass:
+  name: 2019.3_URPGraphicsTests_OculusQuest_OpenGLES3_Linear_Multipass
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    unityVERSION: "2019.3/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "False"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=Android
+    --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+    --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
+    --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
+    --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python buildPlayer.py
+  #I need to trigger the job after this. Or maybe do this as a seperate subtest? Something like build the player then run the test? Let me experiment a little.
+  artifacts:
+    players:
+      paths:
+        - ".yamato/build/players/**"
+    logs:
+      paths:
+        - ".yamato/build/logs/**"

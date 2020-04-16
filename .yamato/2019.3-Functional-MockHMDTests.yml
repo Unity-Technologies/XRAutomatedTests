@@ -67,7 +67,7 @@
     logs:
       paths:
         - ".yamato/build/test-results/**"
-        -
+
 2019.3_XrPlaymode_MockHMD_Instancing:
   name: 2019.3_XrPlaymode_MockHMD_Instancing
   agent:

@@ -1,0 +1,31 @@
+#rename to trigger jobs.
+
+2019.3-NightlyTrigger:
+  name: 2019.3-NightlyTrigger
+  agent:
+      type: Unity::VM
+      image: cds-ops/ubuntu-18.04-base:stable
+      flavor: b1.small
+  triggers:
+    recurring:
+      - branch: "2019.3"
+        frequency: 4 * * ?
+  commands:
+    - |
+      #switch to our scripts folder.
+      cd .yamato
+
+      #Manually install required python packages.
+      pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple --user
+      pip install requests
+
+      python -c '
+      import os
+      import utility.versionCheck
+      import utility.YamatoJobs
+
+      unity_version = utility.versionCheck.check_for_new_version("2019.3/staging")
+      print("New unity version:" + unity_version)
+      if unity_version != "no_new_version":
+        project_id = utility.YamatoJobs.get_project_id("xr.xrautomatedtests")
+        utility.YamatoJobs.start_yamato_job(project_id,"2019.3-RunAllTests.yml","2019.3/staging","2019.3_RunAllTests")'

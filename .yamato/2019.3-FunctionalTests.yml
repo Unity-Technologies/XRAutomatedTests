@@ -1,0 +1,7 @@
+2019.3_FunctionalTests:
+  name: 2019.3_FunctionalTests
+  variables:
+    unityVERSION: "2019.3/staging"
+  dependencies:
+    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_Functional_MockHMDTests
+      rerun: always

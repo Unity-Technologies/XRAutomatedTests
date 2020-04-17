@@ -21,7 +21,6 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
-        AssertNotUsingEmulation();
         Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
     }
 #endif
@@ -52,7 +51,6 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXrSettings_IsDeviceActive()
     {
-        AssertNotUsingEmulation();
         Assert.IsTrue(XRSettings.isDeviceActive, "XR Device is not active");
     }
 
@@ -68,7 +66,6 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXrModelNotEmpty()
     {
-        AssertNotUsingEmulation();
         Assert.IsNotEmpty(XRDevice.model, "Model is empty");
     }
 
@@ -82,7 +79,6 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyRefreshRateGreaterThan0()
     {
-        AssertNotUsingEmulation();
         Assert.AreNotEqual(XRDevice.refreshRate, 0, "Refresh is 0; should be greater than 0.");
     }
 

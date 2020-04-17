@@ -38,7 +38,6 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyRefreshRate()
     {
-        AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
         var refreshRate = XRDevice.refreshRate;
@@ -53,7 +52,6 @@ public class CameraTests : XrFunctionalTestBase
     [UnityTest]
     public IEnumerator VerifyAdjustRenderViewportScale()
     {
-        AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
         var tolerance = .005;
 

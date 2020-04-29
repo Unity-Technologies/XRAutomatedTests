@@ -12,7 +12,7 @@ branches = ["trunk","2020.1/staging","2019.3/staging","2018.4/staging"]
 
 #Determine what type of version this is.
 #This is only used when passing the value along to our pre-existing Jenkins Jobs.
-def parse_version(unityVERSION):
+def parse_version_for_jenkins(unityVERSION):
     #Is it a known branch?
     if unityVERSION in branches:
         return "unityBranchName"
@@ -24,8 +24,8 @@ def parse_version(unityVERSION):
         return "unityRevision"
 
 #Start a Jenkins job by using the Rest API to trigger it remotely.
-def start_job(jobName, params={}, waitForQueue=False, waitForJobComplete=False, userName=temp_username,
-              APIkey=temp_APIKEY, jobToken=temp_JobToken):
+def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete=False, userName=temp_username,
+                      APIkey=temp_APIKEY, jobToken=temp_JobToken):
     #Set the base URL with out shared username and APIKey.
     url = "http://" + userName + ":" + APIkey + "@xrtest.hq.unity3d.com:8080/job/" + jobName + "/buildWithParameters?"
 

@@ -10,8 +10,8 @@ known_projects = {
 }
 
 #Start a Yamato job by sending web requests to the Yamato endpoint.
-def start_job(project_number, yaml_file_name, branch_name, job_name, revision=os.getenv("GIT_REVISION"), environmentVariables="[]",
-              apikey=global_apikey, isbearerkey=False):
+def start_yamato_job(project_number, yaml_file_name, branch_name, job_name, revision=os.getenv("GIT_REVISION"), environmentVariables="[]",
+                     apikey=global_apikey, isbearerkey=False):
     job_definition = "/projects/" + project_number + "/revisions/" + revision \
                      + "/job-definitions/.yamato%2F" + yaml_file_name + "%23" + job_name
 

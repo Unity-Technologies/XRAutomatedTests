@@ -8,4 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SmokeTest.unity
     guid: 728db28d5976f9843b4ae4b271d80508
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2382c02845bc28c428bee582b7e5f37e,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6abf545eaec08da4794be84366906e07,
+      type: 2}

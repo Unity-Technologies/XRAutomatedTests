@@ -9,11 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2edce126de4f2649bb83e6801838f46, type: 3}
+  m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  enabledXrTarget: OpenVR
-  playerGraphicsApi: 0
-  stereoRenderingMode: 1
-  mtRendering: 1
-  graphicsJobs: 0
+  EnabledXrTarget: Oculus
+  PlayerGraphicsApi: OpenGLES3
+  StereoRenderingMode: MultiPass
+  StereoRenderingModeDesktop: 
+  StereoRenderingModeAndroid: 
+  MtRendering: 1
+  GraphicsJobs: 0
+  SimulationMode: 
+  ColorSpace: Linear
+  PluginVersion: 
+  XrsdkRevision: 
+  XrManagementRevision: 
+  PerfTestsPackageRevision: 
+  DeviceRuntimeVersion: 
+  Username: antone.franich
+  RenderPipeline: renderpipeline|LightweightRenderPipelineAsset
+  AntiAliasing: 4
+  FfrLevel: 
+  TestsRevision: 
+  TestsRevisionDate: 
+  TestsBranch: 
+  AndroidTargetArchitecture: AndroidTargetArchitecture|ARM64
+  UrpPackageVersionInfo: UrpPackageName|com.unity.render-pipelines.universal|UrpVersion|7.3.1|UrpRevision|3e04a9da77f7658a9bec4a2a8de3a4a40b169865
+  HdrpPackageVersionInfo: 

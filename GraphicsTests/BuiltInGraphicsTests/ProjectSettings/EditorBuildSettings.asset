@@ -194,4 +194,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GPUInstancing.unity
     guid: fd52f6a945686f247be99d0efc7ed4e6
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3695c094d735b4a4f8e4ea9824492ee0,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6160c1ed438a12743add370494219dea,
+      type: 2}

@@ -1,0 +1,46 @@
+2018.4_RunAllTests:
+  name: 2018.4_RunAllTests
+  variables:
+    unityVERSION: "2018.4/staging"
+  dependencies:
+    - path: .yamato/2018.4-FunctionalTests.yml#2018.4_FunctionalTests
+      rerun: always
+    - path: .yamato/2018.4-RunAllTests.yml#2018.4_RunAllTests_OnJenkins
+      rerun: always
+
+2018.4_RunAllTests_OnJenkins:
+  name: 2018.4_RunAllTests_OnJenkins
+  agent:
+    type: Unity::VM
+    image: cds-ops/ubuntu-18.04-base:stable
+    flavor: b1.small
+  variables:
+    unityVERSION: "2018.4/staging"
+  commands:
+    - |
+      #switch to our scripts folder.
+      cd .yamato
+
+      #Install the python library requests, so that we can make web requests.
+      pip install requests
+
+      python -c '
+      import utility.JenkinsJob
+      import os
+      import sys
+
+      project_name = "2018.4-Run_All_Tests_new"
+
+      #Retrieve the UnityVERSION, and then determine what type of version it is. (IE: BranchName, UnityVersion, or UnityRevision)
+      version = os.getenv("unityVERSION")
+      versionType = utility.JenkinsJob.parse_version_for_jenkins(version)
+      #Set the versionType and Version for passing to the Jenkins job.
+      params = { versionType : version }
+
+      #Invoke the Jenkins Job, and wait for it to complete before returning.
+      result = utility.JenkinsJob.start_jenkins_job(project_name,params,True,True)
+      print("result:" + result)
+
+      #check to see if we were successful, otherwise exit out with an error.
+      if result != "SUCCESS":
+        sys.exit("Jenkins Job: " + project_name +" has failed!") '

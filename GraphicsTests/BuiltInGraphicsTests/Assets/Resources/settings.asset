@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
+  m_Name: settings
+  m_EditorClassIdentifier: 
+  EnabledXrTarget: OculusXRSDK
+  PlayerGraphicsApi: OpenGL2
+  StereoRenderingMode: MultiPass
+  StereoRenderingModeDesktop: MultiPass
+  StereoRenderingModeAndroid: 
+  MtRendering: 1
+  GraphicsJobs: 0
+  SimulationMode: 
+  ColorSpace: Linear
+  PluginVersion: 
+  XrsdkRevision: XrSdkName|com.unity.xr.oculus|XrSdkVersion|1.3.4|XrSdkRevision|8ae255c850095578305b585fb83c73b95ec644d5|XrSdkRevisionDate|2020-05-14T18:59:37|XrSdkBranch|1.3.x
+  XrManagementRevision: 
+  PerfTestsPackageRevision: 
+  DeviceRuntimeVersion: 
+  Username: antone.franich
+  RenderPipeline: renderpipeline|BuiltInRenderer
+  AntiAliasing: 0
+  FfrLevel: 
+  TestsRevision: 
+  TestsRevisionDate: 
+  TestsBranch: 
+  AndroidTargetArchitecture: AndroidTargetArchitecture|ARM64
+  UrpPackageVersionInfo: UrpPackageName|com.unity.render-pipelines.universal|UrpVersion|7.3.1|UrpRevision|3e04a9da77f7658a9bec4a2a8de3a4a40b169865
+  HdrpPackageVersionInfo: 

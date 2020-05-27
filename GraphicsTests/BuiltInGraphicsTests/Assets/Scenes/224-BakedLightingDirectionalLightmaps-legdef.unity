@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: 7cb5c1de806922d48948416f40edc883,
+  m_LightingDataAsset: {fileID: 112000004, guid: 7cb5c1de806922d48948416f40edc883,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &5
@@ -651,9 +651,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &39
 BoxCollider:
@@ -1012,3 +1012,5 @@ MonoBehaviour:
     PerPixelCorrectnessThreshold: 0
     AverageCorrectnessThreshold: 0.01
     UseHDR: 0
+    UseBackBuffer: 0
+    ImageResolution: 0

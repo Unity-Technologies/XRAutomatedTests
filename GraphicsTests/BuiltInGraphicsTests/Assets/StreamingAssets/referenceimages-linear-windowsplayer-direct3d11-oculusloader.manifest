@@ -1,0 +1,85 @@
+ManifestFileVersion: 0
+CRC: 2015085151
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 25019da0855cb0486d96b2d74feba7d4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2ed26e3ad9f6be9c24f85f5f5b54339d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/014-DynamicGeom.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/200-ShadCloseFit4-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/199-ShadCloseFit2-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/223-BakedLightingProbesVariousMats-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/071-TextureFormats.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/039-PixelLights.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/186-DefClearFlags-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/195-ShadStableFit1-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/197-ShadStableFit4-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/189-DynBatchDepthTex-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/GPUInstancing.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/216-TexScaleOffset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/064-ShadDirSoft-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/242-TextMeshCulling-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/067-Shadows-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/037-LightAlloc-Fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/241-RenderToCubeShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/082-TerrainSplatLit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/168-BlendStrips-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/234-StaticBatching.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/067-Shadows-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/141-PointShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/189-DynBatchDepthTex-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/167-TerrGrassFade.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/146-CookiesDef.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/068-ShadSoft-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/166-Terr30Trees.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/106-LayerCullDistances-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/195-ShadStableFit1-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/040-VertexLights.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/199-ShadCloseFit2-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/198-ShadCloseFit1-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/148-StaticBatchedTrees.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/061-ShadDir-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/087-TerrainTreeShadow.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/036-BlendModesSep.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/172-DynBatchVColors.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/197-ShadStableFit4-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/046-Projector.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/099-ScaledShadows.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/051-RenderToStaticCube.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/038-LightsAlpha-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/103-CameraDepthNormalTexture.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/189-DynBatchDepthTex-vlit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/224-BakedLightingDirectionalLightmaps-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/009-DisabledShadows-subset-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/224-BakedLightingDirectionalLightmaps-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/061-ShadDir-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/142-DefFwdShadows-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/143-LargeCoords.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/198-ShadCloseFit1-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/196-ShadStableFit2-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/013-ImmediateMode.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/168-BlendStrips-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/230-ShurikenColorSizeRotation-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/050-RenderToCubemap.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/005-CoordConvO.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/196-ShadStableFit2-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/215-GrabShared-subset.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/142-DefFwdShadows-fwd.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/041-VertexLightsSpec.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/223-BakedLightingProbesVariousMats-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/224-BakedLightingDirectionalLightmaps-legdef.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/037-LightAlloc-VLit.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/064-ShadDirSoft-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/068-ShadSoft-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/072-TextureFilters.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/200-ShadCloseFit4-def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/037-LightAlloc-Def.png
+- Assets/ReferenceImages/Linear/WindowsPlayer/Direct3D11/OculusLoader/009-DisabledShadows-subset-def.png
+Dependencies: []

@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Tests/Scenes/007_LitShaderMaps.unity
     guid: 7f2ec65906a47474383300df9c0aad69
   - enabled: 1
-    path: Assets/Tests/Scenes/011_UnlitSprites.unity
-    guid: c1aed1727cd63dd42882f4c9ebb99cf4
-  - enabled: 1
     path: Assets/Tests/Scenes/012_PBS_EnvironmentBRDF_Spheres.unity
     guid: fddcdd964deca1d42b2952f32f67f694
   - enabled: 1
@@ -47,9 +44,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tests/Scenes/023_Lighting_Mixed_Indirect.unity
     guid: 99da9ba2c3d1f4b1d92f851028bb7d0a
-  - enabled: 1
-    path: Assets/Tests/Scenes/024_Shader_PBRvalidation_Specular.unity
-    guid: 2b6b74b7929ae4191b3b936c12236e0a
   - enabled: 1
     path: Assets/Tests/Scenes/025_Shader_PBRvalidation_Metallic.unity
     guid: a770620fcd2f84f248d06edf3744b2c0
@@ -92,9 +86,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tests/Scenes/044_Lighting_ReflectionProbe.unity
     guid: 0feef353efdf045989e9c2b501774338
-  - enabled: 1
-    path: Assets/Tests/Scenes/046_Camera_OpaqueTexture.unity
-    guid: 2614aae0a36c9456b9e20ac481fbda4c
   - enabled: 1
     path: Assets/Tests/Scenes/047_Lighting_DirectionalCascades.unity
     guid: 4e49334e530744e0eaeaa5e3a7e874ca

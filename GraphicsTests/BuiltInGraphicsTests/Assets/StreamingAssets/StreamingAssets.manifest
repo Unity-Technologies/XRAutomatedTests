@@ -1,7 +1,0 @@
-ManifestFileVersion: 0
-CRC: 442474113
-AssetBundleManifest:
-  AssetBundleInfos:
-    Info_0:
-      Name: referenceimages-linear-windowsplayer-direct3d11-oculusloader
-      Dependencies: {}

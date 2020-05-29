@@ -1,13 +1,12 @@
 {
   "dependencies": {
-    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
-    "com.unity.ide.visualstudio": "2.0.0",
-    "com.unity.ide.vscode": "1.1.4",
-    "com.unity.test-framework": "1.1.10",
-    "com.unity.xr.legacyinputhelpers": "2.0.6",
-    "com.unity.xr.management": "3.0.5",
-    "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git#trunk",
-    "com.unity.xr.windowsmr": "3.0.0",
+    "com.unity.cli-config-manager": "https://github.com/Unity-Technologies/com.unity.cli-config-manager.git#trunk",
+    "com.unity.ide.visualstudio": "2.0.1",
+    "com.unity.ide.vscode": "1.2.1",
+    "com.unity.test-framework": "1.1.14",
+    "com.unity.xr.management": "3.2.10",
+    "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
+    "com.unity.xr.windowsmr": "3.1.5",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -40,14 +39,5 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "lock": {
-    "com.unity.cli-config-manager": {
-      "revision": "trunk",
-      "hash": "22ca87205d63e153daaa93397019f38cbfda9e95"
-    },
-    "com.unity.xr.tests.runtimesettings": {
-      "revision": "trunk",
-      "hash": "dd5032d203bd36f7d69832a256d61ea487144c49"
-    }
-  }
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

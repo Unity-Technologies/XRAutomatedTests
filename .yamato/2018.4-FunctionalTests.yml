@@ -1,7 +1,0 @@
-2018.4_FunctionalTests:
-  name: 2018.4_FunctionalTests
-  variables:
-    unityVERSION: "2018.4/staging"
-  dependencies:
-    - path: .yamato/2018.4-Functional-MockHMDTests.yml#2018.4_Functional_MockHMDTests
-      rerun: always

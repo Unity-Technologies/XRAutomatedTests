@@ -47,5 +47,15 @@
   },
   "testables": [
     "com.unity.testframework.graphics"
-  ]
+  ],
+  "lock": {
+    "com.unity.cli-config-manager": {
+      "revision": "trunk",
+      "hash": "5232037e20591534cb2dea90532fac55ec3ba939"
+    },
+    "com.unity.xr.tests.runtimesettings": {
+      "revision": "trunk",
+      "hash": "b75a643c44eaaec9d268199f3bceaf94f3d5bbe7"
+    }
+  }
 }

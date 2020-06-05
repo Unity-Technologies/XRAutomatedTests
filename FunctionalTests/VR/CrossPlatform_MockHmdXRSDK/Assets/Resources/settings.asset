@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109541344b8c3964ab8550e7bf2f29ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
   m_Name: settings
   m_EditorClassIdentifier: 
-  EnabledXrTarget: Mockhmdxrsdk
+  EnabledXrTarget: MockHMDXRSDK
   PlayerGraphicsApi: Direct3D11
   StereoRenderingMode: MultiPass
   StereoRenderingModeDesktop: 
@@ -21,3 +21,18 @@ MonoBehaviour:
   GraphicsJobs: 0
   SimulationMode: 
   ColorSpace: Gamma
+  PluginVersion: 
+  XrsdkRevision: 
+  XrManagementRevision: XrManagementPackageName|com.unity.xr.management|XrManagementVersion|3.2.11|XrManagementRevision|87eb81a67fb7df196980f9648e29d13fb475b67a
+  PerfTestsPackageRevision: 
+  DeviceRuntimeVersion: 
+  Username: antone.franich
+  RenderPipeline: renderpipeline|BuiltInRenderer
+  AntiAliasing: 2
+  FfrLevel: 
+  TestsRevision: 
+  TestsRevisionDate: 
+  TestsBranch: 
+  AndroidTargetArchitecture: AndroidTargetArchitecture|ARM64
+  UrpPackageVersionInfo: 
+  HdrpPackageVersionInfo: 

@@ -1,0 +1,3 @@
+DeviceGuid : d612553d-06b1-49ca-8938-e39ef80eb16f
+DeviceIdInstancePath: USB\VID_045E&PID_0659&MI_04\C&2766B56&0&0004
+DisableDevice : True

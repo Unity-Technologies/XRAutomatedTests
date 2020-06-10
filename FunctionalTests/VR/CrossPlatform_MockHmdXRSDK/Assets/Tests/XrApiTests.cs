@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 
@@ -22,7 +23,7 @@ public class XrApiTests : XrFunctionalTestBase
     public void VerifyXrDevice_IsPresent()
     {
         AssertNotUsingEmulation();
-        Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
+        Assert.IsTrue(XRDeviceisPresent(), "XR Device is not present");
     }
 
     [Ignore("Not working in XR SDK.")]
@@ -111,6 +112,20 @@ public class XrApiTests : XrFunctionalTestBase
     public void VerifyXrSettings_UseOcclusionMesh()
     {
         Assert.IsTrue(XRSettings.useOcclusionMesh);
+    }
+
+    public bool XRDeviceisPresent()
+    {
+        var xrDisplaySubsystems = new List<XRDisplaySubsystem>();
+        SubsystemManager.GetInstances<XRDisplaySubsystem>(xrDisplaySubsystems);
+        foreach (var xrDisplay in xrDisplaySubsystems)
+        {
+            if (xrDisplay.running)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 #if !XR_SDK

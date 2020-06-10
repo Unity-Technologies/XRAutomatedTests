@@ -26,3 +26,6 @@ TwoStickShooter/Pure/Library/AnnotationManager
 *.rsp
 
 *.user
+
+**/ProjectSettings/ProjectVersion.txt
+**/ProjectSettings/VersionControlSettings.asset

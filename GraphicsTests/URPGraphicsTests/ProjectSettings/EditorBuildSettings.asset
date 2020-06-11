@@ -87,6 +87,9 @@ EditorBuildSettings:
     path: Assets/Tests/Scenes/044_Lighting_ReflectionProbe.unity
     guid: 0feef353efdf045989e9c2b501774338
   - enabled: 1
+    path: Assets/Tests/Scenes/046_Camera_OpaqueTexture.unity
+    guid: 2614aae0a36c9456b9e20ac481fbda4c
+  - enabled: 1
     path: Assets/Tests/Scenes/047_Lighting_DirectionalCascades.unity
     guid: 4e49334e530744e0eaeaa5e3a7e874ca
   - enabled: 1

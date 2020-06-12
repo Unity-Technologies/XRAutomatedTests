@@ -6,14 +6,14 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent"}
+		Tags { "RenderType" = "Transparent" "Queue" = "Transparent"}
 		LOD 100
 
 		Pass
 		{
 			HLSLPROGRAM
 			#pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
+			#pragma exclude_renderers d3d11_9x
 			#pragma vertex vert
 			#pragma fragment frag
 			// make fog work
@@ -37,7 +37,7 @@
 			TEXTURE2D(_CameraOpaqueTexture);
 			SAMPLER(sampler_CameraOpaqueTexture_linear_clamp);
 
-			v2f vert (appdata v)
+			v2f vert(appdata v)
 			{
 				v2f o;
 				o.vertex = TransformObjectToHClip(v.vertex);
@@ -46,7 +46,7 @@
 				return o;
 			}
 
-			half4 frag (v2f i) : SV_Target
+			half4 frag(v2f i) : SV_Target
 			{
 				// sample the texture
 				half2 screenUV = i.screenUV.xy / i.screenUV.w;

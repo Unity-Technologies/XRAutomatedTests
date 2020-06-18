@@ -27,7 +27,7 @@ namespace com.unity.cliconfigmanager
 
 		UnityEditor.iOS.Xcode.PBXProject proj = new UnityEditor.iOS.Xcode.PBXProject();
 		proj.ReadFromString(File.ReadAllText(projPath));
-		string target = proj.GetUnityFrameworkTargetGuid();
+		string target = proj.TargetGuidByName("Unity-iPhone");
 
 		Directory.CreateDirectory(Path.Combine(pathToBuiltProject, "Libraries/Unity"));
 

@@ -1,23 +1,23 @@
-2019.3_Functional_MockHMDTests:
-  name: 2019.3_Functional_MockHMDTests
+2019.4_Functional_MockHMDTests:
+  name: 2019.4_Functional_MockHMDTests
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
   dependencies:
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_MultiPass
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_MultiPass
       rerun: always
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_SinglePass
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_SinglePass
       rerun: always
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_Instancing
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_Instancing
       rerun: always
 
-2019.3_XrPlaymode_MockHMD_MultiPass:
-  name: 2019.3_XrPlaymode_MockHMD_MultiPass
+2019.4_XrPlaymode_MockHMD_MultiPass:
+  name: 2019.4_XrPlaymode_MockHMD_MultiPass
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"
@@ -37,14 +37,14 @@
       paths:
         - ".yamato/build/logs/**"
 
-2019.3_XrPlaymode_MockHMD_SinglePass:
-  name: 2019.3_XrPlaymode_MockHMD_SinglePass
+2019.4_XrPlaymode_MockHMD_SinglePass:
+  name: 2019.4_XrPlaymode_MockHMD_SinglePass
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"
@@ -64,14 +64,14 @@
       paths:
         - ".yamato/build/logs/**"
 
-2019.3_XrPlaymode_MockHMD_Instancing:
+2019.4_XrPlaymode_MockHMD_Instancing:
   name: 2019.3_XrPlaymode_MockHMD_Instancing
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"

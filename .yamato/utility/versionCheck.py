@@ -2,11 +2,12 @@ import sys
 import subprocess
 import utility.JenkinsJob
 import utility.ArtifactoryFileTransferManager
-
+import re
 default_branch = "trunk"
 
 def check_for_new_version(branch=default_branch):
     filename = "last_unity_" + branch
+    filename = re.sub(r'[\\/:"*?<>|]+', "", filename)
     last_checked_version = utility.ArtifactoryFileTransferManager.download_hash_file(filename)
     latest_unity_version = subprocess.check_output(
         "/home/bokken/.local/bin/unity-downloader-cli -u "+branch+" -c editor --skip-download --fast", shell=True)

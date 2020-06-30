@@ -13,13 +13,13 @@ def check_for_new_version(branch=default_branch):
     if last_checked_version == latest_unity_version:
         print("No new version! Exiting!")
         return "no_new_version"
-    else:
-        print("New version detected: " + latest_unity_version)
 
-        new_version_file = open(filename, "w+")
-        new_version_file.write(latest_unity_version)
-        new_version_file.close()
-        utility.ArtifactoryFileTransferManager.upload_file(filename)
+    print("New version detected: " + latest_unity_version)
 
-        return latest_unity_version
+    new_version_file = open(filename, "w+")
+    new_version_file.write(latest_unity_version)
+    new_version_file.close()
+    utility.ArtifactoryFileTransferManager.upload_file(filename)
+
+    return latest_unity_version
 

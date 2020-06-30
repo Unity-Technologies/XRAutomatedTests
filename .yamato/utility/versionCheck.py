@@ -9,7 +9,7 @@ def check_for_new_version(branch=default_branch):
     filename = "last_unity_" + branch
     last_checked_version = utility.ArtifactoryFileTransferManager.download_hash_file(filename)
     latest_unity_version = subprocess.check_output(
-        "/home/bokken/.local/bin/unity-downloader-cli -u trunk -c editor --skip-download --fast", shell=True)
+        "/home/bokken/.local/bin/unity-downloader-cli -u "+branch+" -c editor --skip-download --fast", shell=True)
     if last_checked_version == latest_unity_version:
         print("No new version! Exiting!")
         return "no_new_version"

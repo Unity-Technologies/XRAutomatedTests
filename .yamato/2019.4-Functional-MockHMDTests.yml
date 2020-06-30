@@ -65,7 +65,7 @@
         - ".yamato/build/logs/**"
 
 2019.4_XrPlaymode_MockHMD_Instancing:
-  name: 2019.3_XrPlaymode_MockHMD_Instancing
+  name: 2019.4_XrPlaymode_MockHMD_Instancing
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest

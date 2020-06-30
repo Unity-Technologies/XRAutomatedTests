@@ -1,5 +1,5 @@
 2019.4_RunAllTests:
-  name: 2019.4.RunAllTests
+  name: 2019.4_RunAllTests
   variables:
     unityVERSION: "2019.4/staging"
   dependencies:

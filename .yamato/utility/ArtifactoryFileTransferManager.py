@@ -8,12 +8,12 @@ artifactory_default_user = os.getenv("ARTIFACTORY-USERNAME")
 artifactory_default_key = os.getenv("ARTIFACTORY-APIKEY")
 
 #set the default location.
-artifactory_default_url = 'https://artifactory.prd.it.unity3d.com//'
+artifactory_default_url = 'https://artifactory.internal.unity3d.com/'
 #Set the content-type
 content_type = 'application/java-archive'
 
 #set the name of the repo we're storing our files in.
-artifactory_repo = 'xrautomatedtests'
+artifactory_repo = 'mobile-performance-tests'
 
 #upload a file to artifactory.
 def upload_file(filename, artifactory_url=artifactory_default_url, artifactory_user=artifactory_default_user,

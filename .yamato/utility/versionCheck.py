@@ -4,11 +4,7 @@ import utility.JenkinsJob
 import utility.ArtifactoryFileTransferManager
 import re
 
-default_branch = ""
-
-def check_for_new_version(branch=default_branch):
-    if branch == "":
-        exit(1)
+def check_for_new_version(branch):
 
     filename = "last_unity_" + branch
     filename = re.sub(r'[\\/:"*?<>|]+', "", filename)

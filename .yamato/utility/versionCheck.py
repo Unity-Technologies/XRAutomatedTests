@@ -4,9 +4,12 @@ import utility.JenkinsJob
 import utility.ArtifactoryFileTransferManager
 import re
 
-default_branch = "trunk"
+default_branch = ""
 
 def check_for_new_version(branch=default_branch):
+    if branch == "":
+        exit(1)
+
     filename = "last_unity_" + branch
     filename = re.sub(r'[\\/:"*?<>|]+', "", filename)
     last_checked_version = utility.ArtifactoryFileTransferManager.download_hash_file(filename)

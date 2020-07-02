@@ -1,14 +1,14 @@
 #rename to trigger jobs.
 
-2019.3-NightlyTrigger:
-  name: 2019.3-NightlyTrigger
+2019.4-NightlyTrigger:
+  name: 2019.4-NightlyTrigger
   agent:
       type: Unity::VM
       image: cds-ops/ubuntu-18.04-base:stable
       flavor: b1.small
   triggers:
     recurring:
-      - branch: "2019.3"
+      - branch: "2019.4"
         frequency: 4 * * ?
   commands:
     - |
@@ -24,8 +24,8 @@
       import utility.versionCheck
       import utility.YamatoJobs
 
-      unity_version = utility.versionCheck.check_for_new_version("2019.3/staging")
+      unity_version = utility.versionCheck.check_for_new_version("2019.4/staging")
       print("New unity version:" + unity_version)
       if unity_version != "no_new_version":
         project_id = utility.YamatoJobs.get_project_id("xr.xrautomatedtests")
-        utility.YamatoJobs.start_yamato_job(project_id,"2019.3-RunAllTests.yml","2019.3/staging","2019.3_RunAllTests")'
+        utility.YamatoJobs.start_yamato_job(project_id,"2019.4-RunAllTests.yml","2019.4/staging","2019.4_RunAllTests")'

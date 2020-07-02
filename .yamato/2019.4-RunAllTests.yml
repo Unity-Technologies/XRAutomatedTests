@@ -1,21 +1,21 @@
-2019.3_RunAllTests:
-  name: 2019.3_RunAllTests
+2019.4_RunAllTests:
+  name: 2019.4_RunAllTests
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
   dependencies:
-    - path: .yamato/2019.3-FunctionalTests.yml#2019.3_FunctionalTests
+    - path: .yamato/2019.4-FunctionalTests.yml#2019.4_FunctionalTests
       rerun: always
-    - path: .yamato/2019.3-RunAllTests.yml#2019.3_RunAllTests_OnJenkins
+    - path: .yamato/2019.4-RunAllTests.yml#2019.4_RunAllTests_OnJenkins
       rerun: always
 
-2019.3_RunAllTests_OnJenkins:
-  name: 2019.3_RunAllTests_OnJenkins
+2019.4_RunAllTests_OnJenkins:
+  name: 2019.4_RunAllTests_OnJenkins
   agent:
     type: Unity::VM
     image: cds-ops/ubuntu-18.04-base:stable
     flavor: b1.small
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
   commands:
     - |
       #switch to our scripts folder.
@@ -29,7 +29,7 @@
       import os
       import sys
 
-      project_name = "2019.3-Run_All_Tests_new"
+      project_name = "2019.4-Run_All_Tests"
 
       #Retrieve the UnityVERSION, and then determine what type of version it is. (IE: BranchName, UnityVersion, or UnityRevision)
       version = os.getenv("unityVERSION")

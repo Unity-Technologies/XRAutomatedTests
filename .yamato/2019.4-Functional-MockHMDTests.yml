@@ -1,29 +1,29 @@
-2019.3_Functional_MockHMDTests:
-  name: 2019.3_Functional_MockHMDTests
+2019.4_Functional_MockHMDTests:
+  name: 2019.4_Functional_MockHMDTests
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
   dependencies:
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_MultiPass
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_MultiPass
       rerun: always
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_SinglePass
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_SinglePass
       rerun: always
-    - path: .yamato/2019.3-Functional-MockHMDTests.yml#2019.3_XrPlaymode_MockHMD_Instancing
+    - path: .yamato/2019.4-Functional-MockHMDTests.yml#2019.4_XrPlaymode_MockHMD_Instancing
       rerun: always
 
-2019.3_XrPlaymode_MockHMD_MultiPass:
-  name: 2019.3_XrPlaymode_MockHMD_MultiPass
+2019.4_XrPlaymode_MockHMD_MultiPass:
+  name: 2019.4_XrPlaymode_MockHMD_MultiPass
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
-    --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+    --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs
     --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
     --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
@@ -32,27 +32,25 @@
     - |
       cd .yamato
       python installUnityAndBuildPlayer.py
-    - curl -s https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat --output utr.bat
-    - ./utr --suite=playmode --platform=StandaloneWindows64 --player-load-path=.yamato/build/players --artifacts_path=.yamato/build/test-results --player-connection-ip=auto
   artifacts:
     logs:
       paths:
-        - ".yamato/build/test-results/**"
+        - ".yamato/build/logs/**"
 
-2019.3_XrPlaymode_MockHMD_SinglePass:
-  name: 2019.3_XrPlaymode_MockHMD_SinglePass
+2019.4_XrPlaymode_MockHMD_SinglePass:
+  name: 2019.4_XrPlaymode_MockHMD_SinglePass
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
-    --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+    --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs
     --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
     --extra-editor-arg=\"-stereorenderingpath=SinglePass\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
@@ -61,27 +59,25 @@
     - |
       cd .yamato
       python installUnityAndBuildPlayer.py
-    - curl -s https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat --output utr.bat
-    - ./utr --suite=playmode --platform=StandaloneWindows64 --player-load-path=.yamato/build/players --artifacts_path=.yamato/build/test-results --player-connection-ip=auto
   artifacts:
     logs:
       paths:
-        - ".yamato/build/test-results/**"
+        - ".yamato/build/logs/**"
 
-2019.3_XrPlaymode_MockHMD_Instancing:
-  name: 2019.3_XrPlaymode_MockHMD_Instancing
+2019.4_XrPlaymode_MockHMD_Instancing:
+  name: 2019.4_XrPlaymode_MockHMD_Instancing
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
       flavor: b1.large
   variables:
-    unityVERSION: "2019.3/staging"
+    unityVERSION: "2019.4/staging"
     includeAndroid: "False"
     includeUWP: "False"
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
-        --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+        --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs
         --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
         --extra-editor-arg=\"-stereorenderingpath=Instancing\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
@@ -90,9 +86,7 @@
     - |
       cd .yamato
       python installUnityAndBuildPlayer.py
-    - curl -s https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat --output utr.bat
-    - ./utr --suite=playmode --platform=StandaloneWindows64 --player-load-path=.yamato/build/players --artifacts_path=.yamato/build/test-results --player-connection-ip=auto
   artifacts:
     logs:
       paths:
-        - ".yamato/build/test-results/**"
+        - ".yamato/build/logs/**"

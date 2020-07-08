@@ -11,6 +11,7 @@
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "0.1.3-preview.18",
     "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
+    "xr.sdk.functionaltests":"https://github.com/Unity-Technologies/xr.sdk.functionaltests.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -43,5 +44,8 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "disableProjectUpdate": true
+  "disableProjectUpdate": true,
+  "testables": [
+    "xr.sdk.functionaltests"
+  ]
 }

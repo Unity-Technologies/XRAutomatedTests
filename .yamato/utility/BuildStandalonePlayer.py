@@ -22,7 +22,7 @@ def install_unity(version, includeAndroid="False", includeUWP="False", includeIL
 
 #Download the latest version of UTR.bat from the internal artifactory.
 def download_utr():
-    url = 'https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat'
+    url = 'https://artifactory.prd.it.unity3d.com/artifactory/xrautomatedtests/utr/utr.bat'
 
     print("Downloading UTR from: " + url)
     utr_bat = requests.get(url)

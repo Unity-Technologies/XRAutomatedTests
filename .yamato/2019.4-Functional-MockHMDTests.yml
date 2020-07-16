@@ -33,7 +33,7 @@
       cd .yamato
       python installUnityAndBuildPlayer.py
   artifacts:
-    logs:
+    2019.4_XrPlaymode_MockHMD_MultiPass-logs:
       paths:
         - ".yamato/build/logs/**"
 
@@ -60,7 +60,7 @@
       cd .yamato
       python installUnityAndBuildPlayer.py
   artifacts:
-    logs:
+    2019.4_XrPlaymode_MockHMD_SinglePass-logs:
       paths:
         - ".yamato/build/logs/**"
 
@@ -87,6 +87,6 @@
       cd .yamato
       python installUnityAndBuildPlayer.py
   artifacts:
-    logs:
+    2019.4_XrPlaymode_MockHMD_Instancing-logs:
       paths:
         - ".yamato/build/logs/**"

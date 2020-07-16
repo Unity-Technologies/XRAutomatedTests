@@ -41,9 +41,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass-build-players:
       paths:
@@ -80,9 +78,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass-build-players:
       paths:
@@ -120,9 +116,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass-build-players:
       paths:
@@ -160,9 +154,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass-build-players:
       paths:
@@ -199,9 +191,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview-build-players:
       paths:
@@ -239,9 +229,7 @@
     - dir
     - |
       cd .yamato
-      python -c "
-            import CheckIfPlayerExistsAndBuild
-            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
+      python -c "import CheckIfPlayerExistsAndBuild; CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()"
   artifacts:
     2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview-build-players:
       paths:

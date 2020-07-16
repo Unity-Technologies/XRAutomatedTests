@@ -6,6 +6,7 @@
     "com.unity.test-framework": "1.1.14",
     "com.unity.xr.management": "3.2.10",
     "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
+    "xr.sdk.functionaltests": "https://github.com/Unity-Technologies/xr.sdk.functionaltests.git",
     "com.unity.xr.windowsmr": "3.1.5",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -39,5 +40,8 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+  "testables":[
+    "xr.sdk.functionaltests"
+  ],
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

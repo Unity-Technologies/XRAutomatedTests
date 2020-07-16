@@ -11,6 +11,7 @@
     "com.unity.xr.management": "3.2.11",
     "com.unity.xr.mock-hmd": "1.0.1-preview.7",
     "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
+    "xr.sdk.functionaltests": "https://github.com/Unity-Technologies/xr.sdk.functionaltests.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -43,5 +44,8 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
+  "testables":[
+    "xr.sdk.functionaltests"
+  ],
   "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

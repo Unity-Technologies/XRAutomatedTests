@@ -27,7 +27,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
             --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
@@ -64,7 +64,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsSmokeTest --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
             --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
@@ -102,7 +102,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
             --extra-editor-arg=\"-executeMethod Setup.SetupAll\""

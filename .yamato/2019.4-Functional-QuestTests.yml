@@ -32,7 +32,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
@@ -69,7 +69,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=SinglePass\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
@@ -106,7 +106,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\"
@@ -145,7 +145,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
             --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
@@ -182,7 +182,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
             --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
@@ -220,7 +220,7 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
             --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
             --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
          	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""

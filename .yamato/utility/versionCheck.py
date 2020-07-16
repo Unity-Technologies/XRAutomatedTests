@@ -19,7 +19,7 @@ def check_for_new_version(branch):
     # If there isn't a new version exit with that status.
     if last_checked_version == latest_unity_version:
         print("No new version! Exiting!")
-        return "no_new_version"
+        return ""
 
     # If there is a new version, update the hash file and upload it.
     # Objectively, we should consider doing this at the end of a successful test run,

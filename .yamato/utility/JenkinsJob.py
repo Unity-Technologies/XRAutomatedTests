@@ -96,7 +96,8 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                         if result == "None":
                             print("Job still running, sleep for 5 seconds and check again...")
                             time.sleep(5)
-                        # If it's SUCCESS, FAILURE, or ABORTED then return those values, to be handled as appropriate outside of the job.
+                        # If it's SUCCESS, FAILURE, or ABORTED then return those values, to be handled
+                        # as appropriate outside of the job.
                         elif result == "SUCCESS":
                             print("Job Completed Successfully!")
                             jobRunning = False
@@ -118,16 +119,26 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
 # After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job.
 def download_sbr_artifacts(jobURL, userName=temp_username,
                            APIkey=temp_APIKEY):
-    # Add the Jenkins username and APIKeys to the URL.
-    url = jobURL.replace("http://", "http://" + userName + ":" + APIkey + "@")
-    print("Download SBR Artifacts from: " + url)
+    # If we can't get the artifacts for 10 minutes, give up and fail this job.
+    timeout = 600
 
-    # Start the Web request to retrieve these.
-    r = requests.get(url, stream=True)
-    print("SBR Artifact download request returned status code of:" + str(r.status_code))
-    # If we didn't find the artifacts, return false. Otherwise return the result status of the web request.
-    if r.status_code == 404:
-        print("No File Found at: " + url)
-        return False
-    else:
-        return r
+    # How often should we check for the artifacts?
+    interval = 30
+
+    start = time.time()
+    while (time.time()-start) < timeout:
+        # Add the Jenkins username and APIKeys to the URL.
+        url = jobURL.replace("http://", "http://" + userName + ":" + APIkey + "@")
+        print("Download SBR Artifacts from: " + url)
+
+        # Start the Web request to retrieve these.
+        r = requests.get(url, stream=True)
+        print("SBR Artifact download request returned status code of:" + str(r.status_code))
+        # If we didn't find the artifacts, return false. Otherwise return the result status of the web request.
+        if r.status_code != 200:
+            print("SBR Artifact download from " + url+" returned status code of "+r.status_code)
+            time.sleep(interval)
+        else:
+            return r
+
+    return False

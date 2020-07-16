@@ -36,7 +36,9 @@
     - dir
     - |
       cd .yamato
-      python CheckIfPlayerExistsAndBuild.py
+      python -c '
+            import CheckIfPlayerExistsAndBuild;
+            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()'
   artifacts:
     2019.4_URPGraphicsTests_OculusQuest_OpenGLES3_Linear_Multipass-build-players:
       paths:
@@ -73,7 +75,9 @@
     - dir
     - |
       cd .yamato
-      python CheckIfPlayerExistsAndBuild.py
+      python -c '
+            import CheckIfPlayerExistsAndBuild;
+            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()'
   artifacts:
     2019.4_URPGraphicsSmokeTests_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass-build-players:
       paths:
@@ -111,7 +115,9 @@
     - dir
     - |
       cd .yamato
-      python CheckIfPlayerExistsAndBuild.py
+      python -c '
+            import CheckIfPlayerExistsAndBuild;
+            CheckIfPlayerExistsAndBuild.CheckIfPlayerExistsAndBuild()'
   artifacts:
     2019.4_URPGraphicsSmokeTests_OculusQuest_XRSDK_Vulkan_Linear_MultiPass-build-players:
       paths:

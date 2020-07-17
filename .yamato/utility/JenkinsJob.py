@@ -139,7 +139,7 @@ def download_sbr_artifacts(jobURL, userName=temp_username,
         print("SBR Artifact download request returned status code of:" + str(r.status_code))
         # If we didn't find the artifacts, return false. Otherwise return the result status of the web request.
         if r.status_code != 200:
-            print("SBR Artifact download from " + url+" returned status code of "+r.status_code)
+            print("SBR Artifact download from " + url+" returned status code of "+str(r.status_code))
             time.sleep(interval)
         else:
             return r

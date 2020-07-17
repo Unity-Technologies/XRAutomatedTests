@@ -10,7 +10,6 @@ import utility.BuildStandalonePlayer
 
 
 def main():
-
     # Get the latest unity version hash
     currentUnityHash = utility.versionCheck.get_latest_version(os.getenv('unityVERSION'))
     print("Branch " + os.getenv('unityVERSION') + " latest hash is: " + currentUnityHash)
@@ -96,4 +95,5 @@ def main():
             exit(1);
 
 
-main()
+if __name__ == "__main__":
+    main()

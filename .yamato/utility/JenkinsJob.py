@@ -13,9 +13,10 @@ branches = ["trunk", "2020.1/staging", "2019.4/staging", "2018.4/staging"]
 default_queue_timeout = 3600  # 60 minutes
 
 
-# Determine what type of version this is.
-# This is only used when passing the value along to our pre-existing Jenkins Jobs.
 def parse_version_for_jenkins(unityVERSION):
+    """Determine what type of version this is.
+        This is only used when passing the value along to our pre-existing Jenkins Jobs."""
+
     # Is it a known branch?
     if unityVERSION in branches:
         return "unityBranchName"
@@ -27,9 +28,10 @@ def parse_version_for_jenkins(unityVERSION):
         return "unityRevision"
 
 
-# Start a Jenkins job by using the Rest API to trigger it remotely.
 def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete=False, userName=temp_username,
                       APIkey=temp_APIKEY, jobToken=temp_JobToken, queue_timeout=default_queue_timeout):
+    """Start a Jenkins job by using the Rest API to trigger it remotely."""
+
     # Set the base URL with out shared username and APIKey.
     url = "http://" + userName + ":" + APIkey + "@xrtest.hq.unity3d.com:8080/job/" + jobName + "/buildWithParameters?"
 
@@ -116,9 +118,10 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                             # Mark this job as a failure in Yamato.
 
 
-# After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job.
 def download_sbr_artifacts(jobURL, userName=temp_username,
                            APIkey=temp_APIKEY):
+    """After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job."""
+
     # If we can't get the artifacts for 10 minutes, give up and fail this job.
     timeout = 600
 

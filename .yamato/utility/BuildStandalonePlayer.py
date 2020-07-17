@@ -4,11 +4,11 @@ import os
 import subprocess
 
 
-# Download and install the requested Unity version with the requested components.
-# This requires a pre-install of unity-downloader-cli.
-# A future improvement would be to install unity-downloader-cli if it hasn't been.
 def install_unity(version, includeAndroid="False", includeUWP="False", includeIL2CPP="False", includeIOS="False"):
-    # -unity-downloader-cli -u trunk -c editor --wait  --published --fast
+    """Download and install the requested Unity version with the requested components.
+        This requires a pre-install of unity-downloader-cli.
+        A future improvement would be to install unity-downloader-cli if it hasn't been."""
+
     components = "-c editor"
     if includeAndroid.lower() == "true":
         components = components + " -c Android"
@@ -23,8 +23,8 @@ def install_unity(version, includeAndroid="False", includeUWP="False", includeIL
                             shell=True)
 
 
-# Download the latest version of UTR.bat from the internal artifactory.
 def download_utr():
+    """Download the latest version of UTR.bat from the internal artifactory."""
     url = 'https://artifactory.internal.unity3d.com/core-automation/tools/utr-standalone/utr.bat'
 
     print("Downloading UTR from: " + url)
@@ -39,8 +39,8 @@ def download_utr():
         exit(1)
 
 
-# Build a player with the setting specified by the cmd variable.
 def build_player(cmd):
+    """Build a player with the setting specified by the cmd variable."""
     download_utr()
     command = "utr.bat " + cmd
     print("cmd: " + command)

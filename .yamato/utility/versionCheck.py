@@ -5,8 +5,9 @@ import utility.ArtifactoryFileTransferManager
 import re
 
 
-# Check to see if there is a new version of the specified branch.
 def check_for_new_version(branch):
+    """Check to see if there is a new version of the specified branch."""
+
     # Set a file name appriopriate to that branch.
     filename = "last_unity_" + branch
     # Cleanup the filename
@@ -35,8 +36,8 @@ def check_for_new_version(branch):
     return latest_unity_version
 
 
-# Get the has of the latest version of the specified branch.
 def get_latest_version(branch):
+    """Get the has of the latest version of the specified branch."""
     latest_unity_version = subprocess.check_output(
         "unity-downloader-cli -u " + branch + " -c editor --skip-download --fast", shell=True).strip()
     latest_unity_version = str(latest_unity_version)[2:-1]

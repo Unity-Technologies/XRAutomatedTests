@@ -10,10 +10,11 @@ known_projects = {
 }
 
 
-# Start a Yamato job by sending web requests to the Yamato endpoint.
 def start_yamato_job(project_number, yaml_file_name, branch_name, job_name, revision=os.getenv("GIT_REVISION"),
                      environmentVariables="[]",
                      apikey=global_apikey, isbearerkey=False):
+    """Start a Yamato job by sending web requests to the Yamato endpoint."""
+
     job_definition = "/projects/" + project_number + "/revisions/" + revision \
                      + "/job-definitions/.yamato%2F" + yaml_file_name + "%23" + job_name
 
@@ -49,9 +50,10 @@ def start_yamato_job(project_number, yaml_file_name, branch_name, job_name, revi
     return False
 
 
-# Used to check the status of a job. This a utility function that isn't used yet,
-# but will be needed if we need to monitor an active job.
 def get_job(job_number, apikey=global_apikey, isbearerkey=False):
+    """Used to check the status of a job. This a utility function that isn't used yet,
+        but will be needed if we need to monitor an active job."""
+
     keytype = "ApiKey"
     if isbearerkey:
         keytype = "Bearer"
@@ -71,9 +73,9 @@ def get_job(job_number, apikey=global_apikey, isbearerkey=False):
     return False
 
 
-# Returns the project ID, This is a required part of the web requests to start a job and check on its status.
-# Technically this could be retrieved by iterating through every project on Yamato and check it's name against
-# the requested name. However that would take much longer than this approach.
 def get_project_id(project_name, apikey=global_apikey, isbearerkey=False):
+    """Returns the project ID, This is a required part of the web requests to start a job and check on its status.
+        Technically this could be retrieved by iterating through every project on Yamato and check it's name against
+        the requested name. However that would take much longer than this approach."""
     if project_name in known_projects:
         return known_projects[project_name]

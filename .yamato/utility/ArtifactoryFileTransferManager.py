@@ -16,10 +16,11 @@ content_type = 'application/java-archive'
 artifactory_repo = 'xrautomatedtests'
 
 
-# upload a file to artifactory.
 def upload_file(filename, artifactoryPath="", artifactory_url=artifactory_default_url,
                 artifactory_user=artifactory_default_user,
                 artifactory_key=artifactory_default_key):
+    """upload a file to artifactory."""
+
     # filename requires the file to be in the current operating folder.
     # Unfortunately this an area in which python seems to be bit wonky.
 
@@ -50,8 +51,9 @@ def upload_file(filename, artifactoryPath="", artifactory_url=artifactory_defaul
         return r.json()['downloadUri']
 
 
-# Download the latest hash(version number) file from Artifactory
 def download_hash_file(filename, artifactory_url=artifactory_default_url):
+    """Download the latest hash(version number) file from Artifactory"""
+
     # No login credentials required to download as far as I can tell.
     # this seems odd, but it may be because we're in network.
     url = artifactory_url + '/' + artifactory_repo + '/' + filename
@@ -69,9 +71,10 @@ def download_hash_file(filename, artifactory_url=artifactory_default_url):
         print("File downloaded successfully! Hash contained within: " + previousVersionChecked)
         return previousVersionChecked
 
-#Check to see if a file already exists on our artifactory.
+
 def does_file_already_exist(filename, artifactory_url=artifactory_default_url):
     url = artifactory_url + '/' + artifactory_repo + '/' + filename
+    """Check to see if a file already exists on our artifactory."""
 
     print("URL To Check: " + url)
 

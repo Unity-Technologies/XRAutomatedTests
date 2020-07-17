@@ -9,7 +9,8 @@ import io
 import utility.BuildStandalonePlayer
 
 
-def CheckIfPlayerExistsAndBuild():
+def main():
+
     # Get the latest unity version hash
     currentUnityHash = utility.versionCheck.get_latest_version(os.getenv('unityVERSION'))
     print("Branch " + os.getenv('unityVERSION') + " latest hash is: " + currentUnityHash)
@@ -93,3 +94,6 @@ def CheckIfPlayerExistsAndBuild():
         # Ideally there would be a Yamato status for cancelled, but I'm unsure how to exit with it right now.
         if result != "SUCCESS":
             exit(1);
+
+
+main()

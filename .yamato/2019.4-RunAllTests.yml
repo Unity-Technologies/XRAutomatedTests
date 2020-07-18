@@ -5,6 +5,8 @@
   dependencies:
     - path: .yamato/2019.4-FunctionalTests.yml#2019.4_FunctionalTests
       rerun: always
+    - path: .yamato/2019.4-GraphicsTests.yml#2019.4_GraphicsTests
+      rerun: always
     - path: .yamato/2019.4-RunAllTests.yml#2019.4_RunAllTests_OnJenkins
       rerun: always
 

@@ -1,0 +1,242 @@
+2019.4_Functional_QuestTests:
+  name: 2019.4_Functional_QuestTests
+  variables:
+    unityVERSION: 2019.4/staging
+  dependencies:
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass
+      rerun: always
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass
+      rerun: always
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass
+      rerun: always
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass
+      rerun: always
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview
+      rerun: always
+    - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview
+      rerun: always
+
+2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass:
+  name: 2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
+            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass:
+  name: 2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
+            --extra-editor-arg=\"-stereorenderingpath=SinglePass\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_OpenGLES3_Linear_SinglePass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass:
+  name: 2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
+            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\"
+         	--extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+
+2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass:
+  name: 2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
+            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_MultiPass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview:
+  name: 2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
+            --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_XRSDK_OpenGLES3_Linear_Multiview-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+
+2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview:
+  name: 2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
+            --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
+         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Functional_OculusQuest_XRSDK_Vulkan_Linear_Multiview-test-results:
+      paths:
+        - ".yamato/testResults/**"

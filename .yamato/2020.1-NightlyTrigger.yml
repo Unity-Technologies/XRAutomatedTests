@@ -6,7 +6,10 @@
       flavor: b1.small
   triggers:
     recurring:
-      - branch: "2020.1"
+      - unityVersion: "2020.1/staging"
+      - yamatoFileName: "2020.1-RunAllTests.yml"
+      - yamatoBranch: "2020.1"
+      - yamatoJobName: "2020.1-RunAllTests"
         frequency: 4 * * ?
   commands:
     - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple

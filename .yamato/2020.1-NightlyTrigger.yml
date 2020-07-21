@@ -12,7 +12,7 @@
     unityVersion: "2020.1/staging"
     yamatoFileName: "2020.1-RunAllTests.yml"
     yamatoBranch: "2020.1"
-    yamatoJobName: "2020.1-RunAllTests"
+    yamatoJobName: "2020.1_RunAllTests"
   commands:
     - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
     - |

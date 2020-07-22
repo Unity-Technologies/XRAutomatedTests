@@ -71,3 +71,21 @@ def download_hash_file(filename, artifactory_url=artifactory_default_url):
         previousVersionChecked = r.text
         print("File downloaded successfully! Hash contained within: " + previousVersionChecked)
         return previousVersionChecked
+
+
+def does_file_already_exist(filename, artifactory_url=artifactory_default_url):
+    url = artifactory_url + '/' + artifactory_repo + '/' + filename
+    """Check to see if a file already exists on our artifactory."""
+
+    print("URL To Check: " + url)
+
+    r = requests.head(url)
+    # If we were able to download the file return the version hash from within it.
+    # otherwise let the user know we didn't find the file.
+    if r.status_code == 404:
+        error = "No File Found at: " + url
+        print(error)
+        return False, ""
+    else:
+        print("File exists at: " + url)
+        return True, url

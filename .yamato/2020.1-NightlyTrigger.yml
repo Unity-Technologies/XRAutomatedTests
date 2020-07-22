@@ -1,31 +1,20 @@
-#rename to trigger jobs.
-
 2020.1-NightlyTrigger:
   name: 2020.1-NightlyTrigger
   agent:
       type: Unity::VM
-      image: cds-ops/ubuntu-18.04-base:stable
+      image: mobile/android-execution-r19:stable
       flavor: b1.small
   triggers:
     recurring:
       - branch: "2020.1"
         frequency: 4 * * ?
+  variables:
+    unityVersion: "2020.1/staging"
+    yamatoFileName: "2020.1-RunAllTests.yml"
+    yamatoBranch: "2020.1"
+    yamatoJobName: "2020.1_RunAllTests"
   commands:
+    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
     - |
-      #switch to our scripts folder.
       cd .yamato
-
-      #Manually install required python packages.
-      pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple --user
-      pip install requests
-
-      python -c '
-      import os
-      import utility.versionCheck
-      import utility.YamatoJobs
-
-      unity_version = utility.versionCheck.check_for_new_version("2020.1/staging")
-      print("New unity version:" + unity_version)
-      if unity_version != "no_new_version":
-        project_id = utility.YamatoJobs.get_project_id("xr.xrautomatedtests")
-        utility.YamatoJobs.start_yamato_job(project_id,"2020.1-RunAllTests.yml","2020.1","2020.1_RunAllTests")'
+      python CheckForAndTriggerNightlyBuild.py

@@ -4,17 +4,28 @@ import utility.JenkinsJob
 import utility.ArtifactoryFileTransferManager
 import re
 
-def check_for_new_version(branch):
 
+def check_for_new_version(branch):
+    """Check to see if there is a new version of the specified branch."""
+
+    # Set a file name appriopriate to that branch.
     filename = "last_unity_" + branch
+    # Cleanup the filename
     filename = re.sub(r'[\\/:"*?<>|]+', "", filename)
+    # download the file containing the last checked hash if it exxists in our artifactory repo.
     last_checked_version = utility.ArtifactoryFileTransferManager.download_hash_file(filename)
-    latest_unity_version = subprocess.check_output(
-        "/home/bokken/.local/bin/unity-downloader-cli -u " + branch + " -c editor --skip-download --fast", shell=True)
+
+    # get the latest unity version.
+    latest_unity_version = get_latest_version(branch)
+    # If there isn't a new version exit with that status.
     if last_checked_version == latest_unity_version:
         print("No new version! Exiting!")
-        return "no_new_version"
+        return ""
 
+    # If there is a new version, update the hash file and upload it.
+    # Objectively, we should consider doing this at the end of a successful test run,
+    # rather than immediately when a new version is detected. Though I can see arguements
+    # for both approaches.
     print("New version detected: " + latest_unity_version)
 
     new_version_file = open(filename, "w+")
@@ -24,3 +35,10 @@ def check_for_new_version(branch):
 
     return latest_unity_version
 
+
+def get_latest_version(branch):
+    """Get the has of the latest version of the specified branch."""
+    latest_unity_version = subprocess.check_output(
+        "unity-downloader-cli -u " + branch + " -c editor --skip-download --fast", shell=True).strip()
+    latest_unity_version = str(latest_unity_version)[2:-1]
+    return latest_unity_version

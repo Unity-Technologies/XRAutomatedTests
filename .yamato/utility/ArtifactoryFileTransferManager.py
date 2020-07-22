@@ -65,7 +65,8 @@ def download_hash_file(filename, artifactory_url=artifactory_default_url):
     # otherwise let the user know we didn't find the file.
     if r.status_code == 404:
         error = "No File Found at: " + url
-        return "404"
+        print(error)
+        return ""
     else:
         previousVersionChecked = r.text
         print("File downloaded successfully! Hash contained within: " + previousVersionChecked)
@@ -83,7 +84,8 @@ def does_file_already_exist(filename, artifactory_url=artifactory_default_url):
     # otherwise let the user know we didn't find the file.
     if r.status_code == 404:
         error = "No File Found at: " + url
-        return False
+        print(error)
+        return False, ""
     else:
         print("File exists at: " + url)
-        return url
+        return True, url

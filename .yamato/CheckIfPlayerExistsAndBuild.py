@@ -27,7 +27,7 @@ def main():
     filename = currentUnityHash + "_" + gitRevisionHash + "_" + cmdHash + ".zip"
     playerUrl = "" + os.getenv("artifactPath") + "/" + filename
     # check artifactory to see if this player has already been built.
-    PlayerExists = utility.ArtifactoryFileTransferManager.does_file_already_exist(playerUrl)
+    PlayerExists, returnUrl = utility.ArtifactoryFileTransferManager.does_file_already_exist(playerUrl)
 
     # if it hasn't trigger the process of building the player.
     if PlayerExists is False:
@@ -59,8 +59,8 @@ def main():
         if result is not False:
             playerUrl = result
     else:
-        print("Player Already Exists at:" + PlayerExists)
-        playerUrl = PlayerExists
+        print("Player Already Exists at:" + returnUrl)
+        playerUrl = returnUrl
 
     # Check to see if we want to run the tests in this player.
     if os.getenv("runTests") == "True":

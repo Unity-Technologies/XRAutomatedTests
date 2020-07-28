@@ -14,7 +14,7 @@
     yamatoBranch: "2019.4"
     yamatoJobName: "2019.4_RunAllTests"
   commands:
-    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - |
       cd .yamato
       python CheckForAndTriggerNightlyBuild.py

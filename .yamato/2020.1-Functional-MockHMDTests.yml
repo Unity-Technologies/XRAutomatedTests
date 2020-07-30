@@ -25,7 +25,7 @@
     --extra-editor-arg=\"-enabledxrtarget=MockHMDXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
     --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
-    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
     - |
       cd .yamato
@@ -52,7 +52,7 @@
         --extra-editor-arg=\"-enabledxrtarget=MockHMDXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
         --extra-editor-arg=\"-stereorenderingpath=SinglePassInstanced\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
-    - pip install unity-downloader-cli --extra-index-url https://artifactory.internal.unity3d.com/api/pypi/common-python/simple
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
     - |
       cd .yamato

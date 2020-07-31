@@ -16,20 +16,21 @@
     type: Unity::VM
     image: sdet/gamecode_win10:latest
     flavor: b1.large
-  interpreter: bash
+  interpreter: python
   variables:
     unityVERSION: "2019.4/staging"
   commands:
     - |
-      #switch to our scripts folder.
-      cd .yamato
-
-      python -c '
       import utility.JenkinsJob
       import os
       import sys
 
       project_name = "2019.4-Run_All_Tests"
+
+      #switch to our yamato directory
+      dirname = os.path.dirname(__file__)
+      filename = os.path.join(dirname, '.yamato')
+      os.chdir(path)
 
       #Retrieve the UnityVERSION, and then determine what type of version it is. (IE: BranchName, UnityVersion, or UnityRevision)
       version = os.getenv("unityVERSION")

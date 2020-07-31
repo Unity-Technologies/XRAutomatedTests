@@ -27,10 +27,7 @@
 
 
       #switch to our yamato directory
-      outputDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity')
-      print(os.listdir(outputDir))
-
-      yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity/.yamato')
+      yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato')
 
       os.chdir(yamatoDir)
 

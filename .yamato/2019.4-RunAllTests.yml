@@ -19,6 +19,7 @@
   interpreter: python
   variables:
     unityVERSION: "2019.4/staging"
+    jenkinsJob: "2019.4-Run_All_Tests"
   commands:
     - |
       import os
@@ -31,7 +32,7 @@
       #however python doesn't know where to find the JenkinsJob python file until we add the utility directory to the path.
       import JenkinsJob
 
-      project_name = "2019.4-Run_All_Tests"
+      project_name = os.getenv("jenkinsJob")
 
       #Retrieve the UnityVERSION, and then determine what type of version it is. (IE: BranchName, UnityVersion, or UnityRevision)
       version = os.getenv("unityVERSION")

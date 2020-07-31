@@ -21,23 +21,13 @@
     unityVERSION: "2019.4/staging"
   commands:
     - |
-
       import os
-
-
       import sys
 
-      #switch to our yamato directory
-      utilityDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato\\utility')
-      yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato')
-      sys.path.append(utilityDir)
+      #Add .yamato\utlity folder to the path, so we can easily add the python file within it.
+      sys.path.append(os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato\\utility'))
 
-
-      os.chdir(yamatoDir)
-
-      print(os.getcwd())
-      os.listdir(os.getcwd())
-
+      #import the JenkinJob python file.
       import JenkinsJob
 
       project_name = "2019.4-Run_All_Tests"

@@ -27,7 +27,7 @@
       #switch to our yamato directory
       dirname = os.path.dirname(__file__)
       filename = os.path.join(dirname, '.yamato')
-      os.chdir(path)
+      os.chdir(filename)
 
       import utility.JenkinsJob as JenkinsJob
       import sys

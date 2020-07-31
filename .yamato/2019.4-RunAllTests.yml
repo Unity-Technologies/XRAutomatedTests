@@ -27,8 +27,12 @@
 
 
       #switch to our yamato directory
-      filename = os.path.join(os.getenv("YAMATO_WORK_DIR"), '.yamato')
-      os.chdir(filename)
+      outputDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity')
+      print(os.listdir(outputDir))
+
+      yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity/.yamato')
+
+      os.chdir(yamatoDir)
 
       import utility.JenkinsJob as JenkinsJob
       import sys

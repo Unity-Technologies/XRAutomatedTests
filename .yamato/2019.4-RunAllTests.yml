@@ -44,4 +44,4 @@
 
       #check to see if we were successful, otherwise exit out with an error.
       if result != "SUCCESS":
-        sys.exit("Jenkins Job: " + project_name +" has failed!") '
+        sys.exit("Jenkins Job: " + project_name +" has failed!")

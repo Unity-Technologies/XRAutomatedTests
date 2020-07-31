@@ -28,8 +28,9 @@
       import sys
 
       #switch to our yamato directory
+      utilityDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato\\utility')
       yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato')
-      sys.path.append(yamatoDir)
+      sys.path.append(utilityDir)
 
 
       os.chdir(yamatoDir)

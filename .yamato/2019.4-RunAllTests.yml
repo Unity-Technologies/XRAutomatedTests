@@ -14,17 +14,15 @@
   name: 2019.4_RunAllTests_OnJenkins
   agent:
     type: Unity::VM
-    image: cds-ops/ubuntu-18.04-base:stable
-    flavor: b1.small
+    image: sdet/gamecode_win10:latest
+    flavor: b1.large
+  interpreter: bash
   variables:
     unityVERSION: "2019.4/staging"
   commands:
     - |
       #switch to our scripts folder.
       cd .yamato
-
-      #Install the python library requests, so that we can make web requests.
-      pip install requests
 
       python -c '
       import utility.JenkinsJob

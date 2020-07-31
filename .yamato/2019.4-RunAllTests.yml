@@ -22,13 +22,14 @@
   commands:
     - |
 
+      import os
+
       #switch to our yamato directory
       dirname = os.path.dirname(__file__)
       filename = os.path.join(dirname, '.yamato')
       os.chdir(path)
 
       import utility.JenkinsJob as JenkinsJob
-      import os
       import sys
 
       project_name = "2019.4-Run_All_Tests"

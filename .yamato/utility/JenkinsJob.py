@@ -69,9 +69,6 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
             getR = requests.get(prettyJSON, auth=(userName, APIkey))
             json = getR.json()
             # Did the response have the executable url we were looking for?
-            if json is None:
-                print("Job Failed to Start!")
-                break
             if "executable" in json:
                 if "url" in json["executable"]:
                     jobURL = json["executable"]["url"]

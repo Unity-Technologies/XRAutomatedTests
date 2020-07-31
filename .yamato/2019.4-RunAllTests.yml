@@ -27,7 +27,8 @@
       #Add .yamato\utlity folder to the path, so we can easily add the python file within it.
       sys.path.append(os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato\\utility'))
 
-      #import the JenkinJob python file.
+      #import the JenkinJob python file. Ideally we would import this with the other statements above.
+      #however python doesn't know where to find the JenkinsJob python file until we add the utility directory to the path.
       import JenkinsJob
 
       project_name = "2019.4-Run_All_Tests"

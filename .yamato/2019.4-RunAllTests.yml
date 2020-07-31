@@ -25,16 +25,19 @@
       import os
 
 
+      import sys
+
       #switch to our yamato directory
       yamatoDir = os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato')
+      sys.path.append(yamatoDir)
+
 
       os.chdir(yamatoDir)
 
       print(os.getcwd())
       os.listdir(os.getcwd())
 
-      import utility.JenkinsJob as JenkinsJob
-      import sys
+      import JenkinsJob
 
       project_name = "2019.4-Run_All_Tests"
 

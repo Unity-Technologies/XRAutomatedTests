@@ -11,36 +11,37 @@
 2020.1_RunAllTests_OnJenkins:
   name: 2020.1_RunAllTests_OnJenkins
   agent:
-    type: Unity::VM
-    image: cds-ops/ubuntu-18.04-base:stable
-    flavor: b1.small
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.large
+  interpreter: python
   variables:
     unityVERSION: "2020.1/staging"
+    jenkinsJob: "2020.1-Run_All_Tests"
   commands:
     - |
-      #switch to our scripts folder.
-      cd .yamato
-
-      #Install the python library requests, so that we can make web requests.
-      pip install requests
-
-      python -c '
-      import utility.JenkinsJob
       import os
       import sys
 
-      project_name = "2020.1-Run_All_Tests"
+      #Add .yamato\utlity folder to the path, so we can easily add the python file within it.
+      sys.path.append(os.path.join(os.getenv("YAMATO_WORK_DIR"), 'unity\\xr.xrautomatedtests\\.yamato\\utility'))
+
+      #import the JenkinJob python file. Ideally we would import this with the other statements above.
+      #however python doesn't know where to find the JenkinsJob python file until we add the utility directory to the path.
+      import JenkinsJob
+
+      project_name = os.getenv("jenkinsJob")
 
       #Retrieve the UnityVERSION, and then determine what type of version it is. (IE: BranchName, UnityVersion, or UnityRevision)
       version = os.getenv("unityVERSION")
-      versionType = utility.JenkinsJob.parse_version_for_jenkins(version)
+      versionType = JenkinsJob.parse_version_for_jenkins(version)
       #Set the versionType and Version for passing to the Jenkins job.
       params = { versionType : version }
 
       #Invoke the Jenkins Job, and wait for it to complete before returning.
-      result = utility.JenkinsJob.start_jenkins_job(project_name,params,True,True)
+      result = JenkinsJob.start_jenkins_job(project_name,params,True,True)
       print("result:" + result)
 
       #check to see if we were successful, otherwise exit out with an error.
       if result != "SUCCESS":
-        sys.exit("Jenkins Job: " + project_name +" has failed!") '
+        sys.exit("Jenkins Job: " + project_name +" has failed!")

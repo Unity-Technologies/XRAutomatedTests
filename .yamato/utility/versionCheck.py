@@ -45,9 +45,9 @@ def get_latest_version(branch):
 
 
 def check_for_new_package_version(branch, packageName, packageRepoURL):
-    """Check to see if there is a new version of the specified branch."""
+    """Check to see if there is a new version of a package at packageRepoURL with the specified branch."""
 
-    # Set a file name appriopriate to that branch.
+    # Set a file name appriopriate to that branch and packageName.
     filename = "last_package_" + packageName + "_" + branch
     # Cleanup the filename
     filename = re.sub(r'[\\/:"*?<>|]+', "", filename)
@@ -62,9 +62,6 @@ def check_for_new_package_version(branch, packageName, packageRepoURL):
         return ""
 
     # If there is a new version, update the hash file and upload it.
-    # Objectively, we should consider doing this at the end of a successful test run,
-    # rather than immediately when a new version is detected. Though I can see arguements
-    # for both approaches.
     print("New version detected: " + latest_version)
 
     new_version_file = open(filename, "w+")
@@ -76,7 +73,7 @@ def check_for_new_package_version(branch, packageName, packageRepoURL):
 
 
 def get_latest_package_version(branch, packageRepoURL):
-    """Get the has of the latest version of the specified branch."""
+    """Get the hash of the latest version of the specified branch at packageRepoURL."""
     command = "git ls-remote " + packageRepoURL + " " + branch
     latest_package_version = subprocess.check_output(
         command, shell=True).strip()

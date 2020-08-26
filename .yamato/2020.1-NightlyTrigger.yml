@@ -18,3 +18,25 @@
     - |
       cd .yamato
       python CheckForAndTriggerNightlyBuild.py
+
+2020.1-NightlyTrigger-WindowsMR-Package:
+  name: 2020.1-NightlyTrigger-WindowsMR-Package
+  agent:
+    type: Unity::VM
+    image: mobile/android-execution-r19:stable
+    flavor: b1.small
+  triggers:
+    recurring:
+      - branch: "2020.1"
+        frequency: 10 * * ?
+  variables:
+    unityVersion: "2020.1"
+    PackageRepoBranch: "2020.1-Staging"
+    packageName: "WindowsMR"
+    packageRepoURL: "git@github.cds.internal.unity3d.com:unity/xr.sdk.windowsmr.git"
+    jenkinsJob: "Nightly-Package-WindowsMR-2020.1_WMR_Functional_Tests"
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - |
+      cd .yamato
+      python CheckForNewPackageAndTriggerNightly.py

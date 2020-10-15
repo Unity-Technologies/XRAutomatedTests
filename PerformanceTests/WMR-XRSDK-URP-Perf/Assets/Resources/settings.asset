@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f911024ffd6bc4ea77b70450e92f89, type: 3}
+  m_Name: settings
+  m_EditorClassIdentifier: 
+  EnabledXrTarget: WindowsMRXRSDK
+  PlayerGraphicsApi: Direct3D11
+  StereoRenderingMode: MultiPass
+  StereoRenderingModeDesktop: 
+  StereoRenderingModeAndroid: 
+  MtRendering: 1
+  GraphicsJobs: 0
+  SimulationMode: WindowsMR
+  ColorSpace: Gamma
+  PluginVersion: 
+  XrsdkRevision: 
+  XrManagementRevision: XrManagementPackageName|com.unity.xr.management|XrManagementVersion|3.0.6|XrManagementRevision|a62b2f2d210898ad2b462b1f6e5e753efc4ff0ca
+  PerfTestsPackageRevision: PerfTestsPackageName|xr.sdk.oculus.performancetests|PerfTestsVersion|0.1.0-preview|PerfTestsRevision|unavailable
+  DeviceRuntimeVersion: 
+  Username: ejaz.mudassir
+  RenderPipeline: renderpipeline|UniversalRenderPipelineAsset
+  AntiAliasing: 0
+  FfrLevel: ffrlevel|0
+  TestsRevision: 
+  TestsRevisionDate: 
+  TestsBranch: 
+  AndroidTargetArchitecture: AndroidTargetArchitecture|ARM64
+  UrpPackageVersionInfo: UrpPackageName|com.unity.render-pipelines.universal|UrpVersion|7.3.1|UrpRevision|3e04a9da77f7658a9bec4a2a8de3a4a40b169865
+  HdrpPackageVersionInfo: 

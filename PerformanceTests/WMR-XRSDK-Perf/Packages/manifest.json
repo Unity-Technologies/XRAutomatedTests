@@ -3,16 +3,16 @@
     "com.unity.cli-config-manager": "https://github.com/Unity-Technologies/com.unity.cli-config-manager.git#trunk",
     "com.unity.ide.visualstudio": "2.0.3",
     "com.unity.ide.vscode": "1.2.2",
-    "com.unity.render-pipelines.universal": "7.5.1",
-    "com.unity.ugui": "1.0.0",
     "com.unity.xr.legacyinputhelpers": "2.0.4",
+    "com.unity.xr.management": "3.2.16",
+    "com.unity.xr.windowsmr": "2.4.1",
     "com.unity.test-framework": "1.1.18",
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "1.0.2-preview",
     "com.unity.xr.oculusperformanceutility": "https://github.com/Unity-Technologies/com.unity.xr.oculusperformanceutility.git",
-	  "com.unity.xr.test-framework.performance": "https://github.com/Unity-Technologies/com.unity.xr.test-framework.performance.git",
+    "com.unity.xr.test-framework.performance": "https://github.com/Unity-Technologies/com.unity.xr.test-framework.performance.git",
     "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
-    "xr.sdk.oculus.performancetests": "https://github.com/Unity-Technologies/xr.sdk.oculus.performancetests.git#urp",
+    "xr.sdk.oculus.performancetests": "https://github.com/Unity-Technologies/xr.sdk.oculus.performancetests.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
@@ -45,8 +45,9 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "testables": [
-    "xr.sdk.oculus.performancetests",
-    "com.unity.xr.test-framework.performance"
+    "com.unity.xr.test-framework.performance",
+    "com.unity.xr.oculusperformanceutility",
+    "xr.sdk.oculus.performancetests"
   ],
   "disableProjectUpdate": true
 }

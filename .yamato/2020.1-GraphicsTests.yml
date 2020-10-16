@@ -1,7 +1,5 @@
 2020.1_GraphicsTests:
   name: 2020.1_GraphicsTests
-  variables:
-    unityVERSION: 2020.1
   dependencies:
     - path: .yamato/2020.1-Graphics-RiftTests.yml#2020.1_Graphics_RiftTests
       rerun: always

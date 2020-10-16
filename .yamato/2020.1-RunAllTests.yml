@@ -12,8 +12,8 @@
     - path: .yamato/2020.1-RunAllTests.yml#2020.1_RunAllTests_OnJenkins
       rerun: always
 
-2020.2_RunAllTests_OnJenkins:
-  name: 2020.2_RunAllTests_OnJenkins
+2020.1_RunAllTests_OnJenkins:
+  name: 2020.1_RunAllTests_OnJenkins
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest

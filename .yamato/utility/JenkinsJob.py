@@ -8,12 +8,15 @@ temp_username = os.getenv('JENKINSUSER')
 temp_APIKEY = os.getenv('JENKINSAPIKEY')
 temp_JobToken = os.getenv('JENKINSJOBTOKEN')
 
-branches = ["trunk", "2020.1/staging", "2019.3/staging", "2018.4/staging"]
+branches = ["trunk", "2020.1/staging", "2019.4/staging", "2018.4/staging"]
+
+default_queue_timeout = 3600  # 60 minutes
 
 
-# Determine what type of version this is.
-# This is only used when passing the value along to our pre-existing Jenkins Jobs.
 def parse_version_for_jenkins(unityVERSION):
+    """Determine what type of version this is.
+        This is only used when passing the value along to our pre-existing Jenkins Jobs."""
+
     # Is it a known branch?
     if unityVERSION in branches:
         return "unityBranchName"
@@ -25,9 +28,10 @@ def parse_version_for_jenkins(unityVERSION):
         return "unityRevision"
 
 
-# Start a Jenkins job by using the Rest API to trigger it remotely.
 def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete=False, userName=temp_username,
-                      APIkey=temp_APIKEY, jobToken=temp_JobToken):
+                      APIkey=temp_APIKEY, jobToken=temp_JobToken, queue_timeout=default_queue_timeout):
+    """Start a Jenkins job by using the Rest API to trigger it remotely."""
+
     # Set the base URL with out shared username and APIKey.
     url = "http://" + userName + ":" + APIkey + "@xrtest.hq.unity3d.com:8080/job/" + jobName + "/buildWithParameters?"
 
@@ -54,7 +58,7 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
         # Sleep for a safe period to get past the quite period?
 
         # Give it 10 minutes to try and determine the job's URL, then timeout if it hasn't
-        timeout = 600
+        timeout = queue_timeout
         timeout_time = datetime.datetime.now() + datetime.timedelta(seconds=timeout)
         JobRunning = False
         jobURL = ""
@@ -72,8 +76,8 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                     JobRunning = True
                     break
             # If not, go ahead and wait 5 seconds before trying again.
-            print("Job not started yet, sleeping for 5 seconds...")
-            time.sleep(5)
+            print("Job not started yet, sleeping for 30 seconds...")
+            time.sleep(30)
         # If we don't want to wait for the job to be complete, just return the job URL
         if waitForJobComplete is False:
             return jobURL
@@ -94,20 +98,50 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                         if result == "None":
                             print("Job still running, sleep for 5 seconds and check again...")
                             time.sleep(5)
-                        # If it's SUCCESS, FAILURE, or ABORTED then return those values, to be handled as appropriate outside of the job.
+                        # If it's SUCCESS, FAILURE, or ABORTED then return those values, to be handled
+                        # as appropriate outside of the job.
                         elif result == "SUCCESS":
                             print("Job Completed Successfully!")
                             jobRunning = False
-                            return result
+                            return result, jobURL
                             # collect artifacts here.
                             # mark job as successful.
                         elif result == "FAILURE":
                             print("Job Failed!")
                             jobRunning = False
-                            return result
+                            return result, jobURL
                             # Mark this job as a failure in Yamato.
                         elif result == "ABORTED":
                             print("Job ABORTED!")
                             jobRunning = False
-                            return result
+                            return result, jobURL
                             # Mark this job as a failure in Yamato.
+
+
+def download_sbr_artifacts(jobURL, userName=temp_username,
+                           APIkey=temp_APIKEY):
+    """After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job."""
+
+    # If we can't get the artifacts for 10 minutes, give up and fail this job.
+    timeout = 600
+
+    # How often should we check for the artifacts?
+    interval = 30
+
+    start = time.time()
+    while (time.time()-start) < timeout:
+        # Add the Jenkins username and APIKeys to the URL.
+        url = jobURL.replace("http://", "http://" + userName + ":" + APIkey + "@")
+        print("Download SBR Artifacts from: " + url)
+
+        # Start the Web request to retrieve these.
+        r = requests.get(url, stream=True)
+        print("SBR Artifact download request returned status code of:" + str(r.status_code))
+        # If we didn't find the artifacts, return false. Otherwise return the result status of the web request.
+        if r.status_code != 200:
+            print("SBR Artifact download from " + url+" returned status code of "+str(r.status_code))
+            time.sleep(interval)
+        else:
+            return r
+
+    return False

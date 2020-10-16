@@ -1,0 +1,159 @@
+2020.1_Functional_RiftTests:
+  name: 2020.1_Functional_RiftTests
+  variables:
+    unityVERSION: 2020.1
+  dependencies:
+    - path: .yamato/2020.1-Functional-RiftTests.yml#2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced
+      rerun: always
+    - path: .yamato/2020.1-Functional-RiftTests.yml#2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP
+      rerun: always
+    - path: .yamato/2020.1-Functional-RiftTests.yml#2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass
+      rerun: always
+    - path: .yamato/2020.1-Functional-RiftTests.yml#2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP
+      rerun: always
+
+2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced:
+  name: 2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Direct3D11
+            -stereorenderingpath=SinglePassInstanced -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP:
+  name: 2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Direct3D11
+            -stereorenderingpath=SinglePassInstanced -scriptingbackend=IL2CPP
+            -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass:
+  name: 2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Direct3D11
+            -stereorenderingpath=MultiPass -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+
+2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP:
+  name: 2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Direct3D11 -stereorenderingpath=MultiPass\"
+         	--extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP-test-results:
+      paths:
+        - ".yamato/testResults/**"

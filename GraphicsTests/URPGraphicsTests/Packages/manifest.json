@@ -2,7 +2,7 @@
   "dependencies": {
     "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.render-pipelines.universal": "8.2.0",
+    "com.unity.render-pipelines.universal": "7.5.1",
     "com.unity.test-framework.build": "0.0.1-preview.12",
     "com.unity.test-framework.utp-reporter": "1.0.0",
     "com.unity.test-framework": "1.1.14",

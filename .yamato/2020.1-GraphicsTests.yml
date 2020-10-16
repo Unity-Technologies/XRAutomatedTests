@@ -3,7 +3,5 @@
   variables:
     unityVERSION: 2020.1
   dependencies:
-    - path: .yamato/2020.1-Graphics-QuestTests.yml#2020.1_Graphics_QuestTests
-      rerun: always
     - path: .yamato/2020.1-Graphics-RiftTests.yml#2020.1_Graphics_RiftTests
       rerun: always

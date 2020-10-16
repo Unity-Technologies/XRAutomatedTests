@@ -1,7 +1,5 @@
 2020.1_Functional_RiftTests:
   name: 2020.1_Functional_RiftTests
-  variables:
-    unityVERSION: 2020.1
   dependencies:
     - path: .yamato/2020.1-Functional-RiftTests.yml#2020.1_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced
       rerun: always

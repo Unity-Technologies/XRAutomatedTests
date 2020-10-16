@@ -1,7 +1,5 @@
 2020.1_Functional_QuestTests:
   name: 2020.1_Functional_QuestTests
-  variables:
-    unityVERSION: 2020.1
   dependencies:
     - path: .yamato/2020.1-Functional-QuestTests.yml#2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK
       rerun: always

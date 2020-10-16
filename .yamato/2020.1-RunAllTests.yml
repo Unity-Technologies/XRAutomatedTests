@@ -3,17 +3,17 @@
 2020.1_RunAllTests:
   name: 2020.1_RunAllTests
   dependencies:
-    - path: .yamato/2020.1-FunctionalTests.yml#2020.2_FunctionalTests
+    - path: .yamato/2020.1-FunctionalTests.yml#2020.1_FunctionalTests
       rerun: always
-    - path: .yamato/2020.1-GraphicsTests.yml#2020.2_GraphicsTests
+    - path: .yamato/2020.1-GraphicsTests.yml#2020.1_GraphicsTests
       rerun: always
-    - path: .yamato/2020.1-PerformanceTests.yml#2020.2_PerformanceTests
+    - path: .yamato/2020.1-PerformanceTests.yml#2020.1_PerformanceTests
       rerun: always
-    - path: .yamato/2020.1-RunAllTests.yml#2020.2_RunAllTests_OnJenkins
+    - path: .yamato/2020.1-RunAllTests.yml#2020.1_RunAllTests_OnJenkins
       rerun: always
 
-2020.2_RunAllTests_OnJenkins:
-  name: 2020.2_RunAllTests_OnJenkins
+2020.1_RunAllTests_OnJenkins:
+  name: 2020.1_RunAllTests_OnJenkins
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest

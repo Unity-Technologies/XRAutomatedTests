@@ -47,5 +47,6 @@
   "disableProjectUpdate": true,
   "testables": [
     "com.unity.testframework.graphics"
-  ]
+  ],
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates"
 }

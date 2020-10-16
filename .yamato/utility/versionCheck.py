@@ -5,7 +5,7 @@ import utility.ArtifactoryFileTransferManager
 import re
 
 
-def check_for_new_version(branch):
+def check_for_new_version(branch, isPackage=False):
     """Check to see if there is a new version of the specified branch."""
 
     # Set a file name appriopriate to that branch.
@@ -16,9 +16,9 @@ def check_for_new_version(branch):
     last_checked_version = utility.ArtifactoryFileTransferManager.download_hash_file(filename)
 
     # get the latest unity version.
-    latest_unity_version = get_latest_version(branch)
+    latest_version = get_latest_version(branch)
     # If there isn't a new version exit with that status.
-    if last_checked_version == latest_unity_version:
+    if last_checked_version == latest_version:
         print("No new version! Exiting!")
         return ""
 
@@ -26,14 +26,14 @@ def check_for_new_version(branch):
     # Objectively, we should consider doing this at the end of a successful test run,
     # rather than immediately when a new version is detected. Though I can see arguements
     # for both approaches.
-    print("New version detected: " + latest_unity_version)
+    print("New version detected: " + latest_version)
 
     new_version_file = open(filename, "w+")
-    new_version_file.write(latest_unity_version)
+    new_version_file.write(latest_version)
     new_version_file.close()
     utility.ArtifactoryFileTransferManager.upload_file(filename)
 
-    return latest_unity_version
+    return latest_version
 
 
 def get_latest_version(branch):

@@ -24,8 +24,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
     --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp
-    --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
-    --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+    --extra-editor-arg=\"-enabledxrtarget=MockHMD -playergraphicsAPI=Direct3D11 -stereorenderingpath=MultiPass
+    -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -51,8 +51,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
     --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp
-    --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
-    --extra-editor-arg=\"-stereorenderingpath=SinglePass\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+    --extra-editor-arg=\"-enabledxrtarget=MockHMD -playergraphicsAPI=Direct3D11 -stereorenderingpath=SinglePass
+    -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -78,8 +78,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=StandaloneWindows64
         --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp
-        --extra-editor-arg=\"-enabledxrtarget=MockHMD\" --extra-editor-arg=\"-playergraphicsAPI=Direct3D11\"
-        --extra-editor-arg=\"-stereorenderingpath=Instancing\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+        --extra-editor-arg=\"-enabledxrtarget=MockHMD -playergraphicsAPI=Direct3D11 -stereorenderingpath=Instancing
+        -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir

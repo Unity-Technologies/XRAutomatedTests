@@ -5,8 +5,10 @@ import subprocess
 
 
 def CloneGitRepo_GitHub(githubURL, branch, output=""):
-    subprocess.check_output("cd " + output + " && git clone " + githubURL + " -b " + branch + " ",
-                            shell=True)
 
-    subprocess.check_output("cd " + output + " && dir",
+    CloneCMD = "git clone " + githubURL + " -b " + branch + ""
+    print("Cloing Git Repo With Command: " + CloneCMD)
+    print("Cloning Into Folder at: "+output)
+
+    subprocess.check_output("cd " + output + " && "+CloneCMD,
                             shell=True)

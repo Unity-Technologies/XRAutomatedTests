@@ -14,6 +14,40 @@
     - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OpenVRRift_Instancing_new
       rerun: always
 
+2019.4_XrFunc_Oculus_BlockSplosion:
+  name: 2019.4_XrFunc_Oculus_BlockSplosion
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Functional/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../BlockSplosion/OculusBlockSplosion --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only"
+    commands:
+      - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+      - |
+        python SetupSpecialWorkspace_BlockSplosion.py
+        cd .yamato
+        python CheckIfPlayerExistsAndBuild.py
+      artifacts:
+        2019.4_XrFunc_Oculus_BlockSplosion-players:
+          paths:
+            - ".yamato/build/players/**"
+        2019.4_XrFunc_Oculus_BlockSplosion-build-logs:
+          paths:
+            - ".yamato/build/logs/**"
+        2019.4_XrFunc_Oculus_BlockSplosion-test-results:
+          paths:
+            - ".yamato/testResults/**"
+
 2019.4_XrPlaymode_OculusRift_MultiPass_new:
   name: 2019.4_XrPlaymode_OculusRift_MultiPass_new
   agent:
@@ -35,7 +69,6 @@
             -stereorenderingpath=MultiPass -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
@@ -71,7 +104,6 @@
             -stereorenderingpath=SinglePass -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
@@ -107,7 +139,6 @@
             -stereorenderingpath=Instancing -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
@@ -143,7 +174,6 @@
             -stereorenderingpath=MultiPass -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
@@ -179,7 +209,6 @@
             -stereorenderingpath=SinglePass -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
@@ -215,7 +244,6 @@
             -stereorenderingpath=Instancing -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-    - dir
     - |
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py

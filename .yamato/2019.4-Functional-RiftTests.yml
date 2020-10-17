@@ -1,13 +1,17 @@
 2019.4_Functional_RiftTests:
   name: 2019.4_Functional_RiftTests
   dependencies:
-    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OculusRift_MultiPass_new
       rerun: always
-    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_XRSDK_OculusRift_SinglePassInstanced_IL2CPP
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OculusRift_SinglePass_new
       rerun: always
-    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_XRSDK_OculusRift_MultiPass
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OculusRift_Instancing_new
       rerun: always
-    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_XRSDK_OculusRift_MultiPass_IL2CPP
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OpenVRRift_MultiPass_new
+      rerun: always
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OpenVRRift_SinglePass_new
+      rerun: always
+    - path: .yamato/2019.4-Functional-RiftTests.yml#2019.4_XrPlaymode_OpenVRRift_Instancing_new
       rerun: always
 
 2019.4_XrPlaymode_OculusRift_MultiPass_new:

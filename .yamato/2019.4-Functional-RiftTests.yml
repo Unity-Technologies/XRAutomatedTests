@@ -31,22 +31,22 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../BlockSplosion/OculusBlockSplosion --platform=StandaloneWindows64
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only"
-    commands:
-      - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
-      - |
-        python SetupSpecialWorkspace_BlockSplosion.py
-        cd .yamato
-        python CheckIfPlayerExistsAndBuild.py
-    artifacts:
-      2019.4_XrFunc_Oculus_BlockSplosion-players:
-        paths:
-          - ".yamato/build/players/**"
-      2019.4_XrFunc_Oculus_BlockSplosion-build-logs:
-        paths:
-          - ".yamato/build/logs/**"
-      2019.4_XrFunc_Oculus_BlockSplosion-test-results:
-        paths:
-          - ".yamato/testResults/**"
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - |
+      python SetupSpecialWorkspace_BlockSplosion.py
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_XrFunc_Oculus_BlockSplosion-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_XrFunc_Oculus_BlockSplosion-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_XrFunc_Oculus_BlockSplosion-test-results:
+      paths:
+        - ".yamato/testResults/**"
 
 2019.4_XrPlaymode_OculusRift_MultiPass_new:
   name: 2019.4_XrPlaymode_OculusRift_MultiPass_new

@@ -34,7 +34,7 @@
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - |
-      python SetupSpecialWorkspace_BlockSplosion.py
+      python .yamato/SetupSpecialWorkspace_BlockSplosion.py
       cd .yamato
       python CheckIfPlayerExistsAndBuild.py
   artifacts:

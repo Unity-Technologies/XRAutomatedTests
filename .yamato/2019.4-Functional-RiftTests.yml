@@ -29,7 +29,7 @@
     includeUWP: "False"
     includeIL2CPP: "True"
     includeIOS: "False"
-    cmd: "--suite=playmode --testproject=../BlockSplosion/OculusBlockSplosion --platform=StandaloneWindows64
+    cmd: "--suite=playmode --testproject=../xr.oculus.tests/OculusBlockSplosion --platform=StandaloneWindows64
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only"
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple

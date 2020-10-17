@@ -28,9 +28,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=Android
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-            --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=MultiPass -colorspace=Linear -executeMethod Setup.SetupAll\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -65,9 +64,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsSmokeTest --platform=Android
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-            --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
+            --extra-editor-arg=\"-enabledxrtarget=Oculus -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=MultiPass -colorspace=Linear -executeMethod Setup.SetupAll\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -103,9 +101,8 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=Android
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-            --extra-editor-arg=\"-executeMethod Setup.SetupAll\""
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Vulkan
+            -stereorenderingpath=MultiPass -colorspace=Linear -executeMethod Setup.SetupAll\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir

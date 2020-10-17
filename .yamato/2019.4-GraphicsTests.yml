@@ -1,7 +1,7 @@
 2019.4_GraphicsTests:
   name: 2019.4_GraphicsTests
-  variables:
-    unityVERSION: "2019.4/staging"
   dependencies:
     - path: .yamato/2019.4-Graphics-QuestTests.yml#2019.4_Graphics_QuestTests
+      rerun: always
+    - path: .yamato/2019.4-Graphics-RiftTests.yml#2019.4_Graphics_RiftTests
       rerun: always

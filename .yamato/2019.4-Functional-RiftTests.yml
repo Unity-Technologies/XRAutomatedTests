@@ -37,16 +37,16 @@
         python SetupSpecialWorkspace_BlockSplosion.py
         cd .yamato
         python CheckIfPlayerExistsAndBuild.py
-      artifacts:
-        2019.4_XrFunc_Oculus_BlockSplosion-players:
-          paths:
-            - ".yamato/build/players/**"
-        2019.4_XrFunc_Oculus_BlockSplosion-build-logs:
-          paths:
-            - ".yamato/build/logs/**"
-        2019.4_XrFunc_Oculus_BlockSplosion-test-results:
-          paths:
-            - ".yamato/testResults/**"
+    artifacts:
+      2019.4_XrFunc_Oculus_BlockSplosion-players:
+        paths:
+          - ".yamato/build/players/**"
+      2019.4_XrFunc_Oculus_BlockSplosion-build-logs:
+        paths:
+          - ".yamato/build/logs/**"
+      2019.4_XrFunc_Oculus_BlockSplosion-test-results:
+        paths:
+          - ".yamato/testResults/**"
 
 2019.4_XrPlaymode_OculusRift_MultiPass_new:
   name: 2019.4_XrPlaymode_OculusRift_MultiPass_new

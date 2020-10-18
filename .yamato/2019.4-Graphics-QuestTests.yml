@@ -7,8 +7,8 @@
       rerun: always
     - path: .yamato/2019.4-Graphics-QuestTests.yml#2019.4_URPGraphicsSmokeTests_OculusQuest_XRSDK_OpenGLES3_Linear_MultiPass
       rerun: always
-    - path: .yamato/2019.4-Graphics-QuestTests.yml#2019.4_URPGraphicsTests_OculusQuest_XRSDK_Vulkan_Linear_MultiPass
-      rerun: always
+#    - path: .yamato/2019.4-Graphics-QuestTests.yml#2019.4_URPGraphicsTests_OculusQuest_XRSDK_Vulkan_Linear_MultiPass
+#      rerun: always
 
 2019.4_URPGraphicsTests_OculusQuest_OpenGLES3_Linear_Multipass:
   name: 2019.4_URPGraphicsTests_OculusQuest_OpenGLES3_Linear_Multipass

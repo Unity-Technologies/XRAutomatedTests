@@ -1,0 +1,117 @@
+2019.4_Graphics_RiftTests:
+  name: 2019.4_Graphics_RiftTests
+  dependencies:
+#    - path: .yamato/2019.4-Graphics-RiftTests.yml#2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new
+#      rerun: always
+    - path: .yamato/2019.4-Graphics-RiftTests.yml#2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new
+      rerun: always
+#    - path: .yamato/2019.4-Graphics-RiftTests.yml#2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new
+#      rerun: always
+
+2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new:
+  name: 2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Graphics/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/BuiltInGraphicsTests --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus -stereorenderingpath=SinglePass -colorspace=Linear
+            -executeMethod Setup.SetupAll\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_new-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new:
+  name: 2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Graphics/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/BuiltInGraphicsTests --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -stereorenderingpath=MultiPass -colorspace=Linear
+            -executeMethod Setup.SetupAll\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_GfxPlaymode_OculusRift_XRSDK_Linear_SinglePass_new-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new:
+  name: 2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Graphics/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/LightweightRenderer --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus -stereorenderingpath=SinglePass -colorspace=Linear
+            -executeMethod Setup.SetupAll\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_GfxPlaymode_OculusRift_Linear_SinglePass_LWRP_new-test-results:
+      paths:
+        - ".yamato/testResults/**"

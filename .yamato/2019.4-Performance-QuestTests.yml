@@ -1,0 +1,405 @@
+2019.4_Performance_QuestTests:
+  name: 2019.4_Performance_QuestTests
+  dependencies:
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64
+      rerun: always
+    - path: .yamato/2019.4-Performance-QuestTests.yml#2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64
+      rerun: always
+
+2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/BuiltIn-VR-Perf --editor-location=.Editor
+            --player-save-path=build/players --artifacts_path=build/logs --build-only 
+            --platform=Android --scripting-backend=il2cpp 
+            --extra-editor-arg=\"-enabledxrtargets=Oculus -playergraphicsapi=OpenGLES3 -stereoRenderingPath=MultiPass
+            -scriptingbackend=il2cpp -colorspace=Linear -ffrlevel=0 -androidtargetarchitecture=ARM64
+            -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/BuiltIn-VR-Perf --editor-location=.Editor
+           --player-save-path=build/players --artifacts_path=build/logs --build-only
+           --platform=Android --scripting-backend=il2cpp
+           --extra-editor-arg=\"-enabledxrtargets=Oculus -playergraphicsapi=OpenGLES3 -colorspace=Linear
+           -stereoRenderingPath=SinglePass -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+           -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_BuiltInRP_SinglePass_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/BuiltIn-VR-URP-Perf --editor-location=.Editor
+            --player-save-path=build/players --artifacts_path=build/logs --build-only
+            --platform=Android --scripting-backend=il2cpp
+            --extra-editor-arg=\"-enabledxrtargets=Oculus -playergraphicsapi=OpenGLES3 -colorspace=Linear
+            -stereoRenderingPath=MultiPass -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+            -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_BuiltInXR_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=OpenGLES3 -colorspace=Linear
+             -stereoRenderingPath=MultiPass -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=Vulkan -colorspace=Linear
+             -stereoRenderingPath=MultiPass -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_MultiPass_Vulkan_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=OpenGLES3 -colorspace=Linear
+             -stereoRenderingPath=Multiview -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=Vulkan -colorspace=Linear
+             -stereoRenderingPath=Multiview -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_BuiltInRP_Multiview_Vulkan_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-URP-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=OpenGLES3 -colorspace=Linear
+             -stereoRenderingPath=MultiPass -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_MultiPass_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-URP-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=OpenGLES3 -colorspace=Linear
+             -stereoRenderingPath=Multiview -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_OpenGLES3_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64:
+  name: 2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2019.4/Performance/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2019.4/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../PerformanceTests/Oculus-XRSDK-URP-Perf --editor-location=.Editor
+             --player-save-path=build/players --artifacts_path=build/logs --build-only
+             --platform=Android --scripting-backend=il2cpp
+             --extra-editor-arg=\"-enabledxrtargets=OculusXRSDK -playergraphicsapi=Vulkan -colorspace=Linear
+             -stereoRenderingPath=Multiview -scriptingbackend=il2cpp -androidtargetarchitecture=ARM64
+             -executeMethod Assets.Editor.RenderPerformancePrebuildStep.Setup -ffrlevel=0 -TESTSBRANCH=2019.4\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2019.4_Perf_OculusQuest_XRSDK_URP_Multiview_Vulkan_Linear_IL2CPP_ARM64-test-results:
+      paths:
+        - ".yamato/testResults/**"

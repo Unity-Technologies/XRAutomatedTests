@@ -37,7 +37,7 @@ def check_for_new_version(branch, isPackage=False):
 
 
 def get_latest_version(branch):
-    """Get the has of the latest version of the specified branch."""
+    """Get the hash of the latest version of the specified branch."""
     latest_unity_version = subprocess.check_output(
         "unity-downloader-cli -u " + branch + " -c editor --skip-download --fast", shell=True).strip()
     latest_unity_version = str(latest_unity_version)[2:-1]

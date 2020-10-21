@@ -19,7 +19,7 @@ def install_unity(version, includeAndroid="False", includeUWP="False", includeIL
     if includeIOS.lower() == "true":
         components = components + " -c iOS"
 
-    subprocess.check_output("unity-downloader-cli -u " + version + " " + components + " --wait --published --fast",
+    subprocess.check_output("unity-downloader-cli -u " + version + " " + components + " --wait --published",
                             shell=True)
 
 

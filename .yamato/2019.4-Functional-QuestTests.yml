@@ -1,7 +1,5 @@
 2019.4_Functional_QuestTests:
   name: 2019.4_Functional_QuestTests
-  variables:
-    unityVERSION: 2019.4/staging
   dependencies:
     - path: .yamato/2019.4-Functional-QuestTests.yml#2019.4_Functional_OculusQuest_OpenGLES3_Linear_Multipass
       rerun: always
@@ -32,10 +30,10 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=MultiPass -colorspace=Linear
+         	-scriptingbackend=mono -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -69,10 +67,10 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_BuiltInVR --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=Oculus\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=SinglePass\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=Oculus -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=SinglePass -colorspace=Linear
+         	-scriptingbackend=mono -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -107,10 +105,9 @@
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
             --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\"
-         	--extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=MultiPass -colorspace=Linear -scriptingbackend=mono
+         	-executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -145,10 +142,10 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
-            --extra-editor-arg=\"-stereorenderingpath=MultiPass\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Vulkan
+            -stereorenderingpath=MultiPass -colorspace=Linear -scriptingbackend=mono
+            -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -182,10 +179,10 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=OpenGLES3\"
-            --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=Multiview -colorspace=Linear -scriptingbackend=mono
+            -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir
@@ -220,10 +217,10 @@
     includeIL2CPP: "True"
     includeIOS: "False"
     cmd: "--suite=playmode --testproject=../FunctionalTests/VR/OculusXRSDK --platform=Android
-            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
-            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK\" --extra-editor-arg=\"-playergraphicsAPI=Vulkan\"
-            --extra-editor-arg=\"-stereorenderingpath=Multiview\" --extra-editor-arg=\"-colorspace=Linear\"
-         	--extra-editor-arg=\"-scriptingbackend=mono\" --extra-editor-arg=\"-executeMethod Assets.Editor.Build.CommandLineSetup\""
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Vulkan
+            -stereorenderingpath=Multiview -colorspace=Linear -scriptingbackend=mono
+            -executeMethod Assets.Editor.Build.CommandLineSetup\""
   commands:
     - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
     - dir

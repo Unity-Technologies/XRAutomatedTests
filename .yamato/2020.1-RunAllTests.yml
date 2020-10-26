@@ -1,9 +1,13 @@
+#split this out into 2020.2_RunAllYamatoTests and 2020.2_RunAllJenlinsTests
+
 2020.1_RunAllTests:
   name: 2020.1_RunAllTests
-  variables:
-    unityVERSION: "2020.1/staging"
   dependencies:
     - path: .yamato/2020.1-FunctionalTests.yml#2020.1_FunctionalTests
+      rerun: always
+    - path: .yamato/2020.1-GraphicsTests.yml#2020.1_GraphicsTests
+      rerun: always
+    - path: .yamato/2020.1-PerformanceTests.yml#2020.1_PerformanceTests
       rerun: always
     - path: .yamato/2020.1-RunAllTests.yml#2020.1_RunAllTests_OnJenkins
       rerun: always
@@ -16,7 +20,7 @@
       flavor: b1.large
   interpreter: python
   variables:
-    unityVERSION: "2020.1/staging"
+    unityVERSION: 2020.1
     jenkinsJob: "2020.1-Run_All_Tests"
   commands:
     - |

@@ -1,0 +1,157 @@
+2020.1_Functional_QuestTests:
+  name: 2020.1_Functional_QuestTests
+  dependencies:
+    - path: .yamato/2020.1-Functional-QuestTests.yml#2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK
+      rerun: always
+    - path: .yamato/2020.1-Functional-QuestTests.yml#2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP
+      rerun: always
+    - path: .yamato/2020.1-Functional-QuestTests.yml#2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK
+      rerun: always
+    - path: .yamato/2020.1-Functional-QuestTests.yml#2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP
+      rerun: always
+
+2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK:
+  name: 2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3 -androidtargetarchitecture=ARM64
+            -stereorenderingpath=MultiPass -scriptingbackend=Mono -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+
+2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP:
+  name: 2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=MultiPass -scriptingbackend=IL2CPP
+            -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_OculusQuest_MultiPass_XRSDK_IL2CPP-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK:
+  name: 2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=Mono2x --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3 -androidtargetarchitecture=ARM64
+            -stereorenderingpath=Multiview -scriptingbackend=Mono -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP:
+  name: 2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP
+  agent:
+      type: Unity::VM
+      image: mobile/android-execution-r19:stable
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Functional/Quest"
+    jenkinsJob: "SBR_Quest_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "True"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../FunctionalTests/VR/CrossPlatform_OculusXRSDK --platform=Android
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=OpenGLES3
+            -stereorenderingpath=Multiview -scriptingbackend=il2cpp -executeMethod Assets.Editor.Build.CommandLineSetup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_XrPlaymode_OculusQuest_Multiview_XRSDK_IL2CPP-test-results:
+      paths:
+        - ".yamato/testResults/**"

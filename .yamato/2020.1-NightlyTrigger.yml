@@ -1,15 +1,15 @@
 2020.1-NightlyTrigger:
   name: 2020.1-NightlyTrigger
   agent:
-      type: Unity::VM
-      image: mobile/android-execution-r19:stable
-      flavor: b1.small
+    type: Unity::VM
+    image: mobile/android-execution-r19:stable
+    flavor: b1.small
   triggers:
     recurring:
       - branch: "2020.1"
         frequency: 4 * * ?
   variables:
-    unityVersion: "2020.1/staging"
+    unityVersion: "2020.1"
     yamatoFileName: "2020.1-RunAllTests.yml"
     yamatoBranch: "2020.1"
     yamatoJobName: "2020.1_RunAllTests"
@@ -30,7 +30,7 @@
       - branch: "2020.1"
         frequency: 10 * * ?
   variables:
-    unityVersion: "2020.1"
+    unityVersion: "2020.1/staging"
     PackageRepoBranch: "2020.1-Staging"
     packageName: "WindowsMR"
     packageRepoURL: "git@github.cds.internal.unity3d.com:unity/xr.sdk.windowsmr.git"

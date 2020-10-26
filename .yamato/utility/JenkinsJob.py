@@ -124,7 +124,6 @@ def download_sbr_artifacts(jobURL, userName=temp_username,
     """After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job."""
 
 
-
     # How often should we check for the artifacts?
     interval = 30
 

@@ -1,0 +1,5 @@
+2020.1_PerformanceTests:
+  name: 2020.1_PerformanceTests
+  dependencies:
+    - path: .yamato/2020.1-Performance-QuestTests.yml#2020.1_Performance_QuestTests
+      rerun: always

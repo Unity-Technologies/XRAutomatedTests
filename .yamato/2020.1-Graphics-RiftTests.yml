@@ -1,0 +1,81 @@
+2020.1_Graphics_RiftTests:
+  name: 2020.1_Graphics_RiftTests
+  variables:
+    unityVERSION: 2020.1
+  dependencies:
+# Disabled on Jenkins, we are still only capturing correctly in one eye.
+#    - path: .yamato/2020.1-Graphics-RiftTests.yml#2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass
+#      rerun: always
+    - path: .yamato/2020.1-Graphics-RiftTests.yml#2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass
+      rerun: always
+
+2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass:
+  name: 2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Graphics/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/BuiltInGraphicsSmokeTests --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -stereorenderingpath=MultiPass -colorspace=Linear\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_GfxSmoke_OculusRift_XRSDK_Linear_MultiPass-test-results:
+      paths:
+        - ".yamato/testResults/**"
+
+2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass:
+  name: 2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass
+  agent:
+      type: Unity::VM
+      image: sdet/gamecode_win10:latest
+      flavor: b1.xlarge
+  variables:
+    artifactPath: "2020.1/Graphics/Rift"
+    jenkinsJob: "SBR_Rift_RunTest"
+    runTests: "True"
+    unityVERSION: "2020.1/staging"
+    includeAndroid: "False"
+    includeUWP: "False"
+    includeIL2CPP: "True"
+    includeIOS: "False"
+    cmd: "--suite=playmode --testproject=../GraphicsTests/URPGraphicsTests --platform=StandaloneWindows64
+            --editor-location=.Editor --player-save-path=build/players --artifacts_path=build/logs --scripting-backend=il2cpp --build-only
+            --extra-editor-arg=\"-enabledxrtarget=OculusXRSDK -playergraphicsAPI=Direct3D11
+            -stereorenderingpath=SinglePassInstanced -colorspace=Linear -executeMethod TestSetup.Setup\""
+  commands:
+    - pip install unity-downloader-cli --index-url https://artifactory.prd.it.unity3d.com/artifactory/api/pypi/pypi/simple
+    - dir
+    - |
+      cd .yamato
+      python CheckIfPlayerExistsAndBuild.py
+  artifacts:
+    2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass-build-players:
+      paths:
+        - ".yamato/build/players/**"
+    2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass-build-logs:
+      paths:
+        - ".yamato/build/logs/**"
+    2020.1_GfxURP_OculusRift_XRSDK_Linear_SinglePass-test-results:
+      paths:
+        - ".yamato/testResults/**"

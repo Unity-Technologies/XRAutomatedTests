@@ -11,6 +11,7 @@ temp_JobToken = os.getenv('JENKINSJOBTOKEN')
 branches = ["trunk", "2020.1/staging", "2019.4/staging", "2018.4/staging"]
 
 default_queue_timeout = 3600  # 60 minutes
+artifact_retrieval_timeout = 600 # 10 minutes
 
 
 def parse_version_for_jenkins(unityVERSION):
@@ -75,7 +76,7 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                     print("job url:" + json["executable"]["url"])
                     JobRunning = True
                     break
-            # If not, go ahead and wait 5 seconds before trying again.
+            # If not, go ahead and wait 30 seconds before trying again.
             print("Job not started yet, sleeping for 30 seconds...")
             time.sleep(30)
         # If we don't want to wait for the job to be complete, just return the job URL
@@ -122,14 +123,13 @@ def download_sbr_artifacts(jobURL, userName=temp_username,
                            APIkey=temp_APIKEY):
     """After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job."""
 
-    # If we can't get the artifacts for 10 minutes, give up and fail this job.
-    timeout = 600
+
 
     # How often should we check for the artifacts?
     interval = 30
 
     start = time.time()
-    while (time.time()-start) < timeout:
+    while (time.time()-start) < artifact_retrieval_timeout:
         # Add the Jenkins username and APIKeys to the URL.
         url = jobURL.replace("http://", "http://" + userName + ":" + APIkey + "@")
         print("Download SBR Artifacts from: " + url)

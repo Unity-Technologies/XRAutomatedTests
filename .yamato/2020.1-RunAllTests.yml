@@ -1,4 +1,4 @@
-#split this out into 2020.2_RunAllYamatoTests and 2020.2_RunAllJenlinsTests
+#split this out into 2020.1_RunAllYamatoTests and 2020.1_RunAllJenlinsTests
 
 2020.1_RunAllTests:
   name: 2020.1_RunAllTests

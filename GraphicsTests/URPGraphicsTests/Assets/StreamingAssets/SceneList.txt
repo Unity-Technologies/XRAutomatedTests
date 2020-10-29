@@ -35,7 +35,6 @@ Assets/Tests/Scenes/041_Lighting_BasicArea.unity
 Assets/Tests/Scenes/042_Lighting_Scene_VertexLighting.unity
 Assets/Tests/Scenes/043_Lighting_Mixed_ShadowMask.unity
 Assets/Tests/Scenes/044_Lighting_ReflectionProbe.unity
-Assets/Tests/Scenes/045_CustomLWPipe.unity
 Assets/Tests/Scenes/046_Camera_OpaqueTexture.unity
 Assets/Tests/Scenes/047_Lighting_DirectionalCascades.unity
 Assets/Tests/Scenes/048_Lighting_LocalShadows.unity

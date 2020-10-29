@@ -1,6 +1,5 @@
 import requests
 import time
-import datetime
 import os
 import re
 
@@ -9,9 +8,6 @@ temp_APIKEY = os.getenv('JENKINSAPIKEY')
 temp_JobToken = os.getenv('JENKINSJOBTOKEN')
 
 branches = ["trunk", "2020.1/staging", "2019.4/staging", "2018.4/staging"]
-
-default_queue_timeout = 3600  # 60 minutes
-artifact_retrieval_timeout = 600 # 10 minutes
 
 
 def parse_version_for_jenkins(unityVERSION):
@@ -30,7 +26,7 @@ def parse_version_for_jenkins(unityVERSION):
 
 
 def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete=False, userName=temp_username,
-                      APIkey=temp_APIKEY, jobToken=temp_JobToken, queue_timeout=default_queue_timeout):
+                      APIkey=temp_APIKEY, jobToken=temp_JobToken):
     """Start a Jenkins job by using the Rest API to trigger it remotely."""
 
     # Set the base URL with out shared username and APIKey.
@@ -57,16 +53,11 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
     if waitForQueue is True:
         prettyJSON = r.headers['Location'] + "api/json?pretty=true"
         # Sleep for a safe period to get past the quite period?
+        time.sleep(5)
 
-        # Give it 10 minutes to try and determine the job's URL, then timeout if it hasn't
-        timeout = queue_timeout
-        timeout_time = datetime.datetime.now() + datetime.timedelta(seconds=timeout)
         JobRunning = False
         jobURL = ""
         while JobRunning is False:
-            if datetime.datetime.now() > timeout_time:
-                print("TIMED OUT BEFORE WE WERE ABLE TO DETERMINE JOB!")
-                break
             getR = requests.get(prettyJSON, auth=(userName, APIkey))
             json = getR.json()
             # Did the response have the executable url we were looking for?
@@ -76,9 +67,9 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                     print("job url:" + json["executable"]["url"])
                     JobRunning = True
                     break
-            # If not, go ahead and wait 30 seconds before trying again.
-            print("Job not started yet, sleeping for 30 seconds...")
-            time.sleep(30)
+            # If not, go ahead and wait 60 seconds before trying again.
+            print("Job not started yet, sleeping for 60 seconds...")
+            time.sleep(60)
         # If we don't want to wait for the job to be complete, just return the job URL
         if waitForJobComplete is False:
             return jobURL
@@ -97,8 +88,8 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
                         print("Job Status:" + result)
                         # if it's none, then the job is still running, and we'll sleep for 5 seconds.
                         if result == "None":
-                            print("Job still running, sleep for 5 seconds and check again...")
-                            time.sleep(5)
+                            print("Job still running, sleep for 30 seconds and check again...")
+                            time.sleep(30)
                         # If it's SUCCESS, FAILURE, or ABORTED then return those values, to be handled
                         # as appropriate outside of the job.
                         elif result == "SUCCESS":
@@ -123,12 +114,14 @@ def download_sbr_artifacts(jobURL, userName=temp_username,
                            APIkey=temp_APIKEY):
     """After a Jenkins job completes, download a zip file containing the collected artifacts from the Jenkins job."""
 
+    # If we can't get the artifacts for 10 minutes, give up and fail this job.
+    timeout = 600
 
     # How often should we check for the artifacts?
     interval = 30
 
     start = time.time()
-    while (time.time()-start) < artifact_retrieval_timeout:
+    while (time.time() - start) < timeout:
         # Add the Jenkins username and APIKeys to the URL.
         url = jobURL.replace("http://", "http://" + userName + ":" + APIkey + "@")
         print("Download SBR Artifacts from: " + url)
@@ -138,9 +131,9 @@ def download_sbr_artifacts(jobURL, userName=temp_username,
         print("SBR Artifact download request returned status code of:" + str(r.status_code))
         # If we didn't find the artifacts, return false. Otherwise return the result status of the web request.
         if r.status_code != 200:
-            print("SBR Artifact download from " + url+" returned status code of "+str(r.status_code))
+            print("SBR Artifact download from " + url + " returned status code of " + str(r.status_code))
             time.sleep(interval)
         else:
             return r
-
+    print("FAILED TO DOWNLOAD SBR JENKINS ARTIFACTS FROM: " + url)
     return False

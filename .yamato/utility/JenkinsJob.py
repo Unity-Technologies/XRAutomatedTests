@@ -7,7 +7,7 @@ temp_username = os.getenv('JENKINSUSER')
 temp_APIKEY = os.getenv('JENKINSAPIKEY')
 temp_JobToken = os.getenv('JENKINSJOBTOKEN')
 
-branches = ["trunk", "2020.2/staging", "2020.1/staging", "2019.4/staging", "2018.4/staging"]
+branches = os.getenv('UNITYBRANCHES')
 
 
 def parse_version_for_jenkins(unityVERSION):

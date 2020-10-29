@@ -1,15 +1,19 @@
 2019.4_RunAllTests:
   name: 2019.4_RunAllTests
-  variables:
-    unityVERSION: "2019.4/staging"
+  dependencies:
+    - path: .yamato/2019.4-RunAllTests.yml#2019.4_RunAllTests_OnYamato
+      rerun: always
+    - path: .yamato/2019.4-RunAllTests.yml#2019.4_RunAllTests_OnJenkins
+      rerun: always
+
+2019.4_RunAllTests_OnYamato:
+  name: 2019.4_RunAllTests_OnYamato
   dependencies:
     - path: .yamato/2019.4-FunctionalTests.yml#2019.4_FunctionalTests
       rerun: always
     - path: .yamato/2019.4-GraphicsTests.yml#2019.4_GraphicsTests
       rerun: always
     - path: .yamato/2019.4-PerformanceTests.yml#2019.4_PerformanceTests
-      rerun: always
-    - path: .yamato/2019.4-RunAllTests.yml#2019.4_RunAllTests_OnJenkins
       rerun: always
 
 2019.4_RunAllTests_OnJenkins:

@@ -81,13 +81,13 @@ def main():
         artifactZipURL = jobURL + "artifact/RunTest/*zip*/RunTest.zip"
 
         r = utility.JenkinsJob.download_sbr_artifacts(artifactZipURL)
-
-        # extract them to the location in our workspace where Yamato can collect them.
-        z = zipfile.ZipFile(io.BytesIO(r.content))
-        workFolder = os.getenv("YAMATO_WORK_DIR")
-        outputDir = os.getenv("YAMATO_WORK_DIR") + "\\unity\\xr.xrautomatedtests\\.yamato\\testResults"
-        print("Extracting Jenkins Artifacts to: " + outputDir)
-        z.extractall(outputDir)
+        if r != False:
+            # extract them to the location in our workspace where Yamato can collect them.
+            z = zipfile.ZipFile(io.BytesIO(r.content))
+            workFolder = os.getenv("YAMATO_WORK_DIR")
+            outputDir = os.getenv("YAMATO_WORK_DIR") + "\\unity\\xr.xrautomatedtests\\.yamato\\testResults"
+            print("Extracting Jenkins Artifacts to: " + outputDir)
+            z.extractall(outputDir)
 
         # If the Jenkins job wasn't successful, fail this job.
         # Ideally there would be a Yamato status for cancelled, but I'm unsure how to exit with it right now.

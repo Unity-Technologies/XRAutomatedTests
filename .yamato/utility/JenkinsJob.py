@@ -3,10 +3,12 @@ import time
 import os
 import re
 
+# pull credentials from the xr.xrautomatedtests Yamato secret group
 temp_username = os.getenv('JENKINSUSER')
 temp_APIKEY = os.getenv('JENKINSAPIKEY')
 temp_JobToken = os.getenv('JENKINSJOBTOKEN')
 
+# pull branches from the xr.xrautomatedtests Yamato secret group
 branches = os.getenv('UNITYBRANCHES')
 
 

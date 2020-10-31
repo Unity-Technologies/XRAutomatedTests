@@ -1,4 +1,5 @@
 import requests
+import datetime
 import time
 import os
 import re
@@ -45,7 +46,18 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
     print("Calling URL:" + url)
 
     # General request form is http://<JenkinsUser>:<JenkinsUser's APIkey>@<Jenkins Server>/job/<job Name>/build?<Job Specific Secret key>
-    r = requests.post(url)
+
+    #Post the job request to Jenkins
+    JobPostSuccessful = False
+    TryPostUntil = timeout_time = datetime.datetime.now() + datetime.timedelta(seconds=3600) #only try posting this for 60 minutes
+    while JobPostSuccessful is False:
+        if datetime.datetime.now() > timeout_time:
+            print("Timed out while attempting post RunTest job to Jenkins.")
+            exit(1)
+        try:
+            r = requests.post(url)
+        except:
+            print("Unexpected error while checking on Job Queue Status:", sys.exc_info()[0])
 
     # Quick output of response data
     print("post status: " + str(r.status_code))

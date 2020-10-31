@@ -56,6 +56,7 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
             exit(1)
         try:
             r = requests.post(url)
+            JobPostSuccessful = True
         except:
             print("Unexpected error while checking on Job Queue Status:", sys.exc_info()[0])
 

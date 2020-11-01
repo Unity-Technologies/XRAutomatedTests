@@ -49,14 +49,11 @@ def start_jenkins_job(jobName, params={}, waitForQueue=False, waitForJobComplete
 
     #Post the job request to Jenkins
     JobPostSuccessful = False
-    TryPostUntil = timeout_time = datetime.datetime.now() + datetime.timedelta(seconds=3600) #only try posting this for 60 minutes
     while JobPostSuccessful is False:
-        if datetime.datetime.now() > timeout_time:
-            print("Timed out while attempting post RunTest job to Jenkins.")
-            exit(1)
         try:
             r = requests.post(url)
             JobPostSuccessful = True
+            time.sleep(60)
         except:
             print("Unexpected error while checking on Job Queue Status:", sys.exc_info()[0])
 

@@ -14,7 +14,7 @@
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
-      flavor: b1.xlarge
+      flavor: b1.large
   variables:
     artifactPath: "2020.1/Graphics/Rift"
     jenkinsJob: "SBR_Rift_RunTest"
@@ -49,7 +49,7 @@
   agent:
       type: Unity::VM
       image: sdet/gamecode_win10:latest
-      flavor: b1.xlarge
+      flavor: b1.large
   variables:
     artifactPath: "2020.1/Graphics/Rift"
     jenkinsJob: "SBR_Rift_RunTest"

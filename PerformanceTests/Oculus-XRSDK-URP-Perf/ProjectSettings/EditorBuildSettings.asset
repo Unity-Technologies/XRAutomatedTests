@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Packages/xr.sdk.oculus.performancetests/Scenes/StatsTests/SimpleSceneWithManyLitCubes.unity
     guid: 323b9d543d569f04a80a4f810da24d6f
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 7252830879927170822, guid: 5a9aad67183bd7e4abd72cdb069616a3,
+    Unity.XR.Oculus.Settings: {fileID: -4457903098650850186, guid: 5a9aad67183bd7e4abd72cdb069616a3,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5a9aad67183bd7e4abd72cdb069616a3,
       type: 2}

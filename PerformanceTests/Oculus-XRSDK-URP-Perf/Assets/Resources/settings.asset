@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnabledXrTarget: OculusXRSDK
   PlayerGraphicsApi: Vulkan
-  StereoRenderingMode: 
+  StereoRenderingMode:
   StereoRenderingModeDesktop: MultiPass
   StereoRenderingModeAndroid: Multiview
   MtRendering: 1

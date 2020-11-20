@@ -1,18 +1,15 @@
 {
   "dependencies": {
-    "com.unity.cli-config-manager": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.cli-config-manager.git#trunk",
+    "com.unity.cli-config-manager": "https://github.com/Unity-Technologies/com.unity.cli-config-manager.git#trunk",
     "com.unity.ide.visualstudio": "2.0.3",
     "com.unity.ide.vscode": "1.2.2",
     "com.unity.test-framework": "1.1.18",
     "com.unity.xr.management": "3.2.16",
     "com.unity.xr.oculus": "1.5.0",
-    "com.unity.external.test-protocol": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.external.test-protocol.git?path=/package#3d4a9f00941e1ed44474250d102bbac4989c5e9f",
-    "com.unity.test-framework.build": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.test-framework.build.git#a536b18c4fc23d98f9f4a60d2d74fb23be46c9f6",
-    "com.unity.test-framework.utp-reporter": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.test-framework.utp-reporter.git#eba795417431a9a0e57ca3422939779dd988d7d1",
-    "com.unity.xr.oculusperformanceutility": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.oculusperformanceutility.git",
-    "com.unity.xr.test-framework.performance": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test-framework.performance.git",
-    "com.unity.xr.tests.runtimesettings": "ssh://git@github.cds.internal.unity3d.com/unity/com.unity.xr.test.runtimesettings.git#trunk",
-    "xr.sdk.oculus.performancetests": "ssh://git@github.cds.internal.unity3d.com/unity/xr.sdk.oculus.performancetests.git",
+    "com.unity.xr.oculusperformanceutility": "https://github.com/Unity-Technologies/com.unity.xr.oculusperformanceutility.git",
+    "com.unity.xr.test-framework.performance": "https://github.com/Unity-Technologies/com.unity.xr.test-framework.performance.git",
+    "com.unity.xr.tests.runtimesettings": "https://github.com/Unity-Technologies/com.unity.xr.test.runtimesettings.git#trunk",
+    "xr.sdk.oculus.performancetests": "https://github.com/Unity-Technologies/xr.sdk.oculus.performancetests.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
@@ -49,5 +46,6 @@
     "com.unity.xr.test-framework.performance",
     "com.unity.xr.oculusperformanceutility"
   ],
+  "registry": "https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-candidates",
   "disableProjectUpdate": true
 }
